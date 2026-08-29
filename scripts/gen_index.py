@@ -228,7 +228,7 @@ BODY_INNER = f"""<header class="bar">
     <p class="lede">A hands-on program for a senior fintech engineer: implement {DATA['total_topics']} AI systems from the original papers — autograd to transformers to GPU kernels to agents — each with a slow-paced Remotion video lesson, step-laddered code with tests, and a home inside <strong>AlphaDesk</strong>, a paper-trading AI desk that mirrors an OMS/EMS platform.</p>
 
     <div class="stats">
-      <div class="stat"><div class="n">{DATA['total_topics']}</div><div class="k">build-your-own topics</div></div>
+      <div class="stat"><div class="n">{DATA['total_topics']}</div><div class="k">build-your-own topics · {DATA.get('total_modules',52)} modules</div></div>
       <div class="stat"><div class="n">{len(DATA['phases'])}</div><div class="k">dependency-ordered phases</div></div>
       <div class="stat"><div class="n">{DATA['total_eps']}</div><div class="k">planned video episodes</div></div>
       <div class="stat capstone"><div class="n">1</div><div class="k">capital-markets capstone · AlphaDesk</div></div>

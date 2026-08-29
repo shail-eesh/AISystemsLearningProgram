@@ -1,6 +1,6 @@
 # AI Systems Forge — AI Systems Learning Program
 
-A build-it-yourself mastery program: **52 "Build Your Own X" topics** across
+A build-it-yourself mastery program: **51 "Build Your Own X" topics** across
 **10 phases**, each with slow-paced Remotion video lessons (narrated with Kokoro-82M),
 step-laddered practice code with tests, and one capital-markets capstone — **AlphaDesk**.
 
@@ -23,7 +23,7 @@ See [`MASTER_PLAN.md`](MASTER_PLAN.md) for the full plan and the day-by-day sche
 - **[gpu-runner/](gpu-runner/)** — scripts you run on your RTX 4070
 
 ## Repo status
-Total topics: **52** · Total planned video episodes: **168** ·
+Total topics: **51** (52 build modules) · Total planned video episodes: **168** ·
 Branch: `course-generation`
 
 ---

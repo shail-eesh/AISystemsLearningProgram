@@ -616,6 +616,7 @@
    "hook": "Synthetic scenario-chart generation"
   }
  ],
- "total_topics": 52,
- "total_eps": 168
+ "total_topics": 51,
+ "total_eps": 168,
+ "total_modules": 52
 }
