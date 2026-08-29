@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Systems Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap">
+<style>
+:root{
+  --bg:#f4f6f8; --panel:#ffffff; --panel-2:#eef1f4; --ink:#141b24; --muted:#5a6672;
+  --line:#d9dfe5; --line-strong:#c3ccd4;
+  --accent:#0e7490; --accent-ink:#ffffff; --accent-soft:#d7edf1;
+  --brass:#946a10; --brass-soft:#f2e8cf;
+  --done:#1f875a; --done-bg:#dcf0e6; --wip:#a9700a; --wip-bg:#f6ecd3;
+  --gpu:#5b4bc4; --gpu-bg:#e6e2f7; --todo:#6b7683; --todo-bg:#e7ebef; --defer:#8a94a0; --defer-bg:#eceff2;
+  --shadow:0 1px 2px rgba(20,27,36,.06),0 4px 14px rgba(20,27,36,.05);
+  --radius:14px;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1622; --panel:#151f2c; --panel-2:#1b2735; --ink:#e7ecf2; --muted:#93a1b0;
+    --line:#26323f; --line-strong:#33414f;
+    --accent:#45c4d6; --accent-ink:#08222a; --accent-soft:#123642;
+    --brass:#d9ad4e; --brass-soft:#33290f;
+    --done:#43c489; --done-bg:#123026; --wip:#e0a83e; --wip-bg:#322612;
+    --gpu:#9d90ee; --gpu-bg:#23204a; --todo:#8c99a7; --todo-bg:#1c2733; --defer:#6f7c8a; --defer-bg:#1a2430;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.28);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1622; --panel:#151f2c; --panel-2:#1b2735; --ink:#e7ecf2; --muted:#93a1b0;
+  --line:#26323f; --line-strong:#33414f;
+  --accent:#45c4d6; --accent-ink:#08222a; --accent-soft:#123642;
+  --brass:#d9ad4e; --brass-soft:#33290f;
+  --done:#43c489; --done-bg:#123026; --wip:#e0a83e; --wip-bg:#322612;
+  --gpu:#9d90ee; --gpu-bg:#23204a; --todo:#8c99a7; --todo-bg:#1c2733; --defer:#6f7c8a; --defer-bg:#1a2430;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* top bar */
+header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:16px;padding:11px clamp(16px,4vw,40px)}
+.bar .brand{font-weight:600;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.spark{width:12px;height:18px;border-radius:2px;background:linear-gradient(var(--accent),var(--brass));display:inline-block;flex:0 0 auto}
+.bar .grow{flex:1}
+.meter{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)}
+.meter .track{width:120px;height:7px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}
+.meter .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--brass))}
+.btn{font:inherit;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line-strong);
+  border-radius:9px;padding:6px 11px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.btn:hover{border-color:var(--accent)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+/* hero */
+.hero{padding:54px 0 22px}
+.eyebrow{font:600 12px/1 "IBM Plex Mono",monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-weight:600;font-size:clamp(30px,5vw,50px);line-height:1.04;margin:16px 0 0;text-wrap:balance;letter-spacing:-.01em}
+.hero .lede{font-family:"IBM Plex Serif",Georgia,serif;font-size:clamp(16px,2vw,20px);color:var(--muted);
+  max-width:64ch;margin:18px 0 0;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:34px 0 8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.stat .n{font:600 30px/1 "IBM Plex Mono",monospace;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .k{font-size:12.5px;color:var(--muted);margin-top:7px;letter-spacing:.02em}
+.stat.capstone{border-color:var(--brass);background:linear-gradient(180deg,var(--brass-soft),var(--panel))}
+.stat.capstone .n{color:var(--brass)}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:18px 0 2px;font-size:12.5px;color:var(--muted)}
+.legend b{color:var(--ink);font-weight:600;margin-right:2px}
+
+/* pills */
+.pill{font:600 11px/1.4 "IBM Plex Mono",monospace;padding:2px 7px;border-radius:6px;letter-spacing:.02em;white-space:nowrap;border:1px solid transparent}
+.s-done{color:var(--done);background:var(--done-bg)} .s-wip{color:var(--wip);background:var(--wip-bg)}
+.s-gpu{color:var(--gpu);background:var(--gpu-bg)} .s-todo{color:var(--todo);background:var(--todo-bg)}
+.s-defer{color:var(--defer);background:var(--defer-bg)} .s-na{color:var(--muted);background:transparent;border-color:var(--line)}
+
+/* phase band */
+.phase{padding:30px 0;border-top:1px solid var(--line)}
+.phase-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.phase-num{font:600 13px/1 "IBM Plex Mono",monospace;color:var(--accent);border:1px solid var(--line-strong);
+  border-radius:7px;padding:5px 8px;background:var(--panel)}
+.phase-head h2{font-size:clamp(19px,2.4vw,25px);font-weight:600;margin:0;letter-spacing:-.01em}
+.phase-head .wk{font:600 12px/1 "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.03em}
+.phase-desc{color:var(--muted);margin:8px 0 18px;max-width:70ch}
+
+/* topic grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px 14px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .top{display:flex;align-items:center;gap:9px}
+.card .tid{font:600 13px/1 "IBM Plex Mono",monospace;color:var(--accent);background:var(--accent-soft);
+  padding:3px 7px;border-radius:6px}
+.card .day{font:600 11px/1 "IBM Plex Mono",monospace;color:var(--muted);margin-left:auto}
+.card h3{font-size:15.5px;font-weight:600;margin:0;line-height:1.3;letter-spacing:-.005em}
+.card h3 a{color:var(--ink)} .card h3 a:hover{color:var(--accent)}
+.card .hook{font-size:12.5px;color:var(--muted);line-height:1.45}
+.card .hook .lbl{font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
+.card .status{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.card .status .k{font:600 10px/1.4 "IBM Plex Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;align-self:center}
+.defer-tag{font:600 10px/1 "IBM Plex Mono",monospace;color:var(--defer);border:1px solid var(--line-strong);border-radius:5px;padding:2px 5px}
+
+/* capstone band */
+.capstone-band{margin:30px 0;padding:26px clamp(18px,3vw,30px);border:1px solid var(--brass);border-radius:18px;
+  background:linear-gradient(180deg,var(--brass-soft),var(--panel))}
+.capstone-band .eyebrow{color:var(--brass)}
+.capstone-band h2{font-size:clamp(21px,2.6vw,27px);margin:12px 0 6px;font-weight:600}
+.capstone-band p{color:var(--muted);max-width:74ch;margin:6px 0}
+.surfaces{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.surface{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.surface h4{margin:0 0 6px;font-size:14.5px}
+.surface p{font-size:12.5px;margin:0}
+
+/* nav links row */
+.navlinks{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 6px}
+.navlinks a{background:var(--panel);border:1px solid var(--line-strong);border-radius:9px;padding:8px 13px;font-size:13.5px;color:var(--ink)}
+.navlinks a:hover{border-color:var(--accent);text-decoration:none}
+.navlinks a .mono{color:var(--accent)}
+
+footer{border-top:1px solid var(--line);margin-top:36px;padding:26px 0 60px;color:var(--muted);font-size:13px}
+.disclaimer{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin:14px 0;font-size:12.5px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="brand"><span class="spark"></span> AI Systems Forge</span>
+  <span class="grow"></span>
+  <div class="meter" title="Topics with code complete">
+    <span class="mono">0/55</span>
+    <span class="track"><span class="fill" style="width:0%"></span></span>
+    <span class="mono">0%</span>
+  </div>
+  <a class="btn" href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation">Repo ↗</a>
+  <button class="btn" id="themeBtn" aria-label="Toggle theme">◐ Theme</button>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Build-your-own · 52 systems · one trading-desk capstone</div>
+    <h1>Learn the modern AI stack by building every layer of it.</h1>
+    <p class="lede">A hands-on program for a senior fintech engineer: implement 52 AI systems from the original papers — autograd to transformers to GPU kernels to agents — each with a slow-paced Remotion video lesson, step-laddered code with tests, and a home inside <strong>AlphaDesk</strong>, a paper-trading AI desk that mirrors an OMS/EMS platform.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">52</div><div class="k">build-your-own topics</div></div>
+      <div class="stat"><div class="n">10</div><div class="k">dependency-ordered phases</div></div>
+      <div class="stat"><div class="n">168</div><div class="k">planned video episodes</div></div>
+      <div class="stat capstone"><div class="n">1</div><div class="k">capital-markets capstone · AlphaDesk</div></div>
+    </div>
+
+    <div class="legend">
+      <span><b>Status per topic →</b></span>
+      <span><span class="pill s-done">done</span> code / tests / bench complete</span>
+      <span><span class="pill s-wip">wip</span> in progress or pending</span>
+      <span><span class="pill s-gpu">4070</span> GPU bench awaiting your RTX&nbsp;4070</span>
+      <span><span class="pill s-todo">todo</span> scheduled, not yet generated</span>
+      <span><span class="defer-tag">◇ optional</span> deferrable on the fast path</span>
+    </div>
+
+    <div class="navlinks">
+      <a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/blob/course-generation/MASTER_PLAN.md">📘 <span class="mono">MASTER_PLAN.md</span> — full curriculum &amp; capsules</a>
+      <a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/blob/course-generation/EXECUTION/DAY_PLAN.md">🗓 <span class="mono">DAY_PLAN.md</span> — 15-day schedule</a>
+      <a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/blob/course-generation/EXECUTION/LEDGER.md">📊 <span class="mono">LEDGER.md</span> — live progress</a>
+      <a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/tree/course-generation/phases">📂 phases/ — all topic folders</a>
+    </div>
+  </section>
+
+  <section class="capstone-band">
+    <div class="eyebrow">The thread through every topic</div>
+    <h2>AlphaDesk — a fictional AI trading desk</h2>
+    <p>Every one of the 52 topics plugs into one growing platform, so your learning compounds into a system you can demo. Paper-trading only — no real orders, money, brokerage systems, or market-data redistribution.</p>
+    <div class="surfaces">
+      <div class="surface"><h4>Research Copilot</h4><p>Cited, reasoned answers over filings, transcripts &amp; market data. <span class="mono">RAG · GraphRAG · KG · CoT · agent · text-to-SQL</span></p></div>
+      <div class="surface"><h4>Order Workflow (paper)</h4><p>NL order ticket → grammar + risk validation → simulated fills. <span class="mono">function-calling · CFG order-DSL · guardrails · feature store</span></p></div>
+      <div class="surface"><h4>Compliance &amp; Ops</h4><p>Guardrail perimeter, eval harness, interpretability, model gateway. <span class="mono">guardrails · evals · SAE · gateway</span></p></div>
+    </div>
+  </section>
+
+    <section class="phase" id="p0">
+      <div class="phase-head">
+        <span class="phase-num mono">P0</span>
+        <h2>Python &amp; Tensor Ramp</h2>
+        <span class="wk mono">Week 1–2</span>
+      </div>
+      <p class="phase-desc">.NET → Python / NumPy / PyTorch, for a senior engineer</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">P0.1</span><span class="day mono">Day 1</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p0/p0-1-python-for-dotnet">Python for the .NET veteran</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> AlphaDesk domain model ported to idiomatic Python</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">P0.2</span><span class="day mono">Day 1</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p0/p0-2-numpy-as-linq">NumPy as your new LINQ</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Vectorized TA indicators over NSE bhavcopy</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">P0.3</span><span class="day mono">Day 1</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p0/p0-3-pytorch-training-loop">PyTorch tensors &amp; the training loop</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> First (deliberately humbling) signal model</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p1">
+      <div class="phase-head">
+        <span class="phase-num mono">P1</span>
+        <h2>Foundations</h2>
+        <span class="wk mono">Week 3–5</span>
+      </div>
+      <p class="phase-desc">How learning actually works: autograd, kernels, tokenizer</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T31</span><span class="day mono">Day 2</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p1/t31-autograd">Autograd engine (micrograd-style)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Trains AlphaDesk&#x27;s first toy signal model</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T16A</span><span class="day mono">Day 2</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p1/t16a-matmul-cpu">Matrix multiplication kernel — CPU</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Literacy for every later kernel</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T45A</span><span class="day mono">Day 2</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p1/t45a-softmax-cpu">Softmax &amp; online softmax — CPU</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Prerequisite for Flash Attention</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T30</span><span class="day mono">Day 2</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p1/t30-tokenizer-bpe">Tokenizer (BPE) → FinTok</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> FinTok: the tokenizer for every downstream model</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p2">
+      <div class="phase-head">
+        <span class="phase-num mono">P2</span>
+        <h2>Transformers &amp; Small Models</h2>
+        <span class="wk mono">Week 6–9</span>
+      </div>
+      <p class="phase-desc">Build and train your own GPT, SLM, embeddings, Mamba, MoE</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T4</span><span class="day mono">Day 3</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p2/t4-transformer">Transformer from scratch (Attention Is All You Need)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The architecture AlphaSLM uses</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T15</span><span class="day mono">Day 3</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p2/t15-slm">Small Language Model (AlphaSLM-40M)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> AlphaSLM: the desk&#x27;s local model</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T43</span><span class="day mono">Day 4</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p2/t43-embedding-model">Embedding model (contrastive)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Powers vector DB, RAG, router, recsys</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T13</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 4</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p2/t13-mamba-ssm">State Space Model (Mamba)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Experimental long-context tick modeling</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T9</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 4</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p2/t9-moe">Mixture of Experts routing layer</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Optional AlphaSLM-MoE variant</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p3">
+      <div class="phase-head">
+        <span class="phase-num mono">P3</span>
+        <h2>Retrieval &amp; Knowledge</h2>
+        <span class="wk mono">Week 10–12</span>
+      </div>
+      <p class="phase-desc">The job-search payoff: RAG, GraphRAG, vector DB, text-to-SQL</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T5</span><span class="day mono">Day 5</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t5-hnsw-vector-db">Vector database (HNSW index)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The vector store under RAG</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T50</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 5</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t50-vector-driver">Database driver for vectors</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The persistence + query API the desk uses</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T6</span><span class="day mono">Day 5</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t6-rag-pipeline">RAG pipeline</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The Research Copilot&#x27;s core</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T36</span><span class="day mono">Day 6</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t36-semantic-router">Semantic router</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The front-door dispatcher</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T37</span><span class="day mono">Day 6</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t37-knowledge-graph">Knowledge Graph builder</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Powers GraphRAG &amp; relationship queries</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T20</span><span class="day mono">Day 6</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t20-graph-rag">Graph RAG system</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The Research Copilot&#x27;s global mode</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T40</span><span class="day mono">Day 7</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t40-text-to-sql">Text-to-SQL engine</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The analytics query path</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T48</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 7</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t48-feature-store">Feature store (point-in-time)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Leak-free market features</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T42</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 7</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p3/t42-two-tower-recsys">Recommendation system (two-tower)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> &#x27;Ideas for you&#x27; research suggestions</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p4">
+      <div class="phase-head">
+        <span class="phase-num mono">P4</span>
+        <h2>Agents &amp; Safety</h2>
+        <span class="wk mono">Week 13–15</span>
+      </div>
+      <p class="phase-desc">Demoable behavior + a defensible compliance perimeter</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T1</span><span class="day mono">Day 8</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t1-cot-reasoner">Reasoner (Chain-of-Thought)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Reasoning layer for multi-step research</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T2</span><span class="day mono">Day 8</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t2-react-agent">Agent loop (ReAct)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The desk orchestrator</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T24</span><span class="day mono">Day 8</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t24-function-router">Function-calling router</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Reliable tool-invocation layer</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T17S</span><span class="day mono">Day 8</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t17s-code-sandbox">Code interpreter sandbox</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Lets the agent compute analytics safely</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T28</span><span class="day mono">Day 9</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t28-guardrails">Guardrails (input/output filtering)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The compliance perimeter</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T27</span><span class="day mono">Day 9</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t27-eval-harness">LLM eval harness</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The quality gate for every component</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T44</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 9</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t44-adversarial">Adversarial attack generator</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Continuous red-teaming of guardrails</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T22</span><span class="day mono">Day 9</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p4/t22-sae-interpretability">Interpretability tool (Sparse Autoencoders)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The explainability panel</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p5">
+      <div class="phase-head">
+        <span class="phase-num mono">P5</span>
+        <h2>Training &amp; Alignment</h2>
+        <span class="wk mono">Week 16–19</span>
+      </div>
+      <p class="phase-desc">How models are made and shaped: LoRA, DPO, RLHF, FSDP</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T38</span><span class="day mono">Day 10</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t38-data-curation">Data curation (MinHash/dedup)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The clean training corpus</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T23</span><span class="day mono">Day 10</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t23-synthetic-data">Synthetic data generator</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Instruction + preference datasets</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T17</span><span class="day mono">Day 10</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t17-lora-trainer">LoRA trainer</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> AlphaSLM-finance adapter</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T39</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 10</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t39-peft-library">PEFT library (QLoRA/prefix/IA3)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The tuning toolkit</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T19</span><span class="day mono">Day 11</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t19-dpo">DPO loss function</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Aligns AlphaSLM toward compliant behavior</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T14</span><span class="day mono">Day 11</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t14-rlhf-ppo">RLHF pipeline (PPO)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Alternate alignment path; DPO/PPO story</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T47</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 11</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t47-distillation">Model distillation pipeline</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> A small fast desk model from a teacher</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T21</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 11</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t21-model-merger">Model merger (Soups/SLERP/TIES)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Merged tuned + general desk model</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T11</span><span class="day mono">Day 12</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t11-distributed-training">Distributed training (FSDP/Tensor Parallel)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The &#x27;operates at scale&#x27; credential</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T46</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 12</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p5/t46-nas">Neural Architecture Search</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Tunes a small signal-model architecture</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p6">
+      <div class="phase-head">
+        <span class="phase-num mono">P6</span>
+        <h2>Inference Systems</h2>
+        <span class="wk mono">Week 20–23</span>
+      </div>
+      <p class="phase-desc">Make models fast and cheap: Rust server, paging, quant, gateway</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T3</span><span class="day mono">Day 12</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t3-rust-inference-server">Inference server (Rust, tickerd)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The serving layer for AlphaSLM</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T12</span><span class="day mono">Day 13</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t12-kv-paging">KV-cache paging (like vLLM)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Upgrades tickerd&#x27;s memory management</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T12S</span><span class="day mono">Day 13</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t12s-speculative-decoding">Speculative decoding</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> A tickerd latency mode</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T29</span><span class="day mono">Day 13</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t29-prompt-caching">Prompt caching (RadixAttention)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Speeds every shared-prefix request</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T25</span><span class="day mono">Day 13</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t25-cfg-structured-output">Structured output (CFG) + logit processors</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Guarantees valid tool calls / SQL / orders</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T8</span><span class="day mono">Day 13</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t8-quantization">Quantization library (Int8/FP4)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Shrinks AlphaSLM to serve faster</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T41</span><span class="day mono">Day 13</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p6/t41-ai-gateway">AI Gateway (load balancing/failover)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The single entry point routing model traffic</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p7">
+      <div class="phase-head">
+        <span class="phase-num mono">P7</span>
+        <h2>GPU Kernels (4070 lane)</h2>
+        <span class="wk mono">Week 24–25</span>
+      </div>
+      <p class="phase-desc">Real speedups on your RTX 4070: matmul, softmax, Flash Attention</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T16B</span><span class="day mono">Day 14</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p7/t16b-matmul-gpu">Matmul kernel — GPU (Triton/CUDA)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Proves the matmul speedup on the 4070</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T45B</span><span class="day mono">Day 14</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p7/t45b-softmax-gpu">Softmax kernel — GPU (fused)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Proves the fused-softmax win</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T7</span><span class="day mono">Day 14</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p7/t7-flash-attention">Flash Attention kernel (CUDA/Triton)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> The capstone kernel; O(N) attention memory</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p8">
+      <div class="phase-head">
+        <span class="phase-num mono">P8</span>
+        <h2>Multimodal</h2>
+        <span class="wk mono">Week 26–28</span>
+      </div>
+      <p class="phase-desc">Vision, audio, diffusion: ViT, CLIP, ASR, TTS</p>
+      <div class="grid">
+      <article class="card">
+        <div class="top"><span class="tid mono">T32</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 14</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p8/t32-vit">Vision Transformer (ViT)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Chart-pattern classifier tool</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T26</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 14</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p8/t26-clip-projector">Multimodal projector (CLIP)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Find charts by text or image query</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T33</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 15</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p8/t33-whisper-asr">Whisper-style ASR model</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Voice input to the desk</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T34</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 15</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p8/t34-tts-pipeline">Text-to-Speech pipeline</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Spoken responses; full-circle with Kokoro</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T35</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 15</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p8/t35-audio-spectrogram-transformer">Audio Spectrogram Transformer</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Audio-alert classification</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top"><span class="tid mono">T10</span><span class="defer-tag" title="Deferrable on the accelerated core path">◇ optional</span><span class="day mono">Day 15</span></div>
+        <h3><a href="https://github.com/shail-eesh/AISystemsLearningProgram/tree/course-generation/phases/p8/t10-diffusion">Diffusion model (UNet + scheduler)</a></h3>
+        <div class="hook"><span class="lbl">AlphaDesk</span> Synthetic scenario-chart generation</div>
+        <div class="status">
+          <span class="k">code</span><span class="pill s-todo">todo</span>
+          <span class="k">tests</span><span class="pill s-todo">todo</span>
+          <span class="k">bench</span><span class="pill s-todo">todo</span>
+          <span class="k">video</span><span class="pill s-todo">todo</span>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="phase" id="p9">
+      <div class="phase-head">
+        <span class="phase-num mono">P9</span>
+        <h2>Capstone Assembly</h2>
+        <span class="wk mono">Week 29–30</span>
+      </div>
+      <p class="phase-desc">Harden AlphaDesk into one demoable product</p>
+      <div class="grid">
+
+      </div>
+    </section>
+
+  <footer>
+    <div class="disclaimer">⚠️ <strong>Educational simulation.</strong> AlphaDesk is fictional and paper-only — it never touches real orders, real money, real brokerage systems, or redistributes market data.</div>
+    <p>Content is generated incrementally by a scheduled Claude Opus session (~3:00 AM IST daily), following <span class="mono">EXECUTION/DAILY_PROMPT.md</span>. This page regenerates from <span class="mono">EXECUTION/status.json</span> — last updated 2026-08-29. Branch <span class="mono">course-generation</span>.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY="aisf-theme";
+  try{var s=localStorage.getItem(KEY); if(s) document.documentElement.setAttribute("data-theme",s);}catch(e){}
+  document.getElementById("themeBtn").addEventListener("click",function(){
+    var cur=document.documentElement.getAttribute("data-theme");
+    var mql=window.matchMedia("(prefers-color-scheme: dark)");
+    var next = cur? (cur==="dark"?"light":"dark") : (mql.matches?"light":"dark");
+    document.documentElement.setAttribute("data-theme",next);
+    try{localStorage.setItem(KEY,next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

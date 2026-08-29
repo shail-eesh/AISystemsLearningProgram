@@ -1,0 +1,621 @@
+{
+ "title": "AI Systems Forge",
+ "repo": "shail-eesh/AISystemsLearningProgram",
+ "branch": "course-generation",
+ "phases": [
+  {
+   "id": "p0",
+   "name": "Python & Tensor Ramp",
+   "weeks": "Week 1\u20132",
+   "desc": ".NET \u2192 Python / NumPy / PyTorch, for a senior engineer"
+  },
+  {
+   "id": "p1",
+   "name": "Foundations",
+   "weeks": "Week 3\u20135",
+   "desc": "How learning actually works: autograd, kernels, tokenizer"
+  },
+  {
+   "id": "p2",
+   "name": "Transformers & Small Models",
+   "weeks": "Week 6\u20139",
+   "desc": "Build and train your own GPT, SLM, embeddings, Mamba, MoE"
+  },
+  {
+   "id": "p3",
+   "name": "Retrieval & Knowledge",
+   "weeks": "Week 10\u201312",
+   "desc": "The job-search payoff: RAG, GraphRAG, vector DB, text-to-SQL"
+  },
+  {
+   "id": "p4",
+   "name": "Agents & Safety",
+   "weeks": "Week 13\u201315",
+   "desc": "Demoable behavior + a defensible compliance perimeter"
+  },
+  {
+   "id": "p5",
+   "name": "Training & Alignment",
+   "weeks": "Week 16\u201319",
+   "desc": "How models are made and shaped: LoRA, DPO, RLHF, FSDP"
+  },
+  {
+   "id": "p6",
+   "name": "Inference Systems",
+   "weeks": "Week 20\u201323",
+   "desc": "Make models fast and cheap: Rust server, paging, quant, gateway"
+  },
+  {
+   "id": "p7",
+   "name": "GPU Kernels (4070 lane)",
+   "weeks": "Week 24\u201325",
+   "desc": "Real speedups on your RTX 4070: matmul, softmax, Flash Attention"
+  },
+  {
+   "id": "p8",
+   "name": "Multimodal",
+   "weeks": "Week 26\u201328",
+   "desc": "Vision, audio, diffusion: ViT, CLIP, ASR, TTS"
+  },
+  {
+   "id": "p9",
+   "name": "Capstone Assembly",
+   "weeks": "Week 29\u201330",
+   "desc": "Harden AlphaDesk into one demoable product"
+  }
+ ],
+ "topics": [
+  {
+   "id": "P0.1",
+   "folder": "p0/p0-1-python-for-dotnet",
+   "title": "Python for the .NET veteran",
+   "phase": "p0",
+   "day": 1,
+   "eps": 1,
+   "deferrable": false,
+   "hook": "AlphaDesk domain model ported to idiomatic Python"
+  },
+  {
+   "id": "P0.2",
+   "folder": "p0/p0-2-numpy-as-linq",
+   "title": "NumPy as your new LINQ",
+   "phase": "p0",
+   "day": 1,
+   "eps": 1,
+   "deferrable": false,
+   "hook": "Vectorized TA indicators over NSE bhavcopy"
+  },
+  {
+   "id": "P0.3",
+   "folder": "p0/p0-3-pytorch-training-loop",
+   "title": "PyTorch tensors & the training loop",
+   "phase": "p0",
+   "day": 1,
+   "eps": 1,
+   "deferrable": false,
+   "hook": "First (deliberately humbling) signal model"
+  },
+  {
+   "id": "T31",
+   "folder": "p1/t31-autograd",
+   "title": "Autograd engine (micrograd-style)",
+   "phase": "p1",
+   "day": 2,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Trains AlphaDesk's first toy signal model"
+  },
+  {
+   "id": "T16A",
+   "folder": "p1/t16a-matmul-cpu",
+   "title": "Matrix multiplication kernel \u2014 CPU",
+   "phase": "p1",
+   "day": 2,
+   "eps": 2,
+   "deferrable": false,
+   "hook": "Literacy for every later kernel"
+  },
+  {
+   "id": "T45A",
+   "folder": "p1/t45a-softmax-cpu",
+   "title": "Softmax & online softmax \u2014 CPU",
+   "phase": "p1",
+   "day": 2,
+   "eps": 2,
+   "deferrable": false,
+   "hook": "Prerequisite for Flash Attention"
+  },
+  {
+   "id": "T30",
+   "folder": "p1/t30-tokenizer-bpe",
+   "title": "Tokenizer (BPE) \u2192 FinTok",
+   "phase": "p1",
+   "day": 2,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "FinTok: the tokenizer for every downstream model"
+  },
+  {
+   "id": "T4",
+   "folder": "p2/t4-transformer",
+   "title": "Transformer from scratch (Attention Is All You Need)",
+   "phase": "p2",
+   "day": 3,
+   "eps": 5,
+   "deferrable": false,
+   "hook": "The architecture AlphaSLM uses"
+  },
+  {
+   "id": "T15",
+   "folder": "p2/t15-slm",
+   "title": "Small Language Model (AlphaSLM-40M)",
+   "phase": "p2",
+   "day": 3,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "AlphaSLM: the desk's local model"
+  },
+  {
+   "id": "T43",
+   "folder": "p2/t43-embedding-model",
+   "title": "Embedding model (contrastive)",
+   "phase": "p2",
+   "day": 4,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Powers vector DB, RAG, router, recsys"
+  },
+  {
+   "id": "T13",
+   "folder": "p2/t13-mamba-ssm",
+   "title": "State Space Model (Mamba)",
+   "phase": "p2",
+   "day": 4,
+   "eps": 3,
+   "deferrable": true,
+   "hook": "Experimental long-context tick modeling"
+  },
+  {
+   "id": "T9",
+   "folder": "p2/t9-moe",
+   "title": "Mixture of Experts routing layer",
+   "phase": "p2",
+   "day": 4,
+   "eps": 3,
+   "deferrable": true,
+   "hook": "Optional AlphaSLM-MoE variant"
+  },
+  {
+   "id": "T5",
+   "folder": "p3/t5-hnsw-vector-db",
+   "title": "Vector database (HNSW index)",
+   "phase": "p3",
+   "day": 5,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "The vector store under RAG"
+  },
+  {
+   "id": "T50",
+   "folder": "p3/t50-vector-driver",
+   "title": "Database driver for vectors",
+   "phase": "p3",
+   "day": 5,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "The persistence + query API the desk uses"
+  },
+  {
+   "id": "T6",
+   "folder": "p3/t6-rag-pipeline",
+   "title": "RAG pipeline",
+   "phase": "p3",
+   "day": 5,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "The Research Copilot's core"
+  },
+  {
+   "id": "T36",
+   "folder": "p3/t36-semantic-router",
+   "title": "Semantic router",
+   "phase": "p3",
+   "day": 6,
+   "eps": 2,
+   "deferrable": false,
+   "hook": "The front-door dispatcher"
+  },
+  {
+   "id": "T37",
+   "folder": "p3/t37-knowledge-graph",
+   "title": "Knowledge Graph builder",
+   "phase": "p3",
+   "day": 6,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Powers GraphRAG & relationship queries"
+  },
+  {
+   "id": "T20",
+   "folder": "p3/t20-graph-rag",
+   "title": "Graph RAG system",
+   "phase": "p3",
+   "day": 6,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "The Research Copilot's global mode"
+  },
+  {
+   "id": "T40",
+   "folder": "p3/t40-text-to-sql",
+   "title": "Text-to-SQL engine",
+   "phase": "p3",
+   "day": 7,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "The analytics query path"
+  },
+  {
+   "id": "T48",
+   "folder": "p3/t48-feature-store",
+   "title": "Feature store (point-in-time)",
+   "phase": "p3",
+   "day": 7,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "Leak-free market features"
+  },
+  {
+   "id": "T42",
+   "folder": "p3/t42-two-tower-recsys",
+   "title": "Recommendation system (two-tower)",
+   "phase": "p3",
+   "day": 7,
+   "eps": 3,
+   "deferrable": true,
+   "hook": "'Ideas for you' research suggestions"
+  },
+  {
+   "id": "T1",
+   "folder": "p4/t1-cot-reasoner",
+   "title": "Reasoner (Chain-of-Thought)",
+   "phase": "p4",
+   "day": 8,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Reasoning layer for multi-step research"
+  },
+  {
+   "id": "T2",
+   "folder": "p4/t2-react-agent",
+   "title": "Agent loop (ReAct)",
+   "phase": "p4",
+   "day": 8,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "The desk orchestrator"
+  },
+  {
+   "id": "T24",
+   "folder": "p4/t24-function-router",
+   "title": "Function-calling router",
+   "phase": "p4",
+   "day": 8,
+   "eps": 2,
+   "deferrable": false,
+   "hook": "Reliable tool-invocation layer"
+  },
+  {
+   "id": "T17S",
+   "folder": "p4/t17s-code-sandbox",
+   "title": "Code interpreter sandbox",
+   "phase": "p4",
+   "day": 8,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Lets the agent compute analytics safely"
+  },
+  {
+   "id": "T28",
+   "folder": "p4/t28-guardrails",
+   "title": "Guardrails (input/output filtering)",
+   "phase": "p4",
+   "day": 9,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "The compliance perimeter"
+  },
+  {
+   "id": "T27",
+   "folder": "p4/t27-eval-harness",
+   "title": "LLM eval harness",
+   "phase": "p4",
+   "day": 9,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "The quality gate for every component"
+  },
+  {
+   "id": "T44",
+   "folder": "p4/t44-adversarial",
+   "title": "Adversarial attack generator",
+   "phase": "p4",
+   "day": 9,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "Continuous red-teaming of guardrails"
+  },
+  {
+   "id": "T22",
+   "folder": "p4/t22-sae-interpretability",
+   "title": "Interpretability tool (Sparse Autoencoders)",
+   "phase": "p4",
+   "day": 9,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "The explainability panel"
+  },
+  {
+   "id": "T38",
+   "folder": "p5/t38-data-curation",
+   "title": "Data curation (MinHash/dedup)",
+   "phase": "p5",
+   "day": 10,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "The clean training corpus"
+  },
+  {
+   "id": "T23",
+   "folder": "p5/t23-synthetic-data",
+   "title": "Synthetic data generator",
+   "phase": "p5",
+   "day": 10,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Instruction + preference datasets"
+  },
+  {
+   "id": "T17",
+   "folder": "p5/t17-lora-trainer",
+   "title": "LoRA trainer",
+   "phase": "p5",
+   "day": 10,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "AlphaSLM-finance adapter"
+  },
+  {
+   "id": "T39",
+   "folder": "p5/t39-peft-library",
+   "title": "PEFT library (QLoRA/prefix/IA3)",
+   "phase": "p5",
+   "day": 10,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "The tuning toolkit"
+  },
+  {
+   "id": "T19",
+   "folder": "p5/t19-dpo",
+   "title": "DPO loss function",
+   "phase": "p5",
+   "day": 11,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Aligns AlphaSLM toward compliant behavior"
+  },
+  {
+   "id": "T14",
+   "folder": "p5/t14-rlhf-ppo",
+   "title": "RLHF pipeline (PPO)",
+   "phase": "p5",
+   "day": 11,
+   "eps": 5,
+   "deferrable": false,
+   "hook": "Alternate alignment path; DPO/PPO story"
+  },
+  {
+   "id": "T47",
+   "folder": "p5/t47-distillation",
+   "title": "Model distillation pipeline",
+   "phase": "p5",
+   "day": 11,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "A small fast desk model from a teacher"
+  },
+  {
+   "id": "T21",
+   "folder": "p5/t21-model-merger",
+   "title": "Model merger (Soups/SLERP/TIES)",
+   "phase": "p5",
+   "day": 11,
+   "eps": 3,
+   "deferrable": true,
+   "hook": "Merged tuned + general desk model"
+  },
+  {
+   "id": "T11",
+   "folder": "p5/t11-distributed-training",
+   "title": "Distributed training (FSDP/Tensor Parallel)",
+   "phase": "p5",
+   "day": 12,
+   "eps": 5,
+   "deferrable": false,
+   "hook": "The 'operates at scale' credential"
+  },
+  {
+   "id": "T46",
+   "folder": "p5/t46-nas",
+   "title": "Neural Architecture Search",
+   "phase": "p5",
+   "day": 12,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "Tunes a small signal-model architecture"
+  },
+  {
+   "id": "T3",
+   "folder": "p6/t3-rust-inference-server",
+   "title": "Inference server (Rust, tickerd)",
+   "phase": "p6",
+   "day": 12,
+   "eps": 5,
+   "deferrable": false,
+   "hook": "The serving layer for AlphaSLM"
+  },
+  {
+   "id": "T12",
+   "folder": "p6/t12-kv-paging",
+   "title": "KV-cache paging (like vLLM)",
+   "phase": "p6",
+   "day": 13,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "Upgrades tickerd's memory management"
+  },
+  {
+   "id": "T12S",
+   "folder": "p6/t12s-speculative-decoding",
+   "title": "Speculative decoding",
+   "phase": "p6",
+   "day": 13,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "A tickerd latency mode"
+  },
+  {
+   "id": "T29",
+   "folder": "p6/t29-prompt-caching",
+   "title": "Prompt caching (RadixAttention)",
+   "phase": "p6",
+   "day": 13,
+   "eps": 2,
+   "deferrable": false,
+   "hook": "Speeds every shared-prefix request"
+  },
+  {
+   "id": "T25",
+   "folder": "p6/t25-cfg-structured-output",
+   "title": "Structured output (CFG) + logit processors",
+   "phase": "p6",
+   "day": 13,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Guarantees valid tool calls / SQL / orders"
+  },
+  {
+   "id": "T8",
+   "folder": "p6/t8-quantization",
+   "title": "Quantization library (Int8/FP4)",
+   "phase": "p6",
+   "day": 13,
+   "eps": 4,
+   "deferrable": false,
+   "hook": "Shrinks AlphaSLM to serve faster"
+  },
+  {
+   "id": "T41",
+   "folder": "p6/t41-ai-gateway",
+   "title": "AI Gateway (load balancing/failover)",
+   "phase": "p6",
+   "day": 13,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "The single entry point routing model traffic"
+  },
+  {
+   "id": "T16B",
+   "folder": "p7/t16b-matmul-gpu",
+   "title": "Matmul kernel \u2014 GPU (Triton/CUDA)",
+   "phase": "p7",
+   "day": 14,
+   "eps": 3,
+   "deferrable": false,
+   "hook": "Proves the matmul speedup on the 4070"
+  },
+  {
+   "id": "T45B",
+   "folder": "p7/t45b-softmax-gpu",
+   "title": "Softmax kernel \u2014 GPU (fused)",
+   "phase": "p7",
+   "day": 14,
+   "eps": 2,
+   "deferrable": false,
+   "hook": "Proves the fused-softmax win"
+  },
+  {
+   "id": "T7",
+   "folder": "p7/t7-flash-attention",
+   "title": "Flash Attention kernel (CUDA/Triton)",
+   "phase": "p7",
+   "day": 14,
+   "eps": 5,
+   "deferrable": false,
+   "hook": "The capstone kernel; O(N) attention memory"
+  },
+  {
+   "id": "T32",
+   "folder": "p8/t32-vit",
+   "title": "Vision Transformer (ViT)",
+   "phase": "p8",
+   "day": 14,
+   "eps": 3,
+   "deferrable": true,
+   "hook": "Chart-pattern classifier tool"
+  },
+  {
+   "id": "T26",
+   "folder": "p8/t26-clip-projector",
+   "title": "Multimodal projector (CLIP)",
+   "phase": "p8",
+   "day": 14,
+   "eps": 3,
+   "deferrable": true,
+   "hook": "Find charts by text or image query"
+  },
+  {
+   "id": "T33",
+   "folder": "p8/t33-whisper-asr",
+   "title": "Whisper-style ASR model",
+   "phase": "p8",
+   "day": 15,
+   "eps": 4,
+   "deferrable": true,
+   "hook": "Voice input to the desk"
+  },
+  {
+   "id": "T34",
+   "folder": "p8/t34-tts-pipeline",
+   "title": "Text-to-Speech pipeline",
+   "phase": "p8",
+   "day": 15,
+   "eps": 4,
+   "deferrable": true,
+   "hook": "Spoken responses; full-circle with Kokoro"
+  },
+  {
+   "id": "T35",
+   "folder": "p8/t35-audio-spectrogram-transformer",
+   "title": "Audio Spectrogram Transformer",
+   "phase": "p8",
+   "day": 15,
+   "eps": 2,
+   "deferrable": true,
+   "hook": "Audio-alert classification"
+  },
+  {
+   "id": "T10",
+   "folder": "p8/t10-diffusion",
+   "title": "Diffusion model (UNet + scheduler)",
+   "phase": "p8",
+   "day": 15,
+   "eps": 5,
+   "deferrable": true,
+   "hook": "Synthetic scenario-chart generation"
+  }
+ ],
+ "total_topics": 52,
+ "total_eps": 168
+}

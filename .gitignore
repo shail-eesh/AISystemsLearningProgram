@@ -1,0 +1,27 @@
+# Rendered videos (delivered in chat, regenerable from scripts)
+*.mp4
+*.mov
+video/**/out/
+# Audio renders (manifest is committed, wavs are not)
+video/**/audio/*.wav
+# Model weights & large artifacts
+*.pt
+*.bin
+*.onnx
+*.safetensors
+checkpoints/
+# Data caches
+common/data/cache/
+*.parquet
+# Python
+__pycache__/
+.venv/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# Rust
+target/
+# Node / Remotion
+node_modules/
+# OS
+.DS_Store
