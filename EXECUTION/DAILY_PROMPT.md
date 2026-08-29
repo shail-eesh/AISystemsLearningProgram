@@ -76,9 +76,12 @@ per-topic folder contract:
   ```bash
   git bundle create /home/claude/forge-day-N.bundle main
   ```
-  `SendUserFile` that bundle. The human updates GitHub with:
-  `git fetch /path/forge-day-N.bundle main && git push origin FETCH_HEAD:main`
-  (their local clone fast-forwards because you built on top of the latest public state).
+  `SendUserFile` that bundle. Because you cloned the latest public state and built on top, the human
+  updates GitHub with one self-contained block (no pre-existing clone needed, fast-forward, nothing lost):
+  ```bash
+  git clone forge-day-N.bundle _t && cd _t && \
+    git push https://github.com/shail-eesh/AISystemsLearningProgram.git main && cd .. && rm -rf _t
+  ```
 - **Deliver videos:** `SendUserFile` each rendered `.mp4` with a one-line caption (topic + episode).
   The mp4s are gitignored — they reach the human only through this delivery.
 - Post a short summary: code-done / tests-passed / video shipped-vs-pending / GPU benches awaiting the
