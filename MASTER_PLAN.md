@@ -40,7 +40,7 @@ You learn each AI system by building it from primary sources (the original paper
 
 **Cloud Cowork sandbox (where Opus works):** Linux container, CPU-only, no GPU, allowlisted network (PyPI/npm/GitHub OK), Chromium preinstalled (Remotion renders work), ephemeral filesystem per session. Consequences:
 
-1. **State lives in a PUBLIC GitHub repo; the proxy reads but can't write it.** This environment's git proxy can *clone* a public repo but refuses to push to it (embedded tokens are ignored). So each session `git clone`s to get the latest state, builds on top, commits locally, and delivers the day's work as a **git bundle** that you push. Videos (large mp4s) are gitignored and delivered in-chat, regenerable from committed scripts + audio manifests. One-time setup: make `shail-eesh/AISystemsLearningProgram` public and push the scaffold to `course-generation`.
+1. **State lives in a PUBLIC GitHub repo; the proxy reads but can't write it.** This environment's git proxy can *clone* a public repo but refuses to push to it (embedded tokens are ignored). So each session `git clone`s to get the latest state, builds on top, commits locally, and delivers the day's work as a **git bundle** that you push. Videos (large mp4s) are gitignored and delivered in-chat, regenerable from committed scripts + audio manifests. One-time setup: make `shail-eesh/AISystemsLearningProgram` public and push the scaffold to `main`.
 2. **Kokoro-82M runs fine here.** 82M params, CPU real-time+ via ONNX (`kokoro-onnx` or the `kokoro` pip package + espeak-ng). This matches your kids-pipeline experience — same stack, reused.
 3. **Remotion renders fine here, at 720p.** Budget ~1–2× realtime per render on container CPUs; a topic's ~35–50 min of episodes renders within a session. 1280×720/30fps keeps files at ~5–8 MB/min for in-chat delivery.
 4. **GPU truth comes from your 4070.** For kernel topics (matmul, softmax, Flash Attention), quantization, distributed training, and any "how fast is it really" claim, the cloud session produces: (a) the CUDA/Triton source, (b) a NumPy/PyTorch-CPU reference that proves correctness in-cloud (Triton's `TRITON_INTERPRET=1` mode runs kernels on CPU), and (c) `gpu-runner/` — a script you run on the 4070 (WSL2 or native Linux recommended for Triton/CUDA toolchain) that executes benchmarks and writes `results.json`, which you paste/commit back so the video can show real numbers.
@@ -454,7 +454,7 @@ Every fresh Opus session follows `EXECUTION/DAILY_PROMPT.md`, which encodes this
 4. **Then videos (best-effort):** write `script.md`, build/parametrize scenes from the component library, synthesize narration with Kokoro, render at 720p. If budget runs short, code stays done and remaining renders are marked `video: pending` for the next run.
 5. **GPU topics:** commit CUDA/Triton source + CPU-verified reference + `gpu-runner/` script; mark `bench: awaiting-4070` (you run it and commit `results.json`).
 6. **Regenerate `index.html`** from the ledger so links/status reflect reality.
-7. **Deliver:** commit locally, then `git bundle create forge-day-N.bundle course-generation` and **SendUserFile** the bundle (you push it with one `git fetch … && git push` command the run prints) plus the day's rendered `.mp4`s. Nothing pushes from the cloud — the bundle is how code/docs reach the repo.
+7. **Deliver:** commit locally, then `git bundle create forge-day-N.bundle main` and **SendUserFile** the bundle (you push it with one `git fetch … && git push` command the run prints) plus the day's rendered `.mp4`s. Nothing pushes from the cloud — the bundle is how code/docs reach the repo.
 8. **Update `LEDGER.md`** (per-topic: code/tests/video/bench status + notes), write a `runs/<date>.md` log, push.
 9. **Budget guard:** if low on time/tokens, checkpoint (commit + ledger) and stop cleanly — never leave the repo half-broken.
 10. **Termination:** when the ledger shows all topics `code:done` and the capstone assembled, the run deletes the scheduled task and posts a "course complete" summary.
@@ -478,14 +478,14 @@ Every fresh Opus session follows `EXECUTION/DAILY_PROMPT.md`, which encodes this
 | Scope creep / a topic balloons | Medium | Fixed per-topic folder contract + step ladder + "small scale, real behavior" rule |
 | A daily run fails entirely | Low | Next run's catch-up logic resumes from the ledger; runs are independent |
 
-**Your part (small):** (1) one-time: make the repo public and push the scaffold bundle to `course-generation`; (2) each morning, push the delivered day-bundle with the one-line command the run prints, and skim the delivered videos; (3) for GPU topics, run the one-line `gpu-runner` command on your 4070 and commit `results.json`; (4) then, when the course is complete, start learning.
+**Your part (small):** (1) one-time: make the repo public and push the scaffold bundle to `main`; (2) each morning, push the delivered day-bundle with the one-line command the run prints, and skim the delivered videos; (3) for GPU topics, run the one-line `gpu-runner` command on your 4070 and commit `results.json`; (4) then, when the course is complete, start learning.
 
 ---
 
 ## 11. One-time setup (to make the daily runs work)
 
 1. **Make the repo public** — `shail-eesh/AISystemsLearningProgram` → Settings → General → Change visibility → Public. (The cloud proxy can read a public repo but not a private one.)
-2. **Push the scaffold** to `course-generation` from the delivered bundle: `git clone ai-systems-forge.bundle repo && cd repo && git remote set-url origin https://github.com/shail-eesh/AISystemsLearningProgram.git && git push -u origin course-generation`.
+2. **Push the scaffold** to `main` from the delivered bundle: `git clone ai-systems-forge.bundle repo && cd repo && git remote set-url origin https://github.com/shail-eesh/AISystemsLearningProgram.git && git push -u origin main`.
 3. That's it — the task fires ~3:00 AM IST daily on `claude-opus-5`. Each run clones the public repo, builds the next work package, and hands you a day-bundle to push plus the day's videos.
 
 *Everything in AlphaDesk is a fictional educational simulation — no real orders, money, brokerage systems, or market-data redistribution.*

@@ -24,7 +24,7 @@ See [`MASTER_PLAN.md`](MASTER_PLAN.md) for the full plan and the day-by-day sche
 
 ## Repo status
 Total topics: **51** (52 build modules) · Total planned video episodes: **168** ·
-Branch: `course-generation`
+Branch: `main`
 
 ---
 *AlphaDesk is a fictional educational simulation — no real orders, money, brokerage systems, or market-data redistribution.*

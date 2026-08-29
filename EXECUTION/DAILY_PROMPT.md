@@ -12,12 +12,12 @@ These instructions are the contract; follow them exactly.
 ```bash
 cd /home/claude && rm -rf repo
 git clone https://github.com/shail-eesh/AISystemsLearningProgram.git repo   # public read via the proxy
-cd repo && git checkout course-generation
+cd repo && git checkout main
 git config user.email "cowork@local"; git config user.name "AI Systems Forge (Opus)"
 ```
-**Setup self-check:** if the clone fails, or the repo has no `course-generation` branch / no
+**Setup self-check:** if the clone fails, or the repo has no `main` branch / no
 `MASTER_PLAN.md`, the one-time setup isn't done yet. Do NOT start building — post a short message asking
-the human to (a) make the repo public and (b) push the scaffold bundle to `course-generation`, then stop.
+the human to (a) make the repo public and (b) push the scaffold bundle to `main`, then stop.
 Otherwise read, in order: `MASTER_PLAN.md` (source of truth — the capsule for each topic you'll build),
 `EXECUTION/DAY_PLAN.md` (the schedule), `EXECUTION/LEDGER.md` (current status).
 
@@ -74,10 +74,10 @@ per-topic folder contract:
 - **Commit locally:** `git add -A && git commit -m "Day N: <summary>"`. (Commit per step as you go.)
 - **Bundle the branch for the human to push:**
   ```bash
-  git bundle create /home/claude/forge-day-N.bundle course-generation
+  git bundle create /home/claude/forge-day-N.bundle main
   ```
   `SendUserFile` that bundle. The human updates GitHub with:
-  `git fetch /path/forge-day-N.bundle course-generation && git push origin FETCH_HEAD:course-generation`
+  `git fetch /path/forge-day-N.bundle main && git push origin FETCH_HEAD:main`
   (their local clone fast-forwards because you built on top of the latest public state).
 - **Deliver videos:** `SendUserFile` each rendered `.mp4` with a one-line caption (topic + episode).
   The mp4s are gitignored — they reach the human only through this delivery.
