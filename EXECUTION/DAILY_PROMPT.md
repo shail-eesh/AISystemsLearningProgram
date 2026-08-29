@@ -1,20 +1,24 @@
 # Daily Generation Run — Operating Instructions
 
 You are a fresh Claude **Opus** Cowork session. Your job: advance the AI Systems Forge course by one
-work package, commit it, and hand the human the day's videos. Work carefully and finish clean — the
-repo must never be left half-broken. These instructions are the contract; follow them exactly.
+work package, commit it, and hand the human the day's bundle + videos. Work carefully and finish clean.
+These instructions are the contract; follow them exactly.
 
-> The scheduled task's prompt injects the GitHub token as `GITHUB_TOKEN` and this repo's clone URL.
-> Never print the token, never commit it, never write it to any file.
+> **Delivery model (important):** this cloud environment's git proxy can *read* this public repo but
+> **cannot push** to it. So you CLONE to get the latest state, build on top, commit locally, and deliver
+> the day's work as a **git bundle** for the human to push. No tokens are used anywhere.
 
 ## 0. Setup
 ```bash
-cd /home/claude
-git clone --branch course-generation "https://x-access-token:${GITHUB_TOKEN}@github.com/shail-eesh/AISystemsLearningProgram.git" repo
-cd repo
+cd /home/claude && rm -rf repo
+git clone https://github.com/shail-eesh/AISystemsLearningProgram.git repo   # public read via the proxy
+cd repo && git checkout course-generation
 git config user.email "cowork@local"; git config user.name "AI Systems Forge (Opus)"
 ```
-Read, in order: `MASTER_PLAN.md` (source of truth — find the capsule for each topic you'll build),
+**Setup self-check:** if the clone fails, or the repo has no `course-generation` branch / no
+`MASTER_PLAN.md`, the one-time setup isn't done yet. Do NOT start building — post a short message asking
+the human to (a) make the repo public and (b) push the scaffold bundle to `course-generation`, then stop.
+Otherwise read, in order: `MASTER_PLAN.md` (source of truth — the capsule for each topic you'll build),
 `EXECUTION/DAY_PLAN.md` (the schedule), `EXECUTION/LEDGER.md` (current status).
 
 ## 1. Choose the work
@@ -63,17 +67,22 @@ per-topic folder contract:
 - `scripts/gen_index.py`: regenerates `index.html` from `EXECUTION/LEDGER.md` (statuses + links).
 - Then build the Phase 0 topics (P0.1–P0.3).
 
-## 4. Regenerate the hub & deliver
-- Run `python3 scripts/gen_index.py` so `index.html` reflects the ledger.
-- Update `EXECUTION/LEDGER.md`: set the status cells for every topic you touched; add a one-line entry
-  to "Run history"; write a full log to `EXECUTION/runs/<YYYY-MM-DD>.md`.
-- **Push:** `git add -A && git commit -m "Day N: <summary>" && git push`. If push fails (auth/size),
-  create a `git bundle` and deliver it plus the changed files via **SendUserFile**, and tell the human
-  to push it — do not silently drop work.
-- **Deliver videos:** `SendUserFile` each rendered `.mp4` from this run with a one-line caption
-  (topic + episode). The mp4s are not committed; the human keeps/uploads them.
-- Post a short summary: what got code-done, what tests passed, what video shipped vs pending, and any
-  GPU benches awaiting the 4070.
+## 4. Update state, bundle, & deliver
+- Update `EXECUTION/status.json` for every topic you touched (code/tests/bench/video/wired + a short
+  `note`), then run `python3 scripts/gen_index.py` — it regenerates BOTH `index.html` and
+  `EXECUTION/LEDGER.md` from that JSON. Write a full log to `EXECUTION/runs/<YYYY-MM-DD>.md`.
+- **Commit locally:** `git add -A && git commit -m "Day N: <summary>"`. (Commit per step as you go.)
+- **Bundle the branch for the human to push:**
+  ```bash
+  git bundle create /home/claude/forge-day-N.bundle course-generation
+  ```
+  `SendUserFile` that bundle. The human updates GitHub with:
+  `git fetch /path/forge-day-N.bundle course-generation && git push origin FETCH_HEAD:course-generation`
+  (their local clone fast-forwards because you built on top of the latest public state).
+- **Deliver videos:** `SendUserFile` each rendered `.mp4` with a one-line caption (topic + episode).
+  The mp4s are gitignored — they reach the human only through this delivery.
+- Post a short summary: code-done / tests-passed / video shipped-vs-pending / GPU benches awaiting the
+  4070 / **and the exact push command above** so the human can update the repo in one step.
 
 ## 5. Budget guard & termination
 - If low on budget at any point: finish the current step, commit, update the ledger to reflect exactly
