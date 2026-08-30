@@ -1,0 +1,661 @@
+{
+  "topic": "P0.2",
+  "benchmark": "indicator parity vs pandas reference + vectorisation speed-up",
+  "generated_at": "2026-08-30T09:13:23+00:00",
+  "reference": "pandas rolling/ewm (TA-Lib is a C library and does not build here)",
+  "tolerance": 1e-06,
+  "checks": 70,
+  "failures": [],
+  "worst": {
+    "symbol": "COASTBANK",
+    "indicator": "bb_lower",
+    "max_abs_error": 1.7564616427989677e-11,
+    "max_rel_error": 4.6916600183441397e-14
+  },
+  "speed": {
+    "bars": 200000,
+    "window": 20,
+    "python_loop_seconds_scaled": 0.4714,
+    "vectorised_seconds": 0.01073,
+    "pandas_rolling_seconds": 0.00452,
+    "speedup_vs_loop": 43.9
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.4",
+    "machine": "x86_64"
+  },
+  "per_check": [
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "sma_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 4.263256414560601e-14,
+      "max_rel_error": 3.4075383471360584e-16,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "sma_50",
+      "n_compared": 211,
+      "nan_mask_matches": true,
+      "max_abs_error": 4.263256414560601e-14,
+      "max_rel_error": 3.550151652691142e-16,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "ema_12",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "ema_26",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "wilder_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "rsi_14",
+      "n_compared": 246,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "bb_lower",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 9.237055564881302e-13,
+      "max_rel_error": 7.633139171190687e-15,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "bb_mid",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 4.263256414560601e-14,
+      "max_rel_error": 3.4075383471360584e-16,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "bb_upper",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 9.237055564881302e-13,
+      "max_rel_error": 7.00459226774791e-15,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "vwap_session",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "vwap_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 4.263256414560601e-14,
+      "max_rel_error": 3.410063939872376e-16,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "macd",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "macd_signal",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "ALPHAINFRA",
+      "indicator": "atr_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "sma_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.1368683772161603e-13,
+      "max_rel_error": 3.9577869935479573e-16,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "sma_50",
+      "n_compared": 211,
+      "nan_mask_matches": true,
+      "max_abs_error": 8.526512829121202e-14,
+      "max_rel_error": 3.0115973889478274e-16,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "ema_12",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "ema_26",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "wilder_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "rsi_14",
+      "n_compared": 246,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "bb_lower",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 8.242295734817162e-13,
+      "max_rel_error": 2.9979603974159278e-15,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "bb_mid",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.1368683772161603e-13,
+      "max_rel_error": 3.9577869935479573e-16,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "bb_upper",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 8.526512829121202e-13,
+      "max_rel_error": 2.826557284835588e-15,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "vwap_session",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "vwap_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.1368683772161603e-13,
+      "max_rel_error": 3.9484523172804716e-16,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "macd",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "macd_signal",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "indicator": "atr_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "sma_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.1368683772161603e-13,
+      "max_rel_error": 2.8846034599360605e-16,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "sma_50",
+      "n_compared": 211,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.7053025658242404e-13,
+      "max_rel_error": 4.678296134421981e-16,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "ema_12",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "ema_26",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "wilder_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "rsi_14",
+      "n_compared": 246,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "bb_lower",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.7564616427989677e-11,
+      "max_rel_error": 4.6916600183441397e-14,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "bb_mid",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.1368683772161603e-13,
+      "max_rel_error": 2.8846034599360605e-16,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "bb_upper",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.745092959026806e-11,
+      "max_rel_error": 4.042764372677583e-14,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "vwap_session",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "vwap_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.7053025658242404e-13,
+      "max_rel_error": 4.3274523681247045e-16,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "macd",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "macd_signal",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "COASTBANK",
+      "indicator": "atr_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "sma_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 4.072757023018615e-16,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "sma_50",
+      "n_compared": 211,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.7053025658242404e-13,
+      "max_rel_error": 3.1498492696495227e-16,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "ema_12",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "ema_26",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "wilder_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "rsi_14",
+      "n_compared": 246,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "bb_lower",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.7053025658242404e-12,
+      "max_rel_error": 3.26554943903368e-15,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "bb_mid",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 4.072757023018615e-16,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "bb_upper",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.7053025658242404e-12,
+      "max_rel_error": 2.7881416165119135e-15,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "vwap_session",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "vwap_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 4.0580230337453607e-16,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "macd",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "macd_signal",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "DECCANMOT",
+      "indicator": "atr_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "sma_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 3.378208115817788e-16,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "sma_50",
+      "n_compared": 211,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 3.574174361985246e-16,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "ema_12",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "ema_26",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "wilder_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "rsi_14",
+      "n_compared": 246,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "bb_lower",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.261923898709938e-11,
+      "max_rel_error": 2.0245088092743527e-14,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "bb_mid",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 3.378208115817788e-16,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "bb_upper",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 1.261923898709938e-11,
+      "max_rel_error": 1.7190377061498566e-14,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "vwap_session",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "vwap_20",
+      "n_compared": 241,
+      "nan_mask_matches": true,
+      "max_abs_error": 2.2737367544323206e-13,
+      "max_rel_error": 3.3862161497364576e-16,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "macd",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "macd_signal",
+      "n_compared": 260,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    },
+    {
+      "symbol": "EASTPOWER",
+      "indicator": "atr_14",
+      "n_compared": 247,
+      "nan_mask_matches": true,
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}
