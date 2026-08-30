@@ -33,5 +33,7 @@ ignore = ["E501"]
 "**/tests/*" = ["B011"]
 # Surface subclasses str deliberately: it must round-trip through JSON/status files.
 "common/alphadesk/registry.py" = ["UP042"]
+# Course-wide: str-backed enums round-trip through JSON and CSV samples.
+"phases/**/src/**/*.py" = ["UP042"]
 # The index generator is a single-purpose template script; dense by design.
 "scripts/gen_index.py" = ["E402", "E702", "B023"]

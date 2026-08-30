@@ -19,12 +19,28 @@ broken topic can never break the whole desk.
 """
 
 from common.alphadesk.disclaimer import DISCLAIMER, banner  # noqa: F401
+from common.alphadesk.manifest import TOPIC_MODULES  # noqa: F401
 from common.alphadesk.registry import (  # noqa: F401
     REGISTRY,
     Component,
     Registry,
     Surface,
+    current_registry,
     register,
 )
 
-__all__ = ["Component", "Registry", "Surface", "REGISTRY", "register", "DISCLAIMER", "banner"]
+
+def load_all(registry: Registry | None = None) -> dict[str, str]:
+    """Import every topic module in the manifest so its @register calls run.
+
+    Returns {module: error} for the ones that could not be imported — a topic
+    that is not built yet simply does not contribute a component.
+    """
+    target = REGISTRY if registry is None else registry
+    return target.load_modules(TOPIC_MODULES)
+
+
+__all__ = [
+    "DISCLAIMER", "REGISTRY", "TOPIC_MODULES", "Component", "Registry", "Surface",
+    "banner", "current_registry", "load_all", "register",
+]

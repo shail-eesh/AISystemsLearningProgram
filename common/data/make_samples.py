@@ -107,7 +107,12 @@ def build_orders(rng: np.random.Generator, ohlcv: pd.DataFrame) -> pd.DataFrame:
             limit = round(ref * (1 + rng.normal(0, 0.004)), 2)
             filled = int(qty * min(1.0, max(0.0, rng.beta(6, 2))))
             filled -= filled % 5
-            avg = round(limit * (1 + rng.normal(0, 0.0015)), 4) if filled else 0.0
+            # A real book never fills you worse than your limit: buys execute at or
+            # below it, sells at or above it. Keeping the sample self-consistent means
+            # a replay through the OMS domain model reconciles exactly.
+            improvement = abs(rng.normal(0, 0.0015))
+            sign = -1 if side == "BUY" else 1
+            avg = round(limit * (1 + sign * improvement), 4) if filled else 0.0
             status = "FILLED" if filled == qty else ("PARTIAL" if filled else "NEW")
             oid += 1
             rows.append(

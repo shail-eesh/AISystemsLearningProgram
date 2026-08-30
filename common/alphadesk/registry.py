@@ -14,7 +14,9 @@ does not need one; a dict plus a decorator gets you 95% of the value.
 from __future__ import annotations
 
 import importlib
+import sys
 from collections.abc import Callable, Iterable
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
@@ -119,14 +121,31 @@ class Registry:
         Returns a map of module -> error string for the ones that failed, so a
         half-built desk still starts. This is the whole reason topics never
         import each other directly.
+
+        The import happens with `self` installed as the *active* registry, and
+        an already-imported module is reloaded — otherwise `sys.modules`
+        caching would mean a second registry never receives anything.
         """
         errors: dict[str, str] = {}
-        for m in modules:
-            try:
-                importlib.import_module(m)
-            except Exception as exc:  # noqa: BLE001 - deliberate: degrade, don't die
-                errors[m] = f"{type(exc).__name__}: {exc}"
+        with self.activate():
+            for m in modules:
+                try:
+                    if m in sys.modules:
+                        importlib.reload(sys.modules[m])
+                    else:
+                        importlib.import_module(m)
+                except Exception as exc:  # noqa: BLE001 - deliberate: degrade, don't die
+                    errors[m] = f"{type(exc).__name__}: {exc}"
         return errors
+
+    @contextmanager
+    def activate(self):
+        """Make this the registry that bare @register calls file into."""
+        _ACTIVE.append(self)
+        try:
+            yield self
+        finally:
+            _ACTIVE.pop()
 
     def describe(self) -> str:
         """Human-readable desk state — what the Phase 9 demo prints on boot."""
@@ -149,6 +168,14 @@ class Registry:
 
 
 REGISTRY = Registry()
+
+#: Stack of registries; the top one receives bare @register calls.
+_ACTIVE: list[Registry] = []
+
+
+def current_registry() -> Registry:
+    """The registry a bare @register targets right now."""
+    return _ACTIVE[-1] if _ACTIVE else REGISTRY
 
 
 def register(
@@ -173,10 +200,10 @@ def register(
             module=getattr(obj, "__module__", ""),
             requires=tuple(requires),
         )
-        # NOTE: `registry or REGISTRY` would be a bug — an empty Registry is
-        # falsy because __len__ returns 0, so a caller's fresh registry would
-        # be silently swapped for the global one. Identity check, always.
-        target = REGISTRY if registry is None else registry
+        # NOTE: `registry or current_registry()` would be a bug — an empty
+        # Registry is falsy because __len__ returns 0, so a caller's fresh
+        # registry would be silently swapped out. Identity check, always.
+        target = current_registry() if registry is None else registry
         target.add(component, replace=replace)
         obj.__alphadesk__ = component  # type: ignore[attr-defined]
         return obj

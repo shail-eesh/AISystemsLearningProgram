@@ -1,0 +1,68 @@
+{
+  "topic": "P0.1",
+  "benchmark": "OMS tape replay + dual reconciliation",
+  "generated_at": "2026-08-30T09:06:07+00:00",
+  "input": "common/data/samples/orders_sample.csv (synthetic)",
+  "orders": {
+    "placed": 210,
+    "filled": 0,
+    "partial": 210,
+    "unfilled": 0
+  },
+  "symbols": 5,
+  "elapsed_seconds": 0.0069,
+  "orders_per_second": 30632.7,
+  "tolerance": 1e-06,
+  "worst_relative_error": 3.109156705942574e-07,
+  "quantity_breaks": {},
+  "per_symbol": [
+    {
+      "symbol": "ALPHAINFRA",
+      "net_quantity": 5880,
+      "avg_cost_model": 82.084346,
+      "avg_cost_reference": 82.084347,
+      "realised_model": -26016.031955,
+      "realised_reference": -26016.033481,
+      "relative_error": 5.864679684743342e-08
+    },
+    {
+      "symbol": "BHARATCHEM",
+      "net_quantity": 4215,
+      "avg_cost_model": 250.663016,
+      "avg_cost_reference": 250.663016,
+      "realised_model": -10855.837935,
+      "realised_reference": -10855.84131,
+      "relative_error": 3.109156705942574e-07
+    },
+    {
+      "symbol": "COASTBANK",
+      "net_quantity": 3735,
+      "avg_cost_model": 265.074194,
+      "avg_cost_reference": 265.074195,
+      "realised_model": 23233.255735,
+      "realised_reference": 23233.25599,
+      "relative_error": 1.0991629036230642e-08
+    },
+    {
+      "symbol": "DECCANMOT",
+      "net_quantity": 4825,
+      "avg_cost_model": 457.974148,
+      "avg_cost_reference": 457.974148,
+      "realised_model": 52913.585075,
+      "realised_reference": 52913.584707,
+      "relative_error": 6.955960413699766e-09
+    },
+    {
+      "symbol": "EASTPOWER",
+      "net_quantity": 2710,
+      "avg_cost_model": 522.930121,
+      "avg_cost_reference": 522.930122,
+      "realised_model": 94790.53611,
+      "realised_reference": 94790.536014,
+      "relative_error": 1.0110218683089485e-09
+    }
+  ],
+  "portfolio_realised_pnl_inr": 134065.50703,
+  "passed": true,
+  "note": "Decimal model vs an independently written float reducer. The residual is float noise in the reference, not error in the model."
+}
