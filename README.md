@@ -22,9 +22,21 @@ See [`MASTER_PLAN.md`](MASTER_PLAN.md) for the full plan and the day-by-day sche
 - **[video/](video/)** — the reusable component library + per-topic scripts
 - **[gpu-runner/](gpu-runner/)** — scripts you run on your RTX 4070
 
+## Verify it locally
+
+```bash
+pip install -e ".[dev,torch]"    # torch is optional; P0.3 skips without it
+bash scripts/verify.sh           # tests + lint + benchmarks + video scripts
+```
+
+Every generation run must leave this passing.
+
 ## Repo status
 Total topics: **51** (52 build modules) · Total planned video episodes: **168** ·
 Branch: `main`
+
+**Phase 0 complete** (Day 1): 232 tests passing, `ruff` clean, three verification benchmarks,
+three narrated video episodes. See [`EXECUTION/runs/`](EXECUTION/runs/) for the per-run log.
 
 ---
 *AlphaDesk is a fictional educational simulation — no real orders, money, brokerage systems, or market-data redistribution.*
