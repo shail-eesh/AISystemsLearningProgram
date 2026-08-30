@@ -1,7 +1,7 @@
 {
   "topic": "P0.1",
   "benchmark": "OMS tape replay + dual reconciliation",
-  "generated_at": "2026-08-30T09:22:18+00:00",
+  "generated_at": "2026-08-30T10:02:38+00:00",
   "input": "common/data/samples/orders_sample.csv (synthetic)",
   "orders": {
     "placed": 210,
@@ -10,8 +10,8 @@
     "unfilled": 0
   },
   "symbols": 5,
-  "elapsed_seconds": 0.0073,
-  "orders_per_second": 28587.7,
+  "elapsed_seconds": 0.0071,
+  "orders_per_second": 29662.4,
   "tolerance": 1e-06,
   "worst_relative_error": 3.109156705942574e-07,
   "quantity_breaks": {},
