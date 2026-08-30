@@ -61,4 +61,4 @@ A run picks the earliest row whose **Code** isn't ✅, finishes it, continues do
 | 15 | P8 | [T35](phases/p8/t35-audio-spectrogram-transformer/) | Audio Spectrogram Transformer | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 | 15 | P8 | [T10](phases/p8/t10-diffusion/) | Diffusion model (UNet + scheduler) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 
-_Last updated: 2026-08-29._
+_Last updated: 2026-08-30._

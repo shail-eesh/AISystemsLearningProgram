@@ -3,7 +3,10 @@
 Single source of the course hub's design — daily runs call this so the page never drifts.
 Run from repo root:  python3 scripts/gen_index.py
 """
-import json, pathlib, html, datetime
+import datetime
+import html
+import json
+import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "EXECUTION/topics.json").read_text())
@@ -291,6 +294,7 @@ DOCTYPE = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
 
 # Artifact-review copy: skeleton-less (the Artifact tool adds the skeleton).
 import os as _os
+
 _art = _os.environ.get("ARTIFACT_OUT")
 if _art:
     pathlib.Path(_art).write_text(HEAD_INNER + "\n" + BODY_INNER + "\n")

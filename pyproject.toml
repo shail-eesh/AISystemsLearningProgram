@@ -1,0 +1,37 @@
+[project]
+name = "ai-systems-forge"
+version = "0.1.0"
+description = "Build-your-own-AI-systems course: 51 topics, 9 phases, one capital-markets capstone (AlphaDesk)."
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "pandas>=2.0"]
+
+[project.optional-dependencies]
+torch = ["torch>=2.2"]
+data = ["yfinance>=0.2", "requests>=2.31"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["common/tests", "phases"]
+addopts = "-q --strict-markers"
+markers = [
+  "slow: takes more than a few seconds (excluded with -m 'not slow')",
+  "gpu: needs a CUDA device (the RTX 4070 lane; skipped in the cloud)",
+]
+filterwarnings = ["error::DeprecationWarning:common.*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["node_modules", "video/out", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/*" = ["B011"]
+# Surface subclasses str deliberately: it must round-trip through JSON/status files.
+"common/alphadesk/registry.py" = ["UP042"]
+# The index generator is a single-purpose template script; dense by design.
+"scripts/gen_index.py" = ["E402", "E702", "B023"]
