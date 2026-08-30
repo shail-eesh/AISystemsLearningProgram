@@ -38,7 +38,7 @@ export const Stage: React.FC<{
       fontFamily: theme.fonts.sans,
       padding: padded ? theme.space(9) : 0,
       // Leave the bottom band clear for burned-in captions (see Captions.tsx).
-      paddingBottom: padded ? theme.space(15) : 0,
+      paddingBottom: padded ? theme.space(16) : 0,
       display: "flex",
       flexDirection: "column",
     }}

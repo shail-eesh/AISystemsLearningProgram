@@ -23,7 +23,7 @@ export const Captions: React.FC<{ cues: CaptionCue[] }> = ({ cues }) => {
         position: "absolute",
         left: 0,
         right: 0,
-        bottom: theme.space(4.5),
+        bottom: theme.space(3),
         display: "flex",
         justifyContent: "center",
         pointerEvents: "none",
@@ -31,15 +31,15 @@ export const Captions: React.FC<{ cues: CaptionCue[] }> = ({ cues }) => {
     >
       <div
         style={{
-          maxWidth: 1000,
+          maxWidth: 900,
           textAlign: "center",
           background: "rgba(8, 14, 22, 0.86)",
           border: `1px solid ${theme.colors.line}`,
           borderRadius: 10,
           padding: `${theme.space(1.25)}px ${theme.space(2.5)}px`,
           fontFamily: theme.fonts.sans,
-          fontSize: 23,
-          lineHeight: 1.35,
+          fontSize: 21,
+          lineHeight: 1.3,
           color: theme.colors.ink,
         }}
       >
