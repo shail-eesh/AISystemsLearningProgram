@@ -3,25 +3,25 @@
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "OMS domain model \u00b7 63 tests \u00b7 tape replay reconciles to 3.1e-07 \u00b7 2 components on the desk"
+  "note": "OMS domain model \u00b7 63 tests \u00b7 tape replay reconciles to 3.1e-07 \u00b7 E1 15m47s"
  },
  "P0.2": {
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "Vectorised indicators \u00b7 116 tests \u00b7 70/70 parity vs pandas, worst 4.7e-14 \u00b7 72x over the loop"
+  "note": "Vectorised indicators \u00b7 116 tests \u00b7 70/70 parity, worst 4.7e-14, 72x over the loop \u00b7 E1 14m27s"
  },
  "P0.3": {
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "Training loop \u00b7 27 tests \u00b7 overfits 64 rows to 100%, honest split at chance (z=+0.30)"
+  "note": "Training loop \u00b7 27 tests \u00b7 memorises 64 rows, honest split at chance (z=+0.30) \u00b7 E1 13m58s"
  },
  "T31": {
   "code": "scheduled",
