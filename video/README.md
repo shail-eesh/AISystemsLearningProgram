@@ -72,7 +72,18 @@ python3 kokoro/narrate.py --all               # synthesise (cached per sentence)
 npx remotion compositions src/index.ts        # list what can be rendered
 bash topics/p0.1/render.sh                    # render one episode
 npm run studio                                # interactive preview
+
+bash ../scripts/compress_episode.sh topics/p0.1/out/p0-1-e1.mp4   # delivery copy
 ```
+
+**Chromium.** `remotion.media` is not on this sandbox's network allowlist, so Remotion cannot
+download its own Chrome Headless Shell. `remotion.config.ts` points `setBrowserExecutable` at the
+preinstalled Playwright Chromium; override it with `FORGE_CHROMIUM` on any other machine.
+
+**Delivery size.** Remotion's default H.264 output runs ~3.7 MB per minute, which puts a
+fifteen-minute episode over the 30 MiB chat upload limit. `scripts/compress_episode.sh` re-encodes
+at CRF 23 with mono 64 kbps audio — these slides are static for seconds at a time, so it lands at
+about a third of the size with no visible loss. The master render is left untouched.
 
 ## Known deviation (Day 1)
 
