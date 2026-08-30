@@ -1,7 +1,7 @@
 {
   "topic": "P0.2",
   "benchmark": "indicator parity vs pandas reference + vectorisation speed-up",
-  "generated_at": "2026-08-30T09:13:23+00:00",
+  "generated_at": "2026-08-30T09:22:18+00:00",
   "reference": "pandas rolling/ewm (TA-Lib is a C library and does not build here)",
   "tolerance": 1e-06,
   "checks": 70,
@@ -15,10 +15,10 @@
   "speed": {
     "bars": 200000,
     "window": 20,
-    "python_loop_seconds_scaled": 0.4714,
-    "vectorised_seconds": 0.01073,
-    "pandas_rolling_seconds": 0.00452,
-    "speedup_vs_loop": 43.9
+    "python_loop_seconds_scaled": 0.5103,
+    "vectorised_seconds": 0.0068,
+    "pandas_rolling_seconds": 0.0047,
+    "speedup_vs_loop": 75.1
   },
   "environment": {
     "python": "3.11.15",

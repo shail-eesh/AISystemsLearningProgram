@@ -1,0 +1,67 @@
+{
+  "topic": "P0.3",
+  "benchmark": "overfit-a-tiny-batch + honest chronological evaluation + leakage audit",
+  "generated_at": "2026-08-30T09:22:26+00:00",
+  "elapsed_seconds": 7.6,
+  "a_overfit_tiny_batch": {
+    "rows": 64,
+    "epochs": 400,
+    "final_train_loss": 0.0005312028806656599,
+    "final_train_accuracy": 1.0,
+    "epochs_to_perfect": 63,
+    "verdict": "loop is wired correctly",
+    "passed": true
+  },
+  "b_honest_evaluation": {
+    "rows": {
+      "train": 835,
+      "val": 180,
+      "test": 180
+    },
+    "train_accuracy": 0.5125748515129089,
+    "val_accuracy": 0.5944444537162781,
+    "test_accuracy": 0.5111111402511597,
+    "test_loss": 0.6964848637580872,
+    "train_loss": 0.6912775039672852,
+    "val_loss": 0.6870504021644592,
+    "baseline_always_up": 0.550000011920929,
+    "baseline_majority_class": 0.550000011920929,
+    "coinflip_se": 0.037267799624996496,
+    "z_vs_coinflip": 0.29814317890952524,
+    "beats_majority_baseline": false,
+    "z_limit": 2.0,
+    "passed": true,
+    "interpretation": "Indistinguishable from a coin flip, and below the majority-class baseline. That is the correct answer for a synthetic random walk."
+  },
+  "c_leakage_audit": {
+    "honest_test_accuracy": 0.5111111402511597,
+    "variants": [
+      {
+        "name": "centred rolling feature (uses t+1)",
+        "accuracy": 0.8111110925674438,
+        "uplift": 0.2999999523162842,
+        "severity": "catastrophic"
+      },
+      {
+        "name": "shuffled train/test split",
+        "accuracy": 0.4833333194255829,
+        "uplift": -0.027777820825576782,
+        "severity": "silent here (this series has no autocorrelation to exploit)"
+      },
+      {
+        "name": "scaler fitted before the split",
+        "accuracy": 0.5166666507720947,
+        "uplift": 0.005555510520935059,
+        "severity": "silent here (eight features, stationary-ish scales)"
+      }
+    ],
+    "note": "None of these variants is given more information about tomorrow by the problem statement; all three obtain some. The centred window obtains a lot. The other two obtain almost nothing ON THIS DATA \u2014 which is a fact about a synthetic random walk, not a licence to ship them.",
+    "passed": true
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.13.0+cu130",
+    "cuda_available": false
+  },
+  "passed": true
+}
