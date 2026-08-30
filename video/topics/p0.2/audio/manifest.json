@@ -1,0 +1,762 @@
+{
+ "s1-000-fe894d863d9be665.wav": {
+  "duration": 2.005333333333333,
+  "text": "Phase zero, topic two.",
+  "voice": "am_michael"
+ },
+ "s1-001-0fd6f844596ff49b.wav": {
+  "duration": 1.8986666666666667,
+  "text": "NumPy as your new LINQ.",
+  "voice": "am_michael"
+ },
+ "s1-002-d9b11b905d733d2b.wav": {
+  "duration": 5.312,
+  "text": "LINQ taught you to describe what you want instead of writing the loop that gets it.",
+  "voice": "am_michael"
+ },
+ "s1-003-5a2d26cb08639fb2.wav": {
+  "duration": 5.269333333333333,
+  "text": "NumPy asks for the same description and then actually removes the loop.",
+  "voice": "am_michael"
+ },
+ "s1-004-b9c6d7e49f3ec7bd.wav": {
+  "duration": 4.949333333333334,
+  "text": "That is a stronger promise, and it comes with a sharper set of edges.",
+  "voice": "am_michael"
+ },
+ "s1-005-f3e546b0ee2c2204.wav": {
+  "duration": 3.456,
+  "text": "We are going to build a technical indicator suite.",
+  "voice": "am_michael"
+ },
+ "s1-006-47cee40f583536c4.wav": {
+  "duration": 12.885333333333334,
+  "text": "Simple and exponential moving averages, Wilder's smoothing, the relative strength index, Bollinger bands, volume weighted average price, and average true range.",
+  "voice": "am_michael"
+ },
+ "s1-007-8037338be70e2d6a.wav": {
+  "duration": 4.245333333333333,
+  "text": "No Python level loop will touch a single bar of data.",
+  "voice": "am_michael"
+ },
+ "s1-008-d80ba83ec30e3060.wav": {
+  "duration": 2.432,
+  "text": "But the indicators are the vehicle.",
+  "voice": "am_michael"
+ },
+ "s1-009-195475c1584fd63e.wav": {
+  "duration": 2.1333333333333333,
+  "text": "The subject is array thinking.",
+  "voice": "am_michael"
+ },
+ "s10-000-45d949993c79b61a.wav": {
+  "duration": 5.269333333333333,
+  "text": "Last idea, and it is the one that pays off two phases from now.",
+  "voice": "am_michael"
+ },
+ "s10-001-06e99ee2c0f594b8.wav": {
+  "duration": 1.152,
+  "text": "Einsum.",
+  "voice": "am_michael"
+ },
+ "s10-002-ae934f859876b0ff.wav": {
+  "duration": 2.453333333333333,
+  "text": "Name every axis with a letter.",
+  "voice": "am_michael"
+ },
+ "s10-003-9c3c02c5bfc76cb9.wav": {
+  "duration": 3.8826666666666667,
+  "text": "A repeated letter is contracted, meaning summed over.",
+  "voice": "am_michael"
+ },
+ "s10-004-02f98de87bb3505b.wav": {
+  "duration": 3.1786666666666665,
+  "text": "A letter missing from the output is summed away.",
+  "voice": "am_michael"
+ },
+ "s10-005-902a1c9eb39b5d90.wav": {
+  "duration": 1.8346666666666667,
+  "text": "That is the entire rule.",
+  "voice": "am_michael"
+ },
+ "s10-006-bda3aa6f152d4444.wav": {
+  "duration": 4.8853333333333335,
+  "text": "Matrix multiply is i j comma j k, arrow, i k.",
+  "voice": "am_michael"
+ },
+ "s10-007-b9fc9c03c7ef39a9.wav": {
+  "duration": 2.304,
+  "text": "Row sums are i j arrow i.",
+  "voice": "am_michael"
+ },
+ "s10-008-0957f441de4c75e0.wav": {
+  "duration": 2.8373333333333335,
+  "text": "The diagonal is i i arrow i.",
+  "voice": "am_michael"
+ },
+ "s10-009-bab84a0844e498cc.wav": {
+  "duration": 10.24,
+  "text": "A quadratic form, weights transpose sigma weights, which is portfolio variance, is i comma i j comma j arrow nothing.",
+  "voice": "am_michael"
+ },
+ "s10-010-3dd66c5a8ec81b58.wav": {
+  "duration": 2.56,
+  "text": "And then there is the string on screen.",
+  "voice": "am_michael"
+ },
+ "s10-011-a95077d233f5cb11.wav": {
+  "duration": 4.778666666666667,
+  "text": "B h q d, comma, b h k d, arrow, b h q k.",
+  "voice": "am_michael"
+ },
+ "s10-012-e4304a728c33ca74.wav": {
+  "duration": 2.1973333333333334,
+  "text": "Batch, head, query, key, depth.",
+  "voice": "am_michael"
+ },
+ "s10-013-f2c931075520c6ad.wav": {
+  "duration": 7.1466666666666665,
+  "text": "Keep batch and head, contract over depth, and pair every query position with every key position.",
+  "voice": "am_michael"
+ },
+ "s10-014-43ee1ede1780029c.wav": {
+  "duration": 5.013333333333334,
+  "text": "That single line is the numerator of scaled dot product attention.",
+  "voice": "am_michael"
+ },
+ "s10-015-163bb5255a2ccac8.wav": {
+  "duration": 2.432,
+  "text": "It is topic four, in phase two.",
+  "voice": "am_michael"
+ },
+ "s10-016-0da2933f13961b75.wav": {
+  "duration": 7.018666666666666,
+  "text": "Being able to read it fluently is the difference between following that topic and transcribing it.",
+  "voice": "am_michael"
+ },
+ "s11-000-9b878faf25003320.wav": {
+  "duration": 9.258666666666667,
+  "text": "I want to end on a test rather than on a feature, because this is the one that matters most and the one almost nobody writes.",
+  "voice": "am_michael"
+ },
+ "s11-001-e9081f1329f98920.wav": {
+  "duration": 5.589333333333333,
+  "text": "An indicator at time t must depend only on data up to time t.",
+  "voice": "am_michael"
+ },
+ "s11-002-076f2189227ab279.wav": {
+  "duration": 8.576,
+  "text": "To check that, you truncate the series, recompute, and demand that every earlier value comes back bit identical.",
+  "voice": "am_michael"
+ },
+ "s11-003-3c644fdf079bad02.wav": {
+  "duration": 1.344,
+  "text": "Five lines.",
+  "voice": "am_michael"
+ },
+ "s11-004-95a865be81d74627.wav": {
+  "duration": 9.770666666666667,
+  "text": "It catches centred rolling windows, it catches backward fill, and it catches a group by transform computed over the whole history.",
+  "voice": "am_michael"
+ },
+ "s11-005-047b72ee9ab1a942.wav": {
+  "duration": 6.634666666666667,
+  "text": "All three of those fail silently, produce beautiful backtests, and are completely worthless.",
+  "voice": "am_michael"
+ },
+ "s11-006-b5e1c06209ead057.wav": {
+  "duration": 3.8186666666666667,
+  "text": "There is a second one in the same file worth mentioning.",
+  "voice": "am_michael"
+ },
+ "s11-007-35cdd91019d74a5b.wav": {
+  "duration": 11.456,
+  "text": "A twenty day average computed over a concatenated multi symbol frame will blend the last nineteen bars of one issuer into the first bars of the next.",
+  "voice": "am_michael"
+ },
+ "s11-008-92f135946f2861e9.wav": {
+  "duration": 5.44,
+  "text": "There is a test that proves the group by is load bearing rather than decorative.",
+  "voice": "am_michael"
+ },
+ "s11-009-c097ff0c96258bf2.wav": {
+  "duration": 1.3653333333333333,
+  "text": "Group first.",
+  "voice": "am_michael"
+ },
+ "s11-010-cc668f033f4ab660.wav": {
+  "duration": 1.1946666666666668,
+  "text": "Always.",
+  "voice": "am_michael"
+ },
+ "s12-000-2dc12550ea33148b.wav": {
+  "duration": 1.984,
+  "text": "Four things to take away.",
+  "voice": "am_michael"
+ },
+ "s12-001-5e358141f26d09b8.wav": {
+  "duration": 10.282666666666668,
+  "text": "The speed up is the interpreter leaving the loop, not NumPy being clever, so remove the interpreter entirely or do not bother at all.",
+  "voice": "am_michael"
+ },
+ "s12-002-12a8876211dac5a7.wav": {
+  "duration": 10.090666666666667,
+  "text": "Broadcasting is the loop you do not write, keep dims is what makes reductions line up again, and the output is the thing that gets allocated.",
+  "voice": "am_michael"
+ },
+ "s12-003-fffba88bb4603c4a.wav": {
+  "duration": 2.5813333333333333,
+  "text": "Reduction, scan, or convolution.",
+  "voice": "am_michael"
+ },
+ "s12-004-e5cbf624591e9d8c.wav": {
+  "duration": 6.741333333333333,
+  "text": "Knowing which one you have is what tells you whether to vectorise or to reach for a filter primitive.",
+  "voice": "am_michael"
+ },
+ "s12-005-001d03a992f764fa.wav": {
+  "duration": 11.157333333333334,
+  "text": "And the fastest formulation and the numerically sound one are frequently different, so measure, at scale, against an independent implementation.",
+  "voice": "am_michael"
+ },
+ "s12-006-c862aef493cf04ed.wav": {
+  "duration": 1.92,
+  "text": "What breaks if we skip this.",
+  "voice": "am_michael"
+ },
+ "s12-007-04a982246f60e747.wav": {
+  "duration": 5.589333333333333,
+  "text": "Topic zero point three and all of phase one assume you read shapes fluently.",
+  "voice": "am_michael"
+ },
+ "s12-008-2fbf98da85dae13c.wav": {
+  "duration": 6.677333333333333,
+  "text": "An autograd bug in topic thirty one shows up as a shape mismatch in a backward pass.",
+  "voice": "am_michael"
+ },
+ "s12-009-0cc037cb4e92a3ae.wav": {
+  "duration": 5.184,
+  "text": "A transformer in topic four is ninety per cent shape bookkeeping.",
+  "voice": "am_michael"
+ },
+ "s12-010-90e7b6a11a0cc4c7.wav": {
+  "duration": 9.088,
+  "text": "Without broadcasting and einsum, every later topic will look like a framework problem when it is really an array problem.",
+  "voice": "am_michael"
+ },
+ "s12-011-a900b8555c45ecba.wav": {
+  "duration": 1.536,
+  "text": "Next episode.",
+  "voice": "am_michael"
+ },
+ "s12-012-43f77960c4600d75.wav": {
+  "duration": 2.986666666666667,
+  "text": "PyTorch tensors, and the training loop.",
+  "voice": "am_michael"
+ },
+ "s2-000-15cfe4659b42893b.wav": {
+  "duration": 2.965333333333333,
+  "text": "Here is where this lands in AlphaDesk.",
+  "voice": "am_michael"
+ },
+ "s2-001-3dcc525af846c09f.wav": {
+  "duration": 1.4293333333333333,
+  "text": "The data block.",
+  "voice": "am_michael"
+ },
+ "s2-002-fc975874b911e7a7.wav": {
+  "duration": 7.936,
+  "text": "By the end of the episode we have a feature table over the price history, computed per symbol, with no lookahead.",
+  "voice": "am_michael"
+ },
+ "s2-003-4b721fcb51dfe406.wav": {
+  "duration": 10.368,
+  "text": "In phase three, topic forty eight makes that table point in time correct, and the two tower recommender in topic forty two reads from it.",
+  "voice": "am_michael"
+ },
+ "s2-004-2eff6c96d34da34c.wav": {
+  "duration": 10.752,
+  "text": "So this is the first piece of the desk's data layer, and the discipline we establish here about causality is the discipline the whole desk inherits.",
+  "voice": "am_michael"
+ },
+ "s3-000-760dbfd53b9ba346.wav": {
+  "duration": 5.8453333333333335,
+  "text": "Start with why the loop is slow, because the answer is not the one people assume.",
+  "voice": "am_michael"
+ },
+ "s3-001-728fb0c6270bb3f5.wav": {
+  "duration": 7.957333333333334,
+  "text": "A list of doubles in dot NET is a contiguous block of unboxed doubles with a count on the front.",
+  "voice": "am_michael"
+ },
+ "s3-002-dc8e5d33ee9f1070.wav": {
+  "duration": 2.2826666666666666,
+  "text": "A Python list is not that.",
+  "voice": "am_michael"
+ },
+ "s3-003-cd8180d3f0e358de.wav": {
+  "duration": 6.357333333333333,
+  "text": "It is an array of pointers to individually heap allocated, boxed float objects.",
+  "voice": "am_michael"
+ },
+ "s3-004-e8cda7be4ab6e2ae.wav": {
+  "duration": 7.722666666666667,
+  "text": "Eight bytes of actual payload wrapped in roughly thirty two bytes of object header, scattered across memory.",
+  "voice": "am_michael"
+ },
+ "s3-005-8b7fc1583904cb0b.wav": {
+  "duration": 7.765333333333333,
+  "text": "Every single addition is a dynamic type lookup, a virtual dispatch, and an allocation for the result.",
+  "voice": "am_michael"
+ },
+ "s3-006-ea99107b4371d9ec.wav": {
+  "duration": 4.1386666666666665,
+  "text": "A NumPy array is what you assumed the list already was.",
+  "voice": "am_michael"
+ },
+ "s3-007-8f6df0c78d770ede.wav": {
+  "duration": 6.421333333333333,
+  "text": "One contiguous block of unboxed float sixty four, with the loop living down in C.",
+  "voice": "am_michael"
+ },
+ "s3-008-1c18dbc0b43f2755.wav": {
+  "duration": 9.002666666666666,
+  "text": "A million float sixty fours occupy about thirty two megabytes as a Python list and exactly eight as an array.",
+  "voice": "am_michael"
+ },
+ "s3-009-cae789d7c783bd53.wav": {
+  "duration": 5.824,
+  "text": "So the seventy times speed up you are about to see is not clever optimisation.",
+  "voice": "am_michael"
+ },
+ "s3-010-716b4dde61ef8232.wav": {
+  "duration": 3.0933333333333333,
+  "text": "It is the interpreter getting out of the way.",
+  "voice": "am_michael"
+ },
+ "s3-011-590dc50f3c32fec8.wav": {
+  "duration": 2.112,
+  "text": "Two consequences follow.",
+  "voice": "am_michael"
+ },
+ "s3-012-7379a08ce2ee3f36.wav": {
+  "duration": 10.304,
+  "text": "Micro optimising the body of a Python loop is nearly pointless, because you have to remove the interpreter from the loop entirely.",
+  "voice": "am_michael"
+ },
+ "s3-013-895ac1bf0997d146.wav": {
+  "duration": 9.834666666666667,
+  "text": "And a NumPy operation on ten elements is slower than the plain Python equivalent, because the per call overhead dominates.",
+  "voice": "am_michael"
+ },
+ "s3-014-97e5500ab3f18144.wav": {
+  "duration": 2.6026666666666665,
+  "text": "Vectorisation is a scale play.",
+  "voice": "am_michael"
+ },
+ "s4-000-b65eff2d5fa08c7f.wav": {
+  "duration": 8.448,
+  "text": "Broadcasting is the rule that lets arrays of different shapes combine without copying, and it is the loop you do not write.",
+  "voice": "am_michael"
+ },
+ "s4-001-aed1a27ed749a0fe.wav": {
+  "duration": 2.005333333333333,
+  "text": "Compare shapes from the right.",
+  "voice": "am_michael"
+ },
+ "s4-002-48f1f18cb33f3bd6.wav": {
+  "duration": 5.461333333333333,
+  "text": "Two dimensions are compatible when they are equal, or when one of them is one.",
+  "voice": "am_michael"
+ },
+ "s4-003-ac4482bb42a5beba.wav": {
+  "duration": 3.050666666666667,
+  "text": "A missing leading dimension counts as one.",
+  "voice": "am_michael"
+ },
+ "s4-004-02ec2972e82bac3f.wav": {
+  "duration": 15.168,
+  "text": "So a five by two hundred and sixty matrix of prices, times a five by one column of weights, gives you back five by two hundred and sixty, with a weight applied per row and no tiling anywhere.",
+  "voice": "am_michael"
+ },
+ "s4-005-c5a73044d5d42c30.wav": {
+  "duration": 4.096,
+  "text": "The keyword that makes this work in practice is keep dims.",
+  "voice": "am_michael"
+ },
+ "s4-006-b19ec0306c9c4fb4.wav": {
+  "duration": 8.853333333333333,
+  "text": "A reduction over an axis normally drops that axis, which then fails to line up with the array you wanted to divide.",
+  "voice": "am_michael"
+ },
+ "s4-007-d89095400b615f44.wav": {
+  "duration": 5.568,
+  "text": "Keep dims equals true leaves a length one axis in place, and it broadcasts.",
+  "voice": "am_michael"
+ },
+ "s4-008-5e6dbf8109095f06.wav": {
+  "duration": 5.44,
+  "text": "Roughly half of all could not be broadcast errors are a missing keep dims.",
+  "voice": "am_michael"
+ },
+ "s4-009-6ded7e7532ce59ef.wav": {
+  "duration": 1.792,
+  "text": "And here is the trap.",
+  "voice": "am_michael"
+ },
+ "s4-010-7eef1bebecc34704.wav": {
+  "duration": 3.050666666666667,
+  "text": "Broadcasting does not allocate the inputs.",
+  "voice": "am_michael"
+ },
+ "s4-011-10aa2ba37f43ad41.wav": {
+  "duration": 3.029333333333333,
+  "text": "It absolutely does allocate the output.",
+  "voice": "am_michael"
+ },
+ "s4-012-25ebc981e7eefc7d.wav": {
+  "duration": 11.498666666666667,
+  "text": "A ten thousand by one array plus a one by ten thousand array is two arrays of eighty kilobytes each producing a result of eight hundred megabytes.",
+  "voice": "am_michael"
+ },
+ "s4-013-b55aa79eba18ce5f.wav": {
+  "duration": 3.328,
+  "text": "Read the output shape before you run the line.",
+  "voice": "am_michael"
+ },
+ "s5-000-179ed64d6c1b2564.wav": {
+  "duration": 4.458666666666667,
+  "text": "Take the simplest indicator there is and write it three ways.",
+  "voice": "am_michael"
+ },
+ "s5-001-bd0b3368edb947de.wav": {
+  "duration": 1.1733333333333333,
+  "text": "In words.",
+  "voice": "am_michael"
+ },
+ "s5-002-d49c2987001f6109.wav": {
+  "duration": 5.781333333333333,
+  "text": "The average of the last w closing prices, recomputed at every bar.",
+  "voice": "am_michael"
+ },
+ "s5-003-e7723692fc292689.wav": {
+  "duration": 1.3866666666666667,
+  "text": "In symbols.",
+  "voice": "am_michael"
+ },
+ "s5-004-3fb5d7c6a07d4d12.wav": {
+  "duration": 9.984,
+  "text": "S M A at time t equals one over w, times the sum of the closes from t minus w plus one, up to t.",
+  "voice": "am_michael"
+ },
+ "s5-005-2b7c7efd02d20d36.wav": {
+  "duration": 1.8346666666666667,
+  "text": "And in code, one line.",
+  "voice": "am_michael"
+ },
+ "s5-006-bdd3f22a2f9fa7d4.wav": {
+  "duration": 5.461333333333333,
+  "text": "Sliding window view of the array, then take the mean along the last axis.",
+  "voice": "am_michael"
+ },
+ "s5-007-d8a56233fc056a64.wav": {
+  "duration": 2.6453333333333333,
+  "text": "That function is the important part.",
+  "voice": "am_michael"
+ },
+ "s5-008-e12914462b611d38.wav": {
+  "duration": 6.485333333333333,
+  "text": "It gives you a two dimensional view of shape n minus w plus one, by w.",
+  "voice": "am_michael"
+ },
+ "s5-009-22df0a4b1b4945f3.wav": {
+  "duration": 2.026666666666667,
+  "text": "Every row is one window.",
+  "voice": "am_michael"
+ },
+ "s5-010-0bbab1d14107cd69.wav": {
+  "duration": 2.2613333333333334,
+  "text": "And it is a view, not a copy.",
+  "voice": "am_michael"
+ },
+ "s5-011-1fef0ede091fe8c0.wav": {
+  "duration": 1.856,
+  "text": "Zero bytes are moved.",
+  "voice": "am_michael"
+ },
+ "s5-012-b849f77c2955a7bf.wav": {
+  "duration": 8.618666666666666,
+  "text": "It is built out of stride tricks, which means it reinterprets the existing memory with a different shape and step size.",
+  "voice": "am_michael"
+ },
+ "s5-013-2d2326c50de00a2d.wav": {
+  "duration": 2.816,
+  "text": "The reduction then runs entirely in C.",
+  "voice": "am_michael"
+ },
+ "s6-000-97812bab98939a4f.wav": {
+  "duration": 7.68,
+  "text": "Now the timing, on two hundred thousand bars with a twenty day window, and note this is a log scale.",
+  "voice": "am_michael"
+ },
+ "s6-001-e67bd3de02f048d6.wav": {
+  "duration": 5.12,
+  "text": "The nested Python loop takes four hundred and fifty seven milliseconds.",
+  "voice": "am_michael"
+ },
+ "s6-002-eb9af528b4d4101b.wav": {
+  "duration": 6.72,
+  "text": "The sliding window version takes six point four, which is about seventy two times faster.",
+  "voice": "am_michael"
+ },
+ "s6-003-29ab05829baced8b.wav": {
+  "duration": 5.568,
+  "text": "Pandas rolling, which is our reference implementation, takes four point seven.",
+  "voice": "am_michael"
+ },
+ "s6-004-6fbc230b6bbe21d8.wav": {
+  "duration": 2.368,
+  "text": "And then there is the middle bar.",
+  "voice": "am_michael"
+ },
+ "s6-005-c1ccc385770bab94.wav": {
+  "duration": 7.509333333333333,
+  "text": "The cumulative sum trick takes three point seven milliseconds, making it the fastest of all of them.",
+  "voice": "am_michael"
+ },
+ "s6-006-cf2d82e5e2f25df2.wav": {
+  "duration": 2.496,
+  "text": "It is also the one we did not ship.",
+  "voice": "am_michael"
+ },
+ "s6-007-a95abd8520969234.wav": {
+  "duration": 2.0906666666666665,
+  "text": "That deserves an explanation.",
+  "voice": "am_michael"
+ },
+ "s7-000-28a6805bc704565e.wav": {
+  "duration": 8.021333333333333,
+  "text": "The trick is to build one running total and then subtract the total at the start of the window from the total at the end.",
+  "voice": "am_michael"
+ },
+ "s7-001-e60f955d4459d69d.wav": {
+  "duration": 3.8613333333333335,
+  "text": "That is linear time instead of linear times window.",
+  "voice": "am_michael"
+ },
+ "s7-002-af04328e628aa110.wav": {
+  "duration": 2.9013333333333335,
+  "text": "It is also catastrophic cancellation.",
+  "voice": "am_michael"
+ },
+ "s7-003-86d6ecaf1fca6c3c.wav": {
+  "duration": 4.032,
+  "text": "You are subtracting two large, nearly equal numbers.",
+  "voice": "am_michael"
+ },
+ "s7-004-6c88af901755a079.wav": {
+  "duration": 8.405333333333333,
+  "text": "On two million bars at an index level of one billion, the running total reaches two times ten to the fifteen.",
+  "voice": "am_michael"
+ },
+ "s7-005-6e81e4860bc9f707.wav": {
+  "duration": 4.330666666666667,
+  "text": "Float sixty four carries about sixteen significant digits.",
+  "voice": "am_michael"
+ },
+ "s7-006-9778ae6c724008ae.wav": {
+  "duration": 5.610666666666667,
+  "text": "So the difference throws away exactly the low order bits you were trying to keep.",
+  "voice": "am_michael"
+ },
+ "s7-007-f4bd8a0868efb786.wav": {
+  "duration": 4.608,
+  "text": "The measured error is one point three times ten to the minus two.",
+  "voice": "am_michael"
+ },
+ "s7-008-198c99e5105f1d0a.wav": {
+  "duration": 2.1546666666666665,
+  "text": "That is rupees, on a price.",
+  "voice": "am_michael"
+ },
+ "s7-009-b0555d851f7dfb8a.wav": {
+  "duration": 8.938666666666666,
+  "text": "Now, on one year of two digit prices this error is completely invisible, and that is precisely what makes it dangerous.",
+  "voice": "am_michael"
+ },
+ "s7-010-0de626a853c0e869.wav": {
+  "duration": 8.234666666666667,
+  "text": "The fastest formulation and the numerically sound one are different, and the whole skill is knowing which one you picked.",
+  "voice": "am_michael"
+ },
+ "s8-000-c1c48b49b020074d.wav": {
+  "duration": 4.48,
+  "text": "Now a harder case, and the one that teaches the real lesson.",
+  "voice": "am_michael"
+ },
+ "s8-001-f33e8a35872a3872.wav": {
+  "duration": 7.466666666666667,
+  "text": "A simple moving average is a reduction over independent windows, so it vectorises trivially.",
+  "voice": "am_michael"
+ },
+ "s8-002-adbaf1e023141316.wav": {
+  "duration": 2.88,
+  "text": "An exponential moving average is not.",
+  "voice": "am_michael"
+ },
+ "s8-003-bebfacf43f3080b7.wav": {
+  "duration": 1.4933333333333334,
+  "text": "It is a scan.",
+  "voice": "am_michael"
+ },
+ "s8-004-cd302c914d0e1af8.wav": {
+  "duration": 8.0,
+  "text": "Y at t equals alpha times x at t, plus one minus alpha times y at t minus one.",
+  "voice": "am_michael"
+ },
+ "s8-005-220f2bb1e32c52a7.wav": {
+  "duration": 3.1786666666666665,
+  "text": "Every output depends on the previous output.",
+  "voice": "am_michael"
+ },
+ "s8-006-27cc3278ce136aef.wav": {
+  "duration": 1.8986666666666667,
+  "text": "There is a closed form.",
+  "voice": "am_michael"
+ },
+ "s8-007-a63c13c19f1793a0.wav": {
+  "duration": 8.0,
+  "text": "You can expand the recursion into a cumulative sum of x divided by one minus alpha to the power k.",
+  "voice": "am_michael"
+ },
+ "s8-008-238f78b56e5b1826.wav": {
+  "duration": 6.314666666666667,
+  "text": "That is the vectorised E M A that every blog post shows you, and it is a landmine.",
+  "voice": "am_michael"
+ },
+ "s8-009-27143d9d21d14a2b.wav": {
+  "duration": 2.56,
+  "text": "That divisor grows exponentially.",
+  "voice": "am_michael"
+ },
+ "s8-010-8c2fa2ac84ed2287.wav": {
+  "duration": 12.672,
+  "text": "For a twelve day span it passes float sixty four's maximum of one point eight times ten to the three hundred and eight at around bar four thousand two hundred.",
+  "voice": "am_michael"
+ },
+ "s8-011-b136582ba53755b5.wav": {
+  "duration": 1.9626666666666666,
+  "text": "Here is the cruel part.",
+  "voice": "am_michael"
+ },
+ "s8-012-eeb52467e855e838.wav": {
+  "duration": 5.0986666666666665,
+  "text": "Up to that point the answer is exact to fourteen decimal places.",
+  "voice": "am_michael"
+ },
+ "s8-013-239e7e65706d7133.wav": {
+  "duration": 4.053333333333334,
+  "text": "One bar later, the entire output is not a number.",
+  "voice": "am_michael"
+ },
+ "s8-014-3c1b0a762f01ad86.wav": {
+  "duration": 3.52,
+  "text": "A test on one year of data will never see it.",
+  "voice": "am_michael"
+ },
+ "s8-015-53bacb868b748a14.wav": {
+  "duration": 2.6666666666666665,
+  "text": "Seventeen years of daily data will.",
+  "voice": "am_michael"
+ },
+ "s8-016-a227b7dac434a49d.wav": {
+  "duration": 5.184,
+  "text": "The professional answer is to stop trying to turn a scan into a reduction.",
+  "voice": "am_michael"
+ },
+ "s8-017-6acf3839f322676d.wav": {
+  "duration": 6.485333333333333,
+  "text": "Scipy signal l filter implements exactly this one pole recursive filter, in C.",
+  "voice": "am_michael"
+ },
+ "s8-018-077ce81424379466.wav": {
+  "duration": 8.704,
+  "text": "Same algorithm, same sequential dependency, thirty times faster than the Python loop, and numerically stable.",
+  "voice": "am_michael"
+ },
+ "s8-019-a391ef0db355b38c.wav": {
+  "duration": 1.9413333333333334,
+  "text": "That is the shape of the skill.",
+  "voice": "am_michael"
+ },
+ "s8-020-492430e77312edc2.wav": {
+  "duration": 8.768,
+  "text": "Recognise whether you have a reduction, a scan, or a convolution, and reach for the primitive that already implements it.",
+  "voice": "am_michael"
+ },
+ "s9-000-4630c89c03d09295.wav": {
+  "duration": 5.312,
+  "text": "One specific gotcha, because it will cost you an afternoon otherwise.",
+  "voice": "am_michael"
+ },
+ "s9-001-a42fc42336000e44.wav": {
+  "duration": 4.394666666666667,
+  "text": "Wilder's smoothing is not an exponential moving average.",
+  "voice": "am_michael"
+ },
+ "s9-002-5df9a053af10a90d.wav": {
+  "duration": 9.152,
+  "text": "Wilder's fourteen period average uses an alpha of one over fourteen, which is zero point zero seven one.",
+  "voice": "am_michael"
+ },
+ "s9-003-d14542a81cf61330.wav": {
+  "duration": 6.634666666666667,
+  "text": "A fourteen span E M A uses two over fifteen, which is zero point one three three.",
+  "voice": "am_michael"
+ },
+ "s9-004-00a906fb93c806f1.wav": {
+  "duration": 2.3253333333333335,
+  "text": "Nearly double the responsiveness.",
+  "voice": "am_michael"
+ },
+ "s9-005-a5021b61b0fbe8c4.wav": {
+  "duration": 4.522666666666667,
+  "text": "An E M A with a span of twenty seven is the closer match.",
+  "voice": "am_michael"
+ },
+ "s9-006-1103804bfb9653a4.wav": {
+  "duration": 8.277333333333333,
+  "text": "Essentially every my R S I does not match the other library report comes down to one of three things.",
+  "voice": "am_michael"
+ },
+ "s9-007-de5e4b1068d8c8ae.wav": {
+  "duration": 1.2586666666666666,
+  "text": "That alpha.",
+  "voice": "am_michael"
+ },
+ "s9-008-983804c008df66d0.wav": {
+  "duration": 9.877333333333333,
+  "text": "Or the seeding convention, meaning whether you start the recursion from the simple mean of the first n values or from the very first value.",
+  "voice": "am_michael"
+ },
+ "s9-009-4ef0957ff68f1ee3.wav": {
+  "duration": 12.693333333333333,
+  "text": "Or the degrees of freedom on the Bollinger standard deviation, where the original definition uses the population version and the pandas default uses the sample version.",
+  "voice": "am_michael"
+ },
+ "s9-010-c9e409a0f52a37f6.wav": {
+  "duration": 1.6213333333333333,
+  "text": "None of these is wrong.",
+  "voice": "am_michael"
+ },
+ "s9-011-e6895e1f81ce9c0e.wav": {
+  "duration": 1.664,
+  "text": "They are conventions.",
+  "voice": "am_michael"
+ },
+ "s9-012-d9d97fc948a4f9c2.wav": {
+  "duration": 8.426666666666666,
+  "text": "The lesson is to pin the convention explicitly in code, and to write the reference implementation before the fast one.",
+  "voice": "am_michael"
+ }
+}

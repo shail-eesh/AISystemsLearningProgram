@@ -1,0 +1,1181 @@
+{
+ "topic": "p0.3",
+ "episode": 1,
+ "title": "The training loop",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 837.684,
+ "wordCount": 1758,
+ "wordsPerMinute": 125.9,
+ "sceneCount": 12,
+ "shortestSceneSeconds": 39.22,
+ "generatedInSeconds": 0.0,
+ "segmentsSynthesised": 0,
+ "segmentsReused": 147,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "PyTorch tensors & the training loop",
+    "subtitle": "Five lines to learn. One habit that takes longer, and is worth more.",
+    "topicId": "P0.3",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 39.5153,
+   "segments": [
+    {
+     "text": "Phase zero, topic three.",
+     "file": "p0.3/audio/s1-000-dda5331b377d82c9.wav",
+     "start": 0.0,
+     "duration": 2.112
+    },
+    {
+     "text": "PyTorch tensors and the training loop.",
+     "file": "p0.3/audio/s1-001-08c804eb8a2c1f69.wav",
+     "start": 2.532,
+     "duration": 2.9013
+    },
+    {
+     "text": "Two halves to this episode, and the second one is why the topic exists.",
+     "file": "p0.3/audio/s1-002-1d79fdb73a4cb481.wav",
+     "start": 5.8533,
+     "duration": 5.2267
+    },
+    {
+     "text": "The first half is mechanical.",
+     "file": "p0.3/audio/s1-003-fe4ec07a92d1bff3.wav",
+     "start": 11.5,
+     "duration": 2.176
+    },
+    {
+     "text": "Five lines that you must be able to type from an empty file without looking anything up.",
+     "file": "p0.3/audio/s1-004-d31d7ab1cca9bb91.wav",
+     "start": 14.096,
+     "duration": 6.272
+    },
+    {
+     "text": "The second half is judgement.",
+     "file": "p0.3/audio/s1-005-0e28cb99dec8114a.wav",
+     "start": 20.788,
+     "duration": 2.048
+    },
+    {
+     "text": "We take the model we just trained, evaluate it honestly, and watch it score exactly chance on a task it appeared to be learning.",
+     "file": "p0.3/audio/s1-006-87d1cd69b539f98b.wav",
+     "start": 23.256,
+     "duration": 9.536
+    },
+    {
+     "text": "In finance that second half is the part that costs money, so we front load it.",
+     "file": "p0.3/audio/s1-007-7f947f1d24ac3591.wav",
+     "start": 33.212,
+     "duration": 5.6533
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ArchitectureMap",
+   "props": {
+    "eyebrow": "where we are",
+    "highlight": [
+     "training"
+    ],
+    "caption": "Every training topic from T15 onwards reuses this loop verbatim."
+   },
+   "start": 39.5153,
+   "duration": 39.2167,
+   "segments": [
+    {
+     "text": "Where this lands on the desk.",
+     "file": "p0.3/audio/s2-000-b31f12bf24e31f41.wav",
+     "start": 39.5153,
+     "duration": 2.048
+    },
+    {
+     "text": "The training block.",
+     "file": "p0.3/audio/s2-001-469e0b987186f3d8.wav",
+     "start": 41.9833,
+     "duration": 1.536
+    },
+    {
+     "text": "What we build today is reused verbatim by every training topic that follows.",
+     "file": "p0.3/audio/s2-002-8e7945db051a1770.wav",
+     "start": 43.9393,
+     "duration": 6.08
+    },
+    {
+     "text": "Topic fifteen trains a forty million parameter language model with this loop.",
+     "file": "p0.3/audio/s2-003-1994fe60702ddb1c.wav",
+     "start": 50.4393,
+     "duration": 5.6747
+    },
+    {
+     "text": "Topic seventeen adds low rank adaptation on top of it.",
+     "file": "p0.3/audio/s2-004-40f5ec5a44b734e4.wav",
+     "start": 56.534,
+     "duration": 4.48
+    },
+    {
+     "text": "Topic nineteen swaps the loss for direct preference optimisation.",
+     "file": "p0.3/audio/s2-005-6503800f9ae453f7.wav",
+     "start": 61.434,
+     "duration": 4.6293
+    },
+    {
+     "text": "The scaffolding does not change.",
+     "file": "p0.3/audio/s2-006-1a85a2223c792945.wav",
+     "start": 66.4833,
+     "duration": 2.24
+    },
+    {
+     "text": "Which means a mistake we make here, we make forty million parameters later, on a run that takes a night instead of a second.",
+     "file": "p0.3/audio/s2-007-61e1cb08c51ce30f.wav",
+     "start": 69.1433,
+     "duration": 8.9387
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the tensor",
+    "title": "An ndarray that remembers what happened to it",
+    "body": "Everything from the last episode transfers unchanged: shapes, broadcasting, reductions, einsum. A tensor adds exactly three things.",
+    "points": [
+     "A device the storage lives on \u2014 cpu, or cuda:0.",
+     "Optional gradient tracking: the tensor records the operations applied to it so they can be replayed backwards.",
+     "In-place operations, spelled with a trailing underscore, which autograd sometimes refuses to differentiate through.",
+     "Two spelling traps: torch says dim and keepdim where NumPy says axis and keepdims, and torch defaults to float32 where NumPy defaults to float64."
+    ],
+    "aside": "from_numpy shares memory. torch.tensor copies."
+   },
+   "start": 78.732,
+   "duration": 74.4687,
+   "segments": [
+    {
+     "text": "Start with what a tensor is, because it is less than you might think.",
+     "file": "p0.3/audio/s3-000-d733a4490d7cd2b7.wav",
+     "start": 78.732,
+     "duration": 4.5013
+    },
+    {
+     "text": "Everything from the previous episode transfers unchanged.",
+     "file": "p0.3/audio/s3-001-27fee5e54121ae25.wav",
+     "start": 83.6533,
+     "duration": 3.968
+    },
+    {
+     "text": "Shapes, broadcasting, reductions, einsum, all identical.",
+     "file": "p0.3/audio/s3-002-aa4dde57a4e27970.wav",
+     "start": 88.0413,
+     "duration": 4.3307
+    },
+    {
+     "text": "A torch tensor adds exactly three things.",
+     "file": "p0.3/audio/s3-003-cc7d350a7f4a7382.wav",
+     "start": 92.792,
+     "duration": 3.136
+    },
+    {
+     "text": "A device that the storage lives on, cpu or cuda zero.",
+     "file": "p0.3/audio/s3-004-ebfce5b72871ccb9.wav",
+     "start": 96.348,
+     "duration": 5.1413
+    },
+    {
+     "text": "Optional gradient tracking, which means the tensor records the operations applied to it so they can be replayed in reverse.",
+     "file": "p0.3/audio/s3-005-c483ca1d828c48eb.wav",
+     "start": 101.9093,
+     "duration": 8.8747
+    },
+    {
+     "text": "And in place operations, spelled with a trailing underscore, which are fast and which autograd will sometimes refuse to differentiate through.",
+     "file": "p0.3/audio/s3-006-713eb9e0998043a6.wav",
+     "start": 111.204,
+     "duration": 10.816
+    },
+    {
+     "text": "Two spelling traps to note now and save an hour later.",
+     "file": "p0.3/audio/s3-007-706c138fdcb2c91f.wav",
+     "start": 122.44,
+     "duration": 3.968
+    },
+    {
+     "text": "Torch says dim and keep dim where NumPy says axis and keep dims.",
+     "file": "p0.3/audio/s3-008-fd12d5eaf594e487.wav",
+     "start": 126.828,
+     "duration": 5.2693
+    },
+    {
+     "text": "And torch defaults to float thirty two where NumPy defaults to float sixty four.",
+     "file": "p0.3/audio/s3-009-9bf153ac976430dd.wav",
+     "start": 132.5173,
+     "duration": 6.0587
+    },
+    {
+     "text": "That default is not carelessness.",
+     "file": "p0.3/audio/s3-010-300cab1a452a4e0b.wav",
+     "start": 138.996,
+     "duration": 2.432
+    },
+    {
+     "text": "It halves memory and bandwidth, and gradient noise dwarfs the extra precision.",
+     "file": "p0.3/audio/s3-011-6bc2bd4c2284b8a6.wav",
+     "start": 141.848,
+     "duration": 5.8667
+    },
+    {
+     "text": "Phase five goes further still, into brain float sixteen.",
+     "file": "p0.3/audio/s3-012-7bf7bccae16cae34.wav",
+     "start": 148.1347,
+     "duration": 4.416
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "autograd",
+    "title": "backward() ADDS into .grad",
+    "filename": "steps/step2_autograd_as_a_user.py",
+    "code": "x = torch.tensor(2.0, requires_grad=True)\n\nfor i in range(1, 4):\n    (x ** 2).backward()\n    print(x.grad.item())\n\n# 4.0\n# 8.0\n# 12.0",
+    "highlights": [
+     {
+      "at": 30,
+      "lines": [
+       1
+      ],
+      "caption": "requires_grad makes x a leaf of the graph. Operations on it record nodes."
+     },
+     {
+      "at": 180,
+      "lines": [
+       4
+      ],
+      "caption": "backward() walks the graph in reverse, applying the chain rule."
+     },
+     {
+      "at": 320,
+      "lines": [
+       7,
+       8,
+       9
+      ],
+      "caption": "Four, eight, twelve. It adds. It does not set."
+     }
+    ]
+   },
+   "start": 153.2007,
+   "duration": 74.3633,
+   "segments": [
+    {
+     "text": "Here is the single most important fact about autograd, and it is on screen.",
+     "file": "p0.3/audio/s4-000-3801a1b3b48518b6.wav",
+     "start": 153.2007,
+     "duration": 5.8027
+    },
+    {
+     "text": "A tensor created with requires grad equals true is a leaf of a computation graph.",
+     "file": "p0.3/audio/s4-001-97aa4e1bbd32fcbf.wav",
+     "start": 159.4233,
+     "duration": 6.5707
+    },
+    {
+     "text": "Operations on it record nodes.",
+     "file": "p0.3/audio/s4-002-9202b16f1c5ec7c5.wav",
+     "start": 166.414,
+     "duration": 2.5173
+    },
+    {
+     "text": "Calling backward on a scalar walks that graph in reverse, applying the chain rule, and puts the result into each leaf's grad attribute.",
+     "file": "p0.3/audio/s4-003-5c0c89d85bdb3269.wav",
+     "start": 169.3513,
+     "duration": 10.2613
+    },
+    {
+     "text": "Now look at the output.",
+     "file": "p0.3/audio/s4-004-c58347fde19e60ff.wav",
+     "start": 180.0327,
+     "duration": 1.792
+    },
+    {
+     "text": "We call backward three times on the same leaf.",
+     "file": "p0.3/audio/s4-005-1bffcc8559d502dd.wav",
+     "start": 182.2447,
+     "duration": 3.0293
+    },
+    {
+     "text": "Four.",
+     "file": "p0.3/audio/s4-006-b0bb5415ca56734f.wav",
+     "start": 185.694,
+     "duration": 0.9387
+    },
+    {
+     "text": "Eight.",
+     "file": "p0.3/audio/s4-007-068ff35d90b77c63.wav",
+     "start": 187.0527,
+     "duration": 0.8747
+    },
+    {
+     "text": "Twelve.",
+     "file": "p0.3/audio/s4-008-0ac78e1731e2d24f.wav",
+     "start": 188.3473,
+     "duration": 0.96
+    },
+    {
+     "text": "It adds.",
+     "file": "p0.3/audio/s4-009-7b389111d896929e.wav",
+     "start": 189.7273,
+     "duration": 1.1733
+    },
+    {
+     "text": "It does not set.",
+     "file": "p0.3/audio/s4-010-2cbe80f1f512b573.wav",
+     "start": 191.3207,
+     "duration": 1.536
+    },
+    {
+     "text": "This is not a wart.",
+     "file": "p0.3/audio/s4-011-d5cadc589746581b.wav",
+     "start": 193.2767,
+     "duration": 1.6853
+    },
+    {
+     "text": "It is exactly what makes gradient accumulation across micro batches work, which is how you train a model that does not fit in memory.",
+     "file": "p0.3/audio/s4-012-48a9e3c092812776.wav",
+     "start": 195.382,
+     "duration": 10.0267
+    },
+    {
+     "text": "But it means every single training loop must clear the gradients before it starts.",
+     "file": "p0.3/audio/s4-013-b8cb0d6c82853954.wav",
+     "start": 205.8287,
+     "duration": 5.8667
+    },
+    {
+     "text": "And omitting that is the most common PyTorch bug there is, because the loss still goes down.",
+     "file": "p0.3/audio/s4-014-1b661b00d952df72.wav",
+     "start": 212.1153,
+     "duration": 6.5493
+    },
+    {
+     "text": "It just goes down using the sum of every gradient computed so far, and absolutely nothing tells you.",
+     "file": "p0.3/audio/s4-015-8d69475a54db3fd4.wav",
+     "start": 219.0847,
+     "duration": 7.8293
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "autograd",
+    "title": "Three more facts, then you have the user's model",
+    "points": [
+     "backward() on a non-scalar raises. A loss is scalar precisely so the upstream gradient is implicitly one.",
+     "The graph is freed after backward(). Every forward pass builds a fresh one; retain_graph is nearly always a sign you meant to restructure something.",
+     "Intermediates get no .grad \u2014 storing one per node would explode memory. retain_grad() opts one in.",
+     "no_grad() stops recording; detach() cuts one tensor out. Confusing them costs memory, not correctness."
+    ],
+    "aside": "You build this machinery yourself in T31. Today you only need to drive it."
+   },
+   "start": 227.564,
+   "duration": 74.738,
+   "segments": [
+    {
+     "text": "Three more facts and you have the complete user's model of autograd.",
+     "file": "p0.3/audio/s5-000-11a9816b13520fd7.wav",
+     "start": 227.564,
+     "duration": 5.184
+    },
+    {
+     "text": "First, calling backward on something that is not a scalar raises an error.",
+     "file": "p0.3/audio/s5-001-d8ff57fbbf364fcb.wav",
+     "start": 233.168,
+     "duration": 5.3973
+    },
+    {
+     "text": "A loss is a scalar precisely so that the upstream gradient is implicitly the number one.",
+     "file": "p0.3/audio/s5-002-43fe7863f512b255.wav",
+     "start": 238.9853,
+     "duration": 6.8053
+    },
+    {
+     "text": "For a vector you have to supply that gradient yourself.",
+     "file": "p0.3/audio/s5-003-8a88cc23967706f4.wav",
+     "start": 246.2107,
+     "duration": 3.968
+    },
+    {
+     "text": "Second, the graph is freed after backward runs.",
+     "file": "p0.3/audio/s5-004-ad9d331f72193d1b.wav",
+     "start": 250.5987,
+     "duration": 3.1147
+    },
+    {
+     "text": "Every forward pass builds a fresh one, and reaching for retain graph equals true is nearly always a sign that you meant to restructure something.",
+     "file": "p0.3/audio/s5-005-6126376de113a387.wav",
+     "start": 254.1333,
+     "duration": 10.4533
+    },
+    {
+     "text": "Third, intermediate tensors get no gradient attribute at all, because storing one per node would explode memory.",
+     "file": "p0.3/audio/s5-006-ea6cdce29340aa62.wav",
+     "start": 265.0067,
+     "duration": 8.2773
+    },
+    {
+     "text": "Retain grad opts a specific one in, which is useful for debugging and for the interpretability work in topic twenty two.",
+     "file": "p0.3/audio/s5-007-38ef0a14d390bffb.wav",
+     "start": 273.704,
+     "duration": 9.28
+    },
+    {
+     "text": "And finally, no grad stops the recording entirely, while detach cuts a single tensor out of the graph.",
+     "file": "p0.3/audio/s5-008-633cafe3f4c4ed0e.wav",
+     "start": 283.404,
+     "duration": 7.6587
+    },
+    {
+     "text": "Use no grad for evaluation and detach when you are storing a value for logging.",
+     "file": "p0.3/audio/s5-009-affd8d46a56c7fb7.wav",
+     "start": 291.4827,
+     "duration": 6.1653
+    },
+    {
+     "text": "Confusing the two costs memory, not correctness.",
+     "file": "p0.3/audio/s5-010-4edbf97e47e103e5.wav",
+     "start": 298.068,
+     "duration": 3.584
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the loss",
+    "title": "Why logits, not probabilities",
+    "english": "The sigmoid's derivative cancels against the logarithm in the cross-entropy, leaving a gradient that is simply prediction minus target.",
+    "equation": "dL/dz = (\u03c3(z) \u2212 y) / n",
+    "code": "loss = nn.BCEWithLogitsLoss()(logits, y)   # fused, stable\n# NOT: BCELoss()(torch.sigmoid(logits), y)",
+    "note": "Hand-written and autograd agree to 2.8e-17 in step 3.",
+    "stageFrames": [
+     10,
+     130,
+     250
+    ]
+   },
+   "start": 302.302,
+   "duration": 86.4367,
+   "segments": [
+    {
+     "text": "The model returns raw logits and never probabilities, and there is a reason worth stating three ways.",
+     "file": "p0.3/audio/s6-000-afe4b34e02a21425.wav",
+     "start": 302.302,
+     "duration": 7.5307
+    },
+    {
+     "text": "In words.",
+     "file": "p0.3/audio/s6-001-bd0b3368edb947de.wav",
+     "start": 310.2527,
+     "duration": 1.1733
+    },
+    {
+     "text": "The sigmoid's derivative cancels against the logarithm in the cross entropy, leaving a gradient that is simply the prediction minus the target.",
+     "file": "p0.3/audio/s6-002-22c486703c730487.wav",
+     "start": 311.846,
+     "duration": 10.4107
+    },
+    {
+     "text": "In symbols.",
+     "file": "p0.3/audio/s6-003-e7723692fc292689.wav",
+     "start": 322.6767,
+     "duration": 1.3867
+    },
+    {
+     "text": "The derivative of the loss with respect to the pre activation z is sigma of z, minus y, divided by n.",
+     "file": "p0.3/audio/s6-004-dc07c1c90a2310b2.wav",
+     "start": 324.4833,
+     "duration": 8.832
+    },
+    {
+     "text": "That is it.",
+     "file": "p0.3/audio/s6-005-66af51f6771731b5.wav",
+     "start": 333.7353,
+     "duration": 1.1733
+    },
+    {
+     "text": "No sigmoid derivative term survives.",
+     "file": "p0.3/audio/s6-006-e3715325e70feb99.wav",
+     "start": 335.3287,
+     "duration": 3.008
+    },
+    {
+     "text": "And in code, you get that cancellation by using the fused loss, binary cross entropy with logits.",
+     "file": "p0.3/audio/s6-007-870d77421dbd49d2.wav",
+     "start": 338.7567,
+     "duration": 7.808
+    },
+    {
+     "text": "Applying a sigmoid yourself and then using plain binary cross entropy is mathematically identical and numerically worse.",
+     "file": "p0.3/audio/s6-008-c866e9ec4ca92196.wav",
+     "start": 346.9847,
+     "duration": 9.8133
+    },
+    {
+     "text": "The fused version uses the log sum exp trick internally.",
+     "file": "p0.3/audio/s6-009-21c08ec9ae7e1a87.wav",
+     "start": 357.218,
+     "duration": 4.288
+    },
+    {
+     "text": "The split version overflows once a logit reaches about plus or minus forty, and hands you a not a number.",
+     "file": "p0.3/audio/s6-010-8e69676e2de7ae01.wav",
+     "start": 361.926,
+     "duration": 8.2133
+    },
+    {
+     "text": "The step three script writes this derivative out by hand in NumPy and matches PyTorch's autograd to two point eight times ten to the minus seventeen.",
+     "file": "p0.3/audio/s6-011-f16ef9391f605b2e.wav",
+     "start": 370.5593,
+     "duration": 12.2453
+    },
+    {
+     "text": "Doing that once is what stops autograd from feeling like magic.",
+     "file": "p0.3/audio/s6-012-cc890b3dbf763664.wav",
+     "start": 383.2247,
+     "duration": 4.864
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the loop",
+    "title": "The five lines",
+    "filename": "src/p0_3_training/loop.py",
+    "code": "for epoch in range(cfg.epochs):\n    model.train()\n    for xb, yb in loader:\n        optimiser.zero_grad()          # gradients accumulate\n        logits = model(xb)             # forward\n        loss = criterion(logits, yb)   # a scalar\n        loss.backward()                # reverse-mode autodiff\n        optimiser.step()               # p -= lr * p.grad",
+    "highlights": [
+     {
+      "at": 40,
+      "lines": [
+       4
+      ],
+      "caption": "Clear first. Always. This is the line people delete by accident and never notice."
+     },
+     {
+      "at": 150,
+      "lines": [
+       5,
+       6
+      ],
+      "caption": "Forward, then a scalar loss \u2014 scalar so backward needs no upstream gradient."
+     },
+     {
+      "at": 260,
+      "lines": [
+       7
+      ],
+      "caption": "One call fills every leaf's .grad."
+     },
+     {
+      "at": 360,
+      "lines": [
+       8
+      ],
+      "caption": "For plain SGD this is literally p -= lr * p.grad under no_grad. Proven to 7e-09 in step 3."
+     }
+    ]
+   },
+   "start": 388.7387,
+   "duration": 77.0433,
+   "segments": [
+    {
+     "text": "And here is the whole thing.",
+     "file": "p0.3/audio/s7-000-29bac2f7ed209705.wav",
+     "start": 388.7387,
+     "duration": 2.1547
+    },
+    {
+     "text": "Five lines inside two loops.",
+     "file": "p0.3/audio/s7-001-591f156ef64be141.wav",
+     "start": 391.3133,
+     "duration": 2.2613
+    },
+    {
+     "text": "Clear the gradients.",
+     "file": "p0.3/audio/s7-002-65a812a5f5159c84.wav",
+     "start": 393.9947,
+     "duration": 1.6213
+    },
+    {
+     "text": "Forward pass.",
+     "file": "p0.3/audio/s7-003-fdefbdd7b5711182.wav",
+     "start": 396.036,
+     "duration": 1.3013
+    },
+    {
+     "text": "Compute a scalar loss.",
+     "file": "p0.3/audio/s7-004-78e9f8aee2318ade.wav",
+     "start": 397.7573,
+     "duration": 1.792
+    },
+    {
+     "text": "Call backward.",
+     "file": "p0.3/audio/s7-005-115f12159744a230.wav",
+     "start": 399.9693,
+     "duration": 1.3653
+    },
+    {
+     "text": "Step the optimiser.",
+     "file": "p0.3/audio/s7-006-fb6246ddcec0eb9b.wav",
+     "start": 401.7547,
+     "duration": 1.728
+    },
+    {
+     "text": "Everything else in that file, the seeding, the batching, the evaluation mode, the best checkpoint restore, is bookkeeping you can look up.",
+     "file": "p0.3/audio/s7-007-9bc9937f4525c20d.wav",
+     "start": 403.9027,
+     "duration": 9.9413
+    },
+    {
+     "text": "These five lines you type from memory.",
+     "file": "p0.3/audio/s7-008-b2f743cabb71d77d.wav",
+     "start": 414.264,
+     "duration": 2.816
+    },
+    {
+     "text": "It is worth demystifying the last one.",
+     "file": "p0.3/audio/s7-009-5a1385c873ac8a52.wav",
+     "start": 417.5,
+     "duration": 2.9653
+    },
+    {
+     "text": "For plain stochastic gradient descent, optimiser dot step is literally, for each parameter, subtract the learning rate times its gradient, inside a no grad block.",
+     "file": "p0.3/audio/s7-010-91e54ab451c63f6c.wav",
+     "start": 420.8853,
+     "duration": 13.568
+    },
+    {
+     "text": "The step three script runs the hand written version alongside the real optimiser for five steps and they agree to seven times ten to the minus nine.",
+     "file": "p0.3/audio/s7-011-54e35ca001e68601.wav",
+     "start": 434.8733,
+     "duration": 11.7973
+    },
+    {
+     "text": "Adam adds two exponential moving averages per parameter, which is why the optimiser state costs roughly twice the model in memory.",
+     "file": "p0.3/audio/s7-012-aabcaab44a01b595.wav",
+     "start": 447.0907,
+     "duration": 10.2187
+    },
+    {
+     "text": "At forty million parameters that is the difference between fitting on a twelve gigabyte card and not.",
+     "file": "p0.3/audio/s7-013-d0edaa1b119c68fe.wav",
+     "start": 457.7293,
+     "duration": 7.4027
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "Overfit a tiny batch. Always. First.",
+    "body": "Before any real run: take sixty-four rows and drive training accuracy to one hundred per cent. It takes seconds, and it separates 'my model cannot learn' from 'my data has no signal' \u2014 two completely different bugs with completely different fixes. Here: eight hundred parameters, one hundred per cent by epoch sixty-three.",
+    "code": "A. overfit 64 rows: train acc 1.000 (100% at epoch 63)  -> PASS"
+   },
+   "start": 465.782,
+   "duration": 55.9007,
+   "segments": [
+    {
+     "text": "Before any serious training run, do this.",
+     "file": "p0.3/audio/s8-000-72626510ed80ba93.wav",
+     "start": 465.782,
+     "duration": 2.7307
+    },
+    {
+     "text": "Take thirty two to a hundred and twenty eight examples, and drive the training accuracy to one hundred per cent.",
+     "file": "p0.3/audio/s8-001-bdc21d265784e968.wav",
+     "start": 468.9327,
+     "duration": 7.9787
+    },
+    {
+     "text": "It takes seconds.",
+     "file": "p0.3/audio/s8-002-d2b5ad51be0e8f3c.wav",
+     "start": 477.3313,
+     "duration": 1.5147
+    },
+    {
+     "text": "And it separates two bugs that look identical from the outside and have nothing in common.",
+     "file": "p0.3/audio/s8-003-2eabd2a2d57fdca9.wav",
+     "start": 479.266,
+     "duration": 6.3787
+    },
+    {
+     "text": "My model cannot learn, versus my data has no signal.",
+     "file": "p0.3/audio/s8-004-b45d8f3a47594a4b.wav",
+     "start": 486.0647,
+     "duration": 4.352
+    },
+    {
+     "text": "Here, eight hundred parameters memorise sixty four rows completely by epoch sixty three.",
+     "file": "p0.3/audio/s8-005-c0ffb1c493fc01b6.wav",
+     "start": 490.8367,
+     "duration": 6.7627
+    },
+    {
+     "text": "What that proves is that the loop is wired correctly.",
+     "file": "p0.3/audio/s8-006-e7322d0443f279b8.wav",
+     "start": 498.0193,
+     "duration": 3.4347
+    },
+    {
+     "text": "Forward, loss, backward, step, the clearing, the data loader, the shapes.",
+     "file": "p0.3/audio/s8-007-43a901c895c18ee7.wav",
+     "start": 501.874,
+     "duration": 4.864
+    },
+    {
+     "text": "All of it.",
+     "file": "p0.3/audio/s8-008-07ad7f9dcf203ff9.wav",
+     "start": 507.158,
+     "duration": 1.1947
+    },
+    {
+     "text": "What it proves about the data is nothing whatsoever.",
+     "file": "p0.3/audio/s8-009-0e3ba9d31ba296b8.wav",
+     "start": 508.7727,
+     "duration": 3.7547
+    },
+    {
+     "text": "The same network would have memorised those sixty four rows just as happily if we had shuffled the labels first.",
+     "file": "p0.3/audio/s8-010-9c6af36846dc9185.wav",
+     "start": 512.9473,
+     "duration": 8.0853
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the honest number",
+    "title": "Same model, honest protocol",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "memorised 64",
+      "value": 100.0,
+      "color": "#5ac48c",
+      "note": "training set"
+     },
+     {
+      "label": "test",
+      "value": 51.1,
+      "color": "#e05e6b",
+      "note": "z = +0.30"
+     },
+     {
+      "label": "always 'up'",
+      "value": 55.0,
+      "color": "#e0b04e",
+      "note": "the baseline"
+     },
+     {
+      "label": "coin flip",
+      "value": 50.0,
+      "color": "#5c6b7c",
+      "note": "\u00b1 3.7 points"
+     }
+    ],
+    "caption": "Accuracy, per cent. The model is worse than a constant \u2014 which is the correct answer here."
+   },
+   "start": 521.6827,
+   "duration": 90.0993,
+   "segments": [
+    {
+     "text": "And now the number that matters.",
+     "file": "p0.3/audio/s9-000-54d6f1c4e15fc730.wav",
+     "start": 521.6827,
+     "duration": 2.2613
+    },
+    {
+     "text": "Same model, same data, chronological split, scaler fitted on the training window only.",
+     "file": "p0.3/audio/s9-001-9ebb7b9ab5c3852f.wav",
+     "start": 524.364,
+     "duration": 7.0187
+    },
+    {
+     "text": "On the memorised batch, one hundred per cent.",
+     "file": "p0.3/audio/s9-002-2b33bbdd6960c461.wav",
+     "start": 531.8027,
+     "duration": 3.456
+    },
+    {
+     "text": "On the held out test window, fifty one point one per cent.",
+     "file": "p0.3/audio/s9-003-26ceadaf7687fffd.wav",
+     "start": 535.6787,
+     "duration": 4.352
+    },
+    {
+     "text": "Predicting up every single day scores fifty five.",
+     "file": "p0.3/audio/s9-004-1aab68765c8be8f4.wav",
+     "start": 540.4507,
+     "duration": 3.7547
+    },
+    {
+     "text": "A coin flip scores fifty, with a standard error of three point seven points at this sample size.",
+     "file": "p0.3/audio/s9-005-d049cf3d0e5e0d7a.wav",
+     "start": 544.6253,
+     "duration": 7.2107
+    },
+    {
+     "text": "So the model is worse than a constant, and its result sits well inside the error bar of pure chance.",
+     "file": "p0.3/audio/s9-006-5b822aaaaf47f133.wav",
+     "start": 552.256,
+     "duration": 7.3173
+    },
+    {
+     "text": "The z score against a coin flip is plus zero point three.",
+     "file": "p0.3/audio/s9-007-b715ca916a521085.wav",
+     "start": 559.9933,
+     "duration": 4.5653
+    },
+    {
+     "text": "The model is not broken.",
+     "file": "p0.3/audio/s9-008-7f677661bc82686a.wav",
+     "start": 564.9787,
+     "duration": 2.2187
+    },
+    {
+     "text": "The prices are a synthetic geometric random walk, so the true predictability of tomorrow's direction is exactly zero, and anything above chance here would be a bug in the protocol rather than a discovery.",
+     "file": "p0.3/audio/s9-009-0fd326aa25fca1a4.wav",
+     "start": 567.6173,
+     "duration": 15.7227
+    },
+    {
+     "text": "Three habits follow from this slide.",
+     "file": "p0.3/audio/s9-010-c022f2a67db60b0a.wav",
+     "start": 583.76,
+     "duration": 2.5813
+    },
+    {
+     "text": "Always report a baseline computed on the same window.",
+     "file": "p0.3/audio/s9-011-2e35e1c6667f441c.wav",
+     "start": 586.7613,
+     "duration": 4.032
+    },
+    {
+     "text": "Always report the loss as well as the accuracy, because a loss of zero point six nine six five against a natural logarithm of two says nothing was learned more clearly than the accuracy does.",
+     "file": "p0.3/audio/s9-012-1d48562ff4795cb5.wav",
+     "start": 591.2133,
+     "duration": 15.232
+    },
+    {
+     "text": "And always ask what your sample size can actually support.",
+     "file": "p0.3/audio/s9-013-7c774626c071b387.wav",
+     "start": 606.8653,
+     "duration": 4.2667
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "Leakage does not look like cheating. It looks like a good result.",
+    "body": "One keyword takes this model from chance to eighty-one per cent. Nobody writes center=True intending to cheat \u2014 it is a smoothing default that makes the feature look nicer on a chart, and it hands the model tomorrow's return.",
+    "code": "ret.rolling(3).mean()                # t-2, t-1, t     causal\nret.rolling(3, center=True).mean()   # t-1, t,   t+1   the label\n\nhonest      0.511\ncentred     0.811   (+0.300)"
+   },
+   "start": 611.782,
+   "duration": 77.0513,
+   "segments": [
+    {
+     "text": "Here is how that fifty one becomes something publishable.",
+     "file": "p0.3/audio/s10-000-ea01c781726260e8.wav",
+     "start": 611.782,
+     "duration": 3.904
+    },
+    {
+     "text": "We added exactly one feature.",
+     "file": "p0.3/audio/s10-001-f29c24ddb8d9f6af.wav",
+     "start": 616.106,
+     "duration": 2.4747
+    },
+    {
+     "text": "A three period rolling mean of the daily return, with centre equals true.",
+     "file": "p0.3/audio/s10-002-9833622ad016f203.wav",
+     "start": 619.0007,
+     "duration": 5.4187
+    },
+    {
+     "text": "Accuracy went from fifty one point one to eighty one point one.",
+     "file": "p0.3/audio/s10-003-697af3d78f737967.wav",
+     "start": 624.8393,
+     "duration": 4.8853
+    },
+    {
+     "text": "Thirty points, from one keyword.",
+     "file": "p0.3/audio/s10-004-ff5a7d74ddf26c9a.wav",
+     "start": 630.1447,
+     "duration": 2.0693
+    },
+    {
+     "text": "And look at what that keyword does.",
+     "file": "p0.3/audio/s10-005-bdc4447c596400df.wav",
+     "start": 632.634,
+     "duration": 2.1973
+    },
+    {
+     "text": "A centred three period window averages t minus one, t, and t plus one.",
+     "file": "p0.3/audio/s10-006-7b1c7db081c32a86.wav",
+     "start": 635.2513,
+     "duration": 6.144
+    },
+    {
+     "text": "It contains tomorrow's return, which is the label.",
+     "file": "p0.3/audio/s10-007-bda478aeca692b45.wav",
+     "start": 641.8153,
+     "duration": 4.0533
+    },
+    {
+     "text": "Nobody types centre equals true intending to cheat.",
+     "file": "p0.3/audio/s10-008-02f91c0571be16d0.wav",
+     "start": 646.2887,
+     "duration": 3.6053
+    },
+    {
+     "text": "It is a smoothing default.",
+     "file": "p0.3/audio/s10-009-b1a49a06e4d50f0e.wav",
+     "start": 650.314,
+     "duration": 1.8987
+    },
+    {
+     "text": "It makes the line look nicer on a chart.",
+     "file": "p0.3/audio/s10-010-689e1e20594345b9.wav",
+     "start": 652.6327,
+     "duration": 2.9653
+    },
+    {
+     "text": "The benchmark also measures two other leaks, a shuffled train test split and fitting the scaler before splitting, and on this dataset both of them are nearly silent.",
+     "file": "p0.3/audio/s10-011-ee23b8f623d2aa34.wav",
+     "start": 656.018,
+     "duration": 11.8187
+    },
+    {
+     "text": "That asymmetry is the real lesson.",
+     "file": "p0.3/audio/s10-012-11c25ef3182ef831.wav",
+     "start": 668.2567,
+     "duration": 2.7093
+    },
+    {
+     "text": "They are quiet because this series is a random walk with no autocorrelation to exploit.",
+     "file": "p0.3/audio/s10-013-13fa91c040b5e2e4.wav",
+     "start": 671.386,
+     "duration": 6.6347
+    },
+    {
+     "text": "Change the data and they wake up.",
+     "file": "p0.3/audio/s10-014-73efd0571932e332.wav",
+     "start": 678.4407,
+     "duration": 2.4533
+    },
+    {
+     "text": "It did not change my number is a statement about your dataset, not about your methodology.",
+     "file": "p0.3/audio/s10-015-b3b054e67007e05f.wav",
+     "start": 681.314,
+     "duration": 6.8693
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "protocol",
+    "title": "What would actually convince you",
+    "points": [
+     "A baseline \u2014 majority class, buy-and-hold, last value \u2014 on the same window.",
+     "A walk-forward evaluation, not a single split. T48 makes that point-in-time correct.",
+     "Costs: spread, slippage, borrow. A fifty-two per cent hit rate does not survive them.",
+     "The same protocol run on shuffled labels. It must score chance, or your protocol is broken.",
+     "Out-of-sample data the model was never tuned against, used exactly once."
+    ],
+    "aside": "Phase 4's eval harness, T27, turns this checklist into code."
+   },
+   "start": 688.8333,
+   "duration": 59.2487,
+   "segments": [
+    {
+     "text": "So what would convince you, if not accuracy.",
+     "file": "p0.3/audio/s11-000-5378d4a9c89c2096.wav",
+     "start": 688.8333,
+     "duration": 3.264
+    },
+    {
+     "text": "Five things.",
+     "file": "p0.3/audio/s11-001-fa6bb794d8dc22cb.wav",
+     "start": 692.5173,
+     "duration": 1.2373
+    },
+    {
+     "text": "A baseline on the same window, whether that is the majority class, buy and hold, or simply predicting the last value.",
+     "file": "p0.3/audio/s11-002-e20435e46dbaf629.wav",
+     "start": 694.1747,
+     "duration": 9.3227
+    },
+    {
+     "text": "A walk forward evaluation rather than a single split, which topic forty eight makes point in time correct.",
+     "file": "p0.3/audio/s11-003-21c0ce79dd67dfa3.wav",
+     "start": 703.9173,
+     "duration": 8.0213
+    },
+    {
+     "text": "Costs, meaning spread, slippage and borrow, because a fifty two per cent hit rate does not survive them.",
+     "file": "p0.3/audio/s11-004-4155ca244b91d9db.wav",
+     "start": 712.3587,
+     "duration": 7.7653
+    },
+    {
+     "text": "The same protocol run on deliberately shuffled labels, which must come back at chance, or your protocol itself is broken.",
+     "file": "p0.3/audio/s11-005-cc6e75c82f3a399b.wav",
+     "start": 720.544,
+     "duration": 9.6853
+    },
+    {
+     "text": "And out of sample data the model was never tuned against, used exactly once.",
+     "file": "p0.3/audio/s11-006-2175cc73bf61ec09.wav",
+     "start": 730.6493,
+     "duration": 5.8667
+    },
+    {
+     "text": "Phase four's evaluation harness, topic twenty seven, turns that checklist into code and runs it against everything the desk produces.",
+     "file": "p0.3/audio/s11-007-6f0994240560848d.wav",
+     "start": 736.936,
+     "duration": 10.496
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "P0.3",
+    "title": "Recap",
+    "points": [
+     "Five lines: zero the gradients, forward, scalar loss, backward, step. Backward adds, which is why the clearing comes first.",
+     "Logits with a fused loss, evaluation under eval() and no_grad, and nn.Module is only a parameter registry.",
+     "Overfit a tiny batch before trusting any run \u2014 it validates the loop and tells you nothing about the data.",
+     "A falling loss is evidence that gradient descent works. The baseline, the error bar and the causality test are the evidence about your problem."
+    ],
+    "ifSkipped": "T31 is this episode inverted: you build the machinery whose interface you just learned. T15 reuses loop.py at forty million parameters, where a missing zero_grad costs a night, not a second.",
+    "next": "Phase 1 \u00b7 T31 \u00b7 Building autograd from scratch"
+   },
+   "start": 748.082,
+   "duration": 89.602,
+   "segments": [
+    {
+     "text": "Four takeaways.",
+     "file": "p0.3/audio/s12-000-02f7855b1ae59a1c.wav",
+     "start": 748.082,
+     "duration": 1.536
+    },
+    {
+     "text": "The five lines.",
+     "file": "p0.3/audio/s12-001-c3dbc57ae99598d0.wav",
+     "start": 750.038,
+     "duration": 1.536
+    },
+    {
+     "text": "Zero the gradients, forward, scalar loss, backward, step.",
+     "file": "p0.3/audio/s12-002-20cbc3389f8aee16.wav",
+     "start": 751.994,
+     "duration": 4.224
+    },
+    {
+     "text": "Backward adds rather than sets, which is exactly why the clearing comes first.",
+     "file": "p0.3/audio/s12-003-8b7a5412d9e50509.wav",
+     "start": 756.638,
+     "duration": 5.5467
+    },
+    {
+     "text": "Return logits and use a fused loss, evaluate under eval mode and no grad, and remember that a module is only a parameter registry, so a bare tensor attribute is invisible to the optimiser.",
+     "file": "p0.3/audio/s12-004-9a3f2c961250f1d4.wav",
+     "start": 762.6047,
+     "duration": 15.8293
+    },
+    {
+     "text": "Overfit a tiny batch before trusting any run, because it validates the loop and tells you nothing at all about the data.",
+     "file": "p0.3/audio/s12-005-b0732fa30e4e9a81.wav",
+     "start": 778.854,
+     "duration": 8.5547
+    },
+    {
+     "text": "And a falling loss is evidence that gradient descent works.",
+     "file": "p0.3/audio/s12-006-8e8a605457f196fa.wav",
+     "start": 787.8287,
+     "duration": 4.288
+    },
+    {
+     "text": "The baseline, the error bar, and the causality test are the evidence about your actual problem.",
+     "file": "p0.3/audio/s12-007-7204b33393a38a8e.wav",
+     "start": 792.5367,
+     "duration": 7.0187
+    },
+    {
+     "text": "What breaks if we skip this.",
+     "file": "p0.3/audio/s12-008-c862aef493cf04ed.wav",
+     "start": 799.9753,
+     "duration": 1.92
+    },
+    {
+     "text": "Topic thirty one is this episode inverted.",
+     "file": "p0.3/audio/s12-009-00c40d209a3d460b.wav",
+     "start": 802.3153,
+     "duration": 3.4133
+    },
+    {
+     "text": "You build the machinery whose user interface you just learned.",
+     "file": "p0.3/audio/s12-010-8910e2fcb9216517.wav",
+     "start": 806.1487,
+     "duration": 4.4373
+    },
+    {
+     "text": "Topic fifteen reuses this loop file almost verbatim at forty million parameters, where a missing zero grad costs a night of compute instead of a second.",
+     "file": "p0.3/audio/s12-011-aa0a524839c8503b.wav",
+     "start": 811.006,
+     "duration": 11.7547
+    },
+    {
+     "text": "And every evaluation claim from phase four onwards rests on the protocol discipline in the second half of this episode.",
+     "file": "p0.3/audio/s12-012-6a5dd83e6b6faf44.wav",
+     "start": 823.1807,
+     "duration": 9.0667
+    },
+    {
+     "text": "Next up, phase one.",
+     "file": "p0.3/audio/s12-013-cd57fb096fed816d.wav",
+     "start": 832.6673,
+     "duration": 1.664
+    },
+    {
+     "text": "Building autograd from scratch.",
+     "file": "p0.3/audio/s12-014-542b681157563449.wav",
+     "start": 834.7513,
+     "duration": 2.2827
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1460 @@
+{
+ "topic": "p0.1",
+ "episode": 1,
+ "title": "Python for .NET architects",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 946.564,
+ "wordCount": 2042,
+ "wordsPerMinute": 129.4,
+ "sceneCount": 14,
+ "shortestSceneSeconds": 40.17,
+ "generatedInSeconds": 0.0,
+ "segmentsSynthesised": 0,
+ "segmentsReused": 172,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Python for the .NET veteran",
+    "subtitle": "The four guarantees that move from the compiler into your discipline.",
+    "topicId": "P0.1",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 40.17,
+   "segments": [
+    {
+     "text": "Welcome to the AI Systems Forge.",
+     "file": "p0.1/audio/s1-000-3780d85c3fc678a3.wav",
+     "start": 0.0,
+     "duration": 2.624
+    },
+    {
+     "text": "This is Phase zero, topic one.",
+     "file": "p0.1/audio/s1-001-b2bf0658a9724132.wav",
+     "start": 3.044,
+     "duration": 2.6453
+    },
+    {
+     "text": "Python for the dot NET veteran.",
+     "file": "p0.1/audio/s1-002-42d9a975e71da6d8.wav",
+     "start": 6.1093,
+     "duration": 2.752
+    },
+    {
+     "text": "You already know how to design systems.",
+     "file": "p0.1/audio/s1-003-c2409267b109306e.wav",
+     "start": 9.2813,
+     "duration": 2.944
+    },
+    {
+     "text": "You know domain models, you know dependency injection, you know why money is a decimal and never a double.",
+     "file": "p0.1/audio/s1-004-27823ef52c75ab9b.wav",
+     "start": 12.6453,
+     "duration": 8.128
+    },
+    {
+     "text": "None of that is being re-taught here.",
+     "file": "p0.1/audio/s1-005-eccddccf211fafe1.wav",
+     "start": 21.1933,
+     "duration": 2.5173
+    },
+    {
+     "text": "What this episode does is different.",
+     "file": "p0.1/audio/s1-006-f32e40cfde2efa94.wav",
+     "start": 24.1307,
+     "duration": 2.496
+    },
+    {
+     "text": "It maps the constructs you already reach for onto their Python counterparts, and then it spends most of its time on the gaps between them.",
+     "file": "p0.1/audio/s1-007-1d5021ba4d2c63bd.wav",
+     "start": 27.0467,
+     "duration": 9.4293
+    },
+    {
+     "text": "Because the gaps are where the bugs live.",
+     "file": "p0.1/audio/s1-008-1131ed00800d30ba.wav",
+     "start": 36.896,
+     "duration": 2.624
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ArchitectureMap",
+   "props": {
+    "eyebrow": "where we are",
+    "highlight": [
+     "orders"
+    ],
+    "caption": "P0.1 builds the paper order book every later topic places orders into."
+   },
+   "start": 40.17,
+   "duration": 47.5233,
+   "segments": [
+    {
+     "text": "Before any code, here is where we are in the build.",
+     "file": "p0.1/audio/s2-000-57b838487aa7f1b8.wav",
+     "start": 40.17,
+     "duration": 3.456
+    },
+    {
+     "text": "Every topic in this course plugs into one system.",
+     "file": "p0.1/audio/s2-001-48b790a48ceb171a.wav",
+     "start": 44.046,
+     "duration": 3.7973
+    },
+    {
+     "text": "It is called AlphaDesk, and it is a fictional educational simulation.",
+     "file": "p0.1/audio/s2-002-0d0508bf607f926b.wav",
+     "start": 48.2633,
+     "duration": 5.5253
+    },
+    {
+     "text": "No real orders, no real money, no brokerage connectivity.",
+     "file": "p0.1/audio/s2-003-175f875415f56540.wav",
+     "start": 54.2087,
+     "duration": 4.9067
+    },
+    {
+     "text": "Today we build the block that is lit up.",
+     "file": "p0.1/audio/s2-004-5a65096b99d77ac3.wav",
+     "start": 59.5353,
+     "duration": 2.7307
+    },
+    {
+     "text": "The order workflow.",
+     "file": "p0.1/audio/s2-005-ac8809d286c4d519.wav",
+     "start": 62.686,
+     "duration": 1.6213
+    },
+    {
+     "text": "Order, fill, position, portfolio.",
+     "file": "p0.1/audio/s2-006-fffec0ddf661d127.wav",
+     "start": 64.7273,
+     "duration": 2.7947
+    },
+    {
+     "text": "In phase four, a reasoning agent will construct an order ticket in natural language and place it into exactly this book.",
+     "file": "p0.1/audio/s2-007-7103c0c0104950c5.wav",
+     "start": 67.942,
+     "duration": 9.024
+    },
+    {
+     "text": "So the domain model we write in the next ten minutes is not a throwaway exercise.",
+     "file": "p0.1/audio/s2-008-a6c25435ef30b008.wav",
+     "start": 77.386,
+     "duration": 6.3147
+    },
+    {
+     "text": "It is load bearing for the rest of the course.",
+     "file": "p0.1/audio/s2-009-901335067be65698.wav",
+     "start": 84.1207,
+     "duration": 2.9227
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the premise",
+    "title": "Same vocabulary, different guarantees",
+    "body": "Python gives you the object-oriented vocabulary you already use, with roughly a third of the ceremony. It pays for that by moving four guarantees out of the compiler and into your discipline.",
+    "points": [
+     "Immutability is a convention, not a memory layout.",
+     "Interface conformance is structural, checked by shape.",
+     "Numeric exactness is opt-in, and the default is wrong for money.",
+     "Thread safety is not offered at all \u2014 there is a global interpreter lock instead."
+    ],
+    "aside": "Everything in this episode is a consequence of one of these four."
+   },
+   "start": 87.6933,
+   "duration": 54.03,
+   "segments": [
+    {
+     "text": "Here is the one sentence version of the entire topic.",
+     "file": "p0.1/audio/s3-000-332493a895f93cc3.wav",
+     "start": 87.6933,
+     "duration": 4.0747
+    },
+    {
+     "text": "Python gives you the same object oriented vocabulary you already use, with about a third of the ceremony.",
+     "file": "p0.1/audio/s3-001-24c826228780d7e0.wav",
+     "start": 92.188,
+     "duration": 8.2133
+    },
+    {
+     "text": "And it pays for that by moving four guarantees out of the compiler and into your discipline.",
+     "file": "p0.1/audio/s3-002-51c2ede46938cc3d.wav",
+     "start": 100.8213,
+     "duration": 6.3787
+    },
+    {
+     "text": "Immutability becomes a convention rather than a memory layout.",
+     "file": "p0.1/audio/s3-003-e454c76c3fb361ac.wav",
+     "start": 107.62,
+     "duration": 4.736
+    },
+    {
+     "text": "Interface conformance becomes structural, checked by shape rather than by declaration.",
+     "file": "p0.1/audio/s3-004-a85677e9caa8652e.wav",
+     "start": 112.776,
+     "duration": 6.208
+    },
+    {
+     "text": "Numeric exactness becomes opt in, and the default is the wrong one for money.",
+     "file": "p0.1/audio/s3-005-88776d4c88a9a5f7.wav",
+     "start": 119.404,
+     "duration": 5.632
+    },
+    {
+     "text": "And thread safety is simply not offered.",
+     "file": "p0.1/audio/s3-006-b5f8557b20dc6bd5.wav",
+     "start": 125.456,
+     "duration": 2.9653
+    },
+    {
+     "text": "There is a global interpreter lock instead.",
+     "file": "p0.1/audio/s3-007-389e8e770ccd091f.wav",
+     "start": 128.8413,
+     "duration": 2.944
+    },
+    {
+     "text": "Every gotcha in this episode is a consequence of one of those four.",
+     "file": "p0.1/audio/s3-008-81af80e9b0e50230.wav",
+     "start": 132.2053,
+     "duration": 5.0773
+    },
+    {
+     "text": "Keep them in mind and the rest is derivation.",
+     "file": "p0.1/audio/s3-009-728ae820f6928b09.wav",
+     "start": 137.7027,
+     "duration": 3.3707
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "value objects",
+    "title": "A record becomes a frozen dataclass",
+    "filename": "phases/p0/p0-1-python-for-dotnet/src/p0_1_oms/money.py",
+    "code": "@dataclass(frozen=True, order=True)\nclass Money:\n    amount: Decimal\n    currency: str = \"INR\"\n\n    def __init__(self, amount: Numeric, currency: str = \"INR\") -> None:\n        raw = _to_decimal(amount, \"amount\")\n        if len(currency) != 3 or not currency.isalpha():\n            raise ValidationError(f\"bad currency {currency!r}\")\n        object.__setattr__(self, \"amount\", raw.quantize(_QUANTUM, ROUND_HALF_UP))\n        object.__setattr__(self, \"currency\", currency.upper())",
+    "highlights": [
+     {
+      "at": 30,
+      "lines": [
+       1
+      ],
+      "caption": "frozen=True gives value equality, a hash and blocked rebinding \u2014 a readonly record struct."
+     },
+     {
+      "at": 150,
+      "lines": [
+       3,
+       4
+      ],
+      "caption": "Fields are declared, not written out with backing properties."
+     },
+     {
+      "at": 260,
+      "lines": [
+       7,
+       8,
+       9
+      ],
+      "caption": "Guard clauses live in __init__ or __post_init__ \u2014 the constructor validation you already write."
+     },
+     {
+      "at": 400,
+      "lines": [
+       10,
+       11
+      ],
+      "caption": "object.__setattr__ is how a frozen dataclass assigns during construction."
+     }
+    ]
+   },
+   "start": 141.7233,
+   "duration": 82.05,
+   "segments": [
+    {
+     "text": "Here is the money value object.",
+     "file": "p0.1/audio/s4-000-9ee6a458bc16231b.wav",
+     "start": 141.7233,
+     "duration": 2.7733
+    },
+    {
+     "text": "Read it as a record.",
+     "file": "p0.1/audio/s4-001-8579b3b1cf634442.wav",
+     "start": 144.9167,
+     "duration": 1.8773
+    },
+    {
+     "text": "The decorator, frozen equals true, gives you structural equality, a working hash, a useful string representation, and blocked attribute rebinding.",
+     "file": "p0.1/audio/s4-002-1953726cb5e66152.wav",
+     "start": 147.214,
+     "duration": 11.8827
+    },
+    {
+     "text": "That is very close to a readonly record struct.",
+     "file": "p0.1/audio/s4-003-352487354c133ca1.wav",
+     "start": 159.5167,
+     "duration": 3.3493
+    },
+    {
+     "text": "The fields are declared with type annotations, and there are no backing properties to write.",
+     "file": "p0.1/audio/s4-004-e8014f74ec24eab9.wav",
+     "start": 163.286,
+     "duration": 6.1013
+    },
+    {
+     "text": "The guard clauses go in the constructor, or in a method called post init, and they do the job that argument validation does in your C sharp constructors.",
+     "file": "p0.1/audio/s4-005-8be9d95f17c3be10.wav",
+     "start": 169.8073,
+     "duration": 11.9893
+    },
+    {
+     "text": "The last two lines look strange.",
+     "file": "p0.1/audio/s4-006-71c17a7453943cdb.wav",
+     "start": 182.2167,
+     "duration": 2.4533
+    },
+    {
+     "text": "Object dot set attribute.",
+     "file": "p0.1/audio/s4-007-4264b4af912787ac.wav",
+     "start": 185.09,
+     "duration": 2.368
+    },
+    {
+     "text": "That is the escape hatch a frozen dataclass gives you for assigning fields during construction, because normal assignment is what frozen is blocking.",
+     "file": "p0.1/audio/s4-008-2dce2c68454ddf98.wav",
+     "start": 187.878,
+     "duration": 11.2427
+    },
+    {
+     "text": "Now here is the first gap.",
+     "file": "p0.1/audio/s4-009-06b88b8e46c67251.wav",
+     "start": 199.5407,
+     "duration": 2.1333
+    },
+    {
+     "text": "Frozen is shallow.",
+     "file": "p0.1/audio/s4-010-a7453bfc52d2655a.wav",
+     "start": 202.094,
+     "duration": 1.7067
+    },
+    {
+     "text": "It protects the reference, not what the reference points at.",
+     "file": "p0.1/audio/s4-011-00ae94b13232af7f.wav",
+     "start": 204.2207,
+     "duration": 4.0747
+    },
+    {
+     "text": "A frozen object holding a list will let you append to that list all day long.",
+     "file": "p0.1/audio/s4-012-54c53431dbc195a3.wav",
+     "start": 208.7153,
+     "duration": 5.632
+    },
+    {
+     "text": "Your readonly keyword has exactly the same hole.",
+     "file": "p0.1/audio/s4-013-800a2ba16b9b274c.wav",
+     "start": 214.7673,
+     "duration": 3.7973
+    },
+    {
+     "text": "You notice it less in C sharp because record structs copy.",
+     "file": "p0.1/audio/s4-014-8ca1eaa00ae0215e.wav",
+     "start": 218.9847,
+     "duration": 4.1387
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "The mutable default has no C# analogue",
+    "body": "A default argument is evaluated once, when the function is defined \u2014 not on each call. Every call then shares the same object. This is why dataclasses refuse a mutable default outright and make you write field(default_factory=list).",
+    "code": "def add(item, bucket=[]):   # evaluated ONCE\n    bucket.append(item)\n    return bucket\n\nadd(1)   # [1]\nadd(2)   # [1, 2]   <- same list"
+   },
+   "start": 223.7733,
+   "duration": 52.6087,
+   "segments": [
+    {
+     "text": "This one has no C sharp analogue at all, and it catches everybody.",
+     "file": "p0.1/audio/s5-000-9004313689b9217c.wav",
+     "start": 223.7733,
+     "duration": 5.12
+    },
+    {
+     "text": "A default argument in Python is evaluated once, at the moment the function is defined.",
+     "file": "p0.1/audio/s5-001-cd8bccdc7af89aba.wav",
+     "start": 229.3133,
+     "duration": 6.976
+    },
+    {
+     "text": "Not on each call.",
+     "file": "p0.1/audio/s5-002-42756f8f8807405e.wav",
+     "start": 236.7093,
+     "duration": 1.6427
+    },
+    {
+     "text": "So every call shares the same object.",
+     "file": "p0.1/audio/s5-003-ce9003d224599fb5.wav",
+     "start": 238.772,
+     "duration": 2.8587
+    },
+    {
+     "text": "Look at the code.",
+     "file": "p0.1/audio/s5-004-76737acb0357bbee.wav",
+     "start": 242.0507,
+     "duration": 1.408
+    },
+    {
+     "text": "Add one returns a list containing one.",
+     "file": "p0.1/audio/s5-005-e6ca3141ce44bee4.wav",
+     "start": 243.8787,
+     "duration": 2.8373
+    },
+    {
+     "text": "Add two returns a list containing one and two.",
+     "file": "p0.1/audio/s5-006-0f90e4acec06d3c9.wav",
+     "start": 247.136,
+     "duration": 3.392
+    },
+    {
+     "text": "It is the same list.",
+     "file": "p0.1/audio/s5-007-e9013312dbc3d2d8.wav",
+     "start": 250.948,
+     "duration": 1.7493
+    },
+    {
+     "text": "That is why dataclasses refuse a mutable default outright, and make you write field, default factory, list.",
+     "file": "p0.1/audio/s5-008-99998dbc23770b8c.wav",
+     "start": 253.1173,
+     "duration": 8.3413
+    },
+    {
+     "text": "In a plain function, nothing stops you.",
+     "file": "p0.1/audio/s5-009-f6b37ab22524df14.wav",
+     "start": 261.8787,
+     "duration": 2.9227
+    },
+    {
+     "text": "The rule to internalise is simple.",
+     "file": "p0.1/audio/s5-010-ccd997d608f269c8.wav",
+     "start": 265.2213,
+     "duration": 2.688
+    },
+    {
+     "text": "If a default value is mutable, it must be constructed inside the function, never in the signature.",
+     "file": "p0.1/audio/s5-011-941603dec8db67ec.wav",
+     "start": 268.3293,
+     "duration": 7.4027
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the domain",
+    "title": "Weighted average cost",
+    "english": "A position's cost basis is the total money spent divided by the total shares held \u2014 re-weighted every time you add to it.",
+    "equation": "avg' = (avg \u00b7 |q| + px \u00b7 |\u0394|) / |q + \u0394|",
+    "code": "gross = self.average_cost.amount * abs(old) + px * abs(signed)\navg = gross / Decimal(abs(new))",
+    "note": "Reducing a position does not move the basis; only adding does.",
+    "stageFrames": [
+     10,
+     130,
+     260
+    ]
+   },
+   "start": 276.382,
+   "duration": 73.9927,
+   "segments": [
+    {
+     "text": "Now the one piece of arithmetic in this topic, and we will show it three times.",
+     "file": "p0.1/audio/s6-000-57ebb020d204dadf.wav",
+     "start": 276.382,
+     "duration": 5.6107
+    },
+    {
+     "text": "First in plain English.",
+     "file": "p0.1/audio/s6-001-f8cfa682c5113309.wav",
+     "start": 282.4127,
+     "duration": 1.728
+    },
+    {
+     "text": "A position's cost basis is the total money spent divided by the total shares held, re weighted every time you add to it.",
+     "file": "p0.1/audio/s6-002-9547f10fc7f4f9ff.wav",
+     "start": 284.5607,
+     "duration": 9.3227
+    },
+    {
+     "text": "Second, in symbols.",
+     "file": "p0.1/audio/s6-003-6c675d246287b18a.wav",
+     "start": 294.3033,
+     "duration": 1.4933
+    },
+    {
+     "text": "The new average equals the old average times the absolute old quantity, plus the fill price times the absolute fill quantity, all divided by the absolute new quantity.",
+     "file": "p0.1/audio/s6-004-c2695a32c4038807.wav",
+     "start": 296.2167,
+     "duration": 13.376
+    },
+    {
+     "text": "Notice that every quantity is an absolute value, because this formula has to work for a short position too.",
+     "file": "p0.1/audio/s6-005-f6cf0a98e3435cfd.wav",
+     "start": 310.0127,
+     "duration": 7.9147
+    },
+    {
+     "text": "And third, in code.",
+     "file": "p0.1/audio/s6-006-1e0fa3cf6651e41e.wav",
+     "start": 318.3473,
+     "duration": 1.728
+    },
+    {
+     "text": "Two lines.",
+     "file": "p0.1/audio/s6-007-5c8800a2ef0132d5.wav",
+     "start": 320.4953,
+     "duration": 1.2587
+    },
+    {
+     "text": "Gross is the old average times the old size, plus the price times the fill size.",
+     "file": "p0.1/audio/s6-008-87e960d5175f02f3.wav",
+     "start": 322.174,
+     "duration": 6.528
+    },
+    {
+     "text": "The new average is that gross divided by the new size.",
+     "file": "p0.1/audio/s6-009-1a95d9d8a14d2698.wav",
+     "start": 329.122,
+     "duration": 4.2027
+    },
+    {
+     "text": "One more rule that is not in the formula.",
+     "file": "p0.1/audio/s6-010-ee93331e65d02f82.wav",
+     "start": 333.7447,
+     "duration": 3.136
+    },
+    {
+     "text": "Reducing a position does not move the basis.",
+     "file": "p0.1/audio/s6-011-42e915d371566c50.wav",
+     "start": 337.3007,
+     "duration": 3.4773
+    },
+    {
+     "text": "Only adding does.",
+     "file": "p0.1/audio/s6-012-8b6994368144b19c.wav",
+     "start": 341.198,
+     "duration": 1.6853
+    },
+    {
+     "text": "When you sell, you realise profit against the existing average and leave the average alone.",
+     "file": "p0.1/audio/s6-013-9cc98a8fdaba83a3.wav",
+     "start": 343.3033,
+     "duration": 6.4213
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the domain",
+    "title": "One fill, four branches",
+    "filename": "src/p0_1_oms/oms.py \u00b7 Position.apply",
+    "code": "signed = side.sign * fill.quantity.shares\nold, px = self.net_quantity, fill.price.amount\nnew = old + signed\nif old == 0 or (old > 0) == (signed > 0):      # opening or adding\n    gross = self.average_cost.amount * abs(old) + px * abs(signed)\n    return replace(self, net_quantity=new, average_cost=gross / abs(new))\nclosed = min(abs(old), abs(signed))            # reducing or flipping\nrealised = (px - self.average_cost.amount) * closed * (1 if old > 0 else -1)\nif new == 0:                                   # flat\n    return replace(self, net_quantity=0, average_cost=ZERO, realised_pnl=pnl)\nif (new > 0) == (old > 0):                     # partial reduction\n    return replace(self, net_quantity=new, realised_pnl=pnl)\nreturn replace(self, net_quantity=new, average_cost=px, realised_pnl=pnl)",
+    "highlights": [
+     {
+      "at": 10,
+      "lines": [
+       1,
+       2,
+       3
+      ],
+      "caption": "Direction is encoded once, as a sign on the enum. Nothing else in the file knows about buy or sell."
+     },
+     {
+      "at": 40,
+      "lines": [
+       4,
+       5,
+       6
+      ],
+      "caption": "Opening or adding: re-weight the average, realise nothing."
+     },
+     {
+      "at": 70,
+      "lines": [
+       7,
+       8
+      ],
+      "caption": "Reducing: realise against the existing basis, on the shares actually closed."
+     },
+     {
+      "at": 95,
+      "lines": [
+       9,
+       10
+      ],
+      "caption": "Flat: the basis goes back to zero."
+     },
+     {
+      "at": 115,
+      "lines": [
+       11,
+       12
+      ],
+      "caption": "Partial reduction: the basis is untouched."
+     },
+     {
+      "at": 135,
+      "lines": [
+       13
+      ],
+      "caption": "Flipped through zero: the remainder opens at the fill price."
+     }
+    ]
+   },
+   "start": 350.3747,
+   "duration": 102.7033,
+   "segments": [
+    {
+     "text": "Here is the whole of position dot apply, and it has exactly four branches.",
+     "file": "p0.1/audio/s7-000-1859c916cc7f7724.wav",
+     "start": 350.3747,
+     "duration": 5.5893
+    },
+    {
+     "text": "Start at the top.",
+     "file": "p0.1/audio/s7-001-95fe2414db08589d.wav",
+     "start": 356.384,
+     "duration": 1.4933
+    },
+    {
+     "text": "Signed is the fill quantity multiplied by the side's sign, which is plus one for a buy and minus one for a sell.",
+     "file": "p0.1/audio/s7-002-40fcb3cdad6a98b2.wav",
+     "start": 358.2973,
+     "duration": 8.5333
+    },
+    {
+     "text": "That sign lives on the enum, and it is the only place in the file that knows the difference between buying and selling.",
+     "file": "p0.1/audio/s7-003-c1cd723c9f574809.wav",
+     "start": 367.2507,
+     "duration": 8.32
+    },
+    {
+     "text": "Everything downstream is arithmetic.",
+     "file": "p0.1/audio/s7-004-685c5d362ac2b3a4.wav",
+     "start": 375.9907,
+     "duration": 2.752
+    },
+    {
+     "text": "Branch one.",
+     "file": "p0.1/audio/s7-005-f752885de51d90ef.wav",
+     "start": 379.1627,
+     "duration": 1.28
+    },
+    {
+     "text": "If we were flat, or if the fill pushes in the same direction we already hold, we are opening or adding.",
+     "file": "p0.1/audio/s7-006-988997e711d669ca.wav",
+     "start": 380.8627,
+     "duration": 8.192
+    },
+    {
+     "text": "Re weight the average, realise nothing.",
+     "file": "p0.1/audio/s7-007-336542619cd159bc.wav",
+     "start": 389.4747,
+     "duration": 2.752
+    },
+    {
+     "text": "Branch two.",
+     "file": "p0.1/audio/s7-008-fa7c53be01b66a27.wav",
+     "start": 392.6467,
+     "duration": 1.28
+    },
+    {
+     "text": "Otherwise we are reducing, and we realise profit on the number of shares actually closed, against the existing average cost.",
+     "file": "p0.1/audio/s7-009-3114b42ddd2566d0.wav",
+     "start": 394.3467,
+     "duration": 9.536
+    },
+    {
+     "text": "Branch three.",
+     "file": "p0.1/audio/s7-010-02385389a7fd9497.wav",
+     "start": 404.3027,
+     "duration": 1.3227
+    },
+    {
+     "text": "If the new quantity is zero, we are flat, and the basis goes back to zero.",
+     "file": "p0.1/audio/s7-011-399e35beb12e6406.wav",
+     "start": 406.0453,
+     "duration": 5.5893
+    },
+    {
+     "text": "Branch four.",
+     "file": "p0.1/audio/s7-012-4ad0b77de80957bb.wav",
+     "start": 412.0547,
+     "duration": 1.3653
+    },
+    {
+     "text": "If we are still on the same side, this was a partial reduction, and the basis is untouched.",
+     "file": "p0.1/audio/s7-013-bccec44152d217f7.wav",
+     "start": 413.84,
+     "duration": 6.976
+    },
+    {
+     "text": "And the final line is the case people forget.",
+     "file": "p0.1/audio/s7-014-8a47633368b27f05.wav",
+     "start": 421.236,
+     "duration": 3.3067
+    },
+    {
+     "text": "We flipped through zero.",
+     "file": "p0.1/audio/s7-015-dfb29d3f05859b3b.wav",
+     "start": 424.9627,
+     "duration": 1.7067
+    },
+    {
+     "text": "We sold more than we held.",
+     "file": "p0.1/audio/s7-016-e5f3a0e89dc9619a.wav",
+     "start": 427.0893,
+     "duration": 2.1547
+    },
+    {
+     "text": "The realised profit covers only the shares that were closed, and the remainder opens a short position at the fill price.",
+     "file": "p0.1/audio/s7-017-1174a202586005b4.wav",
+     "start": 429.664,
+     "duration": 8.704
+    },
+    {
+     "text": "Every one of those four branches has a test.",
+     "file": "p0.1/audio/s7-018-a99044bb1a12b6c0.wav",
+     "start": 438.788,
+     "duration": 3.2427
+    },
+    {
+     "text": "That is not thoroughness for its own sake.",
+     "file": "p0.1/audio/s7-019-bacf831d8133accc.wav",
+     "start": 442.4507,
+     "duration": 2.7307
+    },
+    {
+     "text": "It is that three of them are indistinguishable from each other until the day a position flips.",
+     "file": "p0.1/audio/s7-020-7deb7a602721b32a.wav",
+     "start": 445.6013,
+     "duration": 6.8267
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "verification",
+    "title": "Where the storage precision came from",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "4 dp storage",
+      "value": 2.77e-05,
+      "color": "#e05e6b",
+      "note": "28x over tolerance"
+     },
+     {
+      "label": "tolerance",
+      "value": 1e-06,
+      "color": "#e0b04e",
+      "note": "the requirement"
+     },
+     {
+      "label": "6 dp storage",
+      "value": 3.11e-07,
+      "color": "#5ac48c",
+      "note": "shipped"
+     }
+    ],
+    "logScale": true,
+    "caption": "Worst relative error replaying 210 orders, against an independently written float reducer."
+   },
+   "start": 453.078,
+   "duration": 81.1887,
+   "segments": [
+    {
+     "text": "Now the part that made this topic worth building.",
+     "file": "p0.1/audio/s8-000-836c8500658523bc.wav",
+     "start": 453.078,
+     "duration": 3.4133
+    },
+    {
+     "text": "The verification benchmark replays two hundred and ten synthetic orders through the domain model, and reconciles the result against two references that share no code with it.",
+     "file": "p0.1/audio/s8-001-86156fdf37dc3744.wav",
+     "start": 456.9113,
+     "duration": 12.864
+    },
+    {
+     "text": "One is a pandas group by of signed quantities.",
+     "file": "p0.1/audio/s8-002-b5a148df0d2933de.wav",
+     "start": 470.1953,
+     "duration": 3.4133
+    },
+    {
+     "text": "The other is an average cost reducer written out separately in plain floating point.",
+     "file": "p0.1/audio/s8-003-c84065e41508ec74.wav",
+     "start": 474.0287,
+     "duration": 5.9093
+    },
+    {
+     "text": "The quantity reconciliation passed immediately.",
+     "file": "p0.1/audio/s8-004-9b66ed6c15c1bfc7.wav",
+     "start": 480.358,
+     "duration": 3.3707
+    },
+    {
+     "text": "The profit and loss reconciliation did not.",
+     "file": "p0.1/audio/s8-005-b4b58d3edaba34d2.wav",
+     "start": 484.1487,
+     "duration": 3.52
+    },
+    {
+     "text": "The worst relative error was two point eight times ten to the minus five, which is twenty eight times the tolerance.",
+     "file": "p0.1/audio/s8-006-ac557a4491c1de23.wav",
+     "start": 488.0887,
+     "duration": 8.4267
+    },
+    {
+     "text": "Nothing was wrong.",
+     "file": "p0.1/audio/s8-007-f2bd9c851fc0387b.wav",
+     "start": 496.9353,
+     "duration": 1.4507
+    },
+    {
+     "text": "An average cost is a quotient, and rounding it to four decimal places on every single fill accumulates drift over a few hundred orders.",
+     "file": "p0.1/audio/s8-008-5ed85a2f369ead21.wav",
+     "start": 498.806,
+     "duration": 10.9013
+    },
+    {
+     "text": "Storing at six decimal places and displaying at four dropped the error to three point one times ten to the minus seven.",
+     "file": "p0.1/audio/s8-009-4f08da5b53391944.wav",
+     "start": 510.1273,
+     "duration": 9.0027
+    },
+    {
+     "text": "That is the whole lesson of the topic compressed into one number.",
+     "file": "p0.1/audio/s8-010-fb39efe1eb1790fc.wav",
+     "start": 519.55,
+     "duration": 4.5227
+    },
+    {
+     "text": "Precision is a property of the operation, not of the type.",
+     "file": "p0.1/audio/s8-011-3b8b27e320497a33.wav",
+     "start": 524.4927,
+     "duration": 4.4373
+    },
+    {
+     "text": "Choosing decimal was necessary and it was not sufficient.",
+     "file": "p0.1/audio/s8-012-cf612723f453c1db.wav",
+     "start": 529.35,
+     "duration": 4.2667
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "Return NotImplemented, do not raise",
+    "body": "When a binary operator does not recognise the other operand, return the NotImplemented singleton. Python then tries the reflected method on the right-hand side, and only raises TypeError if that fails too. Raising NotImplementedError instead permanently breaks other + self, and blames the wrong class in the traceback.",
+    "code": "def __add__(self, other):\n    if not isinstance(other, Money):\n        return NotImplemented    # not raise!\n    return Money(self.amount + other.amount)"
+   },
+   "start": 534.2667,
+   "duration": 53.8153,
+   "segments": [
+    {
+     "text": "Operator overloading translates almost directly, but there is one line in it that surprises everybody.",
+     "file": "p0.1/audio/s9-000-bb5135ba4a970da9.wav",
+     "start": 534.2667,
+     "duration": 7.7867
+    },
+    {
+     "text": "When your addition method does not recognise the operand on the right, you return the not implemented singleton.",
+     "file": "p0.1/audio/s9-001-ae938280dfc4c50b.wav",
+     "start": 542.4733,
+     "duration": 7.8933
+    },
+    {
+     "text": "You do not raise.",
+     "file": "p0.1/audio/s9-002-429fe86f10b12874.wav",
+     "start": 550.7867,
+     "duration": 1.6213
+    },
+    {
+     "text": "Returning it tells Python, I do not know how to handle this, try the other operand.",
+     "file": "p0.1/audio/s9-003-e5980000871a3543.wav",
+     "start": 552.828,
+     "duration": 6.2933
+    },
+    {
+     "text": "Python then calls the reflected method on the right hand side, and only raises a type error if that also fails.",
+     "file": "p0.1/audio/s9-004-e025ee26fe8f77c1.wav",
+     "start": 559.5413,
+     "duration": 8.6827
+    },
+    {
+     "text": "If you raise not implemented error instead, you permanently break the expression something else plus money, and the traceback blames the wrong class.",
+     "file": "p0.1/audio/s9-005-7375cbc7755e7be7.wav",
+     "start": 568.644,
+     "duration": 10.6667
+    },
+    {
+     "text": "C sharp has no equivalent because operator resolution there is static and happens at compile time.",
+     "file": "p0.1/audio/s9-006-458ea499617a7824.wav",
+     "start": 579.7307,
+     "duration": 7.7013
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the disappearing interface",
+    "title": "Enums carry behaviour. Interfaces evaporate.",
+    "body": "A C# enum is a named integer, and behaviour arrives via extension methods. A Python enum member is an object, so Side.BUY.sign lives where it belongs. The interface goes further: it disappears entirely.",
+    "points": [
+     "class NoShortSelling: def check(self, order) -> None: ...",
+     "It never names RiskCheck. It satisfies it anyway.",
+     "Protocols are structural \u2014 conformance is by shape, checked statically or at runtime.",
+     "The instinct to declare the interface first is the one to unlearn."
+    ],
+    "aside": "typing.Protocol \u00b7 runtime_checkable \u00b7 static duck typing"
+   },
+   "start": 588.082,
+   "duration": 72.5487,
+   "segments": [
+    {
+     "text": "Two more translations, and the second one is a genuine shift in how you design.",
+     "file": "p0.1/audio/s10-000-444052d3b67c60af.wav",
+     "start": 588.082,
+     "duration": 5.9307
+    },
+    {
+     "text": "An enum in C sharp is a named integer, and you attach behaviour to it with extension methods.",
+     "file": "p0.1/audio/s10-001-50e2fce0fe88e27b.wav",
+     "start": 594.4327,
+     "duration": 7.168
+    },
+    {
+     "text": "A Python enum member is a real object, so side dot buy dot sign, and side dot buy dot opposite, live directly on the enum where they belong.",
+     "file": "p0.1/audio/s10-002-1f45ffd97cc490a5.wav",
+     "start": 602.0207,
+     "duration": 12.4587
+    },
+    {
+     "text": "Now the bigger one.",
+     "file": "p0.1/audio/s10-003-0c2963e196ec365a.wav",
+     "start": 614.8993,
+     "duration": 1.6427
+    },
+    {
+     "text": "The interface disappears.",
+     "file": "p0.1/audio/s10-004-ff2117d6803cfc82.wav",
+     "start": 616.962,
+     "duration": 2.0053
+    },
+    {
+     "text": "Look at the class on screen.",
+     "file": "p0.1/audio/s10-005-8bcd1cbe297d7911.wav",
+     "start": 619.3873,
+     "duration": 1.9413
+    },
+    {
+     "text": "It is called no short selling, it has a method called check that takes an order, and it never mentions any interface anywhere.",
+     "file": "p0.1/audio/s10-006-ae05de451f9189eb.wav",
+     "start": 621.7487,
+     "duration": 8.896
+    },
+    {
+     "text": "It satisfies the risk check protocol regardless, because protocols are structural.",
+     "file": "p0.1/audio/s10-007-e2e67cdd2d0aa625.wav",
+     "start": 631.0647,
+     "duration": 6.2507
+    },
+    {
+     "text": "Conformance is by shape.",
+     "file": "p0.1/audio/s10-008-7181258e5b7da294.wav",
+     "start": 637.7353,
+     "duration": 1.92
+    },
+    {
+     "text": "Your instinct, coming from dot NET, will be to define the interface first and then implement it.",
+     "file": "p0.1/audio/s10-009-f7f3c4ed071a29d5.wav",
+     "start": 640.0753,
+     "duration": 7.0827
+    },
+    {
+     "text": "That is the instinct to unlearn.",
+     "file": "p0.1/audio/s10-010-781d478a64962b0e.wav",
+     "start": 647.578,
+     "duration": 2.24
+    },
+    {
+     "text": "Write the concrete class.",
+     "file": "p0.1/audio/s10-011-c7509721318f2480.wav",
+     "start": 650.238,
+     "duration": 1.8773
+    },
+    {
+     "text": "Add the protocol only where a function needs to state, in its signature, what shape of thing it accepts.",
+     "file": "p0.1/audio/s10-012-9656eb037af84219.wav",
+     "start": 652.5353,
+     "duration": 7.4453
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "The truthiness bug that shipped on day one",
+    "body": "Empty collections, zero, Money(0) and an empty registry are all falsy. So `x = arg or DEFAULT` silently replaces any falsy argument, not just None. This exact line routed every component registration to the global registry whenever a caller passed a fresh, empty one \u2014 because Registry.__len__ returns zero.",
+    "code": "target = registry or REGISTRY          # bug\ntarget = REGISTRY if registry is None else registry   # fix"
+   },
+   "start": 660.6307,
+   "duration": 66.61,
+   "segments": [
+    {
+     "text": "And here is a real bug from this repository, written on the first day, caught by the first test that used it.",
+     "file": "p0.1/audio/s11-000-c499aaa7967d735d.wav",
+     "start": 660.6307,
+     "duration": 8.1493
+    },
+    {
+     "text": "The AlphaDesk component registry has a line that chooses which registry to file into.",
+     "file": "p0.1/audio/s11-001-45d14e5c5ee8b015.wav",
+     "start": 669.2,
+     "duration": 6.5707
+    },
+    {
+     "text": "Registry or the global registry.",
+     "file": "p0.1/audio/s11-002-daac3bdce4a9a813.wav",
+     "start": 676.1907,
+     "duration": 2.9013
+    },
+    {
+     "text": "It reads as obviously correct.",
+     "file": "p0.1/audio/s11-003-04c4942b9924c7d8.wav",
+     "start": 679.512,
+     "duration": 2.432
+    },
+    {
+     "text": "It is not.",
+     "file": "p0.1/audio/s11-004-3f0db78ae579181c.wav",
+     "start": 682.364,
+     "duration": 1.3653
+    },
+    {
+     "text": "An empty registry defines a length of zero, which makes it falsy, so any caller passing a fresh empty registry silently got the global one instead.",
+     "file": "p0.1/audio/s11-005-8a9de4d9dd484637.wav",
+     "start": 684.1493,
+     "duration": 12.352
+    },
+    {
+     "text": "The test failed with, assert zero equals one, which is a wonderfully unhelpful message until you see it.",
+     "file": "p0.1/audio/s11-006-d01a121fa1cdf542.wav",
+     "start": 696.9213,
+     "duration": 7.872
+    },
+    {
+     "text": "The fix is the second line.",
+     "file": "p0.1/audio/s11-007-ff7ee1931ff23255.wav",
+     "start": 705.2133,
+     "duration": 2.1547
+    },
+    {
+     "text": "Is none, never or, for optional arguments.",
+     "file": "p0.1/audio/s11-008-4d352d6bade72314.wav",
+     "start": 707.788,
+     "duration": 3.4133
+    },
+    {
+     "text": "Write that one on a sticky note.",
+     "file": "p0.1/audio/s11-009-2980e59f824ea24e.wav",
+     "start": 711.6213,
+     "duration": 2.2827
+    },
+    {
+     "text": "In a language where zero, empty string, empty list and a zero valued money object are all falsy, the or idiom is a trap with a very wide mouth.",
+     "file": "p0.1/audio/s11-010-35b1089a003163c7.wav",
+     "start": 714.324,
+     "duration": 12.2667
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "async",
+    "title": "Same keywords, different machine",
+    "body": "async and await look identical to yours and are not the same thing underneath.",
+    "points": [
+     "Coroutines are cold. Calling an async def runs nothing until you await it.",
+     "One thread, one event loop. No thread pool. async is concurrency over I/O, never parallelism over CPU.",
+     "No ConfigureAwait, no synchronisation context, and therefore none of the classic deadlocks \u2014 but you cannot block on a coroutine from sync code at all.",
+     "Task.WhenAll is asyncio.gather. CancellationToken is a CancelledError raised at the next await point."
+    ],
+    "aside": "asyncio.run() is the only door in, and it refuses to nest."
+   },
+   "start": 727.2407,
+   "duration": 91.8847,
+   "segments": [
+    {
+     "text": "Last translation, and it is the one that looks most familiar and behaves least like you expect.",
+     "file": "p0.1/audio/s12-000-64cc09183efc810f.wav",
+     "start": 727.2407,
+     "duration": 6.8907
+    },
+    {
+     "text": "Async and await are spelled the same and they run on a different machine.",
+     "file": "p0.1/audio/s12-001-f1d7ee274dbb6779.wav",
+     "start": 734.5513,
+     "duration": 4.9707
+    },
+    {
+     "text": "Four differences, in the order they will hurt you.",
+     "file": "p0.1/audio/s12-002-0c39af5f49cb24d5.wav",
+     "start": 739.942,
+     "duration": 3.264
+    },
+    {
+     "text": "First, coroutines are cold.",
+     "file": "p0.1/audio/s12-003-a580ad19e58b3489.wav",
+     "start": 743.626,
+     "duration": 2.1333
+    },
+    {
+     "text": "In dot NET, a task returned from a method is usually already running before you await it.",
+     "file": "p0.1/audio/s12-004-85f0817a09c280a3.wav",
+     "start": 746.1793,
+     "duration": 7.2747
+    },
+    {
+     "text": "In Python, calling an async function returns an object that has done nothing at all.",
+     "file": "p0.1/audio/s12-005-4b1495b543dce93c.wav",
+     "start": 753.874,
+     "duration": 6.144
+    },
+    {
+     "text": "Forget the await, and the work simply never happens.",
+     "file": "p0.1/audio/s12-006-446ec580232f3d06.wav",
+     "start": 760.438,
+     "duration": 3.6907
+    },
+    {
+     "text": "Second, there is one thread and one event loop.",
+     "file": "p0.1/audio/s12-007-f72e36eec279612f.wav",
+     "start": 764.5487,
+     "duration": 3.1787
+    },
+    {
+     "text": "There is no thread pool underneath.",
+     "file": "p0.1/audio/s12-008-3b2fb42d3b992549.wav",
+     "start": 768.1473,
+     "duration": 2.4533
+    },
+    {
+     "text": "Async buys you concurrency over input and output, and never parallelism over computation.",
+     "file": "p0.1/audio/s12-009-7a68cf7c6a9b032d.wav",
+     "start": 771.0207,
+     "duration": 7.4027
+    },
+    {
+     "text": "A tight numeric loop inside a coroutine starves every other task on the loop.",
+     "file": "p0.1/audio/s12-010-88f38de56bfcfeed.wav",
+     "start": 778.8433,
+     "duration": 6.08
+    },
+    {
+     "text": "Third, there is no configure await, no synchronisation context, and therefore none of the classic deadlocks you have learned to avoid.",
+     "file": "p0.1/audio/s12-011-ecfcadedc8d6c818.wav",
+     "start": 785.3433,
+     "duration": 9.8133
+    },
+    {
+     "text": "The price is that you cannot block on a coroutine from synchronous code at all.",
+     "file": "p0.1/audio/s12-012-3768ae4031c7bae8.wav",
+     "start": 795.5767,
+     "duration": 5.3973
+    },
+    {
+     "text": "Async io dot run is the only door in, and it refuses to nest.",
+     "file": "p0.1/audio/s12-013-f0eca0385199108f.wav",
+     "start": 801.394,
+     "duration": 5.312
+    },
+    {
+     "text": "And fourth, task dot when all is asyncio dot gather, and a cancellation token becomes an exception raised at the next await point inside the task.",
+     "file": "p0.1/audio/s12-014-edddaf1d32d6b279.wav",
+     "start": 807.126,
+     "duration": 11.3493
+    }
+   ]
+  },
+  {
+   "id": "s13",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the lifecycle",
+    "title": "One order, five states",
+    "nodes": [
+     {
+      "id": "new",
+      "label": "NEW",
+      "sub": "placed, unfilled",
+      "x": 0.13,
+      "y": 0.3,
+      "w": 0.19
+     },
+     {
+      "id": "partial",
+      "label": "PARTIAL",
+      "sub": "some leaves",
+      "x": 0.45,
+      "y": 0.3,
+      "w": 0.19
+     },
+     {
+      "id": "filled",
+      "label": "FILLED",
+      "sub": "terminal",
+      "x": 0.79,
+      "y": 0.3,
+      "w": 0.19,
+      "color": "#5ac48c"
+     },
+     {
+      "id": "cancelled",
+      "label": "CANCELLED",
+      "sub": "terminal",
+      "x": 0.45,
+      "y": 0.78,
+      "w": 0.21,
+      "color": "#e08a4e"
+     },
+     {
+      "id": "rejected",
+      "label": "REJECTED",
+      "sub": "terminal \u00b7 risk",
+      "x": 0.13,
+      "y": 0.78,
+      "w": 0.21,
+      "color": "#e05e6b"
+     }
+    ],
+    "edges": [
+     {
+      "from": "new",
+      "to": "partial",
+      "label": "fill",
+      "appearAt": 40
+     },
+     {
+      "from": "partial",
+      "to": "filled",
+      "label": "last fill",
+      "appearAt": 70
+     },
+     {
+      "from": "new",
+      "to": "rejected",
+      "label": "risk check",
+      "appearAt": 100
+     },
+     {
+      "from": "new",
+      "to": "cancelled",
+      "label": "cancel",
+      "appearAt": 130
+     },
+     {
+      "from": "partial",
+      "to": "cancelled",
+      "label": "cancel",
+      "appearAt": 150
+     }
+    ],
+    "caption": "Three terminal states. A partially filled order can be cancelled but never rejected."
+   },
+   "start": 819.1253,
+   "duration": 55.1113,
+   "segments": [
+    {
+     "text": "Put it together and you get the order lifecycle.",
+     "file": "p0.1/audio/s13-000-ed437fd01621a6b0.wav",
+     "start": 819.1253,
+     "duration": 3.264
+    },
+    {
+     "text": "Five states, three of them terminal.",
+     "file": "p0.1/audio/s13-001-eceadf227c579e34.wav",
+     "start": 822.8093,
+     "duration": 2.4533
+    },
+    {
+     "text": "A new order takes a fill and becomes partial.",
+     "file": "p0.1/audio/s13-002-a7cfae4c717f82ce.wav",
+     "start": 825.6827,
+     "duration": 3.6267
+    },
+    {
+     "text": "It takes its last fill and becomes filled.",
+     "file": "p0.1/audio/s13-003-17425b2f3059abc2.wav",
+     "start": 829.7293,
+     "duration": 3.0933
+    },
+    {
+     "text": "A pre trade risk check can reject it before any fill.",
+     "file": "p0.1/audio/s13-004-4112311261c5caf4.wav",
+     "start": 833.2427,
+     "duration": 4.032
+    },
+    {
+     "text": "And it can be cancelled from new or from partial.",
+     "file": "p0.1/audio/s13-005-14672ed390f12a73.wav",
+     "start": 837.6947,
+     "duration": 3.4773
+    },
+    {
+     "text": "There is one asymmetry on this diagram worth pausing on.",
+     "file": "p0.1/audio/s13-006-c7a55db07100ba0c.wav",
+     "start": 841.592,
+     "duration": 3.9893
+    },
+    {
+     "text": "A partially filled order can be cancelled, but it can never be rejected.",
+     "file": "p0.1/audio/s13-007-70f929cc637758e2.wav",
+     "start": 846.0013,
+     "duration": 5.2053
+    },
+    {
+     "text": "Rejection means the order should never have existed.",
+     "file": "p0.1/audio/s13-008-a6093311e775bb20.wav",
+     "start": 851.6267,
+     "duration": 3.712
+    },
+    {
+     "text": "Once shares have traded, that statement is no longer available to you.",
+     "file": "p0.1/audio/s13-009-61676e972d641b50.wav",
+     "start": 855.7587,
+     "duration": 5.1627
+    },
+    {
+     "text": "This is the kind of invariant that is obvious when stated and completely invisible in code that does not enforce it, which is why there is a test named exactly that.",
+     "file": "p0.1/audio/s13-010-5c3af2cd386429c8.wav",
+     "start": 861.3413,
+     "duration": 12.2453
+    }
+   ]
+  },
+  {
+   "id": "s14",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "P0.1",
+    "title": "Recap",
+    "points": [
+     "Dataclasses give you records; frozen is shallow, and a mutable default is shared across calls.",
+     "Money is Decimal \u2014 and the precision of the operation, not of the type, is what the benchmark measures.",
+     "Protocols replace interfaces structurally; is None, never or, for optional arguments.",
+     "Coroutines are cold, single-threaded, and cancelled by an exception at the next await point."
+    ],
+    "ifSkipped": "Phase 1's autograd engine is operator overloading plus a graph walk. Without today, __add__ returning NotImplemented and a gradient of 0.0 being falsy will read as \"autograd is confusing\".",
+    "next": "P0.2 \u00b7 NumPy as your new LINQ"
+   },
+   "start": 874.2367,
+   "duration": 72.3273,
+   "segments": [
+    {
+     "text": "Four things to take away.",
+     "file": "p0.1/audio/s14-000-2dc12550ea33148b.wav",
+     "start": 874.2367,
+     "duration": 1.984
+    },
+    {
+     "text": "Dataclasses give you records, frozen is shallow, and a mutable default argument is shared across every call.",
+     "file": "p0.1/audio/s14-001-c03a401f7fc6ef53.wav",
+     "start": 876.6407,
+     "duration": 8.4907
+    },
+    {
+     "text": "Money is decimal, and the benchmark measures the precision of the operation rather than the precision of the type.",
+     "file": "p0.1/audio/s14-002-d12844f9525035fb.wav",
+     "start": 885.5513,
+     "duration": 7.7013
+    },
+    {
+     "text": "Protocols replace interfaces structurally, and you should write is none, never or, for optional arguments.",
+     "file": "p0.1/audio/s14-003-4ec71c3f085cdcbe.wav",
+     "start": 893.6727,
+     "duration": 7.9147
+    },
+    {
+     "text": "And coroutines are cold, single threaded, and cancelled by an exception delivered at the next await point.",
+     "file": "p0.1/audio/s14-004-43ae8d80486d6a20.wav",
+     "start": 902.0073,
+     "duration": 7.8507
+    },
+    {
+     "text": "Now, what breaks if we skip this.",
+     "file": "p0.1/audio/s14-005-3e5d04c815f699a9.wav",
+     "start": 910.278,
+     "duration": 2.3893
+    },
+    {
+     "text": "Phase one builds an autograd engine, and its entire design is operator overloading plus a graph walk.",
+     "file": "p0.1/audio/s14-006-64d57888c07bc4e4.wav",
+     "start": 913.0873,
+     "duration": 8.4267
+    },
+    {
+     "text": "Without today's episode, an add method returning not implemented, and a gradient of zero point zero being falsy, will read as autograd is confusing.",
+     "file": "p0.1/audio/s14-007-152b7669116718c2.wav",
+     "start": 921.934,
+     "duration": 12.8
+    },
+    {
+     "text": "When what is actually happening is that Python is doing exactly what it told you it would.",
+     "file": "p0.1/audio/s14-008-1fb40d2bc9d3d7ad.wav",
+     "start": 935.154,
+     "duration": 6.4853
+    },
+    {
+     "text": "Next episode.",
+     "file": "p0.1/audio/s14-009-a900b8555c45ecba.wav",
+     "start": 942.0593,
+     "duration": 1.536
+    },
+    {
+     "text": "NumPy as your new LINQ.",
+     "file": "p0.1/audio/s14-010-0fd6f844596ff49b.wav",
+     "start": 944.0153,
+     "duration": 1.8987
+    }
+   ]
+  }
+ ]
+}

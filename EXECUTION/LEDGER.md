@@ -1,13 +1,13 @@
-# Progress Ledger  ·  0/55 code-complete (0%)
+# Progress Ledger  ·  3/55 code-complete (5%)
 
 Regenerated from `EXECUTION/status.json` by `scripts/gen_index.py`. Legend: ✅ done · 🟡 in progress/pending · 🖥️ awaiting-4070 · ⏭️ deferred · ⬜ scheduled.
 A run picks the earliest row whose **Code** isn't ✅, finishes it, continues down. Video may lag (best-effort).
 
 | Day | Phase | ID | Topic | Code | Tests | Bench | Video | Wired | Notes |
 |----:|:------|:---|:------|:----:|:-----:|:-----:|:-----:|:-----:|:------|
-| 1 | P0 | [P0.1](phases/p0/p0-1-python-for-dotnet/) | Python for the .NET veteran | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
-| 1 | P0 | [P0.2](phases/p0/p0-2-numpy-as-linq/) | NumPy as your new LINQ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
-| 1 | P0 | [P0.3](phases/p0/p0-3-pytorch-training-loop/) | PyTorch tensors & the training loop | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
+| 1 | P0 | [P0.1](phases/p0/p0-1-python-for-dotnet/) | Python for the .NET veteran | ✅ | ✅ | ✅ | 🟡 | ✅ | OMS domain model · 63 tests · tape replay reconciles to 3.1e-07 · 2 components on the desk |
+| 1 | P0 | [P0.2](phases/p0/p0-2-numpy-as-linq/) | NumPy as your new LINQ | ✅ | ✅ | ✅ | 🟡 | ✅ | Vectorised indicators · 116 tests · 70/70 parity vs pandas, worst 4.7e-14 · 72x over the loop |
+| 1 | P0 | [P0.3](phases/p0/p0-3-pytorch-training-loop/) | PyTorch tensors & the training loop | ✅ | ✅ | ✅ | 🟡 | ✅ | Training loop · 27 tests · overfits 64 rows to 100%, honest split at chance (z=+0.30) |
 | 2 | P1 | [T31](phases/p1/t31-autograd/) | Autograd engine (micrograd-style) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 | 2 | P1 | [T16A](phases/p1/t16a-matmul-cpu/) | Matrix multiplication kernel — CPU | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 | 2 | P1 | [T45A](phases/p1/t45a-softmax-cpu/) | Softmax & online softmax — CPU | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
