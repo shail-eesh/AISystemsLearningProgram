@@ -1,7 +1,7 @@
 {
   "topic": "T45A",
   "benchmark": "softmax numerics: overflow, online-vs-two-pass, dtype accuracy, chunk independence",
-  "generated_at": "2026-08-30T21:57:40+00:00",
+  "generated_at": "2026-08-31T01:06:21+00:00",
   "passed": true,
   "failures": [],
   "adversarial_grid": {
@@ -87,16 +87,16 @@
   },
   "throughput": {
     "stable": {
-      "ms": 2.29,
-      "gb_per_s": 1.83
+      "ms": 2.07,
+      "gb_per_s": 2.03
     },
     "two_pass": {
-      "ms": 2.37,
-      "gb_per_s": 1.77
+      "ms": 2.12,
+      "gb_per_s": 1.97
     },
     "online(chunk=512)": {
-      "ms": 4.04,
-      "gb_per_s": 1.04
+      "ms": 3.97,
+      "gb_per_s": 1.06
     },
     "_note": "On a CPU with NumPy the online version is slower: it pays Python loop overhead per chunk to save a pass it does not need here. Its value is in a fused kernel where the row never fits in fast memory (T45B, T7)."
   },

@@ -1,7 +1,7 @@
 {
   "topic": "T30",
   "benchmark": "byte-level BPE: round-trip fuzz, domain compression, pre-tokenizer, saturation",
-  "generated_at": "2026-08-30T22:08:35+00:00",
+  "generated_at": "2026-08-31T01:06:32+00:00",
   "passed": true,
   "failures": [],
   "artifact": {

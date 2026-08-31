@@ -1,7 +1,7 @@
 {
   "topic": "T31",
   "benchmark": "finite-difference gradcheck + loss-curve parity vs a hand-derived reference",
-  "generated_at": "2026-08-30T21:42:59+00:00",
+  "generated_at": "2026-08-31T01:06:01+00:00",
   "tolerance": 1e-06,
   "passed": true,
   "failures": [],
@@ -114,17 +114,17 @@
     "engine_final_loss": 0.007442797361365517,
     "reference_final_loss": 0.007442797361365517,
     "max_abs_curve_divergence": 6.071532165918825e-17,
-    "engine_seconds": 0.091,
-    "reference_seconds": 0.028,
-    "overhead_vs_handwritten": 3.23,
+    "engine_seconds": 0.098,
+    "reference_seconds": 0.029,
+    "overhead_vs_handwritten": 3.43,
     "train_accuracy": 1.0
   },
   "scalar_vs_tensor_cost": {
     "shape": "(64,8) @ (8,16)",
     "scalar_graph_nodes": 27777,
-    "scalar_seconds": 0.0724,
-    "tensor_seconds": 0.000214,
-    "speedup": 338.9
+    "scalar_seconds": 0.0799,
+    "tensor_seconds": 0.000211,
+    "speedup": 379.4
   },
   "environment": {
     "python": "3.11.15",
