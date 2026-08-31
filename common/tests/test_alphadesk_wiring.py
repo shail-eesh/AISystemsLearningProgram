@@ -16,7 +16,7 @@ import pytest
 
 from common.alphadesk import REGISTRY, Registry, Surface, load_all
 
-EXPECTED_ALWAYS = {"P0.1", "P0.2", "T31", "T16A", "T45A"}
+EXPECTED_ALWAYS = {"P0.1", "P0.2", "T31", "T16A", "T45A", "T30"}
 #: topic -> the optional import it needs
 OPTIONAL = {"P0.3": "torch"}
 
@@ -66,7 +66,7 @@ def test_no_unmet_requirements_so_far(desk: Registry):
 
 def test_describe_mentions_the_surfaces_in_use(desk: Registry):
     text = desk.describe()
-    for surface in (Surface.ORDERS, Surface.COMPLIANCE, Surface.DATA):
+    for surface in (Surface.ORDERS, Surface.COMPLIANCE, Surface.DATA, Surface.MODELS):
         assert surface.value in text
     if _available("P0.3"):
         assert Surface.FOUNDATION.value in text

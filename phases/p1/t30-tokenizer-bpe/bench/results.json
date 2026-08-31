@@ -1,0 +1,122 @@
+{
+  "topic": "T30",
+  "benchmark": "byte-level BPE: round-trip fuzz, domain compression, pre-tokenizer, saturation",
+  "generated_at": "2026-08-30T22:08:35+00:00",
+  "passed": true,
+  "failures": [],
+  "artifact": {
+    "name": "fintok",
+    "pattern": "finance",
+    "merges": 3233,
+    "vocab_size": 3495,
+    "special_tokens": {
+      "<|endoftext|>": 3489,
+      "<|pad|>": 3490,
+      "<|filing|>": 3491,
+      "<|commentary|>": 3492,
+      "<|announcement|>": 3493,
+      "<|order|>": 3494
+    }
+  },
+  "round_trip_fuzz": {
+    "strings": 100000,
+    "failures": [],
+    "passed": true
+  },
+  "domain_comparison": {
+    "requested_vocab_size": 4096,
+    "matched_merges": 997,
+    "financial_corpus": {
+      "docs": 2550,
+      "chars": 974533,
+      "bytes": 974533,
+      "distinct_whitespace_words": 11471
+    },
+    "general_corpus": {
+      "docs": 2550,
+      "chars": 1774297,
+      "bytes": 1774297,
+      "distinct_whitespace_words": 738
+    },
+    "holdout": {
+      "docs": 450,
+      "chars": 171855,
+      "bytes": 171855,
+      "distinct_whitespace_words": 2796
+    },
+    "fintok": {
+      "merges_learned": 3233,
+      "bytes": 171855,
+      "chars": 171855,
+      "tokens": 37951,
+      "bytes_per_token": 4.528339174198308,
+      "chars_per_token": 4.528339174198308
+    },
+    "generaltok": {
+      "merges_learned": 997,
+      "bytes": 171855,
+      "chars": 171855,
+      "tokens": 103636,
+      "bytes_per_token": 1.6582558184414682,
+      "chars_per_token": 1.6582558184414682
+    },
+    "byte_baseline_bytes_per_token": 1.0,
+    "advantage": 2.731
+  },
+  "pretokenizer_contribution": {
+    "gpt2": {
+      "merges_learned": 1784,
+      "bytes": 86029,
+      "chars": 86029,
+      "tokens": 19423,
+      "bytes_per_token": 4.429233383102507,
+      "chars_per_token": 4.429233383102507
+    },
+    "finance": {
+      "merges_learned": 1792,
+      "bytes": 86029,
+      "chars": 86029,
+      "tokens": 17968,
+      "bytes_per_token": 4.78790071237756,
+      "chars_per_token": 4.78790071237756
+    },
+    "finance_over_gpt2": 1.081
+  },
+  "saturation_curve": {
+    "rows": [
+      {
+        "docs": 400,
+        "corpus_kb": 126,
+        "merges_requested": 16128,
+        "merges_learned": 1450
+      },
+      {
+        "docs": 1200,
+        "corpus_kb": 380,
+        "merges_requested": 16128,
+        "merges_learned": 2203
+      },
+      {
+        "docs": 3000,
+        "corpus_kb": 951,
+        "merges_requested": 16128,
+        "merges_learned": 3233
+      },
+      {
+        "docs": 9000,
+        "corpus_kb": 2853,
+        "merges_requested": 16128,
+        "merges_learned": 4481
+      }
+    ],
+    "note": "Requesting 16k merges from templated synthetic text yields a few thousand: training stops when no pair occurs twice, rather than minting frequency-1 junk. Vocabulary size is a property of the corpus, not a knob. Point the trainer at a real filings corpus (FORGE_ALLOW_NETWORK=1) and it scales."
+  },
+  "gpt2_reference": {
+    "available": false,
+    "reason": "ProxyError: HTTPSConnectionPool(host='openaipublic.blob.core.windows.net', port=443): Max retries exceeded with url: /gpt-2/encodings/main/vocab.bpe (Caused by ProxyError('"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "machine": "x86_64"
+  }
+}
