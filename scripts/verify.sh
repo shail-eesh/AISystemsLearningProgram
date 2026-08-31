@@ -38,6 +38,10 @@ if [ "$FAST" != "--fast" ]; then
   else
     printf '\n\033[1m== P0.3 bench\033[0m\n   skipped (optional [torch] extra not installed)\n'
   fi
+  step "T31 bench"  python3 phases/p1/t31-autograd/bench/gradcheck_suite.py
+  step "T16A bench" python3 phases/p1/t16a-matmul-cpu/bench/roofline.py
+  step "T45A bench" python3 phases/p1/t45a-softmax-cpu/bench/numerics.py
+  step "T30 bench"  python3 phases/p1/t30-tokenizer-bpe/bench/compression.py
 fi
 
 # The index generator rewrites LEDGER.md and index.html; they must already match

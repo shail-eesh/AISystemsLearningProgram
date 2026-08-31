@@ -21,7 +21,6 @@ key types, and the handful of cross-field rules that have actually bitten.
 
 from __future__ import annotations
 
-import json
 import pathlib
 import sys
 

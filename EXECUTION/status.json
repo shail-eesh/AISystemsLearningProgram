@@ -27,33 +27,33 @@
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "Scalar Value + NumPy Tensor autodiff \u00b7 61 tests \u00b7 gradcheck 3.6e-10 \u00b7 loss curve matches a hand-derived reference to 6e-17 \u00b7 3 scripts written"
+  "note": "Scalar Value + NumPy Tensor autodiff \u00b7 61 tests \u00b7 gradcheck 3.6e-10 \u00b7 loss curve matches a hand-derived reference to 6e-17 \u00b7 E1 11m05s \u00b7 E2 8m10s \u00b7 E3 10m42s"
  },
  "T16A": {
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "5 CPU matmul kernels via ctypes \u00b7 36 tests \u00b7 blocking alone 22.6x over naive C, best 35.6x, 14% of OpenBLAS \u00b7 2 scripts written"
+  "note": "5 CPU matmul kernels via ctypes \u00b7 36 tests \u00b7 blocking alone 22.6x over naive C, best 35.6x, 14% of OpenBLAS \u00b7 E1 9m05s \u00b7 E2 9m42s"
  },
  "T45A": {
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "naive/stable/two-pass/online softmax + fused CE \u00b7 49 tests \u00b7 online bit-identical to two-pass in f64/f32/f16 \u00b7 2 scripts written"
+  "note": "naive/stable/two-pass/online softmax + fused CE \u00b7 49 tests \u00b7 online bit-identical to two-pass in f64/f32/f16 \u00b7 E1 7m28s \u00b7 E2 11m14s"
  },
  "T30": {
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "Byte-level BPE + FinTok-3.5k \u00b7 54 tests \u00b7 100k-string round-trip fuzz clean \u00b7 2.73x over a matched general vocab \u00b7 3 scripts written"
+  "note": "Byte-level BPE + FinTok-3.5k \u00b7 54 tests \u00b7 100k-string round-trip fuzz clean \u00b7 2.73x over a matched general vocab \u00b7 E1 8m28s \u00b7 E2 6m52s \u00b7 E3 10m39s"
  },
  "T4": {
   "code": "scheduled",
