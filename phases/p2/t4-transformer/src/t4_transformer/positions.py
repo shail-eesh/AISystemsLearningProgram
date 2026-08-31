@@ -132,11 +132,20 @@ def apply_rope(x: Tensor, cos: Tensor, sin: Tensor, offset: int = 0) -> Tensor:
     *_, t, hd = x.shape
     if hd % 2:
         raise ValueError("head_dim must be even for RoPE")
+    if offset < 0:
+        # A position is never negative. Without this guard a negative offset
+        # silently slices the *end* of the angle table (Python indexing), and
+        # the rotation is wrong by an amount nothing downstream can detect.
+        raise ValueError(f"offset must be >= 0, got {offset}")
     if offset + t > cos.shape[0]:
         raise ValueError(f"need angles for position {offset + t}, table has {cos.shape[0]}")
-    c = cos[offset : offset + t].float()            # (T, hd/2)
-    s = sin[offset : offset + t].float()
-    x_pair = x.float().reshape(*x.shape[:-1], hd // 2, 2)
+    # float32 minimum for stability, but never *downcast* a float64 input: the
+    # relative-phase check below is a float64 identity and .float() would cap
+    # its error at 1e-7 rather than 1e-16.
+    work = torch.promote_types(x.dtype, torch.float32)
+    c = cos[offset : offset + t].to(work)            # (T, hd/2)
+    s = sin[offset : offset + t].to(work)
+    x_pair = x.to(work).reshape(*x.shape[:-1], hd // 2, 2)
     x0, x1 = x_pair[..., 0], x_pair[..., 1]
     out0 = x0 * c - x1 * s
     out1 = x0 * s + x1 * c
@@ -159,7 +168,14 @@ def relative_phase_property(head_dim: int = 8, m: int = 7, n: int = 3,
     seq = max(m, n, abs(m - n)) + 1
     cos, sin = rope_angles(head_dim, seq, base=base, dtype=torch.float64)
     lhs = (apply_rope(q, cos, sin, offset=m) * apply_rope(k, cos, sin, offset=n)).sum(-1)
-    rhs = (apply_rope(q, cos, sin, offset=m - n) * apply_rope(k, cos, sin, offset=0)).sum(-1)
+    # A gap can be negative, and a *position* cannot. Rotating by the gap means
+    # rotating whichever side keeps the offset non-negative:
+    #     m >= n :  <R_(m-n) q, k>
+    #     m <  n :  <q, R_(n-m) k>
+    if m >= n:
+        rhs = (apply_rope(q, cos, sin, offset=m - n) * k).sum(-1)
+    else:
+        rhs = (q * apply_rope(k, cos, sin, offset=n - m)).sum(-1)
     unrotated = (q * k).sum(-1)
     return {
         "max_abs_diff": float((lhs - rhs).abs().max()),

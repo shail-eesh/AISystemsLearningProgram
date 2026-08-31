@@ -147,11 +147,38 @@ def repeated_sequence_batch(batch: int, half: int, vocab_size: int, *,
                             generator: torch.Generator | None = None) -> Tensor:
     """``[random prefix of length `half`] + [the same prefix again]``.
 
-    The second half is perfectly predictable *only* by a circuit that can say:
-    "I have seen this token before; what came after it last time?" That circuit
-    is an **induction head**, and it is the first non-trivial algorithm a
-    transformer discovers on its own. Two layers are the minimum: one head to
-    copy the previous token's identity forward, a second to match on it.
+    The simplest version of the copying task, and the one to look at first. Its
+    flaw is instructive and is why ``variable_period_batch`` exists: because the
+    period is *always* ``half``, a model with learned positional embeddings can
+    solve it without ever comparing content — "attend to the slot `half` back"
+    is a fixed positional rule. That is not an induction head, and a control
+    experiment (see NOTES) catches it.
     """
     prefix = torch.randint(vocab_size, (batch, half), generator=generator)
     return torch.cat([prefix, prefix], dim=1)
+
+
+def variable_period_batch(batch: int, length: int, vocab_size: int, *,
+                          min_period: int = 6, max_period: int | None = None,
+                          generator: torch.Generator | None = None,
+                          ) -> tuple[Tensor, Tensor]:
+    """Each row is a random sequence repeating with its *own* random period.
+
+    Row ``b`` is ``base[i % p_b]`` for a fresh random ``base`` of length
+    ``p_b``. Since the period differs per row and is never told to the model,
+    no fixed positional rule can predict the continuation: the only way to know
+    what follows position ``i`` is to find the earlier occurrence of the token
+    at ``i`` and read off what came after it. That is the induction algorithm,
+    and this task admits no cheaper solution.
+
+    Returns ``(sequences (B, length), periods (B,))``.
+    """
+    max_period = max_period or length // 2
+    if not 2 <= min_period <= max_period <= length:
+        raise ValueError(f"need 2 <= min_period <= max_period <= length, got "
+                         f"{min_period}, {max_period}, {length}")
+    periods = torch.randint(min_period, max_period + 1, (batch,), generator=generator)
+    base = torch.randint(vocab_size, (batch, max_period), generator=generator)
+    pos = torch.arange(length)
+    idx = pos[None, :] % periods[:, None]
+    return base.gather(1, idx), periods

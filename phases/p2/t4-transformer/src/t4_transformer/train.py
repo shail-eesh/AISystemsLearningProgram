@@ -85,7 +85,7 @@ def estimate_loss(model: GPT, data: Tensor, cfg: TrainConfig, *,
     for _ in range(cfg.eval_batches):
         x, y = get_batch(data, cfg.batch_size, model.config.block_size, generator=generator)
         _, loss = model(x, y)
-        total += float(loss)
+        total += float(loss.detach())
     if was_training:
         model.train()
     return total / cfg.eval_batches
@@ -124,7 +124,7 @@ def train(model: GPT, train_data: Tensor, val_data: Tensor | None = None,
             hist.eval_step.append(step)
             hist.val_loss.append(v)
             if cfg.log:
-                print(f"  step {step:4d}  lr {lr:.2e}  train {float(loss):.4f}  val {v:.4f}")
+                print(f"  step {step:4d}  lr {lr:.2e}  train {float(loss.detach()):.4f}  val {v:.4f}")
     hist.seconds = time.perf_counter() - t0
     return hist
 

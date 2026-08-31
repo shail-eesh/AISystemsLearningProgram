@@ -1,0 +1,296 @@
+{
+ "topic": "T4",
+ "title": "Transformer from scratch (Attention Is All You Need)",
+ "quick": false,
+ "torch": "2.13.0+cu130",
+ "threads": 2,
+ "corpus": {
+  "chars": 92743,
+  "vocab": 66
+ },
+ "logit_parity": {
+  "max_abs_logit_diff": 5.960464477539062e-07,
+  "relative_logit_diff": 3.7964492721105775e-07,
+  "loss_ours": 4.248779296875,
+  "loss_reference": 4.248779296875,
+  "abs_loss_diff": 0.0,
+  "tolerance": 1e-05,
+  "passed": true
+ },
+ "loss_curve": {
+  "steps": 400,
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "final_ours": 1.221530760129293,
+  "final_reference": 1.2227928336461387,
+  "final_reference_pytorch_default_init": 1.1367279291152954,
+  "init_ablation_penalty": -0.08606490453084326,
+  "max_curve_gap": 0.03995227018992131,
+  "seed_noise_band": 0.23038312911987324,
+  "gap_over_noise": 0.1734166487908639,
+  "curve_ours": [
+   4.2082,
+   3.4908,
+   3.3947,
+   3.1262,
+   2.8223,
+   2.6606,
+   2.5482,
+   2.4733,
+   2.3764,
+   2.2915,
+   2.217,
+   2.1279,
+   2.0463,
+   1.9776,
+   1.9268,
+   1.867,
+   1.8186,
+   1.758,
+   1.7099,
+   1.6568,
+   1.6255,
+   1.5801,
+   1.5773,
+   1.5291,
+   1.4792,
+   1.4292,
+   1.4178,
+   1.3996,
+   1.3876,
+   1.3809,
+   1.3699,
+   1.3054,
+   1.2496,
+   1.2802,
+   1.2759,
+   1.2731,
+   1.2532,
+   1.2462,
+   1.2181,
+   1.2052
+  ],
+  "curve_reference": [
+   4.2082,
+   3.4908,
+   3.4001,
+   3.1326,
+   2.8283,
+   2.6647,
+   2.5521,
+   2.4789,
+   2.3895,
+   2.3113,
+   2.2375,
+   2.1492,
+   2.064,
+   1.9898,
+   1.9424,
+   1.8866,
+   1.8275,
+   1.7549,
+   1.7189,
+   1.673,
+   1.6416,
+   1.5897,
+   1.6001,
+   1.5452,
+   1.4973,
+   1.4424,
+   1.4206,
+   1.3895,
+   1.3984,
+   1.3995,
+   1.3986,
+   1.3298,
+   1.289,
+   1.3191,
+   1.3041,
+   1.2768,
+   1.2491,
+   1.2456,
+   1.2195,
+   1.1979
+  ],
+  "passed": true
+ },
+ "generation": {
+  "val_loss": 0.9047119095921516,
+  "bits_per_char": 1.3052233854017814,
+  "lines_generated": 11,
+  "well_formed_fraction": 1.0,
+  "distinct_fraction": 1.0,
+  "ohlc_consistent_fraction": 0.36363636363636365,
+  "sample": "2024-09-24 BHARATCHEM O 259.82 H 267.26 L 264.15 C 263.60 V 339348\n2024-01-12 BHARATCHEM O 253.52 H 258.07 L 250.15 C 256.81 V 11123382\n2024-02-08 EASTPOWER O 626.13 H 585.41 L 594.52 C 593.03 V 429301\n2024-01-17 DECCANMOT O 471.68 H 485.09 L 477.98 C 471.21 V 364326",
+  "passed": true
+ },
+ "induction": {
+  "task": "variable period 10-14, length 48, vocab 64 (no positional shortcut)",
+  "chance_level": 0.03808535151981436,
+  "best_head": {
+   "layer": 0,
+   "head": 1,
+   "score": 0.34698691964149475,
+   "over_chance": 9.11077109163534
+  },
+  "top_heads": [
+   {
+    "layer": 0,
+    "head": 1,
+    "score": 0.34698691964149475,
+    "over_chance": 9.11077109163534
+   },
+   {
+    "layer": 0,
+    "head": 0,
+    "score": 0.31572219729423523,
+    "over_chance": 8.289859084797392
+   },
+   {
+    "layer": 0,
+    "head": 3,
+    "score": 0.2892901599407196,
+    "over_chance": 7.5958379901052755
+   },
+   {
+    "layer": 0,
+    "head": 2,
+    "score": 0.20254217088222504,
+    "over_chance": 5.318112155978134
+   }
+  ],
+  "two_layer_repeat_accuracy": 0.9400345087051392,
+  "one_layer_repeat_accuracy": 0.6492666006088257,
+  "one_layer_best_head_score": 0.4377722144126892,
+  "depth_accuracy_gap": 0.2907679080963135,
+  "emergence_trace": [
+   {
+    "step": 0,
+    "loss": 4.171219348907471,
+    "best_head_score": 0.038124989718198776,
+    "over_chance": 1.0022661174428795,
+    "repeat_accuracy": 0.013840830884873867
+   },
+   {
+    "step": 250,
+    "loss": 3.1469361782073975,
+    "best_head_score": 0.2069767564535141,
+    "over_chance": 5.441202519001882,
+    "repeat_accuracy": 0.28546711802482605
+   },
+   {
+    "step": 500,
+    "loss": 2.590449810028076,
+    "best_head_score": 0.3004889190196991,
+    "over_chance": 7.8995394995928265,
+    "repeat_accuracy": 0.4013840854167938
+   },
+   {
+    "step": 750,
+    "loss": 2.34747576713562,
+    "best_head_score": 0.3401094377040863,
+    "over_chance": 8.941121509880382,
+    "repeat_accuracy": 0.4930795729160309
+   },
+   {
+    "step": 1000,
+    "loss": 2.409331798553467,
+    "best_head_score": 0.35180115699768066,
+    "over_chance": 9.24848458562776,
+    "repeat_accuracy": 0.5017300844192505
+   },
+   {
+    "step": 1250,
+    "loss": 2.358874797821045,
+    "best_head_score": 0.3445216417312622,
+    "over_chance": 9.05711374049789,
+    "repeat_accuracy": 0.5034602284431458
+   },
+   {
+    "step": 1500,
+    "loss": 2.094316244125366,
+    "best_head_score": 0.35383421182632446,
+    "over_chance": 9.30193147137684,
+    "repeat_accuracy": 0.6297577619552612
+   },
+   {
+    "step": 1750,
+    "loss": 1.9920601844787598,
+    "best_head_score": 0.354917049407959,
+    "over_chance": 9.330398139218273,
+    "repeat_accuracy": 0.6868512034416199
+   },
+   {
+    "step": 2000,
+    "loss": 1.9072777032852173,
+    "best_head_score": 0.34959012269973755,
+    "over_chance": 9.190358805720347,
+    "repeat_accuracy": 0.7197231650352478
+   },
+   {
+    "step": 2250,
+    "loss": 1.5831948518753052,
+    "best_head_score": 0.3574640154838562,
+    "over_chance": 9.397355214328767,
+    "repeat_accuracy": 0.7802768349647522
+   },
+   {
+    "step": 2500,
+    "loss": 1.5150152444839478,
+    "best_head_score": 0.3590342402458191,
+    "over_chance": 9.43863478154486,
+    "repeat_accuracy": 0.8512110710144043
+   },
+   {
+    "step": 2750,
+    "loss": 1.3098242282867432,
+    "best_head_score": 0.35972315073013306,
+    "over_chance": 9.45674551787509,
+    "repeat_accuracy": 0.8944636583328247
+   },
+   {
+    "step": 2999,
+    "loss": 1.2529432773590088,
+    "best_head_score": 0.3515210747718811,
+    "over_chance": 9.241121516756351,
+    "repeat_accuracy": 0.9204152226448059
+   }
+  ],
+  "steps": 3000,
+  "seconds": 111.21706996700004,
+  "passed": true
+ },
+ "kv_cache": {
+  "tokens": 180,
+  "identical": true,
+  "seconds_no_cache": 0.8418917890003286,
+  "seconds_cached": 0.2636045600002035,
+  "speedup": 3.1937679264716765,
+  "cache_bytes": 1048576,
+  "passed": true
+ },
+ "positions": {
+  "val_loss": {
+   "none": 1.1156,
+   "sinusoidal": 1.1178,
+   "learned": 1.1065,
+   "rope": 1.0224
+  },
+  "best": "rope",
+  "rope_beats_none": true,
+  "passed": true
+ },
+ "seconds": 437.63978581599986,
+ "checks": {
+  "logit_parity": true,
+  "loss_curve": true,
+  "generation": true,
+  "induction": true,
+  "kv_cache": true,
+  "positions": true
+ },
+ "all_passed": true
+}
