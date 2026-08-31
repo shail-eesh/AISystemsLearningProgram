@@ -1,0 +1,698 @@
+{
+ "topic": "t30-e2",
+ "episode": 2,
+ "title": "Training BPE, every merge shown",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 412.076,
+ "wordCount": 899,
+ "wordsPerMinute": 130.9,
+ "sceneCount": 8,
+ "shortestSceneSeconds": 17.24,
+ "generatedInSeconds": 156.2,
+ "segmentsSynthesised": 71,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Tokenizers, part two",
+    "subtitle": "Nine words, six merges, shown one at a time \u2014 then the two ideas that make it fast.",
+    "topicId": "T30",
+    "episode": "Episode 2"
+   },
+   "start": 0.0,
+   "duration": 17.2407,
+   "segments": [
+    {
+     "text": "Episode two.",
+     "file": "t30-e2/audio/s1-000-bd99ed1d11fa7010.wav",
+     "start": 0.0,
+     "duration": 1.4293
+    },
+    {
+     "text": "We are going to run the merge loop by hand on a corpus small enough to read, then look at the two ideas that take training from minutes to about a second, and then the encoder, where the interesting bug lives.",
+     "file": "t30-e2/audio/s1-001-bfb37f740bd19609.wav",
+     "start": 1.8493,
+     "duration": 14.7413
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the corpus",
+    "title": "Nine words, and their frequencies",
+    "filename": "steps/step2_train_bpe_by_hand.py",
+    "code": "\"low low low low low lower lower newest newest newest widest widest widest\"\n\n# after pre-tokenization, as chunk -> frequency:\n#   b'low'    x1        <- no leading space, first token\n#   b' low'   x4\n#   b' lower' x2\n#   b' newest' x3\n#   b' widest' x3",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       1
+      ],
+      "caption": "The classic BPE demonstration corpus, from the original paper."
+     },
+     {
+      "at": 140,
+      "lines": [
+       3,
+       4,
+       5,
+       6,
+       7,
+       8
+      ],
+      "caption": "Count TYPES with weights, not tokens. 15 words in the text; 5 distinct chunks to work on."
+     },
+     {
+      "at": 300,
+      "lines": [
+       4,
+       5
+      ],
+      "caption": "GPT-2's regex attaches the leading space to the word, so ' low' and 'low' are different chunks."
+     }
+    ]
+   },
+   "start": 17.2407,
+   "duration": 63.9447,
+   "segments": [
+    {
+     "text": "Here is the corpus, which is the one from the original paper.",
+     "file": "t30-e2/audio/s2-000-791b3f4e534c3c2c.wav",
+     "start": 17.2407,
+     "duration": 4.416
+    },
+    {
+     "text": "Low, five times.",
+     "file": "t30-e2/audio/s2-001-a86e3941a38ecb3d.wav",
+     "start": 22.0767,
+     "duration": 1.5573
+    },
+    {
+     "text": "Lower, twice.",
+     "file": "t30-e2/audio/s2-002-0b3ab1b393fb450c.wav",
+     "start": 24.054,
+     "duration": 1.3227
+    },
+    {
+     "text": "Newest, three times.",
+     "file": "t30-e2/audio/s2-003-d53f6e05618c4648.wav",
+     "start": 25.7967,
+     "duration": 1.7493
+    },
+    {
+     "text": "Widest, three times.",
+     "file": "t30-e2/audio/s2-004-31f3aca363387357.wav",
+     "start": 27.966,
+     "duration": 1.792
+    },
+    {
+     "text": "And the first idea is already visible in how we have written it down.",
+     "file": "t30-e2/audio/s2-005-767fecca56f7c828.wav",
+     "start": 30.178,
+     "duration": 5.2693
+    },
+    {
+     "text": "We do not process fifteen words.",
+     "file": "t30-e2/audio/s2-006-240af4815a428480.wav",
+     "start": 35.8673,
+     "duration": 2.6667
+    },
+    {
+     "text": "We process five distinct chunks with weights attached.",
+     "file": "t30-e2/audio/s2-007-e46326396203f495.wav",
+     "start": 38.954,
+     "duration": 3.6267
+    },
+    {
+     "text": "Count types, not tokens.",
+     "file": "t30-e2/audio/s2-008-5a4024298a7541f2.wav",
+     "start": 43.0007,
+     "duration": 2.048
+    },
+    {
+     "text": "A one megabyte corpus has about two hundred thousand chunk occurrences and only about twenty thousand distinct chunks, and BPE only ever needs the distinct ones plus their frequencies.",
+     "file": "t30-e2/audio/s2-009-554434be3af2c957.wav",
+     "start": 45.4687,
+     "duration": 14.6133
+    },
+    {
+     "text": "That alone is a factor of ten.",
+     "file": "t30-e2/audio/s2-010-3234cc6fdf2c1c18.wav",
+     "start": 60.502,
+     "duration": 2.4747
+    },
+    {
+     "text": "And notice the leading spaces.",
+     "file": "t30-e2/audio/s2-011-afd68f9839664d26.wav",
+     "start": 63.3967,
+     "duration": 2.0693
+    },
+    {
+     "text": "The pre tokenizer attaches a space to the front of a word, so low at the start of the text and space low in the middle are two different chunks.",
+     "file": "t30-e2/audio/s2-012-2be435314f17350d.wav",
+     "start": 65.886,
+     "duration": 10.624
+    },
+    {
+     "text": "Episode three is about why that choice exists.",
+     "file": "t30-e2/audio/s2-013-95fd00cbe541d8a6.wav",
+     "start": 76.93,
+     "duration": 3.6053
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "merge by merge",
+    "title": "The first four merges",
+    "nodes": [
+     {
+      "id": "m0",
+      "label": "merge 0",
+      "sub": "'e' + 's' -> 'es'",
+      "x": 0.14,
+      "y": 0.3,
+      "w": 0.22,
+      "color": "#5ac48c",
+      "appearAt": 10
+     },
+     {
+      "id": "m1",
+      "label": "merge 1",
+      "sub": "'es' + 't' -> 'est'",
+      "x": 0.38,
+      "y": 0.3,
+      "w": 0.22,
+      "color": "#5ac48c",
+      "appearAt": 34
+     },
+     {
+      "id": "m2",
+      "label": "merge 2",
+      "sub": "'l' + 'o' -> 'lo'",
+      "x": 0.62,
+      "y": 0.3,
+      "w": 0.22,
+      "appearAt": 58
+     },
+     {
+      "id": "m3",
+      "label": "merge 3",
+      "sub": "'lo' + 'w' -> 'low'",
+      "x": 0.86,
+      "y": 0.3,
+      "w": 0.22,
+      "appearAt": 82
+     },
+     {
+      "id": "note",
+      "label": "merges compose",
+      "sub": "later merges consume earlier ones",
+      "x": 0.5,
+      "y": 0.78,
+      "w": 0.5,
+      "color": "#e0b04e",
+      "appearAt": 100
+     }
+    ],
+    "edges": [
+     {
+      "from": "m0",
+      "to": "m1",
+      "appearAt": 40
+     },
+     {
+      "from": "m2",
+      "to": "m3",
+      "appearAt": 88
+     }
+    ],
+    "caption": "'est' exists only because 'es' already did. The list is ordered, and the order is a dependency chain."
+   },
+   "start": 81.1853,
+   "duration": 52.11,
+   "segments": [
+    {
+     "text": "Now watch the merges.",
+     "file": "t30-e2/audio/s3-000-1a855fbe9c50f989.wav",
+     "start": 81.1853,
+     "duration": 1.856
+    },
+    {
+     "text": "Merge zero joins e and s, because e s appears in both newest and widest, six times in total.",
+     "file": "t30-e2/audio/s3-001-a722b648b4b26f2a.wav",
+     "start": 83.4613,
+     "duration": 8.384
+    },
+    {
+     "text": "Merge one joins the new symbol e s with t, giving e s t, again six times.",
+     "file": "t30-e2/audio/s3-002-96f13f8e2832f242.wav",
+     "start": 92.2653,
+     "duration": 6.9973
+    },
+    {
+     "text": "Merge two joins l and o.",
+     "file": "t30-e2/audio/s3-003-3a4b1c45ce319a31.wav",
+     "start": 99.6827,
+     "duration": 2.176
+    },
+    {
+     "text": "Merge three joins the new symbol l o with w, giving low.",
+     "file": "t30-e2/audio/s3-004-5e52a708e5c9df64.wav",
+     "start": 102.2787,
+     "duration": 4.7787
+    },
+    {
+     "text": "And here is the structural point.",
+     "file": "t30-e2/audio/s3-005-87b7da81c47827c8.wav",
+     "start": 107.4773,
+     "duration": 2.496
+    },
+    {
+     "text": "Merge one could not have happened before merge zero, because the symbol e s did not exist yet.",
+     "file": "t30-e2/audio/s3-006-1dc90c48154a8256.wav",
+     "start": 110.3933,
+     "duration": 6.9333
+    },
+    {
+     "text": "Later merges consume the output of earlier ones.",
+     "file": "t30-e2/audio/s3-007-7ceb764719480f47.wav",
+     "start": 117.7467,
+     "duration": 3.584
+    },
+    {
+     "text": "So the merge list is not a set.",
+     "file": "t30-e2/audio/s3-008-ef69692a62e1ad17.wav",
+     "start": 121.7507,
+     "duration": 2.6027
+    },
+    {
+     "text": "It is an ordered dependency chain, and that ordering is going to matter enormously in two scenes' time.",
+     "file": "t30-e2/audio/s3-009-c90bb0c9b42e34fa.wav",
+     "start": 124.7733,
+     "duration": 7.872
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "efficiency",
+    "title": "The second idea: touch only what changed",
+    "body": "Recounting every pair after every merge is O(merges x corpus). With a pair-count table and an index from pair to the words containing it, a merge only touches the words that actually contain that pair.",
+    "points": [
+     "Keep pair_counts: how often each adjacent pair occurs, weighted by word frequency.",
+     "Keep pair_where: for each pair, the set of word indices containing it.",
+     "On a merge: for each affected word, retract its old pair contributions, merge, post the new ones.",
+     "3,233 merges over a 1 MB corpus in about one second."
+    ],
+    "aside": "This is an inverted index and incremental maintenance \u2014 the same shape as a search engine's posting lists."
+   },
+   "start": 133.2953,
+   "duration": 69.3407,
+   "segments": [
+    {
+     "text": "The second efficiency idea is where the real speedup is.",
+     "file": "t30-e2/audio/s4-000-9c07aebe201a2b16.wav",
+     "start": 133.2953,
+     "duration": 4.3093
+    },
+    {
+     "text": "The naive loop recounts every pair in the whole corpus after every merge, which is merges times corpus, and takes minutes.",
+     "file": "t30-e2/audio/s4-001-1566cfbdfedf6177.wav",
+     "start": 138.0247,
+     "duration": 9.7067
+    },
+    {
+     "text": "Instead, keep two structures.",
+     "file": "t30-e2/audio/s4-002-7b42e9bb1355f602.wav",
+     "start": 148.1513,
+     "duration": 2.0907
+    },
+    {
+     "text": "A pair count table, saying how often each adjacent pair occurs, weighted by the word frequencies.",
+     "file": "t30-e2/audio/s4-003-d83c3d296eb8da77.wav",
+     "start": 150.662,
+     "duration": 7.7653
+    },
+    {
+     "text": "And an index from each pair to the set of words containing it.",
+     "file": "t30-e2/audio/s4-004-80838a7c1b40bec9.wav",
+     "start": 158.8473,
+     "duration": 4.3733
+    },
+    {
+     "text": "Now when you merge a pair, only the words in that pair's set can possibly change.",
+     "file": "t30-e2/audio/s4-005-135126e546ea2615.wav",
+     "start": 163.6407,
+     "duration": 5.8667
+    },
+    {
+     "text": "For each of those, retract its old pair contributions from the counts, apply the merge, and post the new ones back.",
+     "file": "t30-e2/audio/s4-006-2da60ec8208db1ca.wav",
+     "start": 169.9273,
+     "duration": 8.6613
+    },
+    {
+     "text": "Everything else in the corpus is untouched.",
+     "file": "t30-e2/audio/s4-007-553cafd2853f5970.wav",
+     "start": 179.0087,
+     "duration": 3.2853
+    },
+    {
+     "text": "Three thousand two hundred and thirty three merges over a one megabyte corpus, in about one second.",
+     "file": "t30-e2/audio/s4-008-d02bd123fc5fd392.wav",
+     "start": 182.714,
+     "duration": 7.68
+    },
+    {
+     "text": "If this shape feels familiar, it should.",
+     "file": "t30-e2/audio/s4-009-e4e895876b9675bc.wav",
+     "start": 190.814,
+     "duration": 2.7093
+    },
+    {
+     "text": "It is an inverted index with incremental maintenance, which is what a search engine does to its posting lists.",
+     "file": "t30-e2/audio/s4-010-ffb7225945712736.wav",
+     "start": 193.9433,
+     "duration": 8.0427
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the encoder",
+    "title": "Encoding is replaying the merges, by rank",
+    "filename": "src/t30_fintok/bpe.py",
+    "code": "def _encode_chunk(self, piece: bytes) -> list[int]:\n    ids = list(piece)\n    while len(ids) >= 2:\n        best_rank, best_at = None, None\n        for i in range(len(ids) - 1):\n            rank = self.ranks.get((ids[i], ids[i + 1]))\n            if rank is not None and (best_rank is None or rank < best_rank):\n                best_rank, best_at = rank, i\n        if best_at is None:\n            break\n        ids[best_at:best_at + 2] = [256 + best_rank]\n    return ids",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2
+      ],
+      "caption": "Start from raw bytes. Always valid, by construction."
+     },
+     {
+      "at": 130,
+      "lines": [
+       5,
+       6,
+       7,
+       8
+      ],
+      "caption": "Scan for the applicable merge with the LOWEST rank \u2014 earliest learned wins."
+     },
+     {
+      "at": 280,
+      "lines": [
+       9,
+       10
+      ],
+      "caption": "No applicable merge anywhere: this chunk is fully encoded."
+     },
+     {
+      "at": 380,
+      "lines": [
+       11
+      ],
+      "caption": "Merge k mints token 256+k, so the new id is derivable from the rank alone."
+     }
+    ]
+   },
+   "start": 202.636,
+   "duration": 43.3273,
+   "segments": [
+    {
+     "text": "And here is the encoder.",
+     "file": "t30-e2/audio/s5-000-2a03723c89f2cebb.wav",
+     "start": 202.636,
+     "duration": 1.8773
+    },
+    {
+     "text": "Start from the raw bytes of the chunk, which is always a valid starting state.",
+     "file": "t30-e2/audio/s5-001-1419cf89faa390b4.wav",
+     "start": 204.9333,
+     "duration": 5.3333
+    },
+    {
+     "text": "Then repeatedly scan for the applicable merge with the lowest rank, and apply it.",
+     "file": "t30-e2/audio/s5-002-8aaef39e34e4733a.wav",
+     "start": 210.6867,
+     "duration": 5.568
+    },
+    {
+     "text": "Lowest rank, meaning the one learned earliest during training.",
+     "file": "t30-e2/audio/s5-003-17a8ecbdf6b19687.wav",
+     "start": 216.6747,
+     "duration": 4.3947
+    },
+    {
+     "text": "When no merge in the table applies anywhere in the chunk, you are done.",
+     "file": "t30-e2/audio/s5-004-cd710c7374d76d89.wav",
+     "start": 221.4893,
+     "duration": 5.0347
+    },
+    {
+     "text": "And note line eleven.",
+     "file": "t30-e2/audio/s5-005-cb699f5ae2389683.wav",
+     "start": 226.944,
+     "duration": 1.7067
+    },
+    {
+     "text": "Because merge k always mints token two fifty six plus k, the new token id is derivable from the rank alone.",
+     "file": "t30-e2/audio/s5-006-494d1534ba1b66cd.wav",
+     "start": 229.0707,
+     "duration": 9.1307
+    },
+    {
+     "text": "You never look anything up.",
+     "file": "t30-e2/audio/s5-007-d51f62b80c62acbc.wav",
+     "start": 238.6213,
+     "duration": 1.9413
+    },
+    {
+     "text": "The vocabulary dictionary is only needed for decoding.",
+     "file": "t30-e2/audio/s5-008-eda9fe4cbb76ccc4.wav",
+     "start": 240.9827,
+     "duration": 4.3307
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "Longest-match-first is the wrong algorithm",
+    "body": "It is the natural instinct, it decodes to the same text, and it is wrong. Rank order is what the model was trained on; any other segmentation puts the model on a distribution it never saw \u2014 quietly, with no error.",
+    "code": "# rank order (correct): replays training exactly\n# longest match: different segmentation, same text\n# left-to-right first: different again\n#\n# all three decode(encode(s)) == s.\n# only one matches the model's training distribution."
+   },
+   "start": 245.9633,
+   "duration": 48.4687,
+   "segments": [
+    {
+     "text": "This is the bug I promised.",
+     "file": "t30-e2/audio/s6-000-881469e3d4631927.wav",
+     "start": 245.9633,
+     "duration": 2.1973
+    },
+    {
+     "text": "The natural instinct when encoding is to take the longest match, the way a lexer would.",
+     "file": "t30-e2/audio/s6-001-7867ef73844e9f72.wav",
+     "start": 248.5807,
+     "duration": 6.2933
+    },
+    {
+     "text": "Or to take the first applicable merge scanning left to right, which is faster.",
+     "file": "t30-e2/audio/s6-002-6d142ad66a494686.wav",
+     "start": 255.294,
+     "duration": 5.3333
+    },
+    {
+     "text": "Both of those produce valid encodings.",
+     "file": "t30-e2/audio/s6-003-6de18cbcf35f6ab6.wav",
+     "start": 261.0473,
+     "duration": 2.9013
+    },
+    {
+     "text": "Both decode back to the original text perfectly.",
+     "file": "t30-e2/audio/s6-004-0d15c96b78a32f17.wav",
+     "start": 264.3687,
+     "duration": 3.52
+    },
+    {
+     "text": "Both will pass a round trip test suite.",
+     "file": "t30-e2/audio/s6-005-c2f60406fda0e16e.wav",
+     "start": 268.3087,
+     "duration": 2.624
+    },
+    {
+     "text": "And both are wrong, because they produce a different segmentation from the one the training data was tokenised with, which puts the model on a distribution it has never seen.",
+     "file": "t30-e2/audio/s6-006-b1cf57ed5f57e7d9.wav",
+     "start": 271.3527,
+     "duration": 12.5867
+    },
+    {
+     "text": "It costs compression, it costs quality, and absolutely nothing raises an error.",
+     "file": "t30-e2/audio/s6-007-01b09b0d2f3a39be.wav",
+     "start": 284.3593,
+     "duration": 6.208
+    },
+    {
+     "text": "Rank order, lowest first, always.",
+     "file": "t30-e2/audio/s6-008-594ca840a43bc8b4.wav",
+     "start": 290.9873,
+     "duration": 2.7947
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "an aside",
+    "title": "A prefix of the merge list is a smaller tokenizer",
+    "body": "Because merge k only ever depends on merges before it, truncating the list at any point leaves a complete and valid BPE \u2014 one with a smaller vocabulary.",
+    "points": [
+     "truncate(n) = keep the first n merges, rebuild the vocab, renumber the specials.",
+     "It is exact, not approximate: the first n merges are the same merges either way.",
+     "Which gives you the tool for a fair comparison between two tokenizers.",
+     "Two corpora saturate at different merge counts; matching them is the only honest test."
+    ],
+    "aside": "Episode 3 uses this to compare a finance vocabulary against a general one at exactly equal size."
+   },
+   "start": 294.432,
+   "duration": 54.05,
+   "segments": [
+    {
+     "text": "One aside that becomes a tool in the next episode.",
+     "file": "t30-e2/audio/s7-000-2b345e6d10d770ff.wav",
+     "start": 294.432,
+     "duration": 3.904
+    },
+    {
+     "text": "Because merge k only ever depends on merges that came before it, you can truncate the list at any point and what remains is a complete and valid tokenizer with a smaller vocabulary.",
+     "file": "t30-e2/audio/s7-001-2ca3fc93ce6628cc.wav",
+     "start": 298.756,
+     "duration": 14.1653
+    },
+    {
+     "text": "Not an approximation of one.",
+     "file": "t30-e2/audio/s7-002-78aa3fefb20c6264.wav",
+     "start": 313.3413,
+     "duration": 2.432
+    },
+    {
+     "text": "The same first n merges you would have got if you had asked for n in the first place.",
+     "file": "t30-e2/audio/s7-003-30136178f4ce1ba7.wav",
+     "start": 316.1933,
+     "duration": 5.8027
+    },
+    {
+     "text": "That gives you something you need for honest measurement.",
+     "file": "t30-e2/audio/s7-004-59dcc224e2150f52.wav",
+     "start": 322.416,
+     "duration": 3.392
+    },
+    {
+     "text": "Two different corpora will saturate at different numbers of merges, so comparing a tokenizer trained on one against a tokenizer trained on the other means comparing different vocabulary sizes, which is not a controlled experiment.",
+     "file": "t30-e2/audio/s7-005-bd5f3e99e0ebee25.wav",
+     "start": 326.228,
+     "duration": 17.344
+    },
+    {
+     "text": "Truncate both to the smaller count and it becomes one.",
+     "file": "t30-e2/audio/s7-006-a653b1b245c73c1d.wav",
+     "start": 343.992,
+     "duration": 3.84
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "episode two",
+    "points": [
+     "Count chunk TYPES with weights, not token occurrences \u2014 that alone is about 10x.",
+     "Keep pair counts plus a pair-to-words index, and a merge touches only what changed.",
+     "Merges compose: the list is an ordered dependency chain, not a set.",
+     "Encoding replays the merges by RANK, lowest first. Longest-match-first is a silent, plausible error.",
+     "A prefix of the merge list is itself a valid smaller tokenizer \u2014 the tool for matched comparisons."
+    ],
+    "ifSkipped": "A tokenizer whose encoder disagrees with its trainer produces text the model was never trained on, and reports no error at all.",
+    "next": "Episode 3: FinTok \u2014 the pre-tokenizer as a prior, special tokens, and what a domain vocabulary is worth."
+   },
+   "start": 348.482,
+   "duration": 63.594,
+   "segments": [
+    {
+     "text": "To recap.",
+     "file": "t30-e2/audio/s8-000-2482ddde8423e0e0.wav",
+     "start": 348.482,
+     "duration": 1.1947
+    },
+    {
+     "text": "Count chunk types with weights rather than token occurrences, which is about a factor of ten on its own.",
+     "file": "t30-e2/audio/s8-001-cd45bff496213442.wav",
+     "start": 350.0967,
+     "duration": 7.2747
+    },
+    {
+     "text": "Keep a pair count table and a pair to words index, so a merge touches only the words that actually changed.",
+     "file": "t30-e2/audio/s8-002-013427ccf3ab904c.wav",
+     "start": 357.7913,
+     "duration": 8.384
+    },
+    {
+     "text": "Merges compose, so the list is an ordered dependency chain rather than a set.",
+     "file": "t30-e2/audio/s8-003-2d32657ed6f1d9d2.wav",
+     "start": 366.5953,
+     "duration": 6.016
+    },
+    {
+     "text": "Encoding replays those merges by rank, lowest first, and longest match first is a silent plausible error that will pass your tests.",
+     "file": "t30-e2/audio/s8-004-af76eec39366cb98.wav",
+     "start": 373.0313,
+     "duration": 10.1973
+    },
+    {
+     "text": "And a prefix of the merge list is a valid smaller tokenizer, which is the tool for comparing two tokenizers honestly.",
+     "file": "t30-e2/audio/s8-005-ece10983d452f5e8.wav",
+     "start": 383.6487,
+     "duration": 9.344
+    },
+    {
+     "text": "Next episode.",
+     "file": "t30-e2/audio/s8-006-a900b8555c45ecba.wav",
+     "start": 393.4127,
+     "duration": 1.536
+    },
+    {
+     "text": "FinTok itself.",
+     "file": "t30-e2/audio/s8-007-12d16fbf36c24558.wav",
+     "start": 395.3687,
+     "duration": 1.6213
+    },
+    {
+     "text": "The pre tokenizer as a hard prior on what tokens can exist, special tokens that have to be unforgeable, and a measured answer to what a domain vocabulary is actually worth.",
+     "file": "t30-e2/audio/s8-008-99fb4d1724cec8f1.wav",
+     "start": 397.41,
+     "duration": 14.016
+    }
+   ]
+  }
+ ]
+}

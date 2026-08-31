@@ -1,0 +1,357 @@
+{
+ "s1-000-bd99ed1d11fa7010.wav": {
+  "duration": 1.4293333333333333,
+  "text": "Episode two.",
+  "voice": "am_michael"
+ },
+ "s1-001-bfb37f740bd19609.wav": {
+  "duration": 14.741333333333333,
+  "text": "We are going to run the merge loop by hand on a corpus small enough to read, then look at the two ideas that take training from minutes to about a second, and then the encoder, where the interesting bug lives.",
+  "voice": "am_michael"
+ },
+ "s2-000-791b3f4e534c3c2c.wav": {
+  "duration": 4.416,
+  "text": "Here is the corpus, which is the one from the original paper.",
+  "voice": "am_michael"
+ },
+ "s2-001-a86e3941a38ecb3d.wav": {
+  "duration": 1.5573333333333332,
+  "text": "Low, five times.",
+  "voice": "am_michael"
+ },
+ "s2-002-0b3ab1b393fb450c.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Lower, twice.",
+  "voice": "am_michael"
+ },
+ "s2-003-d53f6e05618c4648.wav": {
+  "duration": 1.7493333333333334,
+  "text": "Newest, three times.",
+  "voice": "am_michael"
+ },
+ "s2-004-31f3aca363387357.wav": {
+  "duration": 1.792,
+  "text": "Widest, three times.",
+  "voice": "am_michael"
+ },
+ "s2-005-767fecca56f7c828.wav": {
+  "duration": 5.269333333333333,
+  "text": "And the first idea is already visible in how we have written it down.",
+  "voice": "am_michael"
+ },
+ "s2-006-240af4815a428480.wav": {
+  "duration": 2.6666666666666665,
+  "text": "We do not process fifteen words.",
+  "voice": "am_michael"
+ },
+ "s2-007-e46326396203f495.wav": {
+  "duration": 3.6266666666666665,
+  "text": "We process five distinct chunks with weights attached.",
+  "voice": "am_michael"
+ },
+ "s2-008-5a4024298a7541f2.wav": {
+  "duration": 2.048,
+  "text": "Count types, not tokens.",
+  "voice": "am_michael"
+ },
+ "s2-009-554434be3af2c957.wav": {
+  "duration": 14.613333333333333,
+  "text": "A one megabyte corpus has about two hundred thousand chunk occurrences and only about twenty thousand distinct chunks, and BPE only ever needs the distinct ones plus their frequencies.",
+  "voice": "am_michael"
+ },
+ "s2-010-3234cc6fdf2c1c18.wav": {
+  "duration": 2.474666666666667,
+  "text": "That alone is a factor of ten.",
+  "voice": "am_michael"
+ },
+ "s2-011-afd68f9839664d26.wav": {
+  "duration": 2.0693333333333332,
+  "text": "And notice the leading spaces.",
+  "voice": "am_michael"
+ },
+ "s2-012-2be435314f17350d.wav": {
+  "duration": 10.624,
+  "text": "The pre tokenizer attaches a space to the front of a word, so low at the start of the text and space low in the middle are two different chunks.",
+  "voice": "am_michael"
+ },
+ "s2-013-95fd00cbe541d8a6.wav": {
+  "duration": 3.6053333333333333,
+  "text": "Episode three is about why that choice exists.",
+  "voice": "am_michael"
+ },
+ "s3-000-1a855fbe9c50f989.wav": {
+  "duration": 1.856,
+  "text": "Now watch the merges.",
+  "voice": "am_michael"
+ },
+ "s3-001-a722b648b4b26f2a.wav": {
+  "duration": 8.384,
+  "text": "Merge zero joins e and s, because e s appears in both newest and widest, six times in total.",
+  "voice": "am_michael"
+ },
+ "s3-002-96f13f8e2832f242.wav": {
+  "duration": 6.997333333333334,
+  "text": "Merge one joins the new symbol e s with t, giving e s t, again six times.",
+  "voice": "am_michael"
+ },
+ "s3-003-3a4b1c45ce319a31.wav": {
+  "duration": 2.176,
+  "text": "Merge two joins l and o.",
+  "voice": "am_michael"
+ },
+ "s3-004-5e52a708e5c9df64.wav": {
+  "duration": 4.778666666666667,
+  "text": "Merge three joins the new symbol l o with w, giving low.",
+  "voice": "am_michael"
+ },
+ "s3-005-87b7da81c47827c8.wav": {
+  "duration": 2.496,
+  "text": "And here is the structural point.",
+  "voice": "am_michael"
+ },
+ "s3-006-1dc90c48154a8256.wav": {
+  "duration": 6.933333333333334,
+  "text": "Merge one could not have happened before merge zero, because the symbol e s did not exist yet.",
+  "voice": "am_michael"
+ },
+ "s3-007-7ceb764719480f47.wav": {
+  "duration": 3.584,
+  "text": "Later merges consume the output of earlier ones.",
+  "voice": "am_michael"
+ },
+ "s3-008-ef69692a62e1ad17.wav": {
+  "duration": 2.6026666666666665,
+  "text": "So the merge list is not a set.",
+  "voice": "am_michael"
+ },
+ "s3-009-c90bb0c9b42e34fa.wav": {
+  "duration": 7.872,
+  "text": "It is an ordered dependency chain, and that ordering is going to matter enormously in two scenes' time.",
+  "voice": "am_michael"
+ },
+ "s4-000-9c07aebe201a2b16.wav": {
+  "duration": 4.309333333333333,
+  "text": "The second efficiency idea is where the real speedup is.",
+  "voice": "am_michael"
+ },
+ "s4-001-1566cfbdfedf6177.wav": {
+  "duration": 9.706666666666667,
+  "text": "The naive loop recounts every pair in the whole corpus after every merge, which is merges times corpus, and takes minutes.",
+  "voice": "am_michael"
+ },
+ "s4-002-7b42e9bb1355f602.wav": {
+  "duration": 2.0906666666666665,
+  "text": "Instead, keep two structures.",
+  "voice": "am_michael"
+ },
+ "s4-003-d83c3d296eb8da77.wav": {
+  "duration": 7.765333333333333,
+  "text": "A pair count table, saying how often each adjacent pair occurs, weighted by the word frequencies.",
+  "voice": "am_michael"
+ },
+ "s4-004-80838a7c1b40bec9.wav": {
+  "duration": 4.373333333333333,
+  "text": "And an index from each pair to the set of words containing it.",
+  "voice": "am_michael"
+ },
+ "s4-005-135126e546ea2615.wav": {
+  "duration": 5.866666666666666,
+  "text": "Now when you merge a pair, only the words in that pair's set can possibly change.",
+  "voice": "am_michael"
+ },
+ "s4-006-2da60ec8208db1ca.wav": {
+  "duration": 8.661333333333333,
+  "text": "For each of those, retract its old pair contributions from the counts, apply the merge, and post the new ones back.",
+  "voice": "am_michael"
+ },
+ "s4-007-553cafd2853f5970.wav": {
+  "duration": 3.2853333333333334,
+  "text": "Everything else in the corpus is untouched.",
+  "voice": "am_michael"
+ },
+ "s4-008-d02bd123fc5fd392.wav": {
+  "duration": 7.68,
+  "text": "Three thousand two hundred and thirty three merges over a one megabyte corpus, in about one second.",
+  "voice": "am_michael"
+ },
+ "s4-009-e4e895876b9675bc.wav": {
+  "duration": 2.7093333333333334,
+  "text": "If this shape feels familiar, it should.",
+  "voice": "am_michael"
+ },
+ "s4-010-ffb7225945712736.wav": {
+  "duration": 8.042666666666667,
+  "text": "It is an inverted index with incremental maintenance, which is what a search engine does to its posting lists.",
+  "voice": "am_michael"
+ },
+ "s5-000-2a03723c89f2cebb.wav": {
+  "duration": 1.8773333333333333,
+  "text": "And here is the encoder.",
+  "voice": "am_michael"
+ },
+ "s5-001-1419cf89faa390b4.wav": {
+  "duration": 5.333333333333333,
+  "text": "Start from the raw bytes of the chunk, which is always a valid starting state.",
+  "voice": "am_michael"
+ },
+ "s5-002-8aaef39e34e4733a.wav": {
+  "duration": 5.568,
+  "text": "Then repeatedly scan for the applicable merge with the lowest rank, and apply it.",
+  "voice": "am_michael"
+ },
+ "s5-003-17a8ecbdf6b19687.wav": {
+  "duration": 4.394666666666667,
+  "text": "Lowest rank, meaning the one learned earliest during training.",
+  "voice": "am_michael"
+ },
+ "s5-004-cd710c7374d76d89.wav": {
+  "duration": 5.034666666666666,
+  "text": "When no merge in the table applies anywhere in the chunk, you are done.",
+  "voice": "am_michael"
+ },
+ "s5-005-cb699f5ae2389683.wav": {
+  "duration": 1.7066666666666668,
+  "text": "And note line eleven.",
+  "voice": "am_michael"
+ },
+ "s5-006-494d1534ba1b66cd.wav": {
+  "duration": 9.130666666666666,
+  "text": "Because merge k always mints token two fifty six plus k, the new token id is derivable from the rank alone.",
+  "voice": "am_michael"
+ },
+ "s5-007-d51f62b80c62acbc.wav": {
+  "duration": 1.9413333333333334,
+  "text": "You never look anything up.",
+  "voice": "am_michael"
+ },
+ "s5-008-eda9fe4cbb76ccc4.wav": {
+  "duration": 4.330666666666667,
+  "text": "The vocabulary dictionary is only needed for decoding.",
+  "voice": "am_michael"
+ },
+ "s6-000-881469e3d4631927.wav": {
+  "duration": 2.1973333333333334,
+  "text": "This is the bug I promised.",
+  "voice": "am_michael"
+ },
+ "s6-001-7867ef73844e9f72.wav": {
+  "duration": 6.293333333333333,
+  "text": "The natural instinct when encoding is to take the longest match, the way a lexer would.",
+  "voice": "am_michael"
+ },
+ "s6-002-6d142ad66a494686.wav": {
+  "duration": 5.333333333333333,
+  "text": "Or to take the first applicable merge scanning left to right, which is faster.",
+  "voice": "am_michael"
+ },
+ "s6-003-6de18cbcf35f6ab6.wav": {
+  "duration": 2.9013333333333335,
+  "text": "Both of those produce valid encodings.",
+  "voice": "am_michael"
+ },
+ "s6-004-0d15c96b78a32f17.wav": {
+  "duration": 3.52,
+  "text": "Both decode back to the original text perfectly.",
+  "voice": "am_michael"
+ },
+ "s6-005-c2f60406fda0e16e.wav": {
+  "duration": 2.624,
+  "text": "Both will pass a round trip test suite.",
+  "voice": "am_michael"
+ },
+ "s6-006-b1cf57ed5f57e7d9.wav": {
+  "duration": 12.586666666666666,
+  "text": "And both are wrong, because they produce a different segmentation from the one the training data was tokenised with, which puts the model on a distribution it has never seen.",
+  "voice": "am_michael"
+ },
+ "s6-007-01b09b0d2f3a39be.wav": {
+  "duration": 6.208,
+  "text": "It costs compression, it costs quality, and absolutely nothing raises an error.",
+  "voice": "am_michael"
+ },
+ "s6-008-594ca840a43bc8b4.wav": {
+  "duration": 2.7946666666666666,
+  "text": "Rank order, lowest first, always.",
+  "voice": "am_michael"
+ },
+ "s7-000-2b345e6d10d770ff.wav": {
+  "duration": 3.904,
+  "text": "One aside that becomes a tool in the next episode.",
+  "voice": "am_michael"
+ },
+ "s7-001-2ca3fc93ce6628cc.wav": {
+  "duration": 14.165333333333333,
+  "text": "Because merge k only ever depends on merges that came before it, you can truncate the list at any point and what remains is a complete and valid tokenizer with a smaller vocabulary.",
+  "voice": "am_michael"
+ },
+ "s7-002-78aa3fefb20c6264.wav": {
+  "duration": 2.432,
+  "text": "Not an approximation of one.",
+  "voice": "am_michael"
+ },
+ "s7-003-30136178f4ce1ba7.wav": {
+  "duration": 5.802666666666667,
+  "text": "The same first n merges you would have got if you had asked for n in the first place.",
+  "voice": "am_michael"
+ },
+ "s7-004-59dcc224e2150f52.wav": {
+  "duration": 3.392,
+  "text": "That gives you something you need for honest measurement.",
+  "voice": "am_michael"
+ },
+ "s7-005-bd5f3e99e0ebee25.wav": {
+  "duration": 17.344,
+  "text": "Two different corpora will saturate at different numbers of merges, so comparing a tokenizer trained on one against a tokenizer trained on the other means comparing different vocabulary sizes, which is not a controlled experiment.",
+  "voice": "am_michael"
+ },
+ "s7-006-a653b1b245c73c1d.wav": {
+  "duration": 3.84,
+  "text": "Truncate both to the smaller count and it becomes one.",
+  "voice": "am_michael"
+ },
+ "s8-000-2482ddde8423e0e0.wav": {
+  "duration": 1.1946666666666668,
+  "text": "To recap.",
+  "voice": "am_michael"
+ },
+ "s8-001-cd45bff496213442.wav": {
+  "duration": 7.274666666666667,
+  "text": "Count chunk types with weights rather than token occurrences, which is about a factor of ten on its own.",
+  "voice": "am_michael"
+ },
+ "s8-002-013427ccf3ab904c.wav": {
+  "duration": 8.384,
+  "text": "Keep a pair count table and a pair to words index, so a merge touches only the words that actually changed.",
+  "voice": "am_michael"
+ },
+ "s8-003-2d32657ed6f1d9d2.wav": {
+  "duration": 6.016,
+  "text": "Merges compose, so the list is an ordered dependency chain rather than a set.",
+  "voice": "am_michael"
+ },
+ "s8-004-af76eec39366cb98.wav": {
+  "duration": 10.197333333333333,
+  "text": "Encoding replays those merges by rank, lowest first, and longest match first is a silent plausible error that will pass your tests.",
+  "voice": "am_michael"
+ },
+ "s8-005-ece10983d452f5e8.wav": {
+  "duration": 9.344,
+  "text": "And a prefix of the merge list is a valid smaller tokenizer, which is the tool for comparing two tokenizers honestly.",
+  "voice": "am_michael"
+ },
+ "s8-006-a900b8555c45ecba.wav": {
+  "duration": 1.536,
+  "text": "Next episode.",
+  "voice": "am_michael"
+ },
+ "s8-007-12d16fbf36c24558.wav": {
+  "duration": 1.6213333333333333,
+  "text": "FinTok itself.",
+  "voice": "am_michael"
+ },
+ "s8-008-99fb4d1724cec8f1.wav": {
+  "duration": 14.016,
+  "text": "The pre tokenizer as a hard prior on what tokens can exist, special tokens that have to be unforgeable, and a measured answer to what a domain vocabulary is actually worth.",
+  "voice": "am_michael"
+ }
+}

@@ -1,0 +1,859 @@
+{
+ "topic": "t16a-e2",
+ "episode": 2,
+ "title": "Cache lines make it fast",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 582.334,
+ "wordCount": 1310,
+ "wordsPerMinute": 135.0,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 31.41,
+ "generatedInSeconds": 511.3,
+ "segmentsSynthesised": 90,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Matrix multiplication, part two",
+    "subtitle": "Blocking, threads, register tiles \u2014 and an honest account of the gap that is left.",
+    "topicId": "T16A",
+    "episode": "Episode 2"
+   },
+   "start": 0.0,
+   "duration": 31.414,
+   "segments": [
+    {
+     "text": "Episode two.",
+     "file": "t16a-e2/audio/s1-000-bd99ed1d11fa7010.wav",
+     "start": 0.0,
+     "duration": 1.4293
+    },
+    {
+     "text": "Last time we fixed the stride and got fifteen times.",
+     "file": "t16a-e2/audio/s1-001-e08743dadfaf0f0f.wav",
+     "start": 1.8493,
+     "duration": 3.7973
+    },
+    {
+     "text": "Today we fix the volume, add threads, add a register tile, and then spend the last third of the episode being honest about the seven times that remains between us and OpenBLAS.",
+     "file": "t16a-e2/audio/s1-002-353c11168f512bd5.wav",
+     "start": 6.0667,
+     "duration": 13.8667
+    },
+    {
+     "text": "That last part matters more than the optimisations, because knowing where a gap lives is a transferable skill and a tuned constant is not.",
+     "file": "t16a-e2/audio/s1-003-74eef576cbfb85cb.wav",
+     "start": 20.3533,
+     "duration": 10.4107
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the second problem",
+    "title": "The right stride, the wrong volume",
+    "body": "The i-k-j loop touches memory in the right pattern. It still streams the entire B matrix past the cache once for every row of A.",
+    "points": [
+     "n = 1024, float64: B is 8 MB. It does not fit in any cache on this machine.",
+     "One row of A consumes all of B. There are 1024 rows.",
+     "So the kernel moves roughly 8 GB, to do 2 GFLOP of arithmetic.",
+     "Arithmetic intensity of 85 available; we are collecting about 0.25."
+    ],
+    "aside": "Stride is about how you touch a cache line. Volume is about how many times you touch the same data. They are different bugs with different fixes."
+   },
+   "start": 31.414,
+   "duration": 68.9153,
+   "segments": [
+    {
+     "text": "So we fixed the stride.",
+     "file": "t16a-e2/audio/s2-000-53958bb0da99b633.wav",
+     "start": 31.414,
+     "duration": 1.8773
+    },
+    {
+     "text": "Here is the second problem, which is a completely different one.",
+     "file": "t16a-e2/audio/s2-001-6ad6f0b1f06cbf12.wav",
+     "start": 33.7113,
+     "duration": 4.3947
+    },
+    {
+     "text": "The i k j loop touches memory in the right pattern, and it still streams the entire B matrix past the cache once for every single row of A.",
+     "file": "t16a-e2/audio/s2-002-aa501d04e192d3b5.wav",
+     "start": 38.526,
+     "duration": 10.8373
+    },
+    {
+     "text": "Do the arithmetic.",
+     "file": "t16a-e2/audio/s2-003-c162d35f5b1cbf15.wav",
+     "start": 49.7833,
+     "duration": 1.664
+    },
+    {
+     "text": "At n equals one thousand and twenty four, in double precision, B is eight megabytes.",
+     "file": "t16a-e2/audio/s2-004-a996acad43d3d962.wav",
+     "start": 51.8673,
+     "duration": 6.784
+    },
+    {
+     "text": "That fits in no cache on this machine.",
+     "file": "t16a-e2/audio/s2-005-500f0e5ebe6c5a1e.wav",
+     "start": 59.0713,
+     "duration": 2.5173
+    },
+    {
+     "text": "One row of A consumes all of B, and there are one thousand and twenty four rows.",
+     "file": "t16a-e2/audio/s2-006-dd566696e602daca.wav",
+     "start": 62.0087,
+     "duration": 6.144
+    },
+    {
+     "text": "So the kernel moves something on the order of eight gigabytes of traffic to perform two gigaflops of arithmetic.",
+     "file": "t16a-e2/audio/s2-007-a382d267c8a8b0bf.wav",
+     "start": 68.5727,
+     "duration": 8.1067
+    },
+    {
+     "text": "Remember the arithmetic intensity from last episode.",
+     "file": "t16a-e2/audio/s2-008-c55f371e9d2d5f6e.wav",
+     "start": 77.0993,
+     "duration": 4.1173
+    },
+    {
+     "text": "Eighty five flops per byte available.",
+     "file": "t16a-e2/audio/s2-009-d94f3e0a223c6f01.wav",
+     "start": 81.6367,
+     "duration": 2.6667
+    },
+    {
+     "text": "We are collecting about a quarter of one.",
+     "file": "t16a-e2/audio/s2-010-558e1dfcbd5e1278.wav",
+     "start": 84.7233,
+     "duration": 2.88
+    },
+    {
+     "text": "Stride is about how you use a cache line once you have it.",
+     "file": "t16a-e2/audio/s2-011-927e7490083e40ea.wav",
+     "start": 88.0233,
+     "duration": 3.9893
+    },
+    {
+     "text": "Volume is about how many times you go and get the same data.",
+     "file": "t16a-e2/audio/s2-012-cd1c7c3efb0d6690.wav",
+     "start": 92.4327,
+     "duration": 4.672
+    },
+    {
+     "text": "Different bugs, different fixes.",
+     "file": "t16a-e2/audio/s2-013-151dddb4688619f1.wav",
+     "start": 97.5247,
+     "duration": 2.1547
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the fix",
+    "title": "Blocking: keep a panel of B resident",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "A tile",
+      "sub": "MC x KC rows",
+      "x": 0.16,
+      "y": 0.5,
+      "w": 0.2,
+      "h": 0.5,
+      "color": "#5ac48c",
+      "appearAt": 8
+     },
+     {
+      "id": "b",
+      "label": "B panel",
+      "sub": "KC x NC ~ 256 KB",
+      "x": 0.46,
+      "y": 0.5,
+      "w": 0.22,
+      "h": 0.5,
+      "color": "#e0b04e",
+      "appearAt": 26
+     },
+     {
+      "id": "cache",
+      "label": "L2",
+      "sub": "B panel lives here",
+      "x": 0.72,
+      "y": 0.28,
+      "w": 0.16,
+      "appearAt": 52
+     },
+     {
+      "id": "c",
+      "label": "C tile",
+      "sub": "accumulated in place",
+      "x": 0.9,
+      "y": 0.68,
+      "w": 0.18,
+      "appearAt": 70
+     }
+    ],
+    "edges": [
+     {
+      "from": "b",
+      "to": "cache",
+      "label": "loaded once",
+      "appearAt": 58
+     },
+     {
+      "from": "a",
+      "to": "c",
+      "label": "MC rows reuse it",
+      "appearAt": 76
+     }
+    ],
+    "caption": "Load a panel of B into L2, then push many rows of A through it before evicting."
+   },
+   "start": 100.3293,
+   "duration": 51.5913,
+   "segments": [
+    {
+     "text": "The fix is blocking, and the picture is simple.",
+     "file": "t16a-e2/audio/s3-000-4e289c9c132711be.wav",
+     "start": 100.3293,
+     "duration": 3.2
+    },
+    {
+     "text": "Instead of streaming all of B for each row of A, take a panel of B.",
+     "file": "t16a-e2/audio/s3-001-34009b7631d28b03.wav",
+     "start": 103.9493,
+     "duration": 5.184
+    },
+    {
+     "text": "Sized so that it fits in the cache level you are aiming at.",
+     "file": "t16a-e2/audio/s3-002-4759c8e84ed9b856.wav",
+     "start": 109.5533,
+     "duration": 3.8187
+    },
+    {
+     "text": "Load it once.",
+     "file": "t16a-e2/audio/s3-003-9df52f91ea6ba502.wav",
+     "start": 113.792,
+     "duration": 1.344
+    },
+    {
+     "text": "Then push many rows of A through that resident panel before you let it go.",
+     "file": "t16a-e2/audio/s3-004-f799c94e1502948f.wav",
+     "start": 115.556,
+     "duration": 5.12
+    },
+    {
+     "text": "The traffic drops by roughly the number of rows you reuse it for.",
+     "file": "t16a-e2/audio/s3-005-9c0ff7a824986cac.wav",
+     "start": 121.096,
+     "duration": 4.928
+    },
+    {
+     "text": "In this implementation there are three block sizes.",
+     "file": "t16a-e2/audio/s3-006-121cf1afee2bf69f.wav",
+     "start": 126.444,
+     "duration": 3.7973
+    },
+    {
+     "text": "M C, how many rows of A per tile.",
+     "file": "t16a-e2/audio/s3-007-d09a36972419c838.wav",
+     "start": 130.6613,
+     "duration": 2.88
+    },
+    {
+     "text": "K C and N C, the two dimensions of the B panel.",
+     "file": "t16a-e2/audio/s3-008-4ce9e6884e9c0e2c.wav",
+     "start": 133.9613,
+     "duration": 4.224
+    },
+    {
+     "text": "The defaults aim the B panel at a quarter of a megabyte, which is roughly L2 on this machine.",
+     "file": "t16a-e2/audio/s3-009-4a23d8ff24c68cb7.wav",
+     "start": 138.6053,
+     "duration": 6.9547
+    },
+    {
+     "text": "And the crucial word in that sentence is roughly, which the next scene is about.",
+     "file": "t16a-e2/audio/s3-010-ddba9f3f0325b800.wav",
+     "start": 145.98,
+     "duration": 5.2907
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "The block-size sweep is flat, and that is the finding",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "64/64/128 (64 KB)",
+      "value": 12.08,
+      "color": "#7a8aa0"
+     },
+     {
+      "label": "128/128/256 (256 KB)",
+      "value": 13.55,
+      "color": "#5ac48c",
+      "note": "best"
+     },
+     {
+      "label": "256/128/256 (256 KB)",
+      "value": 13.13,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "128/256/512 (1 MB)",
+      "value": 12.92,
+      "color": "#7a8aa0"
+     },
+     {
+      "label": "64/256/1024 (2 MB)",
+      "value": 10.53,
+      "color": "#e0b04e",
+      "note": "panel too big"
+     }
+    ],
+    "yLabel": "GFLOP/s",
+    "caption": "Worst over best across six plausible tilings: 1.27x. Block size is not a magic constant."
+   },
+   "start": 151.9207,
+   "duration": 65.9833,
+   "segments": [
+    {
+     "text": "Now, everyone expects a block size sweep to reveal a magic number.",
+     "file": "t16a-e2/audio/s4-000-5684cb785e7712ab.wav",
+     "start": 151.9207,
+     "duration": 5.0133
+    },
+    {
+     "text": "Here is the actual sweep, six plausible tilings at n equals one thousand and twenty four.",
+     "file": "t16a-e2/audio/s4-001-990d857b15e9417b.wav",
+     "start": 157.354,
+     "duration": 6.976
+    },
+    {
+     "text": "The best is one twenty eight, one twenty eight, two fifty six, giving thirteen point five five.",
+     "file": "t16a-e2/audio/s4-002-0b623963a2960af1.wav",
+     "start": 164.75,
+     "duration": 6.9973
+    },
+    {
+     "text": "The worst is sixty four, two fifty six, one thousand and twenty four, giving ten point five three, and that one is worst because its B panel is two megabytes and no longer fits.",
+     "file": "t16a-e2/audio/s4-003-9de876b3245733b2.wav",
+     "start": 172.1673,
+     "duration": 14.1227
+    },
+    {
+     "text": "Worst over best across the whole table is one point two seven times.",
+     "file": "t16a-e2/audio/s4-004-91f49716bdd417ea.wav",
+     "start": 186.71,
+     "duration": 5.3973
+    },
+    {
+     "text": "That is the finding, and it is more useful than a magic number would have been.",
+     "file": "t16a-e2/audio/s4-005-19e84100f76c4d6c.wav",
+     "start": 192.5273,
+     "duration": 5.2907
+    },
+    {
+     "text": "Block size is not a constant you tune to three significant figures.",
+     "file": "t16a-e2/audio/s4-006-309ec37bbc474ef0.wav",
+     "start": 198.238,
+     "duration": 5.1627
+    },
+    {
+     "text": "It is the sentence, make the panel roughly L2 sized.",
+     "file": "t16a-e2/audio/s4-007-0aa621e4251b5115.wav",
+     "start": 203.8207,
+     "duration": 4.2667
+    },
+    {
+     "text": "Anything in that neighbourhood is within twenty percent, and the twenty percent is not where your remaining seven times is hiding.",
+     "file": "t16a-e2/audio/s4-008-3a8823d1a2f0a20d.wav",
+     "start": 208.5073,
+     "duration": 8.7467
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "Reading the memory hierarchy off your own machine",
+    "kind": "line",
+    "series": [
+     {
+      "label": "read+write bandwidth",
+      "color": "#5ac48c",
+      "points": [
+       [
+        16,
+        41.5
+       ],
+       [
+        64,
+        54.2
+       ],
+       [
+        256,
+        70.9
+       ],
+       [
+        1024,
+        81.1
+       ],
+       [
+        4096,
+        44.6
+       ],
+       [
+        16384,
+        43.2
+       ],
+       [
+        65536,
+        33.8
+       ]
+      ]
+     }
+    ],
+    "xLabel": "working set (KB, log)",
+    "yLabel": "GB/s",
+    "logScale": true,
+    "caption": "In-place scale over arrays of growing size. The cliff between 1 MB and 4 MB is a cache level ending."
+   },
+   "start": 217.904,
+   "duration": 70.066,
+   "segments": [
+    {
+     "text": "And here is how you find that neighbourhood without reading a spec sheet.",
+     "file": "t16a-e2/audio/s5-000-d122853f3c9cedf2.wav",
+     "start": 217.904,
+     "duration": 4.5867
+    },
+    {
+     "text": "Take an array, scale it in place, and time it.",
+     "file": "t16a-e2/audio/s5-001-00af3340d9f38ae1.wav",
+     "start": 222.9107,
+     "duration": 3.0507
+    },
+    {
+     "text": "Two bytes move per array byte, one read and one write.",
+     "file": "t16a-e2/audio/s5-002-4dfce46097f35221.wav",
+     "start": 226.3813,
+     "duration": 3.904
+    },
+    {
+     "text": "Now grow the array.",
+     "file": "t16a-e2/audio/s5-003-95fe2287b54a300c.wav",
+     "start": 230.7053,
+     "duration": 1.6
+    },
+    {
+     "text": "At sixteen kilobytes we get forty one gigabytes per second, and that row understates because the per call overhead is a real fraction of the time.",
+     "file": "t16a-e2/audio/s5-004-5070ca6ac8a5ecab.wav",
+     "start": 232.7253,
+     "duration": 11.0933
+    },
+    {
+     "text": "At two hundred and fifty six kilobytes, seventy one.",
+     "file": "t16a-e2/audio/s5-005-d06bb060f5cc2a47.wav",
+     "start": 244.2387,
+     "duration": 3.968
+    },
+    {
+     "text": "At one megabyte, eighty one, the peak.",
+     "file": "t16a-e2/audio/s5-006-3c7add2fdf933d11.wav",
+     "start": 248.6267,
+     "duration": 2.752
+    },
+    {
+     "text": "And then at four megabytes it falls off a cliff to forty four, and by sixty four megabytes it is down to thirty four, which is main memory.",
+     "file": "t16a-e2/audio/s5-007-0841f1bcfe2c526c.wav",
+     "start": 251.7987,
+     "duration": 10.368
+    },
+    {
+     "text": "Read the cliffs, not the absolute numbers.",
+     "file": "t16a-e2/audio/s5-008-9a9e60b2b87a36de.wav",
+     "start": 262.5867,
+     "duration": 3.0293
+    },
+    {
+     "text": "The cliff between one and four megabytes is a cache level ending, and it is precisely why the sweep preferred a panel of a quarter of a megabyte.",
+     "file": "t16a-e2/audio/s5-009-14be7d8ddac17c51.wav",
+     "start": 266.036,
+     "duration": 10.304
+    },
+    {
+     "text": "This chart took nine lines of NumPy and it is worth more than any spec sheet, because it describes the machine you are actually running on today.",
+     "file": "t16a-e2/audio/s5-010-aa1b207b65973041.wav",
+     "start": 276.76,
+     "duration": 10.56
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "threads",
+    "title": "Parallelise over j, and you need no locks at all",
+    "filename": "src/t16a_matmul/kernels.c",
+    "code": "#pragma omp parallel for schedule(static)\nfor (int jj = 0; jj < n; jj += nc) {\n    const int jmax = (jj + nc < n) ? jj + nc : n;\n    for (int kk = 0; kk < k_dim; kk += kc) {\n        for (int ii = 0; ii < m; ii += mc) {\n            for (int i = ii; i < imax; i++) {\n                double *restrict crow = &C[(size_t)i * n];\n                for (int k = kk; k < kmax; k++) {\n                    const double a = A[(size_t)i * k_dim + k];\n                    const double *restrict brow = &B[(size_t)k * n];\n                    for (int j = jj; j < jmax; j++)\n                        crow[j] += a * brow[j];\n}   }   }   }   }",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       1,
+       2
+      ],
+      "caption": "Parallel over jj: each thread owns a disjoint column band of C."
+     },
+     {
+      "at": 150,
+      "lines": [
+       2,
+       3
+      ],
+      "caption": "Disjoint writes mean no locks, no atomics, and no reduction."
+     },
+     {
+      "at": 280,
+      "lines": [
+       4
+      ],
+      "caption": "Parallelising over k instead would need a reduction \u2014 every thread writing the same C."
+     },
+     {
+      "at": 400,
+      "lines": [
+       7,
+       10
+      ],
+      "caption": "'restrict' promises no aliasing, which is what lets the compiler hoist 'a' and vectorise the store."
+     }
+    ]
+   },
+   "start": 287.97,
+   "duration": 69.7953,
+   "segments": [
+    {
+     "text": "Threads next, and the interesting part is choosing which loop to parallelise.",
+     "file": "t16a-e2/audio/s6-000-d0439fb6b81cbed2.wav",
+     "start": 287.97,
+     "duration": 5.2053
+    },
+    {
+     "text": "We parallelise over j j, the column tiles.",
+     "file": "t16a-e2/audio/s6-001-0f9ae9ebe8828f63.wav",
+     "start": 293.5953,
+     "duration": 3.904
+    },
+    {
+     "text": "Each thread owns a disjoint band of columns of C.",
+     "file": "t16a-e2/audio/s6-002-37b30650a8a42bf2.wav",
+     "start": 297.9193,
+     "duration": 3.84
+    },
+    {
+     "text": "Disjoint writes mean no locks, no atomics, and no reduction step at the end.",
+     "file": "t16a-e2/audio/s6-003-a13e37d087282807.wav",
+     "start": 302.1793,
+     "duration": 5.9307
+    },
+    {
+     "text": "Compare that with parallelising over k, which would have every thread accumulating into the same elements of C, and would need either atomics or per thread buffers and a merge.",
+     "file": "t16a-e2/audio/s6-004-9ba00149cbb52187.wav",
+     "start": 308.53,
+     "duration": 13.0773
+    },
+    {
+     "text": "Same arithmetic, dramatically different engineering, decided entirely by which index you hand to OpenMP.",
+     "file": "t16a-e2/audio/s6-005-00a03033896f5361.wav",
+     "start": 322.0273,
+     "duration": 8.6827
+    },
+    {
+     "text": "And notice the restrict keyword on the two pointers.",
+     "file": "t16a-e2/audio/s6-006-433e7e8dd9a1fead.wav",
+     "start": 331.13,
+     "duration": 3.4987
+    },
+    {
+     "text": "That is a promise to the compiler that these arrays do not overlap.",
+     "file": "t16a-e2/audio/s6-007-ecf28f79e5e5ecf9.wav",
+     "start": 335.0487,
+     "duration": 4.9707
+    },
+    {
+     "text": "Without it the compiler must assume that writing to C might change B, which forbids hoisting the value of A out of the inner loop and forbids vectorising the store.",
+     "file": "t16a-e2/audio/s6-008-d4c6f6d462c941f8.wav",
+     "start": 340.4393,
+     "duration": 12.096
+    },
+    {
+     "text": "One keyword, and a large fraction of the optimisation.",
+     "file": "t16a-e2/audio/s6-009-574c10e3739356fa.wav",
+     "start": 352.9553,
+     "duration": 4.16
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "Two cores gave 1.4x, not 2x \u2014 and that is the expected answer",
+    "body": "The kernel is partly memory-bound, and the two cores share one memory system. When a thread count does give you linear scaling on a memory-heavy kernel, that is the surprising result, not this.",
+    "code": "blocked, 1 thread   :  181 ms   12.2 GFLOP/s\nblocked, 2 threads  :  125 ms   17.2 GFLOP/s   (1.45x)\n+ 4-row register tile: 115 ms   18.7 GFLOP/s"
+   },
+   "start": 357.7653,
+   "duration": 57.0647,
+   "segments": [
+    {
+     "text": "Threading gets us from a hundred and eighty one milliseconds to a hundred and twenty five.",
+     "file": "t16a-e2/audio/s7-000-3f296ca9d78429a4.wav",
+     "start": 357.7653,
+     "duration": 5.9733
+    },
+    {
+     "text": "One point four five times on two cores, not two times, and I want to name that rather than quietly move past it.",
+     "file": "t16a-e2/audio/s7-001-361e756f2bf54d62.wav",
+     "start": 364.1587,
+     "duration": 9.1947
+    },
+    {
+     "text": "The kernel is partly memory bound, and the two cores share a single memory system, so adding a core adds arithmetic capacity and adds no bandwidth.",
+     "file": "t16a-e2/audio/s7-002-c9944f01731787ad.wav",
+     "start": 373.7733,
+     "duration": 11.7333
+    },
+    {
+     "text": "Sub linear scaling on a memory heavy kernel is the expected outcome.",
+     "file": "t16a-e2/audio/s7-003-5e05279af4e1c7b1.wav",
+     "start": 385.9267,
+     "duration": 5.2053
+    },
+    {
+     "text": "If you ever see linear scaling on a kernel like this, that is the surprising result and it usually means you were more compute bound than you thought.",
+     "file": "t16a-e2/audio/s7-004-2b10dd1932ce10a9.wav",
+     "start": 391.552,
+     "duration": 10.496
+    },
+    {
+     "text": "Adding a four row register tile takes us to a hundred and fifteen milliseconds and eighteen point seven gigaflops, which is where our hand written ladder ends.",
+     "file": "t16a-e2/audio/s7-005-ab1296d8e9b92f7a.wav",
+     "start": 402.468,
+     "duration": 11.712
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the honest part",
+    "title": "Where the remaining 7x lives",
+    "body": "We are at 18.7 GFLOP/s against OpenBLAS's 135, which is essentially 100% of this machine's peak. The gap is not mysterious, and none of it is 'C is slow'.",
+    "points": [
+     "C is not held in registers: every FMA carries a load and a store of C.",
+     "No packing: BLIS-style kernels copy A and B panels into contiguous, pre-swizzled buffers.",
+     "Hand-written assembly: per-microarchitecture, software-pipelined, with explicit prefetch.",
+     "Our register tile is 4x1. A real micro-kernel is more like 8x6, held entirely in vector registers across the whole k loop."
+    ],
+    "aside": "The single biggest remaining win is the first one \u2014 and it is exactly what the GPU pass in Phase 7 calls 'accumulate in registers'."
+   },
+   "start": 414.83,
+   "duration": 82.8953,
+   "segments": [
+    {
+     "text": "And now the part I think is worth the most.",
+     "file": "t16a-e2/audio/s8-000-15ce414a25eb93b9.wav",
+     "start": 414.83,
+     "duration": 3.1147
+    },
+    {
+     "text": "We are at eighteen point seven, OpenBLAS is at one hundred and thirty five, and the honest question is where the difference goes.",
+     "file": "t16a-e2/audio/s8-001-548e68b1997871fc.wav",
+     "start": 418.3647,
+     "duration": 9.5787
+    },
+    {
+     "text": "None of it is C being slow.",
+     "file": "t16a-e2/audio/s8-002-fdfa525925b1c1fa.wav",
+     "start": 428.3633,
+     "duration": 2.112
+    },
+    {
+     "text": "First, and biggest.",
+     "file": "t16a-e2/audio/s8-003-66a249a5d18f919d.wav",
+     "start": 430.8953,
+     "duration": 1.5573
+    },
+    {
+     "text": "Our kernel does not hold C in registers.",
+     "file": "t16a-e2/audio/s8-004-1032efd613060b1b.wav",
+     "start": 432.8727,
+     "duration": 3.0507
+    },
+    {
+     "text": "Every fused multiply add carries a load of C and a store back to C.",
+     "file": "t16a-e2/audio/s8-005-ba14fdc0fb00a8a4.wav",
+     "start": 436.3433,
+     "duration": 5.5253
+    },
+    {
+     "text": "A real micro kernel holds a small tile of C, say eight by six doubles, entirely in vector registers, accumulates across the whole k loop, and stores it exactly once at the end.",
+     "file": "t16a-e2/audio/s8-006-2c9d2b9015fe13c5.wav",
+     "start": 442.2887,
+     "duration": 15.04
+    },
+    {
+     "text": "Second, packing.",
+     "file": "t16a-e2/audio/s8-007-589e00ee31d918d1.wav",
+     "start": 457.7487,
+     "duration": 1.344
+    },
+    {
+     "text": "BLIS style kernels copy the A and B panels into contiguous pre swizzled buffers, so the micro kernel sees perfectly aligned unit stride data with no page table pressure.",
+     "file": "t16a-e2/audio/s8-008-74412333a0fbf5fb.wav",
+     "start": 459.5127,
+     "duration": 13.504
+    },
+    {
+     "text": "Third, hand written assembly, per micro architecture, software pipelined, with explicit prefetch instructions.",
+     "file": "t16a-e2/audio/s8-009-11b8324630396419.wav",
+     "start": 473.4367,
+     "duration": 8.2987
+    },
+    {
+     "text": "And the reason the first one matters most to you is that it is precisely what the GPU pass in phase seven calls accumulating in registers.",
+     "file": "t16a-e2/audio/s8-010-1c217a53cdfae963.wav",
+     "start": 482.1553,
+     "duration": 10.56
+    },
+    {
+     "text": "Same sentence.",
+     "file": "t16a-e2/audio/s8-011-68308868686e5069.wav",
+     "start": 493.1353,
+     "duration": 1.4507
+    },
+    {
+     "text": "Different memory hierarchy.",
+     "file": "t16a-e2/audio/s8-012-0790f96f3a813a66.wav",
+     "start": 495.006,
+     "duration": 2.0693
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "topic recap",
+    "points": [
+     "Stride and volume are different bugs: loop order fixes one, blocking fixes the other.",
+     "Block size is 'roughly L2-sized' \u2014 the sweep is flat within 1.27x, so stop tuning it.",
+     "Measure your own memory hierarchy in nine lines; read the cliffs, not the numbers.",
+     "Parallelise over the index whose outputs are disjoint, and you need no synchronisation at all.",
+     "22.6x from blocking alone, 35.6x with threads and a register tile \u2014 and 14% of peak, for reasons you can name."
+    ],
+    "ifSkipped": "T16B, T45B and T7 all rebuild this reasoning on a GPU. Shared memory plays the role of L2 and the sentences are unchanged.",
+    "next": "Next topic: T45A \u2014 softmax, and the one-pass trick Flash Attention is built on."
+   },
+   "start": 497.7253,
+   "duration": 84.6087,
+   "segments": [
+    {
+     "text": "To recap the topic.",
+     "file": "t16a-e2/audio/s9-000-77ce075fe890eb02.wav",
+     "start": 497.7253,
+     "duration": 1.792
+    },
+    {
+     "text": "Stride and volume are different bugs.",
+     "file": "t16a-e2/audio/s9-001-004a65991a9c0658.wav",
+     "start": 499.9373,
+     "duration": 2.5813
+    },
+    {
+     "text": "Loop order fixes one, blocking fixes the other, and confusing them wastes a lot of time.",
+     "file": "t16a-e2/audio/s9-002-b3a3693c1e1479ff.wav",
+     "start": 502.9387,
+     "duration": 6.9333
+    },
+    {
+     "text": "Block size is roughly L2 sized, the sweep is flat within one point two seven times, so stop tuning it and go find a real bottleneck.",
+     "file": "t16a-e2/audio/s9-003-891c9ac77fc5adc5.wav",
+     "start": 510.292,
+     "duration": 10.944
+    },
+    {
+     "text": "Measure your own memory hierarchy in nine lines of NumPy and read the cliffs rather than the absolute numbers.",
+     "file": "t16a-e2/audio/s9-004-e7731af9808ba156.wav",
+     "start": 521.656,
+     "duration": 8.5333
+    },
+    {
+     "text": "Parallelise over whichever index makes the outputs disjoint, and you will need no synchronisation whatsoever.",
+     "file": "t16a-e2/audio/s9-005-cafc86d47e663c3d.wav",
+     "start": 530.6093,
+     "duration": 7.8293
+    },
+    {
+     "text": "And the headline.",
+     "file": "t16a-e2/audio/s9-006-d2e8836fb76734e2.wav",
+     "start": 538.8587,
+     "duration": 1.3653
+    },
+    {
+     "text": "Twenty two point six times from blocking alone, thirty five point six with threads and a register tile, landing at fourteen percent of this machine's theoretical peak for reasons you can now list on demand.",
+     "file": "t16a-e2/audio/s9-007-a1a6ca46af033a7d.wav",
+     "start": 540.644,
+     "duration": 16.2347
+    },
+    {
+     "text": "Phase seven rebuilds this entire chain of reasoning on a GPU, where shared memory plays the part of L2 and the sentences do not change.",
+     "file": "t16a-e2/audio/s9-008-13c3ce2d67ec1576.wav",
+     "start": 557.2987,
+     "duration": 11.9467
+    },
+    {
+     "text": "Next topic is forty five A.",
+     "file": "t16a-e2/audio/s9-009-c6869a084c0ca224.wav",
+     "start": 569.6653,
+     "duration": 2.4533
+    },
+    {
+     "text": "Softmax.",
+     "file": "t16a-e2/audio/s9-010-717fbaa54ba4098b.wav",
+     "start": 572.5387,
+     "duration": 1.1947
+    },
+    {
+     "text": "Which sounds like a small thing and turns out to contain the single trick that Flash Attention is built on.",
+     "file": "t16a-e2/audio/s9-011-cec397d019e24c56.wav",
+     "start": 574.1533,
+     "duration": 7.5307
+    }
+   ]
+  }
+ ]
+}

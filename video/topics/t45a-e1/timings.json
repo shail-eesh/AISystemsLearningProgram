@@ -1,0 +1,698 @@
+{
+ "topic": "t45a-e1",
+ "episode": 1,
+ "title": "The overflow story",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 447.8573,
+ "wordCount": 942,
+ "wordsPerMinute": 126.2,
+ "sceneCount": 8,
+ "shortestSceneSeconds": 22.65,
+ "generatedInSeconds": 287.6,
+ "segmentsSynthesised": 83,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Softmax, part one",
+    "subtitle": "A formula that is correct on paper and unusable on a computer \u2014 and the one-line identity that fixes it.",
+    "topicId": "T45A",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 22.646,
+   "segments": [
+    {
+     "text": "Phase one, topic forty five A.",
+     "file": "t45a-e1/audio/s1-000-92c1b00777ab0d58.wav",
+     "start": 0.0,
+     "duration": 2.5387
+    },
+    {
+     "text": "Softmax.",
+     "file": "t45a-e1/audio/s1-001-717fbaa54ba4098b.wav",
+     "start": 2.9587,
+     "duration": 1.1947
+    },
+    {
+     "text": "This looks like the smallest topic in the phase and it is not, because episode two contains the single algorithmic trick that Flash Attention is built on.",
+     "file": "t45a-e1/audio/s1-002-b81e04655e19b668.wav",
+     "start": 4.5733,
+     "duration": 11.7547
+    },
+    {
+     "text": "But we have to earn that, and we earn it by watching the textbook formula die.",
+     "file": "t45a-e1/audio/s1-003-2b179f8f7eb38987.wav",
+     "start": 16.748,
+     "duration": 5.248
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the formula",
+    "title": "Softmax, as everyone writes it",
+    "english": "Turn a vector of arbitrary real numbers into a probability distribution: exponentiate everything, then divide by the total.",
+    "equation": "softmax(x)_i = exp(x_i) / SUM_j exp(x_j)",
+    "code": "def naive_softmax(x):\n    e = np.exp(x)\n    return e / e.sum(axis=-1, keepdims=True)",
+    "note": "Every symbol is correct. Two lines of NumPy. It is also unusable, and the reason has nothing to do with the mathematics.",
+    "stageFrames": [
+     10,
+     120,
+     230
+    ]
+   },
+   "start": 22.646,
+   "duration": 45.0273,
+   "segments": [
+    {
+     "text": "Here is the function, three times.",
+     "file": "t45a-e1/audio/s2-000-c02552dc5403ca31.wav",
+     "start": 22.646,
+     "duration": 2.5173
+    },
+    {
+     "text": "In English.",
+     "file": "t45a-e1/audio/s2-001-c4019f85592118a1.wav",
+     "start": 25.5833,
+     "duration": 1.3227
+    },
+    {
+     "text": "Take a vector of arbitrary real numbers and turn it into a probability distribution.",
+     "file": "t45a-e1/audio/s2-002-6ce040f0650277cd.wav",
+     "start": 27.326,
+     "duration": 6.4
+    },
+    {
+     "text": "Exponentiate everything, then divide by the total.",
+     "file": "t45a-e1/audio/s2-003-109611fb64c50455.wav",
+     "start": 34.146,
+     "duration": 4.1387
+    },
+    {
+     "text": "In symbols.",
+     "file": "t45a-e1/audio/s2-004-e7723692fc292689.wav",
+     "start": 38.7047,
+     "duration": 1.3867
+    },
+    {
+     "text": "Softmax of x, component i, is e to the x i over the sum over j of e to the x j.",
+     "file": "t45a-e1/audio/s2-005-7e6685fa9582302c.wav",
+     "start": 40.5113,
+     "duration": 7.744
+    },
+    {
+     "text": "And in code, two lines of NumPy that are a direct transcription.",
+     "file": "t45a-e1/audio/s2-006-7c29e3dea043f6c6.wav",
+     "start": 48.6753,
+     "duration": 4.6293
+    },
+    {
+     "text": "Every symbol in that middle line is correct.",
+     "file": "t45a-e1/audio/s2-007-d21bccb1776ca0fc.wav",
+     "start": 53.7247,
+     "duration": 2.9227
+    },
+    {
+     "text": "The code is a faithful implementation of it.",
+     "file": "t45a-e1/audio/s2-008-9b39f40180e238dd.wav",
+     "start": 57.0673,
+     "duration": 3.2213
+    },
+    {
+     "text": "And it is unusable, for a reason that has nothing at all to do with the mathematics.",
+     "file": "t45a-e1/audio/s2-009-7b9c92dab6d4c945.wav",
+     "start": 60.7087,
+     "duration": 6.3147
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the reason",
+    "title": "Where exp dies, by dtype",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "float16",
+      "value": 11,
+      "color": "#e05e6b",
+      "note": "eleven"
+     },
+     {
+      "label": "float32",
+      "value": 88,
+      "color": "#e0b04e"
+     },
+     {
+      "label": "float64",
+      "value": 709,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "largest x with finite exp(x)",
+    "caption": "Attention logits routinely leave these ranges. Half precision gives up at eleven."
+   },
+   "start": 67.6733,
+   "duration": 46.478,
+   "segments": [
+    {
+     "text": "Here is the reason.",
+     "file": "t45a-e1/audio/s3-000-1d740c10cfabc1ed.wav",
+     "start": 67.6733,
+     "duration": 1.6213
+    },
+    {
+     "text": "Exponentiation has a finite range in every floating point format, because the result has to fit.",
+     "file": "t45a-e1/audio/s3-001-a2f96b55576621b2.wav",
+     "start": 69.7147,
+     "duration": 7.5093
+    },
+    {
+     "text": "In double precision, the largest input with a finite exponential is about seven hundred and nine.",
+     "file": "t45a-e1/audio/s3-002-9fbe8aa157ad1790.wav",
+     "start": 77.644,
+     "duration": 7.2747
+    },
+    {
+     "text": "In single precision it is eighty eight.",
+     "file": "t45a-e1/audio/s3-003-61935b60e5e1fa94.wav",
+     "start": 85.3387,
+     "duration": 2.9653
+    },
+    {
+     "text": "And in half precision, which is what a great deal of modern inference actually runs in, it is eleven.",
+     "file": "t45a-e1/audio/s3-004-e5ebf4c16c7139b9.wav",
+     "start": 88.724,
+     "duration": 7.3813
+    },
+    {
+     "text": "Not eleven thousand.",
+     "file": "t45a-e1/audio/s3-005-02f85973c7631482.wav",
+     "start": 96.5253,
+     "duration": 1.856
+    },
+    {
+     "text": "Eleven.",
+     "file": "t45a-e1/audio/s3-006-56d120b0fe6eff8c.wav",
+     "start": 98.8013,
+     "duration": 1.0453
+    },
+    {
+     "text": "Attention logits leave that range routinely and without warning.",
+     "file": "t45a-e1/audio/s3-007-4457a986d9afb9bc.wav",
+     "start": 100.2667,
+     "duration": 4.9493
+    },
+    {
+     "text": "So this is not an edge case you handle for robustness.",
+     "file": "t45a-e1/audio/s3-008-3f7e67d0556b1781.wav",
+     "start": 105.636,
+     "duration": 4.3947
+    },
+    {
+     "text": "It is the normal operating condition.",
+     "file": "t45a-e1/audio/s3-009-fdb63b0323a5fc44.wav",
+     "start": 110.4507,
+     "duration": 3.0507
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "The failure has two faces, and only one of them is loud",
+    "body": "Overflow gives you inf, then inf over inf, then nan, and the nan spreads through the whole model in one step. Underflow gives you a clean, plausible zero \u2014 and only bites later, when you take its logarithm.",
+    "code": "naive_softmax([1e4, -1e4, 0.0])\n  -> [nan,  0.,  0.]        # loud\n\nstable_softmax([0.0, -800.0])\n  -> [1., 0.]               # quiet, and correct to the dtype\nnp.log(_)\n  -> [0., -inf]             # the bill arrives here"
+   },
+   "start": 114.1513,
+   "duration": 64.4207,
+   "segments": [
+    {
+     "text": "And the failure has two faces, which is worth separating because only one of them is loud.",
+     "file": "t45a-e1/audio/s4-000-6c24e23792f75ef6.wav",
+     "start": 114.1513,
+     "duration": 6.5067
+    },
+    {
+     "text": "Overflow is the loud one.",
+     "file": "t45a-e1/audio/s4-001-7edf7c5325adf0ee.wav",
+     "start": 121.078,
+     "duration": 2.1547
+    },
+    {
+     "text": "Exponentiate ten thousand and you get infinity.",
+     "file": "t45a-e1/audio/s4-002-ebd07f9af5c29c8c.wav",
+     "start": 123.6527,
+     "duration": 3.776
+    },
+    {
+     "text": "Divide infinity by infinity and you get not a number.",
+     "file": "t45a-e1/audio/s4-003-f67182556959be61.wav",
+     "start": 127.8487,
+     "duration": 4.16
+    },
+    {
+     "text": "And a single nan spreads through an entire model in one forward pass.",
+     "file": "t45a-e1/audio/s4-004-617499f186da67a6.wav",
+     "start": 132.4287,
+     "duration": 4.9707
+    },
+    {
+     "text": "You will notice.",
+     "file": "t45a-e1/audio/s4-005-886321cad6977657.wav",
+     "start": 137.8193,
+     "duration": 1.344
+    },
+    {
+     "text": "Underflow is the quiet one.",
+     "file": "t45a-e1/audio/s4-006-4a1480f27ecb0c1f.wav",
+     "start": 139.5833,
+     "duration": 2.432
+    },
+    {
+     "text": "Softmax of zero and minus eight hundred gives you one and zero.",
+     "file": "t45a-e1/audio/s4-007-e32a448af9a57813.wav",
+     "start": 142.4353,
+     "duration": 4.8853
+    },
+    {
+     "text": "That zero is not an error.",
+     "file": "t45a-e1/audio/s4-008-b40cffdfc6491960.wav",
+     "start": 147.7407,
+     "duration": 2.112
+    },
+    {
+     "text": "It is the correct answer to within the precision of the dtype, because the true value fell below the smallest representable number.",
+     "file": "t45a-e1/audio/s4-009-f31bc144273fb65c.wav",
+     "start": 150.2727,
+     "duration": 8.8533
+    },
+    {
+     "text": "It sits there behaving perfectly until somebody takes its logarithm, and then you get minus infinity in a loss function, and the bill arrives in a completely different part of the codebase.",
+     "file": "t45a-e1/audio/s4-010-cc1c6a9e5e02e347.wav",
+     "start": 159.546,
+     "duration": 13.8667
+    },
+    {
+     "text": "Hold onto that one.",
+     "file": "t45a-e1/audio/s4-011-fd066544c9e5ccdf.wav",
+     "start": 173.8327,
+     "duration": 1.6213
+    },
+    {
+     "text": "Episode two settles it.",
+     "file": "t45a-e1/audio/s4-012-bb96fcffd16faeaf.wav",
+     "start": 175.874,
+     "duration": 2.048
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the fix",
+    "title": "The shift identity",
+    "english": "Softmax does not care if you add the same constant to every input. Not approximately \u2014 exactly. So subtract the largest one, and every exponent becomes zero or negative.",
+    "equation": "exp(x_i - c) / SUM_j exp(x_j - c)  ==  softmax(x)_i    for ANY c",
+    "code": "c = x.max(axis=-1, keepdims=True)\ne = np.exp(x - c)          # largest term is exactly exp(0) = 1\nreturn e / e.sum(axis=-1, keepdims=True)",
+    "note": "Proof: multiply top and bottom by exp(-c). One line. Nothing is approximated anywhere.",
+    "stageFrames": [
+     10,
+     140,
+     270
+    ]
+   },
+   "start": 178.572,
+   "duration": 57.53,
+   "segments": [
+    {
+     "text": "The fix, and it is a one line proof.",
+     "file": "t45a-e1/audio/s5-000-bc24bbe62170b66f.wav",
+     "start": 178.572,
+     "duration": 2.6667
+    },
+    {
+     "text": "In English.",
+     "file": "t45a-e1/audio/s5-001-c4019f85592118a1.wav",
+     "start": 181.6587,
+     "duration": 1.3227
+    },
+    {
+     "text": "Softmax does not care if you add the same constant to every input.",
+     "file": "t45a-e1/audio/s5-002-3771af930cf7612a.wav",
+     "start": 183.4013,
+     "duration": 4.7573
+    },
+    {
+     "text": "Not approximately.",
+     "file": "t45a-e1/audio/s5-003-1abb7d2eb4eb54f9.wav",
+     "start": 188.5787,
+     "duration": 1.7067
+    },
+    {
+     "text": "Exactly.",
+     "file": "t45a-e1/audio/s5-004-fc89ae4c7db49f25.wav",
+     "start": 190.7053,
+     "duration": 1.28
+    },
+    {
+     "text": "In symbols.",
+     "file": "t45a-e1/audio/s5-005-e7723692fc292689.wav",
+     "start": 192.4053,
+     "duration": 1.3867
+    },
+    {
+     "text": "Exponent of x i minus c, over the sum of exponent of x j minus c, equals softmax of x at i, for any constant c whatsoever.",
+     "file": "t45a-e1/audio/s5-006-64487efc42d136f4.wav",
+     "start": 194.212,
+     "duration": 12.1387
+    },
+    {
+     "text": "The proof is to multiply the numerator and the denominator by e to the minus c, which cancels.",
+     "file": "t45a-e1/audio/s5-007-a5efcb656f2ceca8.wav",
+     "start": 206.7707,
+     "duration": 7.4453
+    },
+    {
+     "text": "That is the entire derivation.",
+     "file": "t45a-e1/audio/s5-008-9848935cda874aa9.wav",
+     "start": 214.636,
+     "duration": 2.24
+    },
+    {
+     "text": "And in code.",
+     "file": "t45a-e1/audio/s5-009-01474cbc64fb7bce.wav",
+     "start": 217.296,
+     "duration": 1.3867
+    },
+    {
+     "text": "Take c to be the row maximum.",
+     "file": "t45a-e1/audio/s5-010-6aae087d689603b5.wav",
+     "start": 219.1027,
+     "duration": 2.2187
+    },
+    {
+     "text": "Now the largest exponent is exactly e to the zero, which is one, and every other exponent is smaller.",
+     "file": "t45a-e1/audio/s5-011-82f7e1ea3274d13a.wav",
+     "start": 221.7413,
+     "duration": 8.192
+    },
+    {
+     "text": "Overflow has become structurally impossible rather than unlikely.",
+     "file": "t45a-e1/audio/s5-012-eec5946cad1ff2cc.wav",
+     "start": 230.3533,
+     "duration": 5.0987
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the choice",
+    "title": "Why the max, and not the mean",
+    "body": "Any constant removes the scale problem in principle. Only the maximum removes it unconditionally, for every input, with no assumption about the spread.",
+    "points": [
+     "x = [0, 1000], c = mean = 500: you still compute exp(500), which is still inf.",
+     "x = [0, 1000], c = max = 1000: you compute exp(-1000) and exp(0). Both fine.",
+     "The terms that underflow to zero were negligible anyway \u2014 correct to the dtype.",
+     "So max-subtraction costs one extra pass over the data and cannot fail."
+    ],
+    "aside": "This identity reappears in log-sum-exp, in log-softmax, in cross-entropy, and in the softplus form of binary cross-entropy. Learn it once."
+   },
+   "start": 236.102,
+   "duration": 78.3887,
+   "segments": [
+    {
+     "text": "But why the maximum specifically.",
+     "file": "t45a-e1/audio/s6-000-5e852e71c27d73c3.wav",
+     "start": 236.102,
+     "duration": 2.3253
+    },
+    {
+     "text": "Any constant fixes the scale in principle, so why not the mean, which is a natural choice.",
+     "file": "t45a-e1/audio/s6-001-c5de9a4ed8fa597e.wav",
+     "start": 238.8473,
+     "duration": 7.0827
+    },
+    {
+     "text": "Take the vector zero and one thousand.",
+     "file": "t45a-e1/audio/s6-002-f54bee292f7554df.wav",
+     "start": 246.35,
+     "duration": 2.7733
+    },
+    {
+     "text": "Its mean is five hundred.",
+     "file": "t45a-e1/audio/s6-003-9e55c814a66e3b3b.wav",
+     "start": 249.5433,
+     "duration": 2.176
+    },
+    {
+     "text": "Subtract that and you are computing e to the five hundred, which is still infinity in double precision.",
+     "file": "t45a-e1/audio/s6-004-31c78411a0270c7a.wav",
+     "start": 252.1393,
+     "duration": 7.4667
+    },
+    {
+     "text": "You have not fixed anything, you have moved it.",
+     "file": "t45a-e1/audio/s6-005-6d5e58204644d5f1.wav",
+     "start": 260.026,
+     "duration": 3.1573
+    },
+    {
+     "text": "Take the maximum instead, which is one thousand.",
+     "file": "t45a-e1/audio/s6-006-f12432f6de5e0d66.wav",
+     "start": 263.6033,
+     "duration": 3.6693
+    },
+    {
+     "text": "Now you compute e to the minus one thousand and e to the zero.",
+     "file": "t45a-e1/audio/s6-007-de295c868e218d35.wav",
+     "start": 267.6927,
+     "duration": 4.8
+    },
+    {
+     "text": "The first underflows to zero and the second is one, and both are fine.",
+     "file": "t45a-e1/audio/s6-008-8fd3d197b6430489.wav",
+     "start": 272.9127,
+     "duration": 5.3547
+    },
+    {
+     "text": "And that underflow is not a loss.",
+     "file": "t45a-e1/audio/s6-009-12b82717425c993c.wav",
+     "start": 278.6873,
+     "duration": 2.4747
+    },
+    {
+     "text": "Those terms were negligible relative to the largest one, which is what the arithmetic just told us.",
+     "file": "t45a-e1/audio/s6-010-c2c714bf8afdbf80.wav",
+     "start": 281.582,
+     "duration": 7.2747
+    },
+    {
+     "text": "So max subtraction costs one extra pass over the data and, in exchange, cannot fail for any input at all.",
+     "file": "t45a-e1/audio/s6-011-afcbefda9296979d.wav",
+     "start": 289.2767,
+     "duration": 8.7893
+    },
+    {
+     "text": "Learn this identity properly, because it comes back constantly.",
+     "file": "t45a-e1/audio/s6-012-5d9505ac02a7f4b2.wav",
+     "start": 298.486,
+     "duration": 4.608
+    },
+    {
+     "text": "Log sum exp is this.",
+     "file": "t45a-e1/audio/s6-013-c963d5d76fd2e32e.wav",
+     "start": 303.514,
+     "duration": 1.792
+    },
+    {
+     "text": "Log softmax is this.",
+     "file": "t45a-e1/audio/s6-014-09fbbd3e659b09ce.wav",
+     "start": 305.726,
+     "duration": 1.7493
+    },
+    {
+     "text": "Cross entropy is this.",
+     "file": "t45a-e1/audio/s6-015-56aa5a431604c86e.wav",
+     "start": 307.8953,
+     "duration": 1.7493
+    },
+    {
+     "text": "The softplus form of binary cross entropy is this.",
+     "file": "t45a-e1/audio/s6-016-15f1e8da1e2986dd.wav",
+     "start": 310.0647,
+     "duration": 3.776
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "64 adversarial rows, logits in [-10000, +10000]",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "naive, float64",
+      "value": 64,
+      "color": "#e05e6b",
+      "note": "inf or nan"
+     },
+     {
+      "label": "naive, float32",
+      "value": 64,
+      "color": "#e05e6b"
+     },
+     {
+      "label": "naive, float16",
+      "value": 64,
+      "color": "#e05e6b"
+     },
+     {
+      "label": "stable, any dtype",
+      "value": 0,
+      "color": "#5ac48c",
+      "note": "0 failures"
+     }
+    ],
+    "yLabel": "rows producing inf or nan (of 64)",
+    "caption": "The benchmark keeps the broken version and runs it, so the failure is something you have seen."
+   },
+   "start": 314.4907,
+   "duration": 52.8833,
+   "segments": [
+    {
+     "text": "Here is the measurement from the topic's benchmark.",
+     "file": "t45a-e1/audio/s7-000-822098f30e57cc4c.wav",
+     "start": 314.4907,
+     "duration": 3.3493
+    },
+    {
+     "text": "Sixty four rows of adversarial logits, ranging from minus ten thousand to plus ten thousand, including one row that is entirely eight hundred and one that is entirely minus ten thousand.",
+     "file": "t45a-e1/audio/s7-001-cae0b89d3f44c833.wav",
+     "start": 318.26,
+     "duration": 15.7013
+    },
+    {
+     "text": "The naive implementation produces infinity or not a number on sixty four out of sixty four rows, in every dtype.",
+     "file": "t45a-e1/audio/s7-002-994f1cfbfe2f16dd.wav",
+     "start": 334.3813,
+     "duration": 9.6427
+    },
+    {
+     "text": "The stable version produces zero failures in every dtype.",
+     "file": "t45a-e1/audio/s7-003-947db76a91d6f3ab.wav",
+     "start": 344.444,
+     "duration": 4.5653
+    },
+    {
+     "text": "And note that the broken implementation is kept in the codebase and executed by the benchmark on purpose, rather than deleted with a comment saying do not do this.",
+     "file": "t45a-e1/audio/s7-004-de92593b93a1bb65.wav",
+     "start": 349.4293,
+     "duration": 12.0533
+    },
+    {
+     "text": "A failure you have watched happen is worth more than a warning you have read.",
+     "file": "t45a-e1/audio/s7-005-233b2092a12f0812.wav",
+     "start": 361.9027,
+     "duration": 4.8213
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "episode one",
+    "points": [
+     "exp overflows at 709 in float64, 88 in float32, and 11 in float16 \u2014 attention logits leave that range routinely.",
+     "Overflow is loud (nan spreads in one pass); underflow is quiet, and bills you later at the logarithm.",
+     "Softmax is exactly invariant to adding a constant to every input. One-line proof.",
+     "Subtract the maximum: the largest exponent becomes exp(0), so overflow is structurally impossible.",
+     "Only the max works unconditionally \u2014 the mean still overflows on [0, 1000]."
+    ],
+    "ifSkipped": "Every masked attention, every logit processor, every cross-entropy in the rest of this course assumes this identity.",
+    "next": "Episode 2: computing the normaliser in ONE pass \u2014 the trick Flash Attention rests on."
+   },
+   "start": 367.374,
+   "duration": 80.4833,
+   "segments": [
+    {
+     "text": "To recap.",
+     "file": "t45a-e1/audio/s8-000-2482ddde8423e0e0.wav",
+     "start": 367.374,
+     "duration": 1.1947
+    },
+    {
+     "text": "Exponentiation overflows at seven hundred and nine in double precision, eighty eight in single, and eleven in half, and attention logits leave those ranges routinely.",
+     "file": "t45a-e1/audio/s8-001-3d78e9b0446e84c1.wav",
+     "start": 368.9887,
+     "duration": 13.0347
+    },
+    {
+     "text": "Overflow is loud, because one nan spreads through a model in a single pass.",
+     "file": "t45a-e1/audio/s8-002-7f4f802be85c996b.wav",
+     "start": 382.4433,
+     "duration": 5.632
+    },
+    {
+     "text": "Underflow is quiet, and sends you the bill later when something takes a logarithm.",
+     "file": "t45a-e1/audio/s8-003-a94d1d4ddef26a97.wav",
+     "start": 388.4953,
+     "duration": 5.9307
+    },
+    {
+     "text": "Softmax is exactly invariant to adding a constant to every input, with a one line proof.",
+     "file": "t45a-e1/audio/s8-004-70842309f00d6e5f.wav",
+     "start": 394.846,
+     "duration": 6.976
+    },
+    {
+     "text": "Subtract the maximum and the largest exponent becomes e to the zero, so overflow stops being unlikely and becomes impossible.",
+     "file": "t45a-e1/audio/s8-005-2b82651c78270361.wav",
+     "start": 402.242,
+     "duration": 10.368
+    },
+    {
+     "text": "And only the maximum works unconditionally, because the mean still overflows on a vector as simple as zero and one thousand.",
+     "file": "t45a-e1/audio/s8-006-c3313671baf4bffb.wav",
+     "start": 413.03,
+     "duration": 9.6853
+    },
+    {
+     "text": "Every masked attention, every logit processor and every cross entropy in the rest of this course assumes this identity holds.",
+     "file": "t45a-e1/audio/s8-007-27f024cb38620673.wav",
+     "start": 423.1353,
+     "duration": 10.048
+    },
+    {
+     "text": "Next episode is the one I have been promising.",
+     "file": "t45a-e1/audio/s8-008-def6cca429a8ecea.wav",
+     "start": 433.6033,
+     "duration": 3.3067
+    },
+    {
+     "text": "Computing the normaliser in a single pass, which is the trick Flash Attention is built on, derived slowly on one whiteboard.",
+     "file": "t45a-e1/audio/s8-009-d2b2dde268ea4a6a.wav",
+     "start": 437.33,
+     "duration": 9.8773
+    }
+   ]
+  }
+ ]
+}

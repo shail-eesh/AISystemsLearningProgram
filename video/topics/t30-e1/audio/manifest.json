@@ -1,0 +1,472 @@
+{
+ "s1-000-75968333976aebd0.wav": {
+  "duration": 2.026666666666667,
+  "text": "Phase one, topic thirty.",
+  "voice": "am_michael"
+ },
+ "s1-001-6dbcf06d9a9fc54c.wav": {
+  "duration": 1.3013333333333332,
+  "text": "Tokenizers.",
+  "voice": "am_michael"
+ },
+ "s1-002-bd07a599848fed57.wav": {
+  "duration": 17.834666666666667,
+  "text": "This is the last topic of the foundations phase and it is the one with a real product hook, because the tokenizer we build here is the one AlphaSLM is pretrained on, which means every model in the rest of this course inherits it.",
+  "voice": "am_michael"
+ },
+ "s1-003-236878eb64a3b4c5.wav": {
+  "duration": 4.522666666666667,
+  "text": "Here is the framing I want you to carry through all three episodes.",
+  "voice": "am_michael"
+ },
+ "s1-004-25cc98eef7376901.wav": {
+  "duration": 2.3253333333333335,
+  "text": "The model never sees your text.",
+  "voice": "am_michael"
+ },
+ "s1-005-0f1768be3afb5ba4.wav": {
+  "duration": 4.458666666666667,
+  "text": "It sees whatever the tokenizer decided your text was.",
+  "voice": "am_michael"
+ },
+ "s2-000-0401f20e6b1e9a81.wav": {
+  "duration": 2.432,
+  "text": "Here is where this lands on the desk.",
+  "voice": "am_michael"
+ },
+ "s2-001-fbf52ba9464fe8a3.wav": {
+  "duration": 1.9626666666666666,
+  "text": "The lit block is models.",
+  "voice": "am_michael"
+ },
+ "s2-002-ec1a66b22e06d810.wav": {
+  "duration": 6.890666666666666,
+  "text": "FinTok, the tokenizer we build in episode three, feeds AlphaSLM in phase two.",
+  "voice": "am_michael"
+ },
+ "s2-003-1e2569b6185f634e.wav": {
+  "duration": 7.722666666666667,
+  "text": "And once a model is pretrained on a vocabulary, that vocabulary is frozen for the life of the model.",
+  "voice": "am_michael"
+ },
+ "s2-004-0b925dd3c7ba5c22.wav": {
+  "duration": 3.1573333333333333,
+  "text": "LoRA in phase five inherits it.",
+  "voice": "am_michael"
+ },
+ "s2-005-b55a39754f16a1ec.wav": {
+  "duration": 2.3893333333333335,
+  "text": "The embedding model inherits it.",
+  "voice": "am_michael"
+ },
+ "s2-006-34e59bd9d37ede3d.wav": {
+  "duration": 3.050666666666667,
+  "text": "The quantised weights in phase six inherit it.",
+  "voice": "am_michael"
+ },
+ "s2-007-ad5b46c6202c2401.wav": {
+  "duration": 2.6666666666666665,
+  "text": "The Rust inference server inherits it.",
+  "voice": "am_michael"
+ },
+ "s2-008-e98b59dd5ac1e83e.wav": {
+  "duration": 6.165333333333334,
+  "text": "Changing a tokenizer after pretraining does not mean retraining a tokenizer.",
+  "voice": "am_michael"
+ },
+ "s2-009-67a49a8c635b4142.wav": {
+  "duration": 2.4106666666666667,
+  "text": "It means retraining everything.",
+  "voice": "am_michael"
+ },
+ "s3-000-6d5ff5d13be1e38a.wav": {
+  "duration": 7.36,
+  "text": "The problem is that a neural network needs a finite set of integer symbols, and text is not that.",
+  "voice": "am_michael"
+ },
+ "s3-001-6383952b091890b6.wav": {
+  "duration": 4.501333333333333,
+  "text": "There are three obvious bridges and each fails instructively.",
+  "voice": "am_michael"
+ },
+ "s3-002-a027860950a24fde.wav": {
+  "duration": 1.1946666666666668,
+  "text": "Characters.",
+  "voice": "am_michael"
+ },
+ "s3-003-1eb4b13c399f8c5d.wav": {
+  "duration": 13.226666666666667,
+  "text": "The vocabulary is tiny and there are no unknowns, but sequences get four or five times longer, and attention cost grows with the square of length, so you pay dearly.",
+  "voice": "am_michael"
+ },
+ "s3-004-7441562f84c184a2.wav": {
+  "duration": 1.0026666666666666,
+  "text": "Words.",
+  "voice": "am_michael"
+ },
+ "s3-005-7733db252e18b2d8.wav": {
+  "duration": 4.330666666666667,
+  "text": "Sequences are short, but the vocabulary is unbounded.",
+  "voice": "am_michael"
+ },
+ "s3-006-e60b22137cac101f.wav": {
+  "duration": 12.458666666666666,
+  "text": "New tickers appear, people misspell things, and everything you did not see in training collapses to a single unknown token, which is a hole in the model's perception.",
+  "voice": "am_michael"
+ },
+ "s3-007-52a1865253713cbc.wav": {
+  "duration": 0.896,
+  "text": "Bytes.",
+  "voice": "am_michael"
+ },
+ "s3-008-373b44028ac29894.wav": {
+  "duration": 5.994666666666666,
+  "text": "No unknowns ever, guaranteed, but the sequences are the longest of the three.",
+  "voice": "am_michael"
+ },
+ "s3-009-79f507665a9a2f08.wav": {
+  "duration": 4.928,
+  "text": "Subwords are the answer that won, and the framing worth having is this.",
+  "voice": "am_michael"
+ },
+ "s3-010-50dee8ed58cdf2d0.wav": {
+  "duration": 4.949333333333334,
+  "text": "What if the vocabulary were a hyperparameter you fit to the corpus.",
+  "voice": "am_michael"
+ },
+ "s3-011-1f27bfd9e7b1da56.wav": {
+  "duration": 3.392,
+  "text": "Common words stay whole because they are frequent.",
+  "voice": "am_michael"
+ },
+ "s3-012-aecfe7045c677b89.wav": {
+  "duration": 4.1386666666666665,
+  "text": "Rare words decompose into pieces the model has seen.",
+  "voice": "am_michael"
+ },
+ "s3-013-60ea161aef2ce290.wav": {
+  "duration": 1.9626666666666666,
+  "text": "That is byte pair encoding.",
+  "voice": "am_michael"
+ },
+ "s4-000-6a6ed1e5f6394839.wav": {
+  "duration": 3.904,
+  "text": "Before the algorithm, a detour that is not pedantry.",
+  "voice": "am_michael"
+ },
+ "s4-001-34991d9d8733f4f6.wav": {
+  "duration": 3.2,
+  "text": "Take a single emoji, the upward chart.",
+  "voice": "am_michael"
+ },
+ "s4-002-e3143b09ee00b3ee.wav": {
+  "duration": 1.4933333333333334,
+  "text": "How long is it.",
+  "voice": "am_michael"
+ },
+ "s4-003-6f92b7445995cf81.wav": {
+  "duration": 5.12,
+  "text": "Python says one, because a Python string is a sequence of code points.",
+  "voice": "am_michael"
+ },
+ "s4-004-c2fca50b02079aed.wav": {
+  "duration": 8.576,
+  "text": "C sharp says two, because a dot NET string is UTF sixteen and this character needs a surrogate pair.",
+  "voice": "am_michael"
+ },
+ "s4-005-666636c289487389.wav": {
+  "duration": 2.474666666666667,
+  "text": "UTF eight says four bytes.",
+  "voice": "am_michael"
+ },
+ "s4-006-7d2c426d30013bfb.wav": {
+  "duration": 2.1973333333333334,
+  "text": "And a human says one thing.",
+  "voice": "am_michael"
+ },
+ "s4-007-94a2b531636d236e.wav": {
+  "duration": 10.005333333333333,
+  "text": "Four defensible answers, and if you are coming from the dot NET side, the second one is the one your instincts are calibrated to.",
+  "voice": "am_michael"
+ },
+ "s4-008-2c23ef98b58c154c.wav": {
+  "duration": 3.8186666666666667,
+  "text": "The number a tokenizer cares about is the third one.",
+  "voice": "am_michael"
+ },
+ "s4-009-52a1865253713cbc.wav": {
+  "duration": 0.896,
+  "text": "Bytes.",
+  "voice": "am_michael"
+ },
+ "s5-000-a8f90dfdb0c5125a.wav": {
+  "duration": 4.266666666666667,
+  "text": "Here is the decision that makes everything downstream simple.",
+  "voice": "am_michael"
+ },
+ "s5-001-0614fea63dd744fe.wav": {
+  "duration": 4.992,
+  "text": "The base vocabulary is the two hundred and fifty six byte values.",
+  "voice": "am_michael"
+ },
+ "s5-002-fae98d82aca7b70a.wav": {
+  "duration": 1.7706666666666666,
+  "text": "That is the whole line.",
+  "voice": "am_michael"
+ },
+ "s5-003-8d170b20f4e5e3ff.wav": {
+  "duration": 7.1466666666666665,
+  "text": "One dictionary comprehension, and the base vocabulary is finished before training even begins.",
+  "voice": "am_michael"
+ },
+ "s5-004-0e08eae6b8c0495d.wav": {
+  "duration": 1.984,
+  "text": "And look at what falls out.",
+  "voice": "am_michael"
+ },
+ "s5-005-01522a8106e691ef.wav": {
+  "duration": 8.234666666666667,
+  "text": "Every string in the universe has a UTF eight encoding, and every byte of that encoding is already a token.",
+  "voice": "am_michael"
+ },
+ "s5-006-589f47c60411d948.wav": {
+  "duration": 2.453333333333333,
+  "text": "So hello is five base tokens.",
+  "voice": "am_michael"
+ },
+ "s5-007-ca3aea6faae577a2.wav": {
+  "duration": 2.005333333333333,
+  "text": "A ticker symbol is eight.",
+  "voice": "am_michael"
+ },
+ "s5-008-5e86f3b933e34a77.wav": {
+  "duration": 1.792,
+  "text": "An emoji is four.",
+  "voice": "am_michael"
+ },
+ "s5-009-b28bf3c3af978fec.wav": {
+  "duration": 2.7946666666666666,
+  "text": "Two arbitrary control bytes are two.",
+  "voice": "am_michael"
+ },
+ "s5-010-cd77a91daa7817ac.wav": {
+  "duration": 6.464,
+  "text": "And there is no unknown token anywhere in the design, and no code path that needs one.",
+  "voice": "am_michael"
+ },
+ "s5-011-14015851ee6a8378.wav": {
+  "duration": 4.224,
+  "text": "Round tripping becomes structural rather than aspirational.",
+  "voice": "am_michael"
+ },
+ "s5-012-93ca73b7f07c35aa.wav": {
+  "duration": 10.005333333333333,
+  "text": "Decode of encode of s equals s, for every s, because the identity holds at the byte level and merging is reversible.",
+  "voice": "am_michael"
+ },
+ "s6-000-74216e79e156a1ca.wav": {
+  "duration": 3.84,
+  "text": "Byte level does remove the unknown token problem.",
+  "voice": "am_michael"
+ },
+ "s6-001-bf6e5a1997cdda61.wav": {
+  "duration": 2.2186666666666666,
+  "text": "It does not remove Unicode.",
+  "voice": "am_michael"
+ },
+ "s6-002-75d78c8e230370f4.wav": {
+  "duration": 3.072,
+  "text": "Here is the one that will bite you in production.",
+  "voice": "am_michael"
+ },
+ "s6-003-8acd6593e185b1fa.wav": {
+  "duration": 4.928,
+  "text": "The word caf\u00e9, typed with a precomposed e acute, is five bytes.",
+  "voice": "am_michael"
+ },
+ "s6-004-adac393fd6629b58.wav": {
+  "duration": 6.421333333333333,
+  "text": "The same word typed as a plain e followed by a combining acute accent is six bytes.",
+  "voice": "am_michael"
+ },
+ "s6-005-24a5e1ad28f29895.wav": {
+  "duration": 2.9226666666666667,
+  "text": "They are pixel identical on screen.",
+  "voice": "am_michael"
+ },
+ "s6-006-dc1908ede2d4646c.wav": {
+  "duration": 8.064,
+  "text": "They are different byte sequences, so they are different token sequences, so the model produces different output.",
+  "voice": "am_michael"
+ },
+ "s6-007-f2eeee459cc47739.wav": {
+  "duration": 7.338666666666667,
+  "text": "And nothing in your logs will show you the difference, because your log viewer renders them identically too.",
+  "voice": "am_michael"
+ },
+ "s6-008-9334a345d5dadee8.wav": {
+  "duration": 4.586666666666667,
+  "text": "Fix a normalisation form at the door, on the way in, once.",
+  "voice": "am_michael"
+ },
+ "s6-009-d56eba8c06214eb0.wav": {
+  "duration": 5.226666666666667,
+  "text": "This is a five line decision that saves a very confusing Friday.",
+  "voice": "am_michael"
+ },
+ "s7-000-d310cf25bcaa2f98.wav": {
+  "duration": 4.224,
+  "text": "And now the algorithm, which is genuinely three lines.",
+  "voice": "am_michael"
+ },
+ "s7-001-c4019f85592118a1.wav": {
+  "duration": 1.3226666666666667,
+  "text": "In English.",
+  "voice": "am_michael"
+ },
+ "s7-002-3e69832a665a0989.wav": {
+  "duration": 10.24,
+  "text": "Repeatedly find the most frequent adjacent pair of symbols in the corpus, mint a new symbol for that pair, and replace every occurrence of it.",
+  "voice": "am_michael"
+ },
+ "s7-003-3a457e55af6d9c87.wav": {
+  "duration": 3.050666666666667,
+  "text": "Stop when the vocabulary is large enough.",
+  "voice": "am_michael"
+ },
+ "s7-004-e7723692fc292689.wav": {
+  "duration": 1.3866666666666667,
+  "text": "In symbols.",
+  "voice": "am_michael"
+ },
+ "s7-005-16593331b9f23c62.wav": {
+  "duration": 12.373333333333333,
+  "text": "Merge k is the argmax over pairs of their count, and the new vocabulary entry at index two fifty six plus k is the concatenation of the two pieces.",
+  "voice": "am_michael"
+ },
+ "s7-006-23969c8970c4acf8.wav": {
+  "duration": 1.984,
+  "text": "And in code, five lines.",
+  "voice": "am_michael"
+ },
+ "s7-007-7ace4bc468631eb7.wav": {
+  "duration": 8.341333333333333,
+  "text": "That is byte pair encoding, from the Sennrich paper in twenty fifteen, originally proposed for machine translation.",
+  "voice": "am_michael"
+ },
+ "s7-008-f8d64a9957ebfa1a.wav": {
+  "duration": 6.506666666666667,
+  "text": "Everything else in the implementation file is efficiency, and none of it changes the answer.",
+  "voice": "am_michael"
+ },
+ "s8-000-4909a871ea1d24d3.wav": {
+  "duration": 4.544,
+  "text": "One consequence worth pulling out, because it surprises people.",
+  "voice": "am_michael"
+ },
+ "s8-001-18e75eb03ae0e493.wav": {
+  "duration": 3.2426666666666666,
+  "text": "The vocabulary is derived, not stored.",
+  "voice": "am_michael"
+ },
+ "s8-002-4eaefd272e355eb4.wav": {
+  "duration": 9.429333333333334,
+  "text": "Token two fifty six plus k is, by construction, the concatenation of the two pieces that merge k joined together.",
+  "voice": "am_michael"
+ },
+ "s8-003-0d3343ac506b4916.wav": {
+  "duration": 6.997333333333334,
+  "text": "So saving a tokenizer means saving an ordered list of integer pairs and nothing else.",
+  "voice": "am_michael"
+ },
+ "s8-004-222b2ecd66ba8563.wav": {
+  "duration": 3.6906666666666665,
+  "text": "The vocabulary rebuilds from it in four lines.",
+  "voice": "am_michael"
+ },
+ "s8-005-4ac87c488d662230.wav": {
+  "duration": 1.6853333333333333,
+  "text": "Three things follow.",
+  "voice": "am_michael"
+ },
+ "s8-006-3b55814fae02eb9f.wav": {
+  "duration": 2.2613333333333334,
+  "text": "First, the artefact is tiny.",
+  "voice": "am_michael"
+ },
+ "s8-007-35461638c7ece15b.wav": {
+  "duration": 8.448,
+  "text": "Second, the rank, meaning the position in that list, is load bearing, and episode two is entirely about why.",
+  "voice": "am_michael"
+ },
+ "s8-008-88360f27455ae325.wav": {
+  "duration": 14.848,
+  "text": "And third, a prefix of the merge list is itself a complete and valid smaller tokenizer, which turns out to be exactly the tool we need in episode three to compare two tokenizers fairly.",
+  "voice": "am_michael"
+ },
+ "s9-000-2482ddde8423e0e0.wav": {
+  "duration": 1.1946666666666668,
+  "text": "To recap.",
+  "voice": "am_michael"
+ },
+ "s9-001-648247bb5d45d732.wav": {
+  "duration": 12.778666666666666,
+  "text": "Characters make sequences too long, words make the vocabulary unbounded, and subwords are the compromise that is fitted to your corpus rather than chosen in advance.",
+  "voice": "am_michael"
+ },
+ "s9-002-48fbd8bf05c40210.wav": {
+  "duration": 6.208,
+  "text": "Length is three different numbers and a tokenizer cares about the UTF eight one.",
+  "voice": "am_michael"
+ },
+ "s9-003-44f8217acc6d3b63.wav": {
+  "duration": 11.626666666666667,
+  "text": "A byte level base vocabulary is two hundred and fifty six entries, complete before training starts, which eliminates the unknown token entirely.",
+  "voice": "am_michael"
+ },
+ "s9-004-84b1298dd48f3ecd.wav": {
+  "duration": 8.021333333333333,
+  "text": "Normalisation is still your problem, because the same word in two normal forms is two token sequences.",
+  "voice": "am_michael"
+ },
+ "s9-005-00110223160a25a8.wav": {
+  "duration": 1.8773333333333333,
+  "text": "And the algorithm is.",
+  "voice": "am_michael"
+ },
+ "s9-006-113abe5555c3ecb3.wav": {
+  "duration": 5.333333333333333,
+  "text": "Most frequent adjacent pair, mint a symbol, replace everywhere, repeat.",
+  "voice": "am_michael"
+ },
+ "s9-007-191f36c089645b48.wav": {
+  "duration": 2.752,
+  "text": "The merge list is the tokenizer.",
+  "voice": "am_michael"
+ },
+ "s9-008-dbe204bb7f33fc1f.wav": {
+  "duration": 2.8373333333333335,
+  "text": "One last thought before the next episode.",
+  "voice": "am_michael"
+ },
+ "s9-009-4fd91b0620fba497.wav": {
+  "duration": 10.624,
+  "text": "A good fraction of the complaint that language models cannot do arithmetic is really a claim about how the pre tokenizer chose to split numbers.",
+  "voice": "am_michael"
+ },
+ "s9-010-326b00f097dafb29.wav": {
+  "duration": 2.538666666666667,
+  "text": "Episode three has the measurements.",
+  "voice": "am_michael"
+ },
+ "s9-011-a900b8555c45ecba.wav": {
+  "duration": 1.536,
+  "text": "Next episode.",
+  "voice": "am_michael"
+ },
+ "s9-012-5f4826975cd1b58b.wav": {
+  "duration": 4.394666666666667,
+  "text": "Training, with every merge shown, on a corpus of nine words.",
+  "voice": "am_michael"
+ }
+}

@@ -1,0 +1,787 @@
+{
+ "topic": "t30-e1",
+ "episode": 1,
+ "title": "Why tokenization exists",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 507.9393,
+ "wordCount": 1047,
+ "wordsPerMinute": 123.7,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 35.22,
+ "generatedInSeconds": 193.9,
+ "segmentsSynthesised": 94,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Tokenizers, part one",
+    "subtitle": "The model never sees your text. It sees whatever the tokenizer decided your text was.",
+    "topicId": "T30",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 35.2193,
+   "segments": [
+    {
+     "text": "Phase one, topic thirty.",
+     "file": "t30-e1/audio/s1-000-75968333976aebd0.wav",
+     "start": 0.0,
+     "duration": 2.0267
+    },
+    {
+     "text": "Tokenizers.",
+     "file": "t30-e1/audio/s1-001-6dbcf06d9a9fc54c.wav",
+     "start": 2.4467,
+     "duration": 1.3013
+    },
+    {
+     "text": "This is the last topic of the foundations phase and it is the one with a real product hook, because the tokenizer we build here is the one AlphaSLM is pretrained on, which means every model in the rest of this course inherits it.",
+     "file": "t30-e1/audio/s1-002-bd07a599848fed57.wav",
+     "start": 4.168,
+     "duration": 17.8347
+    },
+    {
+     "text": "Here is the framing I want you to carry through all three episodes.",
+     "file": "t30-e1/audio/s1-003-236878eb64a3b4c5.wav",
+     "start": 22.4227,
+     "duration": 4.5227
+    },
+    {
+     "text": "The model never sees your text.",
+     "file": "t30-e1/audio/s1-004-25cc98eef7376901.wav",
+     "start": 27.3653,
+     "duration": 2.3253
+    },
+    {
+     "text": "It sees whatever the tokenizer decided your text was.",
+     "file": "t30-e1/audio/s1-005-0f1768be3afb5ba4.wav",
+     "start": 30.1107,
+     "duration": 4.4587
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ArchitectureMap",
+   "props": {
+    "eyebrow": "where we are",
+    "highlight": [
+     "models"
+    ],
+    "caption": "FinTok is the tokenizer AlphaSLM is pretrained on \u2014 and therefore the one every downstream topic inherits."
+   },
+   "start": 35.2193,
+   "duration": 43.278,
+   "segments": [
+    {
+     "text": "Here is where this lands on the desk.",
+     "file": "t30-e1/audio/s2-000-0401f20e6b1e9a81.wav",
+     "start": 35.2193,
+     "duration": 2.432
+    },
+    {
+     "text": "The lit block is models.",
+     "file": "t30-e1/audio/s2-001-fbf52ba9464fe8a3.wav",
+     "start": 38.0713,
+     "duration": 1.9627
+    },
+    {
+     "text": "FinTok, the tokenizer we build in episode three, feeds AlphaSLM in phase two.",
+     "file": "t30-e1/audio/s2-002-ec1a66b22e06d810.wav",
+     "start": 40.454,
+     "duration": 6.8907
+    },
+    {
+     "text": "And once a model is pretrained on a vocabulary, that vocabulary is frozen for the life of the model.",
+     "file": "t30-e1/audio/s2-003-1e2569b6185f634e.wav",
+     "start": 47.7647,
+     "duration": 7.7227
+    },
+    {
+     "text": "LoRA in phase five inherits it.",
+     "file": "t30-e1/audio/s2-004-0b925dd3c7ba5c22.wav",
+     "start": 55.9073,
+     "duration": 3.1573
+    },
+    {
+     "text": "The embedding model inherits it.",
+     "file": "t30-e1/audio/s2-005-b55a39754f16a1ec.wav",
+     "start": 59.4847,
+     "duration": 2.3893
+    },
+    {
+     "text": "The quantised weights in phase six inherit it.",
+     "file": "t30-e1/audio/s2-006-34e59bd9d37ede3d.wav",
+     "start": 62.294,
+     "duration": 3.0507
+    },
+    {
+     "text": "The Rust inference server inherits it.",
+     "file": "t30-e1/audio/s2-007-ad5b46c6202c2401.wav",
+     "start": 65.7647,
+     "duration": 2.6667
+    },
+    {
+     "text": "Changing a tokenizer after pretraining does not mean retraining a tokenizer.",
+     "file": "t30-e1/audio/s2-008-e98b59dd5ac1e83e.wav",
+     "start": 68.8513,
+     "duration": 6.1653
+    },
+    {
+     "text": "It means retraining everything.",
+     "file": "t30-e1/audio/s2-009-67a49a8c635b4142.wav",
+     "start": 75.4367,
+     "duration": 2.4107
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the problem",
+    "title": "Three bad answers, and then the good one",
+    "body": "A neural network needs a finite set of integer symbols. Text is not that. Every obvious way of bridging the gap fails in a specific, instructive way.",
+    "points": [
+     "Characters: tiny vocabulary, but sequences get 4-5x longer, and attention is quadratic in length.",
+     "Words: short sequences, but the vocabulary is unbounded and every unseen word becomes <unk>.",
+     "Bytes: no unknowns ever, but the sequences are the longest of all.",
+     "Subwords: learn the units from the data. Common words stay whole, rare ones decompose."
+    ],
+    "aside": "BPE is the answer to 'what if the vocabulary were a hyperparameter you fit to the corpus?'"
+   },
+   "start": 78.4973,
+   "duration": 76.446,
+   "segments": [
+    {
+     "text": "The problem is that a neural network needs a finite set of integer symbols, and text is not that.",
+     "file": "t30-e1/audio/s3-000-6d5ff5d13be1e38a.wav",
+     "start": 78.4973,
+     "duration": 7.36
+    },
+    {
+     "text": "There are three obvious bridges and each fails instructively.",
+     "file": "t30-e1/audio/s3-001-6383952b091890b6.wav",
+     "start": 86.2773,
+     "duration": 4.5013
+    },
+    {
+     "text": "Characters.",
+     "file": "t30-e1/audio/s3-002-a027860950a24fde.wav",
+     "start": 91.1987,
+     "duration": 1.1947
+    },
+    {
+     "text": "The vocabulary is tiny and there are no unknowns, but sequences get four or five times longer, and attention cost grows with the square of length, so you pay dearly.",
+     "file": "t30-e1/audio/s3-003-1eb4b13c399f8c5d.wav",
+     "start": 92.8133,
+     "duration": 13.2267
+    },
+    {
+     "text": "Words.",
+     "file": "t30-e1/audio/s3-004-7441562f84c184a2.wav",
+     "start": 106.46,
+     "duration": 1.0027
+    },
+    {
+     "text": "Sequences are short, but the vocabulary is unbounded.",
+     "file": "t30-e1/audio/s3-005-7733db252e18b2d8.wav",
+     "start": 107.8827,
+     "duration": 4.3307
+    },
+    {
+     "text": "New tickers appear, people misspell things, and everything you did not see in training collapses to a single unknown token, which is a hole in the model's perception.",
+     "file": "t30-e1/audio/s3-006-e60b22137cac101f.wav",
+     "start": 112.6333,
+     "duration": 12.4587
+    },
+    {
+     "text": "Bytes.",
+     "file": "t30-e1/audio/s3-007-52a1865253713cbc.wav",
+     "start": 125.512,
+     "duration": 0.896
+    },
+    {
+     "text": "No unknowns ever, guaranteed, but the sequences are the longest of the three.",
+     "file": "t30-e1/audio/s3-008-373b44028ac29894.wav",
+     "start": 126.828,
+     "duration": 5.9947
+    },
+    {
+     "text": "Subwords are the answer that won, and the framing worth having is this.",
+     "file": "t30-e1/audio/s3-009-79f507665a9a2f08.wav",
+     "start": 133.2427,
+     "duration": 4.928
+    },
+    {
+     "text": "What if the vocabulary were a hyperparameter you fit to the corpus.",
+     "file": "t30-e1/audio/s3-010-50dee8ed58cdf2d0.wav",
+     "start": 138.5907,
+     "duration": 4.9493
+    },
+    {
+     "text": "Common words stay whole because they are frequent.",
+     "file": "t30-e1/audio/s3-011-1f27bfd9e7b1da56.wav",
+     "start": 143.96,
+     "duration": 3.392
+    },
+    {
+     "text": "Rare words decompose into pieces the model has seen.",
+     "file": "t30-e1/audio/s3-012-aecfe7045c677b89.wav",
+     "start": 147.772,
+     "duration": 4.1387
+    },
+    {
+     "text": "That is byte pair encoding.",
+     "file": "t30-e1/audio/s3-013-60ea161aef2ce290.wav",
+     "start": 152.3307,
+     "duration": 1.9627
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the three lengths",
+    "title": "'length' is three different numbers",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "Python len()",
+      "value": 1,
+      "color": "#7a8aa0",
+      "note": "code points"
+     },
+     {
+      "label": "C# .Length",
+      "value": 2,
+      "color": "#e0b04e",
+      "note": "UTF-16 units"
+     },
+     {
+      "label": "UTF-8 bytes",
+      "value": 4,
+      "color": "#5ac48c",
+      "note": "what a tokenizer sees"
+     },
+     {
+      "label": "what a human sees",
+      "value": 1,
+      "color": "#7a8aa0",
+      "note": "one chart emoji"
+     }
+    ],
+    "caption": "The string is a single chart emoji. Four defensible answers to 'how long is it'."
+   },
+   "start": 154.9433,
+   "duration": 46.1153,
+   "segments": [
+    {
+     "text": "Before the algorithm, a detour that is not pedantry.",
+     "file": "t30-e1/audio/s4-000-6a6ed1e5f6394839.wav",
+     "start": 154.9433,
+     "duration": 3.904
+    },
+    {
+     "text": "Take a single emoji, the upward chart.",
+     "file": "t30-e1/audio/s4-001-34991d9d8733f4f6.wav",
+     "start": 159.2673,
+     "duration": 3.2
+    },
+    {
+     "text": "How long is it.",
+     "file": "t30-e1/audio/s4-002-e3143b09ee00b3ee.wav",
+     "start": 162.8873,
+     "duration": 1.4933
+    },
+    {
+     "text": "Python says one, because a Python string is a sequence of code points.",
+     "file": "t30-e1/audio/s4-003-6f92b7445995cf81.wav",
+     "start": 164.8007,
+     "duration": 5.12
+    },
+    {
+     "text": "C sharp says two, because a dot NET string is UTF sixteen and this character needs a surrogate pair.",
+     "file": "t30-e1/audio/s4-004-c2fca50b02079aed.wav",
+     "start": 170.3407,
+     "duration": 8.576
+    },
+    {
+     "text": "UTF eight says four bytes.",
+     "file": "t30-e1/audio/s4-005-666636c289487389.wav",
+     "start": 179.3367,
+     "duration": 2.4747
+    },
+    {
+     "text": "And a human says one thing.",
+     "file": "t30-e1/audio/s4-006-7d2c426d30013bfb.wav",
+     "start": 182.2313,
+     "duration": 2.1973
+    },
+    {
+     "text": "Four defensible answers, and if you are coming from the dot NET side, the second one is the one your instincts are calibrated to.",
+     "file": "t30-e1/audio/s4-007-94a2b531636d236e.wav",
+     "start": 184.8487,
+     "duration": 10.0053
+    },
+    {
+     "text": "The number a tokenizer cares about is the third one.",
+     "file": "t30-e1/audio/s4-008-2c23ef98b58c154c.wav",
+     "start": 195.274,
+     "duration": 3.8187
+    },
+    {
+     "text": "Bytes.",
+     "file": "t30-e1/audio/s4-009-52a1865253713cbc.wav",
+     "start": 199.5127,
+     "duration": 0.896
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the choice",
+    "title": "Byte-level: the vocabulary starts complete",
+    "filename": "phases/p1/t30-tokenizer-bpe/src/t30_fintok/bpe.py",
+    "code": "vocab = {i: bytes([i]) for i in range(256)}\n\n# and therefore, for every string in the universe:\n#   'hello'    ->  5 base tokens, 0 unknowns\n#   'RELIANCE' ->  8 base tokens, 0 unknowns\n#   emoji      ->  4 base tokens, 0 unknowns\n#   b'\\x00\\xff' -> 2 base tokens, 0 unknowns\n\n# there is no <unk> token, and no code path that needs one",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       1
+      ],
+      "caption": "The entire base vocabulary. 256 entries, and it is finished before training starts."
+     },
+     {
+      "at": 160,
+      "lines": [
+       3,
+       4,
+       5,
+       6,
+       7
+      ],
+      "caption": "Every string has a UTF-8 encoding, and every byte of it is already a token."
+     },
+     {
+      "at": 320,
+      "lines": [
+       9
+      ],
+      "caption": "decode(encode(s)) == s becomes structural, not aspirational."
+     }
+    ]
+   },
+   "start": 201.0587,
+   "duration": 63.8233,
+   "segments": [
+    {
+     "text": "Here is the decision that makes everything downstream simple.",
+     "file": "t30-e1/audio/s5-000-a8f90dfdb0c5125a.wav",
+     "start": 201.0587,
+     "duration": 4.2667
+    },
+    {
+     "text": "The base vocabulary is the two hundred and fifty six byte values.",
+     "file": "t30-e1/audio/s5-001-0614fea63dd744fe.wav",
+     "start": 205.7453,
+     "duration": 4.992
+    },
+    {
+     "text": "That is the whole line.",
+     "file": "t30-e1/audio/s5-002-fae98d82aca7b70a.wav",
+     "start": 211.1573,
+     "duration": 1.7707
+    },
+    {
+     "text": "One dictionary comprehension, and the base vocabulary is finished before training even begins.",
+     "file": "t30-e1/audio/s5-003-8d170b20f4e5e3ff.wav",
+     "start": 213.348,
+     "duration": 7.1467
+    },
+    {
+     "text": "And look at what falls out.",
+     "file": "t30-e1/audio/s5-004-0e08eae6b8c0495d.wav",
+     "start": 220.9147,
+     "duration": 1.984
+    },
+    {
+     "text": "Every string in the universe has a UTF eight encoding, and every byte of that encoding is already a token.",
+     "file": "t30-e1/audio/s5-005-01522a8106e691ef.wav",
+     "start": 223.3187,
+     "duration": 8.2347
+    },
+    {
+     "text": "So hello is five base tokens.",
+     "file": "t30-e1/audio/s5-006-589f47c60411d948.wav",
+     "start": 231.9733,
+     "duration": 2.4533
+    },
+    {
+     "text": "A ticker symbol is eight.",
+     "file": "t30-e1/audio/s5-007-ca3aea6faae577a2.wav",
+     "start": 234.8467,
+     "duration": 2.0053
+    },
+    {
+     "text": "An emoji is four.",
+     "file": "t30-e1/audio/s5-008-5e86f3b933e34a77.wav",
+     "start": 237.272,
+     "duration": 1.792
+    },
+    {
+     "text": "Two arbitrary control bytes are two.",
+     "file": "t30-e1/audio/s5-009-b28bf3c3af978fec.wav",
+     "start": 239.484,
+     "duration": 2.7947
+    },
+    {
+     "text": "And there is no unknown token anywhere in the design, and no code path that needs one.",
+     "file": "t30-e1/audio/s5-010-cd77a91daa7817ac.wav",
+     "start": 242.6987,
+     "duration": 6.464
+    },
+    {
+     "text": "Round tripping becomes structural rather than aspirational.",
+     "file": "t30-e1/audio/s5-011-14015851ee6a8378.wav",
+     "start": 249.5827,
+     "duration": 4.224
+    },
+    {
+     "text": "Decode of encode of s equals s, for every s, because the identity holds at the byte level and merging is reversible.",
+     "file": "t30-e1/audio/s5-012-93ca73b7f07c35aa.wav",
+     "start": 254.2267,
+     "duration": 10.0053
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "Normalisation is still your problem",
+    "body": "'caf\u00e9' typed as one precomposed character is 5 bytes. Typed as 'e' plus a combining acute it is 6. Two strings a user cannot tell apart become two different token sequences \u2014 and the model behaves differently for reasons invisible in the logs.",
+    "code": "len('caf\\u00e9'.encode())   # 5   NFC, precomposed\nlen('cafe\\u0301'.encode())  # 6   NFD, combining acute\n\n# identical on screen. different token ids. different output."
+   },
+   "start": 264.882,
+   "duration": 53.0487,
+   "segments": [
+    {
+     "text": "Byte level does remove the unknown token problem.",
+     "file": "t30-e1/audio/s6-000-74216e79e156a1ca.wav",
+     "start": 264.882,
+     "duration": 3.84
+    },
+    {
+     "text": "It does not remove Unicode.",
+     "file": "t30-e1/audio/s6-001-bf6e5a1997cdda61.wav",
+     "start": 269.142,
+     "duration": 2.2187
+    },
+    {
+     "text": "Here is the one that will bite you in production.",
+     "file": "t30-e1/audio/s6-002-75d78c8e230370f4.wav",
+     "start": 271.7807,
+     "duration": 3.072
+    },
+    {
+     "text": "The word caf\u00e9, typed with a precomposed e acute, is five bytes.",
+     "file": "t30-e1/audio/s6-003-8acd6593e185b1fa.wav",
+     "start": 275.2727,
+     "duration": 4.928
+    },
+    {
+     "text": "The same word typed as a plain e followed by a combining acute accent is six bytes.",
+     "file": "t30-e1/audio/s6-004-adac393fd6629b58.wav",
+     "start": 280.6207,
+     "duration": 6.4213
+    },
+    {
+     "text": "They are pixel identical on screen.",
+     "file": "t30-e1/audio/s6-005-24a5e1ad28f29895.wav",
+     "start": 287.462,
+     "duration": 2.9227
+    },
+    {
+     "text": "They are different byte sequences, so they are different token sequences, so the model produces different output.",
+     "file": "t30-e1/audio/s6-006-dc1908ede2d4646c.wav",
+     "start": 290.8047,
+     "duration": 8.064
+    },
+    {
+     "text": "And nothing in your logs will show you the difference, because your log viewer renders them identically too.",
+     "file": "t30-e1/audio/s6-007-f2eeee459cc47739.wav",
+     "start": 299.2887,
+     "duration": 7.3387
+    },
+    {
+     "text": "Fix a normalisation form at the door, on the way in, once.",
+     "file": "t30-e1/audio/s6-008-9334a345d5dadee8.wav",
+     "start": 307.0473,
+     "duration": 4.5867
+    },
+    {
+     "text": "This is a five line decision that saves a very confusing Friday.",
+     "file": "t30-e1/audio/s6-009-d56eba8c06214eb0.wav",
+     "start": 312.054,
+     "duration": 5.2267
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the algorithm",
+    "title": "Byte pair encoding, in three lines",
+    "english": "Repeatedly find the most frequent adjacent pair of symbols in the corpus, mint a new symbol for it, and replace every occurrence. Stop when the vocabulary is big enough.",
+    "equation": "merge_k = argmax over pairs (a,b) of  count(a,b)     ;     vocab[256+k] = vocab[a] + vocab[b]",
+    "code": "while len(vocab) < vocab_size:\n    best = max(pair_counts, key=pair_counts.get)\n    vocab[len(vocab)] = vocab[best[0]] + vocab[best[1]]\n    merges.append(best)\n    replace_everywhere(best)",
+    "note": "Sennrich et al. 2015. That is the entire algorithm; everything else in the file is efficiency.",
+    "stageFrames": [
+     10,
+     130,
+     260
+    ]
+   },
+   "start": 317.9307,
+   "duration": 53.4393,
+   "segments": [
+    {
+     "text": "And now the algorithm, which is genuinely three lines.",
+     "file": "t30-e1/audio/s7-000-d310cf25bcaa2f98.wav",
+     "start": 317.9307,
+     "duration": 4.224
+    },
+    {
+     "text": "In English.",
+     "file": "t30-e1/audio/s7-001-c4019f85592118a1.wav",
+     "start": 322.5747,
+     "duration": 1.3227
+    },
+    {
+     "text": "Repeatedly find the most frequent adjacent pair of symbols in the corpus, mint a new symbol for that pair, and replace every occurrence of it.",
+     "file": "t30-e1/audio/s7-002-3e69832a665a0989.wav",
+     "start": 324.3173,
+     "duration": 10.24
+    },
+    {
+     "text": "Stop when the vocabulary is large enough.",
+     "file": "t30-e1/audio/s7-003-3a457e55af6d9c87.wav",
+     "start": 334.9773,
+     "duration": 3.0507
+    },
+    {
+     "text": "In symbols.",
+     "file": "t30-e1/audio/s7-004-e7723692fc292689.wav",
+     "start": 338.448,
+     "duration": 1.3867
+    },
+    {
+     "text": "Merge k is the argmax over pairs of their count, and the new vocabulary entry at index two fifty six plus k is the concatenation of the two pieces.",
+     "file": "t30-e1/audio/s7-005-16593331b9f23c62.wav",
+     "start": 340.2547,
+     "duration": 12.3733
+    },
+    {
+     "text": "And in code, five lines.",
+     "file": "t30-e1/audio/s7-006-23969c8970c4acf8.wav",
+     "start": 353.048,
+     "duration": 1.984
+    },
+    {
+     "text": "That is byte pair encoding, from the Sennrich paper in twenty fifteen, originally proposed for machine translation.",
+     "file": "t30-e1/audio/s7-007-7ace4bc468631eb7.wav",
+     "start": 355.452,
+     "duration": 8.3413
+    },
+    {
+     "text": "Everything else in the implementation file is efficiency, and none of it changes the answer.",
+     "file": "t30-e1/audio/s7-008-f8d64a9957ebfa1a.wav",
+     "start": 364.2133,
+     "duration": 6.5067
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the consequence",
+    "title": "The vocabulary is derived, not stored",
+    "body": "Token 256+k is, by construction, the concatenation of the two pieces that merge k joined. So the merge list is the entire artefact \u2014 the vocabulary rebuilds from it in four lines.",
+    "points": [
+     "Saving a tokenizer means saving an ordered list of integer pairs. Nothing else.",
+     "Rank \u2014 the position in that list \u2014 is load-bearing, and episode 2 is about why.",
+     "A prefix of the merge list is itself a complete, valid, smaller tokenizer.",
+     "That last property is what lets you compare two tokenizers at matched vocabulary size."
+    ],
+    "aside": "FinTok's committed artefact is 3,233 pairs of integers. The vocabulary is reconstructed at load time."
+   },
+   "start": 371.37,
+   "duration": 59.1567,
+   "segments": [
+    {
+     "text": "One consequence worth pulling out, because it surprises people.",
+     "file": "t30-e1/audio/s8-000-4909a871ea1d24d3.wav",
+     "start": 371.37,
+     "duration": 4.544
+    },
+    {
+     "text": "The vocabulary is derived, not stored.",
+     "file": "t30-e1/audio/s8-001-18e75eb03ae0e493.wav",
+     "start": 376.334,
+     "duration": 3.2427
+    },
+    {
+     "text": "Token two fifty six plus k is, by construction, the concatenation of the two pieces that merge k joined together.",
+     "file": "t30-e1/audio/s8-002-4eaefd272e355eb4.wav",
+     "start": 379.9967,
+     "duration": 9.4293
+    },
+    {
+     "text": "So saving a tokenizer means saving an ordered list of integer pairs and nothing else.",
+     "file": "t30-e1/audio/s8-003-0d3343ac506b4916.wav",
+     "start": 389.846,
+     "duration": 6.9973
+    },
+    {
+     "text": "The vocabulary rebuilds from it in four lines.",
+     "file": "t30-e1/audio/s8-004-222b2ecd66ba8563.wav",
+     "start": 397.2633,
+     "duration": 3.6907
+    },
+    {
+     "text": "Three things follow.",
+     "file": "t30-e1/audio/s8-005-4ac87c488d662230.wav",
+     "start": 401.374,
+     "duration": 1.6853
+    },
+    {
+     "text": "First, the artefact is tiny.",
+     "file": "t30-e1/audio/s8-006-3b55814fae02eb9f.wav",
+     "start": 403.4793,
+     "duration": 2.2613
+    },
+    {
+     "text": "Second, the rank, meaning the position in that list, is load bearing, and episode two is entirely about why.",
+     "file": "t30-e1/audio/s8-007-35461638c7ece15b.wav",
+     "start": 406.1607,
+     "duration": 8.448
+    },
+    {
+     "text": "And third, a prefix of the merge list is itself a complete and valid smaller tokenizer, which turns out to be exactly the tool we need in episode three to compare two tokenizers fairly.",
+     "file": "t30-e1/audio/s8-008-88360f27455ae325.wav",
+     "start": 415.0287,
+     "duration": 14.848
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "episode one",
+    "points": [
+     "Characters make sequences too long, words make the vocabulary unbounded; subwords are fitted to the corpus.",
+     "'Length' is three different numbers. A tokenizer cares about UTF-8 bytes.",
+     "A byte-level base vocabulary is 256 entries and is complete before training \u2014 no <unk>, ever.",
+     "Normalisation is still yours to fix: NFC and NFD are the same word and different tokens.",
+     "BPE: most frequent adjacent pair, mint a symbol, replace, repeat. The merge list IS the tokenizer."
+    ],
+    "ifSkipped": "Half of 'LLMs cannot do arithmetic' is a pre-tokenizer choice about how numbers get split.",
+    "next": "Episode 2: training it, with every merge shown on a corpus of nine words."
+   },
+   "start": 430.5267,
+   "duration": 77.4127,
+   "segments": [
+    {
+     "text": "To recap.",
+     "file": "t30-e1/audio/s9-000-2482ddde8423e0e0.wav",
+     "start": 430.5267,
+     "duration": 1.1947
+    },
+    {
+     "text": "Characters make sequences too long, words make the vocabulary unbounded, and subwords are the compromise that is fitted to your corpus rather than chosen in advance.",
+     "file": "t30-e1/audio/s9-001-648247bb5d45d732.wav",
+     "start": 432.1413,
+     "duration": 12.7787
+    },
+    {
+     "text": "Length is three different numbers and a tokenizer cares about the UTF eight one.",
+     "file": "t30-e1/audio/s9-002-48fbd8bf05c40210.wav",
+     "start": 445.34,
+     "duration": 6.208
+    },
+    {
+     "text": "A byte level base vocabulary is two hundred and fifty six entries, complete before training starts, which eliminates the unknown token entirely.",
+     "file": "t30-e1/audio/s9-003-44f8217acc6d3b63.wav",
+     "start": 451.968,
+     "duration": 11.6267
+    },
+    {
+     "text": "Normalisation is still your problem, because the same word in two normal forms is two token sequences.",
+     "file": "t30-e1/audio/s9-004-84b1298dd48f3ecd.wav",
+     "start": 464.0147,
+     "duration": 8.0213
+    },
+    {
+     "text": "And the algorithm is.",
+     "file": "t30-e1/audio/s9-005-00110223160a25a8.wav",
+     "start": 472.456,
+     "duration": 1.8773
+    },
+    {
+     "text": "Most frequent adjacent pair, mint a symbol, replace everywhere, repeat.",
+     "file": "t30-e1/audio/s9-006-113abe5555c3ecb3.wav",
+     "start": 474.7533,
+     "duration": 5.3333
+    },
+    {
+     "text": "The merge list is the tokenizer.",
+     "file": "t30-e1/audio/s9-007-191f36c089645b48.wav",
+     "start": 480.5067,
+     "duration": 2.752
+    },
+    {
+     "text": "One last thought before the next episode.",
+     "file": "t30-e1/audio/s9-008-dbe204bb7f33fc1f.wav",
+     "start": 483.6787,
+     "duration": 2.8373
+    },
+    {
+     "text": "A good fraction of the complaint that language models cannot do arithmetic is really a claim about how the pre tokenizer chose to split numbers.",
+     "file": "t30-e1/audio/s9-009-4fd91b0620fba497.wav",
+     "start": 486.936,
+     "duration": 10.624
+    },
+    {
+     "text": "Episode three has the measurements.",
+     "file": "t30-e1/audio/s9-010-326b00f097dafb29.wav",
+     "start": 497.98,
+     "duration": 2.5387
+    },
+    {
+     "text": "Next episode.",
+     "file": "t30-e1/audio/s9-011-a900b8555c45ecba.wav",
+     "start": 500.9387,
+     "duration": 1.536
+    },
+    {
+     "text": "Training, with every merge shown, on a corpus of nine words.",
+     "file": "t30-e1/audio/s9-012-5f4826975cd1b58b.wav",
+     "start": 502.8947,
+     "duration": 4.3947
+    }
+   ]
+  }
+ ]
+}

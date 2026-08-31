@@ -1,0 +1,939 @@
+{
+ "topic": "t16a-e1",
+ "episode": 1,
+ "title": "Why matmul is everything",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 545.5113,
+ "wordCount": 1200,
+ "wordsPerMinute": 132.0,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 40.5,
+ "generatedInSeconds": 468.4,
+ "segmentsSynthesised": 103,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Matrix multiplication, part one",
+    "subtitle": "Same flops, same compiler flags, 36x apart. The difference is the order you touch memory.",
+    "topicId": "T16A",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 40.4967,
+   "segments": [
+    {
+     "text": "Phase one, topic sixteen A.",
+     "file": "t16a-e1/audio/s1-000-65e55e3c5bd57686.wav",
+     "start": 0.0,
+     "duration": 2.3253
+    },
+    {
+     "text": "Matrix multiplication on a CPU.",
+     "file": "t16a-e1/audio/s1-001-f10e40dc4eda2230.wav",
+     "start": 2.7453,
+     "duration": 3.0507
+    },
+    {
+     "text": "There is a GPU half of this topic in phase seven, and it will make no sense without this one.",
+     "file": "t16a-e1/audio/s1-002-89d49876ad8b8700.wav",
+     "start": 6.216,
+     "duration": 6.7627
+    },
+    {
+     "text": "Here is the claim we are going to establish, and I want it up front so you can disbelieve it for the next ten minutes.",
+     "file": "t16a-e1/audio/s1-003-be9e9a22145eec71.wav",
+     "start": 13.3987,
+     "duration": 7.808
+    },
+    {
+     "text": "The same two billion floating point operations, written five ways, compiled with identical flags, run thirty six times apart.",
+     "file": "t16a-e1/audio/s1-004-2fe834f724d421cd.wav",
+     "start": 21.6267,
+     "duration": 10.4533
+    },
+    {
+     "text": "Not because of the language.",
+     "file": "t16a-e1/audio/s1-005-ec1ef58fe82ba776.wav",
+     "start": 32.5,
+     "duration": 1.92
+    },
+    {
+     "text": "Not because of the compiler.",
+     "file": "t16a-e1/audio/s1-006-273e5c784a560c0c.wav",
+     "start": 34.84,
+     "duration": 2.1547
+    },
+    {
+     "text": "Because of the order they touch memory.",
+     "file": "t16a-e1/audio/s1-007-968d87220e871c38.wav",
+     "start": 37.4147,
+     "duration": 2.432
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the premise",
+    "title": "Everything is a matmul",
+    "body": "A transformer forward pass is matmuls with a little glue. Attention is two of them. The feed-forward block is two more. Fine-tuning, inference, embedding, retrieval \u2014 all of it bottoms out here.",
+    "points": [
+     "Well over 90% of the flops in a transformer are in dense matrix multiplies.",
+     "Which is why hardware is designed around this one kernel: tensor cores exist for it.",
+     "Which is why 'how fast is your model' is mostly 'how well is your matmul scheduled'.",
+     "And why this is the literacy every kernel in Phases 6 and 7 assumes."
+    ],
+    "aside": "You will not write the matmul your models use. You will spend years reasoning about its behaviour."
+   },
+   "start": 40.4967,
+   "duration": 67.0727,
+   "segments": [
+    {
+     "text": "Start with why this topic exists at all.",
+     "file": "t16a-e1/audio/s2-000-c48c5adeca0bd0e5.wav",
+     "start": 40.4967,
+     "duration": 2.816
+    },
+    {
+     "text": "A transformer forward pass is matrix multiplies with a small amount of glue.",
+     "file": "t16a-e1/audio/s2-001-9ffd2f2529c9c28f.wav",
+     "start": 43.7327,
+     "duration": 6.2933
+    },
+    {
+     "text": "Attention is two of them.",
+     "file": "t16a-e1/audio/s2-002-779e475c15efdf7f.wav",
+     "start": 50.446,
+     "duration": 2.0267
+    },
+    {
+     "text": "The feed forward block is two more.",
+     "file": "t16a-e1/audio/s2-003-7cb842b7bb7db5f7.wav",
+     "start": 52.8927,
+     "duration": 2.6027
+    },
+    {
+     "text": "Fine tuning, inference, embedding, retrieval, all of it bottoms out in the same kernel.",
+     "file": "t16a-e1/audio/s2-004-21fbdc3fe0e57870.wav",
+     "start": 55.9153,
+     "duration": 6.5493
+    },
+    {
+     "text": "Well over ninety percent of the arithmetic in a transformer is dense matrix multiplication.",
+     "file": "t16a-e1/audio/s2-005-e9400f8e27ef0ae6.wav",
+     "start": 62.8847,
+     "duration": 6.976
+    },
+    {
+     "text": "That is why the hardware is designed around this one operation.",
+     "file": "t16a-e1/audio/s2-006-1bf18898adda3b07.wav",
+     "start": 70.2807,
+     "duration": 4.5227
+    },
+    {
+     "text": "Tensor cores exist for it specifically.",
+     "file": "t16a-e1/audio/s2-007-f008ca9f8af13701.wav",
+     "start": 75.2233,
+     "duration": 2.8587
+    },
+    {
+     "text": "It is why the question how fast is your model is mostly the question how well is your matmul scheduled.",
+     "file": "t16a-e1/audio/s2-008-54f1a696f9577d07.wav",
+     "start": 78.502,
+     "duration": 8.2133
+    },
+    {
+     "text": "And it is why this is the literacy that every kernel in phases six and seven quietly assumes.",
+     "file": "t16a-e1/audio/s2-009-616872478e2d9717.wav",
+     "start": 87.1353,
+     "duration": 6.6133
+    },
+    {
+     "text": "You are almost certainly never going to write the matmul your models actually use.",
+     "file": "t16a-e1/audio/s2-010-01fc3064316cdd30.wav",
+     "start": 94.1687,
+     "duration": 5.6533
+    },
+    {
+     "text": "You are going to spend years reasoning about its behaviour, and that is a different skill which starts here.",
+     "file": "t16a-e1/audio/s2-011-fb68743dca3aa06a.wav",
+     "start": 100.242,
+     "duration": 6.6773
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the starting point",
+    "title": "Pure Python, and what it implies",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "n=128 measured",
+      "value": 0.087,
+      "color": "#7a8aa0",
+      "note": "87 ms"
+     },
+     {
+      "label": "n=1024 implied",
+      "value": 44.8,
+      "color": "#e0b04e",
+      "note": "45 seconds"
+     },
+     {
+      "label": "n=4096 implied",
+      "value": 2867,
+      "color": "#e05e6b",
+      "note": "48 minutes"
+     }
+    ],
+    "logScale": true,
+    "yLabel": "seconds",
+    "caption": "0.05 GFLOP/s from the interpreter. Cost grows as n cubed, so the implication is worse than it looks."
+   },
+   "start": 107.5693,
+   "duration": 42.382,
+   "segments": [
+    {
+     "text": "We start where everybody starts.",
+     "file": "t16a-e1/audio/s3-000-0236f2cc1b5335c7.wav",
+     "start": 107.5693,
+     "duration": 2.4747
+    },
+    {
+     "text": "The triple loop, in pure Python.",
+     "file": "t16a-e1/audio/s3-001-5feb63f1fbaf7e4f.wav",
+     "start": 110.464,
+     "duration": 2.3253
+    },
+    {
+     "text": "At a hundred and twenty eight by a hundred and twenty eight it takes eighty seven milliseconds, which is fifty megaflops per second.",
+     "file": "t16a-e1/audio/s3-002-8f37742a3db9ef7a.wav",
+     "start": 113.2093,
+     "duration": 9.4933
+    },
+    {
+     "text": "Nobody is surprised.",
+     "file": "t16a-e1/audio/s3-003-46b4d0d09ff45627.wav",
+     "start": 123.1227,
+     "duration": 1.728
+    },
+    {
+     "text": "But hold onto the implication, because the cost grows as n cubed.",
+     "file": "t16a-e1/audio/s3-004-12fec124974deb99.wav",
+     "start": 125.2707,
+     "duration": 5.0773
+    },
+    {
+     "text": "At a thousand by a thousand that same rate is forty five seconds.",
+     "file": "t16a-e1/audio/s3-005-8e1fe6d46885a789.wav",
+     "start": 130.768,
+     "duration": 5.1627
+    },
+    {
+     "text": "At four thousand it is forty eight minutes.",
+     "file": "t16a-e1/audio/s3-006-ee520aeabef94851.wav",
+     "start": 136.3507,
+     "duration": 2.8587
+    },
+    {
+     "text": "A single layer.",
+     "file": "t16a-e1/audio/s3-007-93fc13015eee7806.wav",
+     "start": 139.6293,
+     "duration": 1.5147
+    },
+    {
+     "text": "One forward pass.",
+     "file": "t16a-e1/audio/s3-008-9f2817266e3ed84d.wav",
+     "start": 141.564,
+     "duration": 1.6
+    },
+    {
+     "text": "That is the scale of the problem, and it is why the rest of this episode exists.",
+     "file": "t16a-e1/audio/s3-009-fcdeeb83f75267fa.wav",
+     "start": 143.584,
+     "duration": 5.7173
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the accounting",
+    "title": "Arithmetic intensity: the permission to be fast",
+    "english": "Count the flops, count the bytes that must move, and divide. That ratio decides whether a kernel can be limited by arithmetic at all, or is doomed to wait on memory.",
+    "equation": "AI = 2\u00b7m\u00b7n\u00b7k / ( (mk + kn + mn) \u00b7 8 bytes )",
+    "code": "n =   64  ->    5.3 FLOPs per byte\nn =  256  ->   21.3\nn = 1024  ->   85.3\nn = 4096  ->  341.3",
+    "note": "It grows with n. That growth is permission, not a guarantee \u2014 you only collect it if you reuse what you loaded.",
+    "stageFrames": [
+     10,
+     140,
+     280
+    ]
+   },
+   "start": 149.9513,
+   "duration": 79.078,
+   "segments": [
+    {
+     "text": "Before optimising anything, do the accounting, because it tells you what is even possible.",
+     "file": "t16a-e1/audio/s4-000-c9764dcd11a3e895.wav",
+     "start": 149.9513,
+     "duration": 6.784
+    },
+    {
+     "text": "In English.",
+     "file": "t16a-e1/audio/s4-001-c4019f85592118a1.wav",
+     "start": 157.1553,
+     "duration": 1.3227
+    },
+    {
+     "text": "Count the floating point operations, count the bytes that have to move if every matrix is read once, and divide.",
+     "file": "t16a-e1/audio/s4-002-4d53b1d4cbd69bbe.wav",
+     "start": 158.898,
+     "duration": 8.4053
+    },
+    {
+     "text": "That ratio is called arithmetic intensity, and it decides whether a kernel can be limited by arithmetic at all or is doomed to sit waiting on memory.",
+     "file": "t16a-e1/audio/s4-003-7c318f836c004c3a.wav",
+     "start": 167.7233,
+     "duration": 11.584
+    },
+    {
+     "text": "In symbols.",
+     "file": "t16a-e1/audio/s4-004-e7723692fc292689.wav",
+     "start": 179.7273,
+     "duration": 1.3867
+    },
+    {
+     "text": "Two m n k flops, over m k plus k n plus m n elements, times eight bytes each.",
+     "file": "t16a-e1/audio/s4-005-3598533e3cd76918.wav",
+     "start": 181.534,
+     "duration": 7.872
+    },
+    {
+     "text": "And in numbers.",
+     "file": "t16a-e1/audio/s4-006-4d4134ff14cfbecf.wav",
+     "start": 189.826,
+     "duration": 1.5147
+    },
+    {
+     "text": "At sixty four, five point three flops per byte.",
+     "file": "t16a-e1/audio/s4-007-5cb218a3377b3775.wav",
+     "start": 191.7607,
+     "duration": 3.776
+    },
+    {
+     "text": "At two hundred and fifty six, twenty one.",
+     "file": "t16a-e1/audio/s4-008-ddd833e4d4ce603a.wav",
+     "start": 195.9567,
+     "duration": 3.1787
+    },
+    {
+     "text": "At a thousand, eighty five.",
+     "file": "t16a-e1/audio/s4-009-cedb1fe6d770abdf.wav",
+     "start": 199.5553,
+     "duration": 2.24
+    },
+    {
+     "text": "At four thousand, three hundred and forty one.",
+     "file": "t16a-e1/audio/s4-010-7d0cf83177512126.wav",
+     "start": 202.2153,
+     "duration": 3.3707
+    },
+    {
+     "text": "It grows with n, and that growth is the entire reason matmul can be made fast.",
+     "file": "t16a-e1/audio/s4-011-02aaa65cdcd83445.wav",
+     "start": 206.006,
+     "duration": 6.1013
+    },
+    {
+     "text": "But read the note carefully.",
+     "file": "t16a-e1/audio/s4-012-7ce51ff69c3732b3.wav",
+     "start": 212.5273,
+     "duration": 1.8773
+    },
+    {
+     "text": "It is permission, not a guarantee.",
+     "file": "t16a-e1/audio/s4-013-c7deb6433489ed4b.wav",
+     "start": 214.8247,
+     "duration": 2.56
+    },
+    {
+     "text": "You only collect that reuse if you actually use the bytes you loaded before they are evicted.",
+     "file": "t16a-e1/audio/s4-014-01b474297a30d607.wav",
+     "start": 217.8047,
+     "duration": 6.6347
+    },
+    {
+     "text": "The naive loop does not, which is the next scene.",
+     "file": "t16a-e1/audio/s4-015-c2638a47e11505de.wav",
+     "start": 224.8593,
+     "duration": 3.52
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the crime",
+    "title": "The inner loop walks a column",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "A row i",
+      "sub": "contiguous, cheap",
+      "x": 0.2,
+      "y": 0.25,
+      "w": 0.3,
+      "color": "#5ac48c",
+      "appearAt": 8
+     },
+     {
+      "id": "b",
+      "label": "B column j",
+      "sub": "stride = n x 8 bytes",
+      "x": 0.2,
+      "y": 0.72,
+      "w": 0.3,
+      "color": "#e05e6b",
+      "appearAt": 26
+     },
+     {
+      "id": "line",
+      "label": "64-byte cache line",
+      "sub": "8 doubles fetched",
+      "x": 0.62,
+      "y": 0.72,
+      "w": 0.26,
+      "appearAt": 52
+     },
+     {
+      "id": "used",
+      "label": "1 used, 7 discarded",
+      "sub": "87% waste",
+      "x": 0.9,
+      "y": 0.72,
+      "w": 0.2,
+      "color": "#e05e6b",
+      "appearAt": 72
+     }
+    ],
+    "edges": [
+     {
+      "from": "b",
+      "to": "line",
+      "appearAt": 60
+     },
+     {
+      "from": "line",
+      "to": "used",
+      "appearAt": 78
+     }
+    ],
+    "caption": "Every load of B in the i-j-k order pulls a fresh line and uses one eighth of it."
+   },
+   "start": 229.0293,
+   "duration": 53.034,
+   "segments": [
+    {
+     "text": "Here is the crime, and it is worth seeing rather than being told.",
+     "file": "t16a-e1/audio/s5-000-6255faa37be6e8fc.wav",
+     "start": 229.0293,
+     "duration": 4.544
+    },
+    {
+     "text": "In the textbook i j k order, the innermost loop varies k.",
+     "file": "t16a-e1/audio/s5-001-7fd759bbc37bdf60.wav",
+     "start": 233.9933,
+     "duration": 4.8
+    },
+    {
+     "text": "So it walks along a row of A, which is contiguous and cheap.",
+     "file": "t16a-e1/audio/s5-002-c814dc43650b8257.wav",
+     "start": 239.2133,
+     "duration": 4.1173
+    },
+    {
+     "text": "And it walks down a column of B, where consecutive elements are a whole row apart.",
+     "file": "t16a-e1/audio/s5-003-457698694356abf9.wav",
+     "start": 243.7507,
+     "duration": 6.1653
+    },
+    {
+     "text": "Now, memory does not move in doubles.",
+     "file": "t16a-e1/audio/s5-004-cbca9b398c2a7da2.wav",
+     "start": 250.336,
+     "duration": 2.9227
+    },
+    {
+     "text": "It moves in cache lines, and a cache line is sixty four bytes, which is eight doubles.",
+     "file": "t16a-e1/audio/s5-005-cb06bd63e4626d9d.wav",
+     "start": 253.6787,
+     "duration": 6.8053
+    },
+    {
+     "text": "So every single load of B fetches eight doubles, uses one of them, and throws seven away.",
+     "file": "t16a-e1/audio/s5-006-ea83af5c97d1150e.wav",
+     "start": 260.904,
+     "duration": 6.8053
+    },
+    {
+     "text": "That is eighty seven percent of your memory bandwidth spent on data you never look at.",
+     "file": "t16a-e1/audio/s5-007-b5827c28e00320e5.wav",
+     "start": 268.1293,
+     "duration": 5.8667
+    },
+    {
+     "text": "And the compiler cannot fix it, because the compiler is not allowed to change the meaning of your loops.",
+     "file": "t16a-e1/audio/s5-008-c61730e8a1d85575.wav",
+     "start": 274.416,
+     "duration": 6.9973
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the fix",
+    "title": "One swapped loop",
+    "filename": "phases/p1/t16a-matmul-cpu/src/t16a_matmul/kernels.c",
+    "code": "/* i-j-k : inner loop varies k, B strides by a full row */\nfor (int j = 0; j < n; j++) {\n    double acc = 0.0;\n    for (int k = 0; k < k_dim; k++)\n        acc += A[i*k_dim + k] * B[k*n + j];\n    C[i*n + j] = acc;\n}\n\n/* i-k-j : inner loop varies j, B and C both walk rows */\nfor (int k = 0; k < k_dim; k++) {\n    const double a = A[i*k_dim + k];\n    for (int j = 0; j < n; j++)\n        C[i*n + j] += a * B[k*n + j];\n}",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2,
+       3,
+       4,
+       5,
+       6
+      ],
+      "caption": "The accumulator lives in a register \u2014 which is nice, and not worth what it costs."
+     },
+     {
+      "at": 160,
+      "lines": [
+       5
+      ],
+      "caption": "B[k*n + j] with k varying: a fresh cache line every iteration."
+     },
+     {
+      "at": 300,
+      "lines": [
+       10,
+       11,
+       12,
+       13
+      ],
+      "caption": "Swap the loops. Now A[i][k] is a scalar hoisted out, and j varies innermost."
+     },
+     {
+      "at": 420,
+      "lines": [
+       13
+      ],
+      "caption": "B and C both walk contiguously \u2014 prefetchable, and the compiler can vectorise it."
+     },
+     {
+      "at": 520,
+      "lines": [
+       13
+      ],
+      "caption": "The price: the accumulator moves out of a register and into memory, once per k."
+     }
+    ]
+   },
+   "start": 282.0633,
+   "duration": 57.7073,
+   "segments": [
+    {
+     "text": "And here is the entire fix.",
+     "file": "t16a-e1/audio/s6-000-ffd754f5a9b9ac31.wav",
+     "start": 282.0633,
+     "duration": 2.1973
+    },
+    {
+     "text": "Two versions of the same arithmetic.",
+     "file": "t16a-e1/audio/s6-001-38f68c2623aa35e9.wav",
+     "start": 284.6807,
+     "duration": 2.6027
+    },
+    {
+     "text": "On top, i j k.",
+     "file": "t16a-e1/audio/s6-002-3aa6119a8f706de4.wav",
+     "start": 287.7033,
+     "duration": 2.0053
+    },
+    {
+     "text": "The accumulator lives in a register, which feels efficient, and B strides by a whole row on every iteration of the inner loop.",
+     "file": "t16a-e1/audio/s6-003-8d1dee6dee6a0606.wav",
+     "start": 290.1287,
+     "duration": 9.7493
+    },
+    {
+     "text": "Underneath, i k j.",
+     "file": "t16a-e1/audio/s6-004-78147c5b01905414.wav",
+     "start": 300.298,
+     "duration": 2.1547
+    },
+    {
+     "text": "We hoist the element of A out as a scalar, because it does not change in the inner loop.",
+     "file": "t16a-e1/audio/s6-005-eedab82568ef0e23.wav",
+     "start": 302.8727,
+     "duration": 6.2293
+    },
+    {
+     "text": "And now j varies innermost, so both B and C walk contiguously along rows.",
+     "file": "t16a-e1/audio/s6-006-4a7e89735e788dff.wav",
+     "start": 309.522,
+     "duration": 6.5493
+    },
+    {
+     "text": "The hardware prefetcher can see the pattern.",
+     "file": "t16a-e1/audio/s6-007-7ec75e833da58a14.wav",
+     "start": 316.4913,
+     "duration": 2.752
+    },
+    {
+     "text": "The compiler can vectorise the loop into wide registers.",
+     "file": "t16a-e1/audio/s6-008-0f853d76fc6ae2ff.wav",
+     "start": 319.6633,
+     "duration": 4.3093
+    },
+    {
+     "text": "There is a real price.",
+     "file": "t16a-e1/audio/s6-009-dee718574ad2d13f.wav",
+     "start": 324.3927,
+     "duration": 1.8773
+    },
+    {
+     "text": "The accumulator has moved out of a register and into C, so we now write to memory once per k rather than once per output.",
+     "file": "t16a-e1/audio/s6-010-19df3c4e2b36e259.wav",
+     "start": 326.69,
+     "duration": 9.088
+    },
+    {
+     "text": "And it is still, overwhelmingly, worth it.",
+     "file": "t16a-e1/audio/s6-011-26a86c16809f5748.wav",
+     "start": 336.198,
+     "duration": 2.9227
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "1024x1024, identical compiler flags",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "i-j-k naive",
+      "value": 0.53,
+      "color": "#e05e6b",
+      "note": "4098 ms"
+     },
+     {
+      "label": "i-k-j",
+      "value": 8.3,
+      "color": "#e0b04e",
+      "note": "one swapped loop"
+     },
+     {
+      "label": "blocked",
+      "value": 12.2,
+      "color": "#5ac48c",
+      "note": "episode 2"
+     },
+     {
+      "label": "blocked + threads + reg tile",
+      "value": 18.7,
+      "color": "#5ac48c",
+      "note": "episode 2"
+     },
+     {
+      "label": "OpenBLAS",
+      "value": 135.0,
+      "color": "#7a8aa0",
+      "note": "~100% of peak"
+     }
+    ],
+    "yLabel": "GFLOP/s",
+    "logScale": true,
+    "caption": "All five hand-written kernels: -O3 -march=native -fopenmp. Handicapping the naive one would be a better number and a worse lesson."
+   },
+   "start": 339.7707,
+   "duration": 57.8207,
+   "segments": [
+    {
+     "text": "Here is the measurement.",
+     "file": "t16a-e1/audio/s7-000-0d4c4cfb1c051f3b.wav",
+     "start": 339.7707,
+     "duration": 1.7707
+    },
+    {
+     "text": "All five kernels, compiled with identical flags.",
+     "file": "t16a-e1/audio/s7-001-4b88788a61a8f9b4.wav",
+     "start": 341.9613,
+     "duration": 4.0533
+    },
+    {
+     "text": "Dash O three, march native, f open m p.",
+     "file": "t16a-e1/audio/s7-002-f2c5b24904aa63a5.wav",
+     "start": 346.4347,
+     "duration": 3.6267
+    },
+    {
+     "text": "I want to be explicit about that, because it would be very easy to compile the naive version at dash O zero and report a much prettier ratio.",
+     "file": "t16a-e1/audio/s7-003-74669b4d923fe6ba.wav",
+     "start": 350.4813,
+     "duration": 10.8373
+    },
+    {
+     "text": "It would also teach you nothing, because then you would be measuring the optimiser rather than the algorithm.",
+     "file": "t16a-e1/audio/s7-004-7742a68b44e5694c.wav",
+     "start": 361.7387,
+     "duration": 7.5947
+    },
+    {
+     "text": "Naive i j k gets zero point five three gigaflops.",
+     "file": "t16a-e1/audio/s7-005-0abea99fa19d8704.wav",
+     "start": 369.7533,
+     "duration": 5.0133
+    },
+    {
+     "text": "The swapped loop gets eight point three.",
+     "file": "t16a-e1/audio/s7-006-1302f1c9fecf7e4e.wav",
+     "start": 375.1867,
+     "duration": 2.56
+    },
+    {
+     "text": "That is fifteen point eight times, from moving one line.",
+     "file": "t16a-e1/audio/s7-007-24cf821bab7520dc.wav",
+     "start": 378.1667,
+     "duration": 4.0107
+    },
+    {
+     "text": "Blocking, which is episode two, gets twelve point two.",
+     "file": "t16a-e1/audio/s7-008-1824a96ccac26217.wav",
+     "start": 382.5973,
+     "duration": 3.904
+    },
+    {
+     "text": "Blocking with threads and a register tile gets eighteen point seven.",
+     "file": "t16a-e1/audio/s7-009-131a1f5f9cd9542d.wav",
+     "start": 386.9213,
+     "duration": 4.7787
+    },
+    {
+     "text": "And OpenBLAS, at the far right, gets a hundred and thirty five.",
+     "file": "t16a-e1/audio/s7-010-5b0d764fd89a3e5a.wav",
+     "start": 392.12,
+     "duration": 4.8213
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the ceiling",
+    "title": "Always know your 100%",
+    "body": "A GFLOP/s number means nothing on its own. Compute the machine's ceiling by hand: cores times clock times FLOPs per cycle. Then every measurement becomes a percentage of something real.",
+    "points": [
+     "2 cores x 2.10 GHz x 32 FLOPs/cycle = 134 GFLOP/s.",
+     "The 32 is AVX-512: 8 doubles per vector, 2 flops per FMA, 2 FMA units.",
+     "OpenBLAS measures 135. It is at essentially 100% of peak.",
+     "So our 18.7 is 14% of peak \u2014 and 'why 14%' is a far better question than 'how do I beat BLAS'."
+    ],
+    "aside": "The useful interview question is never 'how many GFLOP/s'. It is 'what fraction of peak, and what is your peak?'"
+   },
+   "start": 397.5913,
+   "duration": 75.8993,
+   "segments": [
+    {
+     "text": "And now the most valuable habit in this entire topic.",
+     "file": "t16a-e1/audio/s8-000-420ff3876b8816c6.wav",
+     "start": 397.5913,
+     "duration": 4.2453
+    },
+    {
+     "text": "Always know what a hundred percent is.",
+     "file": "t16a-e1/audio/s8-001-eda4d1f1908a18cf.wav",
+     "start": 402.2567,
+     "duration": 2.7733
+    },
+    {
+     "text": "A gigaflops number on its own means nothing.",
+     "file": "t16a-e1/audio/s8-002-3e840524e1dd08f7.wav",
+     "start": 405.45,
+     "duration": 3.2
+    },
+    {
+     "text": "So compute the ceiling by hand.",
+     "file": "t16a-e1/audio/s8-003-7ee06639d953d32e.wav",
+     "start": 409.07,
+     "duration": 2.2187
+    },
+    {
+     "text": "Cores, times clock, times floating point operations per cycle.",
+     "file": "t16a-e1/audio/s8-004-81dbf2fdadb2f0b0.wav",
+     "start": 411.7087,
+     "duration": 4.8427
+    },
+    {
+     "text": "Two cores, at two point one gigahertz, times thirty two flops per cycle, is a hundred and thirty four gigaflops.",
+     "file": "t16a-e1/audio/s8-005-b3c531ac9b9d7dc1.wav",
+     "start": 416.9713,
+     "duration": 8.896
+    },
+    {
+     "text": "Where does the thirty two come from.",
+     "file": "t16a-e1/audio/s8-006-53326cd322e1ba31.wav",
+     "start": 426.2873,
+     "duration": 2.3467
+    },
+    {
+     "text": "AVX five twelve holds eight doubles per vector, a fused multiply add is two flops, and the core has two of those units.",
+     "file": "t16a-e1/audio/s8-007-d4c3de9f6d3adab2.wav",
+     "start": 429.054,
+     "duration": 10.048
+    },
+    {
+     "text": "Eight times two times two is thirty two.",
+     "file": "t16a-e1/audio/s8-008-bef43f13b972c068.wav",
+     "start": 439.522,
+     "duration": 2.944
+    },
+    {
+     "text": "Now look back at the chart.",
+     "file": "t16a-e1/audio/s8-009-fdfc580d463da4aa.wav",
+     "start": 442.886,
+     "duration": 1.984
+    },
+    {
+     "text": "OpenBLAS measured a hundred and thirty five.",
+     "file": "t16a-e1/audio/s8-010-9fd7d9473da7ee49.wav",
+     "start": 445.29,
+     "duration": 3.456
+    },
+    {
+     "text": "It is running at essentially one hundred percent of theoretical peak.",
+     "file": "t16a-e1/audio/s8-011-6023bb2c335f056d.wav",
+     "start": 449.166,
+     "duration": 4.9707
+    },
+    {
+     "text": "Which means our best hand written kernel is at fourteen percent.",
+     "file": "t16a-e1/audio/s8-012-858e84bc168e562c.wav",
+     "start": 454.5567,
+     "duration": 4.5227
+    },
+    {
+     "text": "And that reframes the goal completely.",
+     "file": "t16a-e1/audio/s8-013-89fcbda41ba299ab.wav",
+     "start": 459.4993,
+     "duration": 2.5387
+    },
+    {
+     "text": "Beating OpenBLAS is not the goal and never was.",
+     "file": "t16a-e1/audio/s8-014-3e84b70da203fac4.wav",
+     "start": 462.458,
+     "duration": 3.8827
+    },
+    {
+     "text": "Explaining the fourteen percent is the goal, and episode two is that explanation.",
+     "file": "t16a-e1/audio/s8-015-5a84258beffe1d47.wav",
+     "start": 466.7607,
+     "duration": 6.08
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "episode one",
+    "points": [
+     "Over 90% of a transformer's flops are dense matmul \u2014 this is the kernel the hardware was designed for.",
+     "Arithmetic intensity grows with n: that is permission to be compute-bound, not a guarantee.",
+     "The naive i-j-k loop walks a column of B and discards 7 of every 8 doubles it fetches.",
+     "Swapping two loops is worth 15.8x. Same flops, same flags, same result.",
+     "Always compute your machine's peak by hand, so every number is a percentage of something real."
+    ],
+    "ifSkipped": "Every kernel in Phases 6 and 7 \u2014 KV paging, quantization, Flash Attention \u2014 assumes you can reason about this.",
+    "next": "Episode 2: cache blocking, threads, and where the remaining 7x to OpenBLAS actually lives."
+   },
+   "start": 473.4907,
+   "duration": 72.0207,
+   "segments": [
+    {
+     "text": "To recap.",
+     "file": "t16a-e1/audio/s9-000-2482ddde8423e0e0.wav",
+     "start": 473.4907,
+     "duration": 1.1947
+    },
+    {
+     "text": "Over ninety percent of a transformer's arithmetic is dense matrix multiply, which is the kernel the hardware was designed around.",
+     "file": "t16a-e1/audio/s9-001-8d428f92e4c40169.wav",
+     "start": 475.1053,
+     "duration": 10.56
+    },
+    {
+     "text": "Arithmetic intensity grows with n, and that is permission to be compute bound rather than a guarantee of it.",
+     "file": "t16a-e1/audio/s9-002-c60c172e2190369a.wav",
+     "start": 486.0853,
+     "duration": 7.8933
+    },
+    {
+     "text": "The naive i j k loop walks a column of B and throws away seven of every eight doubles it fetches.",
+     "file": "t16a-e1/audio/s9-003-9c1aec081afb30d3.wav",
+     "start": 494.3987,
+     "duration": 8.2347
+    },
+    {
+     "text": "Swapping two loops is worth fifteen point eight times, with the same flops, the same flags and the same result.",
+     "file": "t16a-e1/audio/s9-004-da2e5a01dadc3a60.wav",
+     "start": 503.0533,
+     "duration": 8.3627
+    },
+    {
+     "text": "And always compute your machine's peak by hand, so that every number you produce is a percentage of something real.",
+     "file": "t16a-e1/audio/s9-005-664166dd9474f197.wav",
+     "start": 511.836,
+     "duration": 8.128
+    },
+    {
+     "text": "Skip this and every kernel in phases six and seven, the KV cache pager, the quantiser, Flash Attention, is a recipe you follow rather than a design you understand.",
+     "file": "t16a-e1/audio/s9-006-43573bd2dff38fcf.wav",
+     "start": 520.384,
+     "duration": 13.696
+    },
+    {
+     "text": "Next episode.",
+     "file": "t16a-e1/audio/s9-007-a900b8555c45ecba.wav",
+     "start": 534.5,
+     "duration": 1.536
+    },
+    {
+     "text": "Cache blocking, threads, and an honest account of where the remaining seven times to OpenBLAS actually lives.",
+     "file": "t16a-e1/audio/s9-008-305cf520334dcdc5.wav",
+     "start": 536.456,
+     "duration": 8.4053
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,886 @@
+{
+ "topic": "t30-e3",
+ "episode": 3,
+ "title": "Building FinTok",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 638.5667,
+ "wordCount": 1327,
+ "wordsPerMinute": 124.7,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 25.58,
+ "generatedInSeconds": 241.7,
+ "segmentsSynthesised": 96,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Tokenizers, part three",
+    "subtitle": "The regex is a prior. Special tokens must be unforgeable. And a domain vocabulary is worth 2.73x, measured.",
+    "topicId": "T30",
+    "episode": "Episode 3"
+   },
+   "start": 0.0,
+   "duration": 25.5767,
+   "segments": [
+    {
+     "text": "Episode three, and the last episode of phase one.",
+     "file": "t30-e3/audio/s1-000-16fd563806b4c272.wav",
+     "start": 0.0,
+     "duration": 3.9467
+    },
+    {
+     "text": "Today we build FinTok, the tokenizer the rest of this course runs on.",
+     "file": "t30-e3/audio/s1-001-133e8d10a113c6f1.wav",
+     "start": 4.3667,
+     "duration": 5.4827
+    },
+    {
+     "text": "Three ideas.",
+     "file": "t30-e3/audio/s1-002-08200937df11ec98.wav",
+     "start": 10.2693,
+     "duration": 1.472
+    },
+    {
+     "text": "The pre tokenizer as a hard prior.",
+     "file": "t30-e3/audio/s1-003-19b820ad56f343d2.wav",
+     "start": 12.1613,
+     "duration": 3.0507
+    },
+    {
+     "text": "Special tokens as unforgeable symbols.",
+     "file": "t30-e3/audio/s1-004-4bbae2139af7aaff.wav",
+     "start": 15.632,
+     "duration": 3.1573
+    },
+    {
+     "text": "And an honest measurement of what training on your own domain actually buys you.",
+     "file": "t30-e3/audio/s1-005-aeb2187bfdec25dd.wav",
+     "start": 19.2093,
+     "duration": 5.7173
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the prior",
+    "title": "The regex decides what BPE may never merge",
+    "body": "BPE is greedy about frequency. Left alone it will happily learn a token spanning ' the' and a newline, because that pair is common. Pre-tokenization splits the text first, and BPE runs inside each chunk only.",
+    "points": [
+     "No merge can ever cross a chunk boundary. That is a hard constraint, not a preference.",
+     "GPT-2's regex is why its tokens carry a leading space: ' the', not 'the'.",
+     "So the regex is a prior on the token inventory, chosen before any data is seen.",
+     "Which makes it worth measuring rather than copying."
+    ],
+    "aside": "It is the one part of a tokenizer that is designed rather than learned."
+   },
+   "start": 25.5767,
+   "duration": 67.086,
+   "segments": [
+    {
+     "text": "Start with pre tokenization, which people treat as plumbing and is not.",
+     "file": "t30-e3/audio/s2-000-68c0176e32d77a98.wav",
+     "start": 25.5767,
+     "duration": 4.992
+    },
+    {
+     "text": "BPE is greedy about frequency and has no notion of linguistic sense.",
+     "file": "t30-e3/audio/s2-001-2c639bf29d20ea9f.wav",
+     "start": 30.9887,
+     "duration": 6.08
+    },
+    {
+     "text": "Left completely alone, it will cheerfully learn a token that spans the word the and a following newline, because that pair is genuinely frequent.",
+     "file": "t30-e3/audio/s2-002-219d7af65f62704e.wav",
+     "start": 37.4887,
+     "duration": 10.9653
+    },
+    {
+     "text": "Pre tokenization prevents that by splitting the text with a regular expression first, and running BPE strictly inside each chunk.",
+     "file": "t30-e3/audio/s2-003-b6c227439242439b.wav",
+     "start": 48.874,
+     "duration": 9.8133
+    },
+    {
+     "text": "No merge can ever cross a chunk boundary.",
+     "file": "t30-e3/audio/s2-004-580a09d0fe6bd46c.wav",
+     "start": 59.1073,
+     "duration": 3.072
+    },
+    {
+     "text": "That is a hard constraint, not a preference.",
+     "file": "t30-e3/audio/s2-005-38b8c875e8b54be0.wav",
+     "start": 62.5993,
+     "duration": 3.2
+    },
+    {
+     "text": "GPT two's regex is the reason its tokens carry a leading space.",
+     "file": "t30-e3/audio/s2-006-4b0622e8b7b632b7.wav",
+     "start": 66.2193,
+     "duration": 5.632
+    },
+    {
+     "text": "Space the, rather than the.",
+     "file": "t30-e3/audio/s2-007-b2ac82308ce1f737.wav",
+     "start": 72.2713,
+     "duration": 1.7707
+    },
+    {
+     "text": "So the regex is a prior on which tokens can exist at all, chosen before a single byte of data is seen.",
+     "file": "t30-e3/audio/s2-008-e78f562cc8bc97b0.wav",
+     "start": 74.462,
+     "duration": 8.2347
+    },
+    {
+     "text": "It is the one part of a tokenizer that is designed rather than learned, which makes it worth measuring rather than copying.",
+     "file": "t30-e3/audio/s2-009-45d27df5584349d7.wav",
+     "start": 83.1167,
+     "duration": 8.896
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the design",
+    "title": "Three finance-specific rules",
+    "filename": "src/t30_fintok/pretokenize.py",
+    "code": "FINANCE_PATTERN = re.compile(\n    r\"'s|'t|'re|'ve|'m|'ll|'d\"\n    r\"| ?\\d{4}-\\d{2}-\\d{2}\"          # ISO date, one chunk\n    r\"| ?\\d{1,2}:\\d{2}(?::\\d{2})?\"   # time, one chunk\n    r\"| ?\\p{Lu}{2,}\\d*[A-Z0-9]*\"     # TICKER / ISIN runs\n    r\"| ?\\p{L}+\"\n    r\"| ?\\d{1,3}(?:,\\d{3})+\"         # 1,234,567 as one chunk\n    r\"| ?\\d{1,3}\"\n    r\"| ?\\p{N}+\"                     # <- everything else numeric\n    r\"| ?[^\\s\\p{L}\\p{N}]+\"\n    r\"|\\s+(?!\\S)|\\s+\"\n)",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       3
+      ],
+      "caption": "2024-03-31 as one chunk. GPT-2 splits it into five."
+     },
+     {
+      "at": 130,
+      "lines": [
+       5
+      ],
+      "caption": "EASTPOWER, INE005A01049 \u2014 a symbol becomes one or two tokens, not five."
+     },
+     {
+      "at": 240,
+      "lines": [
+       7,
+       8
+      ],
+      "caption": "Numbers group by thousands. Consistency matters more than the specific grouping."
+     },
+     {
+      "at": 350,
+      "lines": [
+       9
+      ],
+      "caption": "This branch was added after a fuzzer found the pattern was silently deleting characters."
+     }
+    ]
+   },
+   "start": 92.6627,
+   "duration": 46.5407,
+   "segments": [
+    {
+     "text": "Here is the finance variant, which is GPT two's pattern with three additions.",
+     "file": "t30-e3/audio/s3-000-0ca2bc949fa072bc.wav",
+     "start": 92.6627,
+     "duration": 6.08
+    },
+    {
+     "text": "ISO dates become one chunk, where GPT two splits them into about five.",
+     "file": "t30-e3/audio/s3-001-09fa2c871cb507cc.wav",
+     "start": 99.1627,
+     "duration": 6.0587
+    },
+    {
+     "text": "All caps runs, meaning tickers and ISINs, stay whole, so a symbol is one or two tokens rather than five.",
+     "file": "t30-e3/audio/s3-002-fdf0a252d2daaa4e.wav",
+     "start": 105.6413,
+     "duration": 8.576
+    },
+    {
+     "text": "And numbers group by thousands, where the important property is consistency rather than the specific grouping.",
+     "file": "t30-e3/audio/s3-003-92d6711571c365e4.wav",
+     "start": 114.6373,
+     "duration": 7.744
+    },
+    {
+     "text": "Now look at the highlighted line near the bottom.",
+     "file": "t30-e3/audio/s3-004-1d4b0667c9437140.wav",
+     "start": 122.8013,
+     "duration": 3.52
+    },
+    {
+     "text": "That branch, any remaining Unicode numeric, was not in the original design.",
+     "file": "t30-e3/audio/s3-005-3d425da53ea32cd4.wav",
+     "start": 126.7413,
+     "duration": 6.2933
+    },
+    {
+     "text": "It was added after the fuzzer found something, and that is the next scene.",
+     "file": "t30-e3/audio/s3-006-ef032f29c98333ba.wav",
+     "start": 133.4547,
+     "duration": 5.0987
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "A pre-tokenizer must be TOTAL",
+    "body": "The first version used \\d for its numeric branches while the punctuation fallback excluded \\p{N}. Superscript digits are \\p{N} but not \\d \u2014 so no branch claimed them, and the pattern silently deleted them.",
+    "code": "pretokenize('\\xb2\\xb3', 'finance')  ->  []      # characters gone\n\n# round-tripped 'caf\\u00e9 chart-emoji' perfectly the whole time.\n# regression test now: every latin-1 byte, and a 12k codepoint sweep."
+   },
+   "start": 139.2033,
+   "duration": 74.4393,
+   "segments": [
+    {
+     "text": "Here is the bug, and it is my favourite kind, because it is invisible until you look for it in exactly the right way.",
+     "file": "t30-e3/audio/s4-000-f0ceca5df75a117d.wav",
+     "start": 139.2033,
+     "duration": 8.4693
+    },
+    {
+     "text": "The first version of this pattern used backslash d for its numeric branches.",
+     "file": "t30-e3/audio/s4-001-b04d5f21ff9abcea.wav",
+     "start": 148.0927,
+     "duration": 5.5253
+    },
+    {
+     "text": "And its fallback branch, the one that catches punctuation, excluded backslash p N, the Unicode numeric category.",
+     "file": "t30-e3/audio/s4-002-7356bef8168754d8.wav",
+     "start": 154.038,
+     "duration": 9.3227
+    },
+    {
+     "text": "Superscript two and superscript three are p N but they are not backslash d.",
+     "file": "t30-e3/audio/s4-003-069dc47042878303.wav",
+     "start": 163.7807,
+     "duration": 6.0373
+    },
+    {
+     "text": "So no branch in the entire alternation matched them, findall skipped them, and the pre tokenizer silently deleted those characters from the text.",
+     "file": "t30-e3/audio/s4-004-4ffcec9570c5f543.wav",
+     "start": 170.238,
+     "duration": 10.816
+    },
+    {
+     "text": "The tokenizer round tripped caf\u00e9 and emoji flawlessly the whole time.",
+     "file": "t30-e3/audio/s4-005-197195c8d51da89f.wav",
+     "start": 181.474,
+     "duration": 5.5893
+    },
+    {
+     "text": "It just quietly dropped superscripts.",
+     "file": "t30-e3/audio/s4-006-698e04cf145320ea.wav",
+     "start": 187.4833,
+     "duration": 2.6027
+    },
+    {
+     "text": "The fuzzer found it on the run where I fed it all two hundred and fifty six latin one bytes.",
+     "file": "t30-e3/audio/s4-007-e117c9c30a468bb2.wav",
+     "start": 190.506,
+     "duration": 6.8053
+    },
+    {
+     "text": "A pre tokenizer must be total.",
+     "file": "t30-e3/audio/s4-008-104d83cf22c886c8.wav",
+     "start": 197.7313,
+     "duration": 2.5813
+    },
+    {
+     "text": "Every character must be claimed by some branch.",
+     "file": "t30-e3/audio/s4-009-a110eb8c749f9ea1.wav",
+     "start": 200.7327,
+     "duration": 3.0507
+    },
+    {
+     "text": "There is now a regression test that runs every latin one byte and a twelve thousand code point sweep through both patterns.",
+     "file": "t30-e3/audio/s4-010-6401bf7663bb05a6.wav",
+     "start": 204.2033,
+     "duration": 8.7893
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the contract",
+    "title": "Special tokens must be unforgeable",
+    "filename": "src/t30_fintok/fintok.py",
+    "code": "SPECIAL_TOKENS = [\n    \"<|endoftext|>\",     # 3489  document boundary\n    \"<|pad|>\",           # 3490  masked out of the loss\n    \"<|filing|>\",        # 3491  a regulatory filing follows\n    \"<|commentary|>\",    # 3492  market commentary follows\n    \"<|announcement|>\",  # 3493  exchange announcement follows\n    \"<|order|>\",         # 3494  a SIMULATED paper ticket follows\n]\n\n# matched BEFORE bpe runs; ids reserved above the learned vocab\ntok.encode('<|order|>')                        # [3494]\ntok.encode('<|order|>', allowed_special=False) # [60, 124, ...] - 9 tokens",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2,
+       3
+      ],
+      "caption": "Structural tokens: where a document ends, what the loss should ignore."
+     },
+     {
+      "at": 150,
+      "lines": [
+       4,
+       5,
+       6,
+       7
+      ],
+      "caption": "Semantic tokens: which kind of financial text follows. AlphaSLM conditions on these."
+     },
+     {
+      "at": 300,
+      "lines": [
+       11,
+       12
+      ],
+      "caption": "The proof: as ordinary text the same string encodes to nine tokens, never to 3494."
+     },
+     {
+      "at": 420,
+      "lines": [
+       2
+      ],
+      "caption": "These ids are part of the model contract. Renumber them and every checkpoint is silently corrupt."
+     }
+    ]
+   },
+   "start": 213.6427,
+   "duration": 79.9233,
+   "segments": [
+    {
+     "text": "Special tokens next.",
+     "file": "t30-e3/audio/s5-000-cf1f75d3ddd129ea.wav",
+     "start": 213.6427,
+     "duration": 1.7707
+    },
+    {
+     "text": "Six of them.",
+     "file": "t30-e3/audio/s5-001-90f9e3af1153130d.wav",
+     "start": 215.8333,
+     "duration": 1.28
+    },
+    {
+     "text": "Two structural.",
+     "file": "t30-e3/audio/s5-002-451de60a5f1b49e2.wav",
+     "start": 217.5333,
+     "duration": 1.3227
+    },
+    {
+     "text": "End of text marks a document boundary and separates documents during pretraining.",
+     "file": "t30-e3/audio/s5-003-237ec5e3a6ff4c35.wav",
+     "start": 219.276,
+     "duration": 6.08
+    },
+    {
+     "text": "Pad is masked out of the loss.",
+     "file": "t30-e3/audio/s5-004-d61be7ccb50ba448.wav",
+     "start": 225.776,
+     "duration": 2.176
+    },
+    {
+     "text": "And four semantic ones, saying which kind of financial text follows, which AlphaSLM will condition on.",
+     "file": "t30-e3/audio/s5-005-b2ad00893f9a7abb.wav",
+     "start": 228.372,
+     "duration": 8.6827
+    },
+    {
+     "text": "The requirement is that these must be unforgeable.",
+     "file": "t30-e3/audio/s5-006-65d85eaa89581f56.wav",
+     "start": 237.4747,
+     "duration": 3.4987
+    },
+    {
+     "text": "Their entire job is to mean something that no amount of ordinary text can counterfeit.",
+     "file": "t30-e3/audio/s5-007-43e80f15dd508f31.wav",
+     "start": 241.3933,
+     "duration": 6.6347
+    },
+    {
+     "text": "So they are matched before BPE runs, and their ids are reserved above the learned vocabulary where no merge can ever produce them.",
+     "file": "t30-e3/audio/s5-008-4e375f337e7e2f86.wav",
+     "start": 248.448,
+     "duration": 10.496
+    },
+    {
+     "text": "The bottom two lines are the proof, and it is a test in the suite.",
+     "file": "t30-e3/audio/s5-009-6df79700ea84461b.wav",
+     "start": 259.364,
+     "duration": 4.5867
+    },
+    {
+     "text": "Encode the string with specials enabled and you get one token, three thousand four hundred and ninety four.",
+     "file": "t30-e3/audio/s5-010-97d5f53468d77850.wav",
+     "start": 264.3707,
+     "duration": 7.744
+    },
+    {
+     "text": "Encode the same string as ordinary text and you get nine tokens, none of which is three four nine four.",
+     "file": "t30-e3/audio/s5-011-8f85f029ec5ae2ac.wav",
+     "start": 272.5347,
+     "duration": 8.0853
+    },
+    {
+     "text": "And these ids are part of the model contract.",
+     "file": "t30-e3/audio/s5-012-509e131dd8294b52.wav",
+     "start": 281.04,
+     "duration": 3.6053
+    },
+    {
+     "text": "Renumber them after AlphaSLM is pretrained and every downstream checkpoint is silently corrupt.",
+     "file": "t30-e3/audio/s5-013-8fe2a19524bac3ab.wav",
+     "start": 285.0653,
+     "duration": 7.8507
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "What a domain vocabulary is worth",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "FinTok",
+      "value": 4.528,
+      "color": "#5ac48c",
+      "note": "trained on financial text"
+     },
+     {
+      "label": "GeneralTok",
+      "value": 1.658,
+      "color": "#e0b04e",
+      "note": "trained on general English"
+     },
+     {
+      "label": "raw bytes",
+      "value": 1.0,
+      "color": "#7a8aa0",
+      "note": "the floor"
+     }
+    ],
+    "yLabel": "bytes per token (higher is better)",
+    "caption": "Same trainer, same pre-tokenizer, both truncated to 997 merges, measured on held-out FINANCIAL text."
+   },
+   "start": 293.566,
+   "duration": 62.734,
+   "segments": [
+    {
+     "text": "And here is the measurement, set up as carefully as I could make it.",
+     "file": "t30-e3/audio/s6-000-4bd4aa7a8ff6e829.wav",
+     "start": 293.566,
+     "duration": 4.416
+    },
+    {
+     "text": "Same trainer, same requested vocabulary size, same pre tokenizer, both truncated to exactly nine hundred and ninety seven merges so the vocabularies are identical in size.",
+     "file": "t30-e3/audio/s6-001-9d113008836897e3.wav",
+     "start": 298.402,
+     "duration": 15.04
+    },
+    {
+     "text": "The only thing that differs is the corpus each was trained on.",
+     "file": "t30-e3/audio/s6-002-db9ff1d37adc5590.wav",
+     "start": 313.862,
+     "duration": 4.5653
+    },
+    {
+     "text": "Both are then measured on held out financial text that neither saw.",
+     "file": "t30-e3/audio/s6-003-572bfd62b0e0cc32.wav",
+     "start": 318.8473,
+     "duration": 4.672
+    },
+    {
+     "text": "FinTok gets four point five two eight bytes per token.",
+     "file": "t30-e3/audio/s6-004-28530b30d5351b3a.wav",
+     "start": 323.9393,
+     "duration": 4.0747
+    },
+    {
+     "text": "The general English vocabulary gets one point six five eight.",
+     "file": "t30-e3/audio/s6-005-678807057fb92c53.wav",
+     "start": 328.434,
+     "duration": 4.928
+    },
+    {
+     "text": "Raw bytes, the floor, is one.",
+     "file": "t30-e3/audio/s6-006-face39fa293c81ed.wav",
+     "start": 333.782,
+     "duration": 2.0693
+    },
+    {
+     "text": "So the domain vocabulary is two point seven three times more compact on the domain it was built for.",
+     "file": "t30-e3/audio/s6-007-dbf4b26f30345d22.wav",
+     "start": 336.2713,
+     "duration": 8.3413
+    },
+    {
+     "text": "And notice the middle bar is still well above the floor.",
+     "file": "t30-e3/audio/s6-008-13a6b478f603f851.wav",
+     "start": 345.0327,
+     "duration": 3.712
+    },
+    {
+     "text": "Even a completely mismatched vocabulary learns English morphology that transfers.",
+     "file": "t30-e3/audio/s6-009-4e435d3d8285ef92.wav",
+     "start": 349.1647,
+     "duration": 6.4853
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "what 2.73x buys",
+    "title": "Compression is not a vanity metric",
+    "body": "Bytes per token is the exchange rate between your text and everything the model costs. Improving it improves four things at once.",
+    "points": [
+     "2.73x more text fits in the same context window.",
+     "2.73x fewer positions to attend over \u2014 and attention is quadratic, so the saving is larger than the ratio.",
+     "2.73x fewer forward passes to generate the same amount of text.",
+     "Rarer tokens: 'consolidated revenue' is a few tokens instead of a dozen fragments, so the model has less to learn."
+    ],
+    "aside": "This is the highest-leverage 200 lines of code in the whole pipeline, and it runs once."
+   },
+   "start": 356.3,
+   "duration": 65.0513,
+   "segments": [
+    {
+     "text": "It is worth being precise about what that two point seven three actually buys, because compression sounds like a vanity metric and is not.",
+     "file": "t30-e3/audio/s7-000-87dac6ea1dce2f9d.wav",
+     "start": 356.3,
+     "duration": 10.1973
+    },
+    {
+     "text": "Bytes per token is the exchange rate between your text and everything the model costs.",
+     "file": "t30-e3/audio/s7-001-b0de072243dc17c8.wav",
+     "start": 366.9173,
+     "duration": 6.528
+    },
+    {
+     "text": "Two point seven three times more text fits in the same context window.",
+     "file": "t30-e3/audio/s7-002-9d4e47b28bfbd6f7.wav",
+     "start": 373.8653,
+     "duration": 5.568
+    },
+    {
+     "text": "Two point seven three times fewer positions to attend over, and since attention cost grows with the square of length, the saving there is considerably larger than the ratio.",
+     "file": "t30-e3/audio/s7-003-b7d94f3902d68f4e.wav",
+     "start": 379.8533,
+     "duration": 12.9067
+    },
+    {
+     "text": "Two point seven three times fewer forward passes to generate the same amount of output text, because generation is one forward pass per token.",
+     "file": "t30-e3/audio/s7-004-efdc66ba35a4ec95.wav",
+     "start": 393.18,
+     "duration": 11.8613
+    },
+    {
+     "text": "And a subtler one.",
+     "file": "t30-e3/audio/s7-005-2d84fd70de64459e.wav",
+     "start": 405.4613,
+     "duration": 1.6
+    },
+    {
+     "text": "Domain phrases become single tokens instead of fragments, so the model has less structure to learn from scratch.",
+     "file": "t30-e3/audio/s7-006-f86c6fdd0b72d70a.wav",
+     "start": 407.4813,
+     "duration": 8.064
+    },
+    {
+     "text": "Two hundred lines of code, run once, before any training starts.",
+     "file": "t30-e3/audio/s7-007-93f8958353c56a1e.wav",
+     "start": 415.9653,
+     "duration": 4.736
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the honest part",
+    "title": "Vocabulary size is a property of the corpus",
+    "kind": "line",
+    "series": [
+     {
+      "label": "merges learned (16,128 requested)",
+      "color": "#e0b04e",
+      "points": [
+       [
+        126,
+        1450
+       ],
+       [
+        380,
+        2203
+       ],
+       [
+        951,
+        3233
+       ],
+       [
+        2853,
+        4481
+       ]
+      ]
+     }
+    ],
+    "xLabel": "training corpus (KB, log)",
+    "yLabel": "merges learned",
+    "logScale": true,
+    "caption": "The plan asked for FinTok-16k. This corpus supports 3,233. Shipping the curve beats padding the vocabulary."
+   },
+   "start": 421.3513,
+   "duration": 76.146,
+   "segments": [
+    {
+     "text": "And now a deviation from the plan, which I want to state plainly rather than quietly ship past.",
+     "file": "t30-e3/audio/s8-000-a098342e0a0a56b0.wav",
+     "start": 421.3513,
+     "duration": 7.2107
+    },
+    {
+     "text": "The master plan for this course asks for FinTok sixteen K.",
+     "file": "t30-e3/audio/s8-001-1ba9f3f4f049034b.wav",
+     "start": 428.982,
+     "duration": 4.7573
+    },
+    {
+     "text": "Ask this trainer for sixteen thousand one hundred and twenty eight merges and, on the committed corpus, you get three thousand two hundred and thirty three.",
+     "file": "t30-e3/audio/s8-002-bd94f805afea44ae.wav",
+     "start": 434.1593,
+     "duration": 10.5387
+    },
+    {
+     "text": "Look at the curve.",
+     "file": "t30-e3/audio/s8-003-a09622fe041eb5f7.wav",
+     "start": 445.118,
+     "duration": 1.4507
+    },
+    {
+     "text": "A hundred and twenty six kilobytes supports fourteen hundred and fifty merges.",
+     "file": "t30-e3/audio/s8-004-9bf203fe25713f7f.wav",
+     "start": 446.9887,
+     "duration": 5.6107
+    },
+    {
+     "text": "Nine hundred and fifty one kilobytes supports three thousand two hundred.",
+     "file": "t30-e3/audio/s8-005-8cbf8015dad996b6.wav",
+     "start": 453.0193,
+     "duration": 5.568
+    },
+    {
+     "text": "Two point eight megabytes supports four thousand five hundred.",
+     "file": "t30-e3/audio/s8-006-288cee2711fb9c72.wav",
+     "start": 459.0073,
+     "duration": 4.5227
+    },
+    {
+     "text": "Training stops when no pair occurs even twice, because minting a token the model will see exactly once is worse than not minting it.",
+     "file": "t30-e3/audio/s8-007-86e812504de81b68.wav",
+     "start": 463.95,
+     "duration": 9.984
+    },
+    {
+     "text": "So vocabulary size is a property of your corpus, not a knob you turn.",
+     "file": "t30-e3/audio/s8-008-a26fd1e28f0c89d9.wav",
+     "start": 474.354,
+     "duration": 5.6747
+    },
+    {
+     "text": "The shipped artefact is FinTok three point five K, the curve is published, and pointing the same trainer at a real filings corpus scales it.",
+     "file": "t30-e3/audio/s8-009-5d75102389c19b89.wav",
+     "start": 480.4487,
+     "duration": 10.9867
+    },
+    {
+     "text": "Ship what the data supports, and show the measurement that explains why.",
+     "file": "t30-e3/audio/s8-010-e6370c72e59b3e49.wav",
+     "start": 491.8553,
+     "duration": 4.992
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "verification",
+    "title": "100,000 fuzzed strings, zero failures",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "round-trip failures",
+      "value": 0,
+      "color": "#5ac48c",
+      "note": "0 of 100,000"
+     },
+     {
+      "label": "adversarial strings",
+      "value": 0,
+      "color": "#5ac48c",
+      "note": "0 of 17"
+     },
+     {
+      "label": "bugs the fuzzer found",
+      "value": 1,
+      "color": "#e0b04e",
+      "note": "the deleted superscripts"
+     }
+    ],
+    "caption": "ASCII, CJK, Devanagari, emoji ZWJ sequences, control bytes, and all 256 latin-1 bytes."
+   },
+   "start": 497.4973,
+   "duration": 52.2087,
+   "segments": [
+    {
+     "text": "The verification for the topic.",
+     "file": "t30-e3/audio/s9-000-af7013f06064d670.wav",
+     "start": 497.4973,
+     "duration": 2.3253
+    },
+    {
+     "text": "One hundred thousand randomly generated strings, drawn from seven different alphabets including CJK, Devanagari, emoji with zero width joiners, control characters and all two hundred and fifty six latin one bytes.",
+     "file": "t30-e3/audio/s9-001-efa3a5c5d521ef0b.wav",
+     "start": 500.2427,
+     "duration": 18.2827
+    },
+    {
+     "text": "Zero round trip failures.",
+     "file": "t30-e3/audio/s9-002-c1e7c07a02ca00fa.wav",
+     "start": 518.9453,
+     "duration": 2.1973
+    },
+    {
+     "text": "Seventeen hand picked adversarial strings, including empty, whitespace only, a null byte, near miss special tokens and a four thousand character run.",
+     "file": "t30-e3/audio/s9-003-6237e9765122d6d2.wav",
+     "start": 521.5627,
+     "duration": 11.712
+    },
+    {
+     "text": "Zero failures.",
+     "file": "t30-e3/audio/s9-004-74159c622ec250d1.wav",
+     "start": 533.6947,
+     "duration": 1.5573
+    },
+    {
+     "text": "And one real bug found, which is the deleted superscripts.",
+     "file": "t30-e3/audio/s9-005-8f100db0f3671db5.wav",
+     "start": 535.672,
+     "duration": 4.5227
+    },
+    {
+     "text": "That is the honest scorecard for a fuzzer.",
+     "file": "t30-e3/audio/s9-006-bb852bac76b238da.wav",
+     "start": 540.6147,
+     "duration": 2.7093
+    },
+    {
+     "text": "It found the thing that no amount of staring at the regex was going to find.",
+     "file": "t30-e3/audio/s9-007-ef9c238ab1258ed8.wav",
+     "start": 543.744,
+     "duration": 5.312
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "topic recap",
+    "points": [
+     "The pre-tokenizer is a hard prior on the token inventory, and it must be TOTAL \u2014 every character claimed.",
+     "Special tokens are matched before BPE and reserved above the learned vocab; their ids are part of the model contract.",
+     "A domain vocabulary is worth 2.73x on its own domain, at matched vocabulary size.",
+     "That 2.73x is context window, attention cost, generation steps and learnability, all at once.",
+     "Vocabulary size is a property of the corpus. Ship what the data supports and publish the curve."
+    ],
+    "ifSkipped": "FinTok is frozen into AlphaSLM in Phase 2. Everything downstream inherits whatever it decided.",
+    "next": "Phase 1 complete. Next: T4, the transformer from scratch \u2014 five episodes, and the flagship of the series."
+   },
+   "start": 549.706,
+   "duration": 88.8607,
+   "segments": [
+    {
+     "text": "To recap the topic, and phase one.",
+     "file": "t30-e3/audio/s10-000-056383a838df843a.wav",
+     "start": 549.706,
+     "duration": 2.6667
+    },
+    {
+     "text": "The pre tokenizer is a hard prior on which tokens can exist, and it must be total, with every character claimed by some branch, or it will delete text without telling you.",
+     "file": "t30-e3/audio/s10-001-8a2bf57e70ec4e30.wav",
+     "start": 552.7927,
+     "duration": 13.0347
+    },
+    {
+     "text": "Special tokens are matched before BPE and reserved above the learned vocabulary, and their ids are part of the model contract for the life of every checkpoint.",
+     "file": "t30-e3/audio/s10-002-ab5a4909308eb2a7.wav",
+     "start": 566.2473,
+     "duration": 12.2027
+    },
+    {
+     "text": "A domain vocabulary is worth two point seven three times on its own domain at matched vocabulary size.",
+     "file": "t30-e3/audio/s10-003-6baf85678b4b7479.wav",
+     "start": 578.87,
+     "duration": 8.7467
+    },
+    {
+     "text": "That number is simultaneously context window, attention cost, generation steps and learnability.",
+     "file": "t30-e3/audio/s10-004-c45d96071a83dc62.wav",
+     "start": 588.0367,
+     "duration": 7.9147
+    },
+    {
+     "text": "And vocabulary size is a property of your corpus rather than a knob, so ship what the data supports and publish the curve that explains it.",
+     "file": "t30-e3/audio/s10-005-4a92992c67e164f0.wav",
+     "start": 596.3713,
+     "duration": 10.4747
+    },
+    {
+     "text": "FinTok gets frozen into AlphaSLM in phase two, and everything downstream inherits whatever it decided today.",
+     "file": "t30-e3/audio/s10-006-77eb418ab5a3a43a.wav",
+     "start": 607.266,
+     "duration": 9.2587
+    },
+    {
+     "text": "That is phase one complete.",
+     "file": "t30-e3/audio/s10-007-f8eba5df3f188262.wav",
+     "start": 616.9447,
+     "duration": 1.9413
+    },
+    {
+     "text": "Autograd, matrix multiplication, softmax and tokenization.",
+     "file": "t30-e3/audio/s10-008-e3cc52dc060e562a.wav",
+     "start": 619.306,
+     "duration": 5.312
+    },
+    {
+     "text": "Four topics that every remaining phase quietly assumes.",
+     "file": "t30-e3/audio/s10-009-dcc37daf61787ecf.wav",
+     "start": 625.038,
+     "duration": 4.0533
+    },
+    {
+     "text": "Next up is topic four, the transformer from scratch, five episodes, and the flagship series of the whole course.",
+     "file": "t30-e3/audio/s10-010-fbe83051453932cc.wav",
+     "start": 629.5113,
+     "duration": 8.4053
+    }
+   ]
+  }
+ ]
+}

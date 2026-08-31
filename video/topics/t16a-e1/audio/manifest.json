@@ -1,0 +1,517 @@
+{
+ "s1-000-65e55e3c5bd57686.wav": {
+  "duration": 2.3253333333333335,
+  "text": "Phase one, topic sixteen A.",
+  "voice": "am_michael"
+ },
+ "s1-001-f10e40dc4eda2230.wav": {
+  "duration": 3.050666666666667,
+  "text": "Matrix multiplication on a CPU.",
+  "voice": "am_michael"
+ },
+ "s1-002-89d49876ad8b8700.wav": {
+  "duration": 6.762666666666667,
+  "text": "There is a GPU half of this topic in phase seven, and it will make no sense without this one.",
+  "voice": "am_michael"
+ },
+ "s1-003-be9e9a22145eec71.wav": {
+  "duration": 7.808,
+  "text": "Here is the claim we are going to establish, and I want it up front so you can disbelieve it for the next ten minutes.",
+  "voice": "am_michael"
+ },
+ "s1-004-2fe834f724d421cd.wav": {
+  "duration": 10.453333333333333,
+  "text": "The same two billion floating point operations, written five ways, compiled with identical flags, run thirty six times apart.",
+  "voice": "am_michael"
+ },
+ "s1-005-ec1ef58fe82ba776.wav": {
+  "duration": 1.92,
+  "text": "Not because of the language.",
+  "voice": "am_michael"
+ },
+ "s1-006-273e5c784a560c0c.wav": {
+  "duration": 2.1546666666666665,
+  "text": "Not because of the compiler.",
+  "voice": "am_michael"
+ },
+ "s1-007-968d87220e871c38.wav": {
+  "duration": 2.432,
+  "text": "Because of the order they touch memory.",
+  "voice": "am_michael"
+ },
+ "s2-000-c48c5adeca0bd0e5.wav": {
+  "duration": 2.816,
+  "text": "Start with why this topic exists at all.",
+  "voice": "am_michael"
+ },
+ "s2-001-9ffd2f2529c9c28f.wav": {
+  "duration": 6.293333333333333,
+  "text": "A transformer forward pass is matrix multiplies with a small amount of glue.",
+  "voice": "am_michael"
+ },
+ "s2-002-779e475c15efdf7f.wav": {
+  "duration": 2.026666666666667,
+  "text": "Attention is two of them.",
+  "voice": "am_michael"
+ },
+ "s2-003-7cb842b7bb7db5f7.wav": {
+  "duration": 2.6026666666666665,
+  "text": "The feed forward block is two more.",
+  "voice": "am_michael"
+ },
+ "s2-004-21fbdc3fe0e57870.wav": {
+  "duration": 6.549333333333333,
+  "text": "Fine tuning, inference, embedding, retrieval, all of it bottoms out in the same kernel.",
+  "voice": "am_michael"
+ },
+ "s2-005-e9400f8e27ef0ae6.wav": {
+  "duration": 6.976,
+  "text": "Well over ninety percent of the arithmetic in a transformer is dense matrix multiplication.",
+  "voice": "am_michael"
+ },
+ "s2-006-1bf18898adda3b07.wav": {
+  "duration": 4.522666666666667,
+  "text": "That is why the hardware is designed around this one operation.",
+  "voice": "am_michael"
+ },
+ "s2-007-f008ca9f8af13701.wav": {
+  "duration": 2.8586666666666667,
+  "text": "Tensor cores exist for it specifically.",
+  "voice": "am_michael"
+ },
+ "s2-008-54f1a696f9577d07.wav": {
+  "duration": 8.213333333333333,
+  "text": "It is why the question how fast is your model is mostly the question how well is your matmul scheduled.",
+  "voice": "am_michael"
+ },
+ "s2-009-616872478e2d9717.wav": {
+  "duration": 6.613333333333333,
+  "text": "And it is why this is the literacy that every kernel in phases six and seven quietly assumes.",
+  "voice": "am_michael"
+ },
+ "s2-010-01fc3064316cdd30.wav": {
+  "duration": 5.653333333333333,
+  "text": "You are almost certainly never going to write the matmul your models actually use.",
+  "voice": "am_michael"
+ },
+ "s2-011-fb68743dca3aa06a.wav": {
+  "duration": 6.677333333333333,
+  "text": "You are going to spend years reasoning about its behaviour, and that is a different skill which starts here.",
+  "voice": "am_michael"
+ },
+ "s3-000-0236f2cc1b5335c7.wav": {
+  "duration": 2.474666666666667,
+  "text": "We start where everybody starts.",
+  "voice": "am_michael"
+ },
+ "s3-001-5feb63f1fbaf7e4f.wav": {
+  "duration": 2.3253333333333335,
+  "text": "The triple loop, in pure Python.",
+  "voice": "am_michael"
+ },
+ "s3-002-8f37742a3db9ef7a.wav": {
+  "duration": 9.493333333333334,
+  "text": "At a hundred and twenty eight by a hundred and twenty eight it takes eighty seven milliseconds, which is fifty megaflops per second.",
+  "voice": "am_michael"
+ },
+ "s3-003-46b4d0d09ff45627.wav": {
+  "duration": 1.728,
+  "text": "Nobody is surprised.",
+  "voice": "am_michael"
+ },
+ "s3-004-12fec124974deb99.wav": {
+  "duration": 5.077333333333334,
+  "text": "But hold onto the implication, because the cost grows as n cubed.",
+  "voice": "am_michael"
+ },
+ "s3-005-8e1fe6d46885a789.wav": {
+  "duration": 5.1626666666666665,
+  "text": "At a thousand by a thousand that same rate is forty five seconds.",
+  "voice": "am_michael"
+ },
+ "s3-006-ee520aeabef94851.wav": {
+  "duration": 2.8586666666666667,
+  "text": "At four thousand it is forty eight minutes.",
+  "voice": "am_michael"
+ },
+ "s3-007-93fc13015eee7806.wav": {
+  "duration": 1.5146666666666666,
+  "text": "A single layer.",
+  "voice": "am_michael"
+ },
+ "s3-008-9f2817266e3ed84d.wav": {
+  "duration": 1.6,
+  "text": "One forward pass.",
+  "voice": "am_michael"
+ },
+ "s3-009-fcdeeb83f75267fa.wav": {
+  "duration": 5.717333333333333,
+  "text": "That is the scale of the problem, and it is why the rest of this episode exists.",
+  "voice": "am_michael"
+ },
+ "s4-000-c9764dcd11a3e895.wav": {
+  "duration": 6.784,
+  "text": "Before optimising anything, do the accounting, because it tells you what is even possible.",
+  "voice": "am_michael"
+ },
+ "s4-001-c4019f85592118a1.wav": {
+  "duration": 1.3226666666666667,
+  "text": "In English.",
+  "voice": "am_michael"
+ },
+ "s4-002-4d53b1d4cbd69bbe.wav": {
+  "duration": 8.405333333333333,
+  "text": "Count the floating point operations, count the bytes that have to move if every matrix is read once, and divide.",
+  "voice": "am_michael"
+ },
+ "s4-003-7c318f836c004c3a.wav": {
+  "duration": 11.584,
+  "text": "That ratio is called arithmetic intensity, and it decides whether a kernel can be limited by arithmetic at all or is doomed to sit waiting on memory.",
+  "voice": "am_michael"
+ },
+ "s4-004-e7723692fc292689.wav": {
+  "duration": 1.3866666666666667,
+  "text": "In symbols.",
+  "voice": "am_michael"
+ },
+ "s4-005-3598533e3cd76918.wav": {
+  "duration": 7.872,
+  "text": "Two m n k flops, over m k plus k n plus m n elements, times eight bytes each.",
+  "voice": "am_michael"
+ },
+ "s4-006-4d4134ff14cfbecf.wav": {
+  "duration": 1.5146666666666666,
+  "text": "And in numbers.",
+  "voice": "am_michael"
+ },
+ "s4-007-5cb218a3377b3775.wav": {
+  "duration": 3.776,
+  "text": "At sixty four, five point three flops per byte.",
+  "voice": "am_michael"
+ },
+ "s4-008-ddd833e4d4ce603a.wav": {
+  "duration": 3.1786666666666665,
+  "text": "At two hundred and fifty six, twenty one.",
+  "voice": "am_michael"
+ },
+ "s4-009-cedb1fe6d770abdf.wav": {
+  "duration": 2.24,
+  "text": "At a thousand, eighty five.",
+  "voice": "am_michael"
+ },
+ "s4-010-7d0cf83177512126.wav": {
+  "duration": 3.3706666666666667,
+  "text": "At four thousand, three hundred and forty one.",
+  "voice": "am_michael"
+ },
+ "s4-011-02aaa65cdcd83445.wav": {
+  "duration": 6.101333333333334,
+  "text": "It grows with n, and that growth is the entire reason matmul can be made fast.",
+  "voice": "am_michael"
+ },
+ "s4-012-7ce51ff69c3732b3.wav": {
+  "duration": 1.8773333333333333,
+  "text": "But read the note carefully.",
+  "voice": "am_michael"
+ },
+ "s4-013-c7deb6433489ed4b.wav": {
+  "duration": 2.56,
+  "text": "It is permission, not a guarantee.",
+  "voice": "am_michael"
+ },
+ "s4-014-01b474297a30d607.wav": {
+  "duration": 6.634666666666667,
+  "text": "You only collect that reuse if you actually use the bytes you loaded before they are evicted.",
+  "voice": "am_michael"
+ },
+ "s4-015-c2638a47e11505de.wav": {
+  "duration": 3.52,
+  "text": "The naive loop does not, which is the next scene.",
+  "voice": "am_michael"
+ },
+ "s5-000-6255faa37be6e8fc.wav": {
+  "duration": 4.544,
+  "text": "Here is the crime, and it is worth seeing rather than being told.",
+  "voice": "am_michael"
+ },
+ "s5-001-7fd759bbc37bdf60.wav": {
+  "duration": 4.8,
+  "text": "In the textbook i j k order, the innermost loop varies k.",
+  "voice": "am_michael"
+ },
+ "s5-002-c814dc43650b8257.wav": {
+  "duration": 4.117333333333334,
+  "text": "So it walks along a row of A, which is contiguous and cheap.",
+  "voice": "am_michael"
+ },
+ "s5-003-457698694356abf9.wav": {
+  "duration": 6.165333333333334,
+  "text": "And it walks down a column of B, where consecutive elements are a whole row apart.",
+  "voice": "am_michael"
+ },
+ "s5-004-cbca9b398c2a7da2.wav": {
+  "duration": 2.9226666666666667,
+  "text": "Now, memory does not move in doubles.",
+  "voice": "am_michael"
+ },
+ "s5-005-cb06bd63e4626d9d.wav": {
+  "duration": 6.8053333333333335,
+  "text": "It moves in cache lines, and a cache line is sixty four bytes, which is eight doubles.",
+  "voice": "am_michael"
+ },
+ "s5-006-ea83af5c97d1150e.wav": {
+  "duration": 6.8053333333333335,
+  "text": "So every single load of B fetches eight doubles, uses one of them, and throws seven away.",
+  "voice": "am_michael"
+ },
+ "s5-007-b5827c28e00320e5.wav": {
+  "duration": 5.866666666666666,
+  "text": "That is eighty seven percent of your memory bandwidth spent on data you never look at.",
+  "voice": "am_michael"
+ },
+ "s5-008-c61730e8a1d85575.wav": {
+  "duration": 6.997333333333334,
+  "text": "And the compiler cannot fix it, because the compiler is not allowed to change the meaning of your loops.",
+  "voice": "am_michael"
+ },
+ "s6-000-ffd754f5a9b9ac31.wav": {
+  "duration": 2.1973333333333334,
+  "text": "And here is the entire fix.",
+  "voice": "am_michael"
+ },
+ "s6-001-38f68c2623aa35e9.wav": {
+  "duration": 2.6026666666666665,
+  "text": "Two versions of the same arithmetic.",
+  "voice": "am_michael"
+ },
+ "s6-002-3aa6119a8f706de4.wav": {
+  "duration": 2.005333333333333,
+  "text": "On top, i j k.",
+  "voice": "am_michael"
+ },
+ "s6-003-8d1dee6dee6a0606.wav": {
+  "duration": 9.749333333333333,
+  "text": "The accumulator lives in a register, which feels efficient, and B strides by a whole row on every iteration of the inner loop.",
+  "voice": "am_michael"
+ },
+ "s6-004-78147c5b01905414.wav": {
+  "duration": 2.1546666666666665,
+  "text": "Underneath, i k j.",
+  "voice": "am_michael"
+ },
+ "s6-005-eedab82568ef0e23.wav": {
+  "duration": 6.229333333333333,
+  "text": "We hoist the element of A out as a scalar, because it does not change in the inner loop.",
+  "voice": "am_michael"
+ },
+ "s6-006-4a7e89735e788dff.wav": {
+  "duration": 6.549333333333333,
+  "text": "And now j varies innermost, so both B and C walk contiguously along rows.",
+  "voice": "am_michael"
+ },
+ "s6-007-7ec75e833da58a14.wav": {
+  "duration": 2.752,
+  "text": "The hardware prefetcher can see the pattern.",
+  "voice": "am_michael"
+ },
+ "s6-008-0f853d76fc6ae2ff.wav": {
+  "duration": 4.309333333333333,
+  "text": "The compiler can vectorise the loop into wide registers.",
+  "voice": "am_michael"
+ },
+ "s6-009-dee718574ad2d13f.wav": {
+  "duration": 1.8773333333333333,
+  "text": "There is a real price.",
+  "voice": "am_michael"
+ },
+ "s6-010-19df3c4e2b36e259.wav": {
+  "duration": 9.088,
+  "text": "The accumulator has moved out of a register and into C, so we now write to memory once per k rather than once per output.",
+  "voice": "am_michael"
+ },
+ "s6-011-26a86c16809f5748.wav": {
+  "duration": 2.9226666666666667,
+  "text": "And it is still, overwhelmingly, worth it.",
+  "voice": "am_michael"
+ },
+ "s7-000-0d4c4cfb1c051f3b.wav": {
+  "duration": 1.7706666666666666,
+  "text": "Here is the measurement.",
+  "voice": "am_michael"
+ },
+ "s7-001-4b88788a61a8f9b4.wav": {
+  "duration": 4.053333333333334,
+  "text": "All five kernels, compiled with identical flags.",
+  "voice": "am_michael"
+ },
+ "s7-002-f2c5b24904aa63a5.wav": {
+  "duration": 3.6266666666666665,
+  "text": "Dash O three, march native, f open m p.",
+  "voice": "am_michael"
+ },
+ "s7-003-74669b4d923fe6ba.wav": {
+  "duration": 10.837333333333333,
+  "text": "I want to be explicit about that, because it would be very easy to compile the naive version at dash O zero and report a much prettier ratio.",
+  "voice": "am_michael"
+ },
+ "s7-004-7742a68b44e5694c.wav": {
+  "duration": 7.594666666666667,
+  "text": "It would also teach you nothing, because then you would be measuring the optimiser rather than the algorithm.",
+  "voice": "am_michael"
+ },
+ "s7-005-0abea99fa19d8704.wav": {
+  "duration": 5.013333333333334,
+  "text": "Naive i j k gets zero point five three gigaflops.",
+  "voice": "am_michael"
+ },
+ "s7-006-1302f1c9fecf7e4e.wav": {
+  "duration": 2.56,
+  "text": "The swapped loop gets eight point three.",
+  "voice": "am_michael"
+ },
+ "s7-007-24cf821bab7520dc.wav": {
+  "duration": 4.010666666666666,
+  "text": "That is fifteen point eight times, from moving one line.",
+  "voice": "am_michael"
+ },
+ "s7-008-1824a96ccac26217.wav": {
+  "duration": 3.904,
+  "text": "Blocking, which is episode two, gets twelve point two.",
+  "voice": "am_michael"
+ },
+ "s7-009-131a1f5f9cd9542d.wav": {
+  "duration": 4.778666666666667,
+  "text": "Blocking with threads and a register tile gets eighteen point seven.",
+  "voice": "am_michael"
+ },
+ "s7-010-5b0d764fd89a3e5a.wav": {
+  "duration": 4.8213333333333335,
+  "text": "And OpenBLAS, at the far right, gets a hundred and thirty five.",
+  "voice": "am_michael"
+ },
+ "s8-000-420ff3876b8816c6.wav": {
+  "duration": 4.245333333333333,
+  "text": "And now the most valuable habit in this entire topic.",
+  "voice": "am_michael"
+ },
+ "s8-001-eda4d1f1908a18cf.wav": {
+  "duration": 2.7733333333333334,
+  "text": "Always know what a hundred percent is.",
+  "voice": "am_michael"
+ },
+ "s8-002-3e840524e1dd08f7.wav": {
+  "duration": 3.2,
+  "text": "A gigaflops number on its own means nothing.",
+  "voice": "am_michael"
+ },
+ "s8-003-7ee06639d953d32e.wav": {
+  "duration": 2.2186666666666666,
+  "text": "So compute the ceiling by hand.",
+  "voice": "am_michael"
+ },
+ "s8-004-81dbf2fdadb2f0b0.wav": {
+  "duration": 4.842666666666666,
+  "text": "Cores, times clock, times floating point operations per cycle.",
+  "voice": "am_michael"
+ },
+ "s8-005-b3c531ac9b9d7dc1.wav": {
+  "duration": 8.896,
+  "text": "Two cores, at two point one gigahertz, times thirty two flops per cycle, is a hundred and thirty four gigaflops.",
+  "voice": "am_michael"
+ },
+ "s8-006-53326cd322e1ba31.wav": {
+  "duration": 2.3466666666666667,
+  "text": "Where does the thirty two come from.",
+  "voice": "am_michael"
+ },
+ "s8-007-d4c3de9f6d3adab2.wav": {
+  "duration": 10.048,
+  "text": "AVX five twelve holds eight doubles per vector, a fused multiply add is two flops, and the core has two of those units.",
+  "voice": "am_michael"
+ },
+ "s8-008-bef43f13b972c068.wav": {
+  "duration": 2.944,
+  "text": "Eight times two times two is thirty two.",
+  "voice": "am_michael"
+ },
+ "s8-009-fdfc580d463da4aa.wav": {
+  "duration": 1.984,
+  "text": "Now look back at the chart.",
+  "voice": "am_michael"
+ },
+ "s8-010-9fd7d9473da7ee49.wav": {
+  "duration": 3.456,
+  "text": "OpenBLAS measured a hundred and thirty five.",
+  "voice": "am_michael"
+ },
+ "s8-011-6023bb2c335f056d.wav": {
+  "duration": 4.970666666666666,
+  "text": "It is running at essentially one hundred percent of theoretical peak.",
+  "voice": "am_michael"
+ },
+ "s8-012-858e84bc168e562c.wav": {
+  "duration": 4.522666666666667,
+  "text": "Which means our best hand written kernel is at fourteen percent.",
+  "voice": "am_michael"
+ },
+ "s8-013-89fcbda41ba299ab.wav": {
+  "duration": 2.538666666666667,
+  "text": "And that reframes the goal completely.",
+  "voice": "am_michael"
+ },
+ "s8-014-3e84b70da203fac4.wav": {
+  "duration": 3.8826666666666667,
+  "text": "Beating OpenBLAS is not the goal and never was.",
+  "voice": "am_michael"
+ },
+ "s8-015-5a84258beffe1d47.wav": {
+  "duration": 6.08,
+  "text": "Explaining the fourteen percent is the goal, and episode two is that explanation.",
+  "voice": "am_michael"
+ },
+ "s9-000-2482ddde8423e0e0.wav": {
+  "duration": 1.1946666666666668,
+  "text": "To recap.",
+  "voice": "am_michael"
+ },
+ "s9-001-8d428f92e4c40169.wav": {
+  "duration": 10.56,
+  "text": "Over ninety percent of a transformer's arithmetic is dense matrix multiply, which is the kernel the hardware was designed around.",
+  "voice": "am_michael"
+ },
+ "s9-002-c60c172e2190369a.wav": {
+  "duration": 7.8933333333333335,
+  "text": "Arithmetic intensity grows with n, and that is permission to be compute bound rather than a guarantee of it.",
+  "voice": "am_michael"
+ },
+ "s9-003-9c1aec081afb30d3.wav": {
+  "duration": 8.234666666666667,
+  "text": "The naive i j k loop walks a column of B and throws away seven of every eight doubles it fetches.",
+  "voice": "am_michael"
+ },
+ "s9-004-da2e5a01dadc3a60.wav": {
+  "duration": 8.362666666666666,
+  "text": "Swapping two loops is worth fifteen point eight times, with the same flops, the same flags and the same result.",
+  "voice": "am_michael"
+ },
+ "s9-005-664166dd9474f197.wav": {
+  "duration": 8.128,
+  "text": "And always compute your machine's peak by hand, so that every number you produce is a percentage of something real.",
+  "voice": "am_michael"
+ },
+ "s9-006-43573bd2dff38fcf.wav": {
+  "duration": 13.696,
+  "text": "Skip this and every kernel in phases six and seven, the KV cache pager, the quantiser, Flash Attention, is a recipe you follow rather than a design you understand.",
+  "voice": "am_michael"
+ },
+ "s9-007-a900b8555c45ecba.wav": {
+  "duration": 1.536,
+  "text": "Next episode.",
+  "voice": "am_michael"
+ },
+ "s9-008-305cf520334dcdc5.wav": {
+  "duration": 8.405333333333333,
+  "text": "Cache blocking, threads, and an honest account of where the remaining seven times to OpenBLAS actually lives.",
+  "voice": "am_michael"
+ }
+}

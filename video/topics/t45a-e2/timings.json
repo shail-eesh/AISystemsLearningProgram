@@ -1,0 +1,985 @@
+{
+ "topic": "t45a-e2",
+ "episode": 2,
+ "title": "Online softmax, derived slowly",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 674.364,
+ "wordCount": 1497,
+ "wordsPerMinute": 133.2,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 25.96,
+ "generatedInSeconds": 256.1,
+ "segmentsSynthesised": 112,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Softmax, part two",
+    "subtitle": "One pass. This is the most patient episode in the series, and Phase 7 is where it pays.",
+    "topicId": "T45A",
+    "episode": "Episode 2",
+    "paper": "Milakov & Gimelshein 2018 \u2014 Online normalizer calculation for softmax"
+   },
+   "start": 0.0,
+   "duration": 25.9593,
+   "segments": [
+    {
+     "text": "Episode two, and this is deliberately the slowest episode in the whole series.",
+     "file": "t45a-e2/audio/s1-000-a63e625f2d896e6b.wav",
+     "start": 0.0,
+     "duration": 5.8667
+    },
+    {
+     "text": "We are going to derive one small algorithm carefully, from a paper that is four pages long, and then in phase seven, when we build Flash Attention, this will be the episode that makes it obvious rather than magical.",
+     "file": "t45a-e2/audio/s1-001-48d87c6b786a61d8.wav",
+     "start": 6.2867,
+     "duration": 16.32
+    },
+    {
+     "text": "So it is worth the twelve minutes.",
+     "file": "t45a-e2/audio/s1-002-dffa9b769d279857.wav",
+     "start": 23.0267,
+     "duration": 2.2827
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the constraint",
+    "title": "Stability costs a pass, and the pass costs everything",
+    "body": "The stable formula needs the maximum before it can start summing. So it must see the entire row before it can compute anything \u2014 which means the entire row has to be stored somewhere.",
+    "points": [
+     "Pass 1: find the maximum of the row.",
+     "Pass 2: exponentiate the shifted values and sum them.",
+     "Pass 3: divide. (Fusing 2 and 3 gets you to two passes.)",
+     "Softmax does one exp per element \u2014 it is memory-bound, so passes over memory ARE the runtime."
+    ],
+    "aside": "For attention, that row is n elements long for a sequence of length n. Storing it is the whole problem Flash Attention exists to avoid."
+   },
+   "start": 25.9593,
+   "duration": 66.8527,
+   "segments": [
+    {
+     "text": "Start with what the stable version costs us.",
+     "file": "t45a-e2/audio/s2-000-2058d7c67e71d41e.wav",
+     "start": 25.9593,
+     "duration": 2.9227
+    },
+    {
+     "text": "It needs the maximum before it can start summing, because the shift depends on it.",
+     "file": "t45a-e2/audio/s2-001-397bcf4a30bba078.wav",
+     "start": 29.302,
+     "duration": 5.568
+    },
+    {
+     "text": "So pass one finds the maximum.",
+     "file": "t45a-e2/audio/s2-002-abcfb36e183ba48b.wav",
+     "start": 35.29,
+     "duration": 2.5173
+    },
+    {
+     "text": "Pass two exponentiates and sums.",
+     "file": "t45a-e2/audio/s2-003-cf8b8a8ba4ac477d.wav",
+     "start": 38.2273,
+     "duration": 2.7733
+    },
+    {
+     "text": "Pass three divides, and you can fuse two and three to get down to two passes.",
+     "file": "t45a-e2/audio/s2-004-4ba34cae9a90b800.wav",
+     "start": 41.4207,
+     "duration": 5.5467
+    },
+    {
+     "text": "Now, why does a pass matter.",
+     "file": "t45a-e2/audio/s2-005-5bb7ed3ded88681b.wav",
+     "start": 47.3873,
+     "duration": 2.24
+    },
+    {
+     "text": "Softmax does exactly one exponential per element, which is almost no arithmetic, so this kernel is entirely memory bound.",
+     "file": "t45a-e2/audio/s2-006-780f7102cc083d8b.wav",
+     "start": 50.0473,
+     "duration": 9.92
+    },
+    {
+     "text": "The number of times you walk the data is the runtime.",
+     "file": "t45a-e2/audio/s2-007-a5d840e6a6de2927.wav",
+     "start": 60.3873,
+     "duration": 3.776
+    },
+    {
+     "text": "There is nothing else in it.",
+     "file": "t45a-e2/audio/s2-008-d3741db5bbe5ef7f.wav",
+     "start": 64.5833,
+     "duration": 1.92
+    },
+    {
+     "text": "And there is a second, larger cost.",
+     "file": "t45a-e2/audio/s2-009-64bc94ef47cfe2a6.wav",
+     "start": 66.9233,
+     "duration": 2.5173
+    },
+    {
+     "text": "Needing the maximum first means you must see the whole row before you can compute anything, which means the whole row must be stored somewhere.",
+     "file": "t45a-e2/audio/s2-010-0e2d472dcd786ce0.wav",
+     "start": 69.8607,
+     "duration": 9.9627
+    },
+    {
+     "text": "In attention, that row is n elements long for a sequence of length n.",
+     "file": "t45a-e2/audio/s2-011-92569a0fd3927c58.wav",
+     "start": 80.2433,
+     "duration": 5.1627
+    },
+    {
+     "text": "Storing all of them is the n squared memory that Flash Attention exists to avoid.",
+     "file": "t45a-e2/audio/s2-012-395e7dffa6fe1466.wav",
+     "start": 85.826,
+     "duration": 6.336
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the idea",
+    "title": "Carry the maximum and the denominator together",
+    "english": "Keep two running numbers: the largest value seen so far, and the sum of exponentials of everything seen so far, shifted by that largest value. When a bigger value arrives, repair the sum.",
+    "equation": "m' = max(m, max B) ;  d' = d \u00b7 exp(m - m') + SUM exp(B - m')",
+    "code": "block_max = block.max(axis=-1)\nnew_m     = np.maximum(m, block_max)\nd         = d * np.exp(m - new_m) + np.exp(block - new_m).sum(-1)\nm         = new_m",
+    "note": "One multiply repairs the entire accumulated denominator, because every term in it was scaled by the same old maximum.",
+    "stageFrames": [
+     10,
+     150,
+     300
+    ]
+   },
+   "start": 92.812,
+   "duration": 77.2647,
+   "segments": [
+    {
+     "text": "Here is the idea.",
+     "file": "t45a-e2/audio/s3-000-ad8e26a6c1d064ed.wav",
+     "start": 92.812,
+     "duration": 1.6213
+    },
+    {
+     "text": "In English.",
+     "file": "t45a-e2/audio/s3-001-c4019f85592118a1.wav",
+     "start": 94.8533,
+     "duration": 1.3227
+    },
+    {
+     "text": "Keep two running numbers instead of one.",
+     "file": "t45a-e2/audio/s3-002-208e5c33dd504af9.wav",
+     "start": 96.596,
+     "duration": 2.9227
+    },
+    {
+     "text": "The largest value seen so far, call it m.",
+     "file": "t45a-e2/audio/s3-003-070d0679344ee7de.wav",
+     "start": 99.9387,
+     "duration": 3.6053
+    },
+    {
+     "text": "And the sum of exponentials of everything seen so far, each shifted by that same m, call it d.",
+     "file": "t45a-e2/audio/s3-004-0bad7ed4e8589e5e.wav",
+     "start": 103.964,
+     "duration": 7.5093
+    },
+    {
+     "text": "When a value larger than m arrives, you repair the sum.",
+     "file": "t45a-e2/audio/s3-005-eedac7335b1601e0.wav",
+     "start": 111.8933,
+     "duration": 4.2027
+    },
+    {
+     "text": "In symbols.",
+     "file": "t45a-e2/audio/s3-006-e7723692fc292689.wav",
+     "start": 116.516,
+     "duration": 1.3867
+    },
+    {
+     "text": "The new m is the max of the old m and the maximum of the new block.",
+     "file": "t45a-e2/audio/s3-007-48bd49f1386713e1.wav",
+     "start": 118.3227,
+     "duration": 5.3333
+    },
+    {
+     "text": "And the new d is the old d, times e to the old m minus the new m, plus the sum over the new block of e to the block minus the new m.",
+     "file": "t45a-e2/audio/s3-008-974e807aa09d8160.wav",
+     "start": 124.076,
+     "duration": 10.8373
+    },
+    {
+     "text": "And in code, four lines.",
+     "file": "t45a-e2/audio/s3-009-6dc16065514dc131.wav",
+     "start": 135.3333,
+     "duration": 2.0053
+    },
+    {
+     "text": "Now here is the part to sit with.",
+     "file": "t45a-e2/audio/s3-010-462ef1e1a1f52ed2.wav",
+     "start": 137.7587,
+     "duration": 2.5173
+    },
+    {
+     "text": "Why does one multiplication repair the whole accumulated sum.",
+     "file": "t45a-e2/audio/s3-011-de426eb7ca62c790.wav",
+     "start": 140.696,
+     "duration": 4.672
+    },
+    {
+     "text": "Because every single term already in d was scaled by e to the minus the old m.",
+     "file": "t45a-e2/audio/s3-012-9c05f132777af3a9.wav",
+     "start": 145.788,
+     "duration": 6.272
+    },
+    {
+     "text": "The same constant, for all of them.",
+     "file": "t45a-e2/audio/s3-013-173d260626bd0389.wav",
+     "start": 152.48,
+     "duration": 2.6667
+    },
+    {
+     "text": "So multiplying d by e to the old m minus the new m rescales all of them at once, in one operation, no matter how many there were.",
+     "file": "t45a-e2/audio/s3-014-09ee00fadbfc1f9e.wav",
+     "start": 155.5667,
+     "duration": 11.4987
+    },
+    {
+     "text": "That is the entire trick.",
+     "file": "t45a-e2/audio/s3-015-b192107a056559d6.wav",
+     "start": 167.4853,
+     "duration": 1.9413
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "worked by hand",
+    "title": "x = [3, 1, 9, 2], one value at a time",
+    "kind": "line",
+    "series": [
+     {
+      "label": "running max m",
+      "color": "#e0b04e",
+      "points": [
+       [
+        0,
+        3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        9
+       ],
+       [
+        3,
+        9
+       ]
+      ]
+     },
+     {
+      "label": "running denominator d",
+      "color": "#5ac48c",
+      "points": [
+       [
+        0,
+        1.0
+       ],
+       [
+        1,
+        1.135
+       ],
+       [
+        2,
+        1.0028
+       ],
+       [
+        3,
+        1.0037
+       ]
+      ]
+     }
+    ],
+    "xLabel": "step",
+    "caption": "At step 2 the max jumps 3 -> 9 and d is rescaled by exp(3-9) = 0.0025, from 1.135 down to 1.0028."
+   },
+   "start": 170.0767,
+   "duration": 93.3673,
+   "segments": [
+    {
+     "text": "Let us do it by hand on four numbers.",
+     "file": "t45a-e2/audio/s4-000-2fc0c62fadaaafaa.wav",
+     "start": 170.0767,
+     "duration": 2.752
+    },
+    {
+     "text": "Three, one, nine, two.",
+     "file": "t45a-e2/audio/s4-001-6a199133a7c6fd33.wav",
+     "start": 173.2487,
+     "duration": 1.8347
+    },
+    {
+     "text": "Step zero.",
+     "file": "t45a-e2/audio/s4-002-52b87af7a71acdb4.wav",
+     "start": 175.5033,
+     "duration": 1.216
+    },
+    {
+     "text": "We see three.",
+     "file": "t45a-e2/audio/s4-003-fc0bb55206bc2771.wav",
+     "start": 177.1393,
+     "duration": 1.4933
+    },
+    {
+     "text": "The maximum is three, and d is e to the three minus three, which is one.",
+     "file": "t45a-e2/audio/s4-004-c33946c29a452a5d.wav",
+     "start": 179.0527,
+     "duration": 5.44
+    },
+    {
+     "text": "Step one.",
+     "file": "t45a-e2/audio/s4-005-786dc0db7285ab39.wav",
+     "start": 184.9127,
+     "duration": 1.1307
+    },
+    {
+     "text": "We see one.",
+     "file": "t45a-e2/audio/s4-006-20e2ee27c8e9ca1c.wav",
+     "start": 186.4633,
+     "duration": 1.344
+    },
+    {
+     "text": "The maximum is still three.",
+     "file": "t45a-e2/audio/s4-007-0d3b69832fa24e0a.wav",
+     "start": 188.2273,
+     "duration": 2.1547
+    },
+    {
+     "text": "We add e to the one minus three, which is about zero point one three five, so d becomes one point one three five.",
+     "file": "t45a-e2/audio/s4-008-02af01d33765906a.wav",
+     "start": 190.802,
+     "duration": 9.792
+    },
+    {
+     "text": "Step two, and this is the interesting one.",
+     "file": "t45a-e2/audio/s4-009-7c41b4caa2fcd2e3.wav",
+     "start": 201.014,
+     "duration": 3.2427
+    },
+    {
+     "text": "We see nine.",
+     "file": "t45a-e2/audio/s4-010-d13f790236fad4d2.wav",
+     "start": 204.6767,
+     "duration": 1.4507
+    },
+    {
+     "text": "The maximum jumps from three to nine.",
+     "file": "t45a-e2/audio/s4-011-99914bb03f0d72ff.wav",
+     "start": 206.5473,
+     "duration": 2.7093
+    },
+    {
+     "text": "So d gets multiplied by e to the three minus nine, which is zero point zero zero two five, taking one point one three five down to about zero point zero zero two eight.",
+     "file": "t45a-e2/audio/s4-012-7c989f16a35956ea.wav",
+     "start": 209.6767,
+     "duration": 14.6133
+    },
+    {
+     "text": "And then we add e to the nine minus nine, which is one.",
+     "file": "t45a-e2/audio/s4-013-0a65c84460235804.wav",
+     "start": 224.71,
+     "duration": 4.0747
+    },
+    {
+     "text": "So d is one point zero zero two eight.",
+     "file": "t45a-e2/audio/s4-014-b10df62a67de1167.wav",
+     "start": 229.2047,
+     "duration": 3.0507
+    },
+    {
+     "text": "Step three.",
+     "file": "t45a-e2/audio/s4-015-3d2b5cc5fa3b922f.wav",
+     "start": 232.6753,
+     "duration": 1.1733
+    },
+    {
+     "text": "We see two.",
+     "file": "t45a-e2/audio/s4-016-9261f803ecf0b558.wav",
+     "start": 234.2687,
+     "duration": 1.408
+    },
+    {
+     "text": "The maximum stays nine.",
+     "file": "t45a-e2/audio/s4-017-b09b6831b22dd8a6.wav",
+     "start": 236.0967,
+     "duration": 2.048
+    },
+    {
+     "text": "We add e to the two minus nine, and d ends at one point zero zero three seven two six one.",
+     "file": "t45a-e2/audio/s4-018-889d2f6bcf7d40fe.wav",
+     "start": 238.5647,
+     "duration": 7.7653
+    },
+    {
+     "text": "Now compute the two pass answer directly.",
+     "file": "t45a-e2/audio/s4-019-d3fa774248395983.wav",
+     "start": 246.75,
+     "duration": 2.9867
+    },
+    {
+     "text": "Sum of e to the x minus nine over all four numbers.",
+     "file": "t45a-e2/audio/s4-020-15719b1d3d7eff95.wav",
+     "start": 250.1567,
+     "duration": 4.352
+    },
+    {
+     "text": "One point zero zero three seven two six one.",
+     "file": "t45a-e2/audio/s4-021-840b5ff6e0c4bce3.wav",
+     "start": 254.9287,
+     "duration": 3.8827
+    },
+    {
+     "text": "Identical, and we never went back over the data.",
+     "file": "t45a-e2/audio/s4-022-1c4397c7eba97002.wav",
+     "start": 259.2313,
+     "duration": 3.5627
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "exp(-inf minus -inf) is nan",
+    "body": "The empty state starts with m = -infinity, so the very first rescale computes exp(-inf - -inf), which is nan, not 1. This is the bug everybody writes when implementing the paper. Guard the first update.",
+    "code": "# every term in d was scaled by exp(-m); on the first\n# update there are no terms, so the scale is irrelevant.\nscale = np.where(np.isfinite(m), np.exp(m - new_m), 0.0)\nd = d * scale + block_d"
+   },
+   "start": 263.444,
+   "duration": 51.5113,
+   "segments": [
+    {
+     "text": "One implementation note, because this is the bug everybody writes when coding straight from the paper.",
+     "file": "t45a-e2/audio/s5-000-c7f8191243a042ac.wav",
+     "start": 263.444,
+     "duration": 7.3173
+    },
+    {
+     "text": "The empty state has to start with m equal to minus infinity, so that the first real value always wins the maximum.",
+     "file": "t45a-e2/audio/s5-001-d8278f838300ac88.wav",
+     "start": 271.1813,
+     "duration": 9.2373
+    },
+    {
+     "text": "But then the first rescale computes e to the minus infinity minus minus infinity.",
+     "file": "t45a-e2/audio/s5-002-31af42b201fae18d.wav",
+     "start": 280.8387,
+     "duration": 6.5493
+    },
+    {
+     "text": "That is infinity minus infinity, which is not a number, and it poisons d immediately.",
+     "file": "t45a-e2/audio/s5-003-07eeac99d32ea9b0.wav",
+     "start": 287.808,
+     "duration": 6.656
+    },
+    {
+     "text": "The fix is a one line guard.",
+     "file": "t45a-e2/audio/s5-004-22870defa05bae5f.wav",
+     "start": 294.884,
+     "duration": 2.2187
+    },
+    {
+     "text": "If m is not finite, there are no accumulated terms, so the scale factor is irrelevant and you can use zero.",
+     "file": "t45a-e2/audio/s5-005-1cd52356557e0715.wav",
+     "start": 297.5227,
+     "duration": 8.7467
+    },
+    {
+     "text": "It is a small thing, and it is the difference between the algorithm working and producing nan on every row.",
+     "file": "t45a-e2/audio/s5-006-d4dc9cd57b2bf28c.wav",
+     "start": 306.6893,
+     "duration": 7.616
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the property that matters",
+    "title": "The merge is associative",
+    "nodes": [
+     {
+      "id": "t1",
+      "label": "tile 1",
+      "sub": "(m1, d1)",
+      "x": 0.12,
+      "y": 0.28,
+      "color": "#5ac48c",
+      "appearAt": 8
+     },
+     {
+      "id": "t2",
+      "label": "tile 2",
+      "sub": "(m2, d2)",
+      "x": 0.12,
+      "y": 0.72,
+      "color": "#5ac48c",
+      "appearAt": 16
+     },
+     {
+      "id": "mg",
+      "label": "merge",
+      "sub": "m = max, d rescaled",
+      "x": 0.45,
+      "y": 0.5,
+      "w": 0.22,
+      "color": "#e0b04e",
+      "appearAt": 40
+     },
+     {
+      "id": "out",
+      "label": "(m, d)",
+      "sub": "identical to one pass",
+      "x": 0.78,
+      "y": 0.5,
+      "appearAt": 66
+     }
+    ],
+    "edges": [
+     {
+      "from": "t1",
+      "to": "mg",
+      "appearAt": 46
+     },
+     {
+      "from": "t2",
+      "to": "mg",
+      "appearAt": 50
+     },
+     {
+      "from": "mg",
+      "to": "out",
+      "appearAt": 70
+     }
+    ],
+    "caption": "Two independent partial states combine the same way a block does. Any split, any order, same answer."
+   },
+   "start": 314.9553,
+   "duration": 60.7847,
+   "segments": [
+    {
+     "text": "And now the property that makes this worth an episode rather than a footnote.",
+     "file": "t45a-e2/audio/s6-000-00599058ebaef806.wav",
+     "start": 314.9553,
+     "duration": 5.4187
+    },
+    {
+     "text": "The merge is associative.",
+     "file": "t45a-e2/audio/s6-001-182c7cc78a834920.wav",
+     "start": 320.794,
+     "duration": 2.176
+    },
+    {
+     "text": "Two partial states, computed completely independently, combine with the same rule.",
+     "file": "t45a-e2/audio/s6-002-aa4151b40c7fd20c.wav",
+     "start": 323.39,
+     "duration": 6.144
+    },
+    {
+     "text": "Take the max of the two maxima, rescale each denominator to that new maximum, and add.",
+     "file": "t45a-e2/audio/s6-003-0c591e24a07f4bb3.wav",
+     "start": 329.954,
+     "duration": 7.1467
+    },
+    {
+     "text": "Which means you can split a row across threads, across GPU blocks, across cache tiles, in any grouping and any order, and get bit identical results.",
+     "file": "t45a-e2/audio/s6-004-62b053f197d683b8.wav",
+     "start": 337.5207,
+     "duration": 12.096
+    },
+    {
+     "text": "The one pass framing is nice.",
+     "file": "t45a-e2/audio/s6-005-b759c5a05f65d2ab.wav",
+     "start": 350.0367,
+     "duration": 2.0693
+    },
+    {
+     "text": "The associativity is what makes it a parallel algorithm.",
+     "file": "t45a-e2/audio/s6-006-fb331a28b2f3ee54.wav",
+     "start": 352.526,
+     "duration": 4.2453
+    },
+    {
+     "text": "And when we build Flash Attention in phase seven, its inner loop is precisely this merge, carrying an output accumulator alongside m and d so that the weighted sum of value vectors is rescaled at the same moment the denominator is.",
+     "file": "t45a-e2/audio/s6-007-81206075e2ab8b1b.wav",
+     "start": 357.1913,
+     "duration": 17.8987
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "Not 'close enough' \u2014 identical",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "float64",
+      "value": 1e-18,
+      "color": "#5ac48c",
+      "note": "0.0 exactly"
+     },
+     {
+      "label": "float32",
+      "value": 1e-18,
+      "color": "#5ac48c",
+      "note": "0.0 exactly"
+     },
+     {
+      "label": "float16",
+      "value": 1e-18,
+      "color": "#5ac48c",
+      "note": "0.0 exactly"
+     },
+     {
+      "label": "chunk 1 vs whole row",
+      "value": 1e-18,
+      "color": "#5ac48c",
+      "note": "0.0 exactly"
+     }
+    ],
+    "logScale": true,
+    "yLabel": "max abs difference vs two-pass",
+    "caption": "64x128 adversarial grid, logits in [-1e4, 1e4]. Bars are plotted at 1e-18 because zero has no home on a log axis."
+   },
+   "start": 375.74,
+   "duration": 65.2087,
+   "segments": [
+    {
+     "text": "Here is the verification, and the result is stronger than I expected the first time I ran it.",
+     "file": "t45a-e2/audio/s7-000-3c84d6aa95365201.wav",
+     "start": 375.74,
+     "duration": 6.656
+    },
+    {
+     "text": "Against the two pass version, on a sixty four by one hundred and twenty eight grid of adversarial logits, the online version differs by exactly zero.",
+     "file": "t45a-e2/audio/s7-001-c0874711645530fe.wav",
+     "start": 382.816,
+     "duration": 11.6907
+    },
+    {
+     "text": "In double precision.",
+     "file": "t45a-e2/audio/s7-002-6837a3a3a62fcb1e.wav",
+     "start": 394.9267,
+     "duration": 1.5573
+    },
+    {
+     "text": "In single precision.",
+     "file": "t45a-e2/audio/s7-003-d75adeee0a4e8877.wav",
+     "start": 396.904,
+     "duration": 1.8773
+    },
+    {
+     "text": "In half precision.",
+     "file": "t45a-e2/audio/s7-004-f08a99c866950ea4.wav",
+     "start": 399.2013,
+     "duration": 1.664
+    },
+    {
+     "text": "And it differs by exactly zero across chunk sizes from one element at a time up to the entire row in one go.",
+     "file": "t45a-e2/audio/s7-005-88f053f588211812.wav",
+     "start": 401.2853,
+     "duration": 8.7893
+    },
+    {
+     "text": "The bars on this chart are drawn at ten to the minus eighteen only because zero has nowhere to sit on a logarithmic axis.",
+     "file": "t45a-e2/audio/s7-006-82f20f22cce665e2.wav",
+     "start": 410.4947,
+     "duration": 9.7493
+    },
+    {
+     "text": "So this is not an approximation you accept for a speedup.",
+     "file": "t45a-e2/audio/s7-007-13810da16c779bac.wav",
+     "start": 420.664,
+     "duration": 4.16
+    },
+    {
+     "text": "It is the same arithmetic, reassociated.",
+     "file": "t45a-e2/audio/s7-008-11e0a68e4e8329c7.wav",
+     "start": 425.244,
+     "duration": 3.6053
+    },
+    {
+     "text": "And chunk size is therefore a pure scheduling decision, which is exactly what you need when you are fitting tiles into a fixed amount of fast memory.",
+     "file": "t45a-e2/audio/s7-009-75c270b5184d7085.wav",
+     "start": 429.2693,
+     "duration": 11.0293
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "On a CPU, online softmax is slower \u2014 say so",
+    "body": "256x4096 float32: two-pass 2.29 ms, online 4.04 ms. It pays per-chunk overhead to save a pass it did not need here, because the row already fits in cache. Its value is tileability, not speed.",
+    "code": "stable            2.29 ms\ntwo_pass          2.37 ms\nonline(chunk=512) 4.04 ms      # 1.8x SLOWER"
+   },
+   "start": 440.9487,
+   "duration": 62.214,
+   "segments": [
+    {
+     "text": "And now the honest counterweight, because you will hear people describe online softmax as faster and it is worth being precise.",
+     "file": "t45a-e2/audio/s8-000-072d88d574aa2d61.wav",
+     "start": 440.9487,
+     "duration": 9.792
+    },
+    {
+     "text": "On a CPU, in NumPy, on a matrix that comfortably fits in cache, it is one point eight times slower.",
+     "file": "t45a-e2/audio/s8-001-269bb75e47cfb28f.wav",
+     "start": 451.1607,
+     "duration": 8.7893
+    },
+    {
+     "text": "Two point two nine milliseconds for two pass, four point zero four for online.",
+     "file": "t45a-e2/audio/s8-002-10b5e3635dbcbd99.wav",
+     "start": 460.37,
+     "duration": 6.2293
+    },
+    {
+     "text": "It is paying per chunk overhead to save a pass it did not actually need, because the row was already resident.",
+     "file": "t45a-e2/audio/s8-003-b19d9061eb757ef0.wav",
+     "start": 467.0193,
+     "duration": 8.0427
+    },
+    {
+     "text": "Its value is not speed on this machine.",
+     "file": "t45a-e2/audio/s8-004-24390d94d2f6208d.wav",
+     "start": 475.482,
+     "duration": 2.88
+    },
+    {
+     "text": "Its value is that it is tileable, and tileability is what lets a kernel process an attention row that never fits anywhere, one tile at a time, in a fixed and small amount of on chip memory.",
+     "file": "t45a-e2/audio/s8-005-d468871195a057ac.wav",
+     "start": 478.782,
+     "duration": 14.3787
+    },
+    {
+     "text": "When someone says an algorithm is faster, the useful follow up is always.",
+     "file": "t45a-e2/audio/s8-006-7ac94f6aac4a95f0.wav",
+     "start": 493.5807,
+     "duration": 5.7813
+    },
+    {
+     "text": "Faster on what, and bound by what.",
+     "file": "t45a-e2/audio/s8-007-8a445c9fdf4c3fb2.wav",
+     "start": 499.782,
+     "duration": 2.7307
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the last piece",
+    "title": "Fuse the loss, and the gradient gets simpler",
+    "body": "log(softmax(x)) is the wrong way to compute log-softmax: any probability that underflowed to zero becomes -inf. Subtract the log-sum-exp instead, and the derivative of the fused loss turns out to be almost nothing.",
+    "points": [
+     "log_softmax(x) = x - logsumexp(x). At x = [0, -800] it returns exactly -800, where the naive route returns -inf.",
+     "Cross-entropy = logsumexp(x) - x_target. No exponential of the target term at all.",
+     "Its gradient is softmax(x) - onehot(target). That is the whole backward pass.",
+     "Free invariant: rows of that gradient sum to exactly zero, because both terms sum to one."
+    ],
+    "aside": "The log and the exp cancel so completely that the fused loss is easier to differentiate than either half of it."
+   },
+   "start": 503.1627,
+   "duration": 93.8327,
+   "segments": [
+    {
+     "text": "The last piece, and it settles the quiet failure from episode one.",
+     "file": "t45a-e2/audio/s9-000-4215f49835241eb7.wav",
+     "start": 503.1627,
+     "duration": 4.9707
+    },
+    {
+     "text": "Taking the logarithm of a softmax is the wrong way to compute log softmax, because any probability that underflowed to zero becomes minus infinity.",
+     "file": "t45a-e2/audio/s9-001-830bb608c004ccc1.wav",
+     "start": 508.5533,
+     "duration": 11.8613
+    },
+    {
+     "text": "Subtract the log sum exp instead.",
+     "file": "t45a-e2/audio/s9-002-831c9a2b40fa4e58.wav",
+     "start": 520.8347,
+     "duration": 2.752
+    },
+    {
+     "text": "Log softmax of x equals x minus log sum exp of x.",
+     "file": "t45a-e2/audio/s9-003-0dbbcd0161d54aaa.wav",
+     "start": 524.0067,
+     "duration": 4.8
+    },
+    {
+     "text": "At the vector zero and minus eight hundred, that returns exactly minus eight hundred, where the naive route returns minus infinity.",
+     "file": "t45a-e2/audio/s9-004-a4558f6ecee1a203.wav",
+     "start": 529.2267,
+     "duration": 10.24
+    },
+    {
+     "text": "Then cross entropy is log sum exp of x, minus the logit at the target index.",
+     "file": "t45a-e2/audio/s9-005-37c5a3603992d2a0.wav",
+     "start": 539.8867,
+     "duration": 6.464
+    },
+    {
+     "text": "Notice there is no exponential of the target term anywhere in that.",
+     "file": "t45a-e2/audio/s9-006-7d178d73f8d1cea9.wav",
+     "start": 546.7707,
+     "duration": 4.7787
+    },
+    {
+     "text": "And here is the payoff.",
+     "file": "t45a-e2/audio/s9-007-e4ae322b0f13643e.wav",
+     "start": 551.9693,
+     "duration": 1.856
+    },
+    {
+     "text": "The gradient of that fused loss is softmax of x, minus the one hot vector of the target.",
+     "file": "t45a-e2/audio/s9-008-cc105d2729bbac47.wav",
+     "start": 554.2453,
+     "duration": 7.36
+    },
+    {
+     "text": "That is the entire backward pass.",
+     "file": "t45a-e2/audio/s9-009-8a91251681377552.wav",
+     "start": 562.0253,
+     "duration": 2.304
+    },
+    {
+     "text": "The logarithm and the exponential cancel so completely that the fused loss is easier to differentiate than either half of it separately, which is why every framework fuses them.",
+     "file": "t45a-e2/audio/s9-010-e1db51933afe9e9f.wav",
+     "start": 564.7493,
+     "duration": 13.312
+    },
+    {
+     "text": "And it comes with a free invariant.",
+     "file": "t45a-e2/audio/s9-011-ea16c5481c93a834.wav",
+     "start": 578.4813,
+     "duration": 2.304
+    },
+    {
+     "text": "Every row of that gradient sums to exactly zero, because softmax sums to one and the one hot sums to one.",
+     "file": "t45a-e2/audio/s9-012-b9c433279e38fde1.wav",
+     "start": 581.2053,
+     "duration": 8.5973
+    },
+    {
+     "text": "One cheap assertion, and it catches a surprising number of implementation slips.",
+     "file": "t45a-e2/audio/s9-013-3a3bbef7b998ba06.wav",
+     "start": 590.2227,
+     "duration": 6.1227
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "topic recap",
+    "points": [
+     "Carry (max, denominator) together; when the max moves, one multiply repairs the whole sum.",
+     "Guard the first update \u2014 exp(-inf - -inf) is nan, and it is the bug everyone writes.",
+     "The merge is associative, so the row can be split across tiles or threads in any order.",
+     "Online is bit-identical to two-pass in f64, f32 and f16, and across every chunk size.",
+     "It is 1.8x slower on a CPU. Its value is tileability, and Phase 7 is where that pays."
+    ],
+    "ifSkipped": "T7 Flash Attention is this algorithm with an output accumulator attached. Without this episode, it is an incantation.",
+    "next": "Next topic: T30 \u2014 tokenizers, and why the model's view of your text is decided before the model sees it."
+   },
+   "start": 596.9953,
+   "duration": 77.3687,
+   "segments": [
+    {
+     "text": "To recap the topic.",
+     "file": "t45a-e2/audio/s10-000-77ce075fe890eb02.wav",
+     "start": 596.9953,
+     "duration": 1.792
+    },
+    {
+     "text": "Carry the maximum and the denominator together, and when the maximum moves, one multiplication repairs the entire accumulated sum.",
+     "file": "t45a-e2/audio/s10-001-8b18d0c22b310187.wav",
+     "start": 599.2073,
+     "duration": 10.3893
+    },
+    {
+     "text": "Guard the first update, because e to the minus infinity minus minus infinity is not a number, and that is the bug everybody writes.",
+     "file": "t45a-e2/audio/s10-002-eebe8de693a41da1.wav",
+     "start": 610.0167,
+     "duration": 10.5173
+    },
+    {
+     "text": "The merge is associative, so a row can be split across tiles or threads in any grouping and any order.",
+     "file": "t45a-e2/audio/s10-003-9cf4f37536c745bb.wav",
+     "start": 620.954,
+     "duration": 7.6373
+    },
+    {
+     "text": "The online version is bit identical to the two pass version in double, single and half precision, and across every chunk size from one to the whole row.",
+     "file": "t45a-e2/audio/s10-004-7eb0d3ac3ed8a76e.wav",
+     "start": 629.0113,
+     "duration": 11.776
+    },
+    {
+     "text": "And it is one point eight times slower on a CPU, because its value is tileability rather than speed, and phase seven is where that cashes in.",
+     "file": "t45a-e2/audio/s10-005-67122625d7538fe5.wav",
+     "start": 641.2073,
+     "duration": 11.136
+    },
+    {
+     "text": "Flash Attention is this exact algorithm with an output accumulator attached, and without this episode it would be an incantation you copy.",
+     "file": "t45a-e2/audio/s10-006-89df83b72f6b71cb.wav",
+     "start": 652.7633,
+     "duration": 11.136
+    },
+    {
+     "text": "Next topic is thirty.",
+     "file": "t45a-e2/audio/s10-007-45edce12c439910b.wav",
+     "start": 664.3193,
+     "duration": 2.0053
+    },
+    {
+     "text": "Tokenizers.",
+     "file": "t45a-e2/audio/s10-008-6dbcf06d9a9fc54c.wav",
+     "start": 666.7447,
+     "duration": 1.3013
+    },
+    {
+     "text": "Where the model's view of your text is decided before the model ever sees it.",
+     "file": "t45a-e2/audio/s10-009-da051f6c5c7123ac.wav",
+     "start": 668.466,
+     "duration": 5.248
+    }
+   ]
+  }
+ ]
+}

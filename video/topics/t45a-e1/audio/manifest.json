@@ -1,0 +1,417 @@
+{
+ "s1-000-92c1b00777ab0d58.wav": {
+  "duration": 2.538666666666667,
+  "text": "Phase one, topic forty five A.",
+  "voice": "am_michael"
+ },
+ "s1-001-717fbaa54ba4098b.wav": {
+  "duration": 1.1946666666666668,
+  "text": "Softmax.",
+  "voice": "am_michael"
+ },
+ "s1-002-b81e04655e19b668.wav": {
+  "duration": 11.754666666666667,
+  "text": "This looks like the smallest topic in the phase and it is not, because episode two contains the single algorithmic trick that Flash Attention is built on.",
+  "voice": "am_michael"
+ },
+ "s1-003-2b179f8f7eb38987.wav": {
+  "duration": 5.248,
+  "text": "But we have to earn that, and we earn it by watching the textbook formula die.",
+  "voice": "am_michael"
+ },
+ "s2-000-c02552dc5403ca31.wav": {
+  "duration": 2.517333333333333,
+  "text": "Here is the function, three times.",
+  "voice": "am_michael"
+ },
+ "s2-001-c4019f85592118a1.wav": {
+  "duration": 1.3226666666666667,
+  "text": "In English.",
+  "voice": "am_michael"
+ },
+ "s2-002-6ce040f0650277cd.wav": {
+  "duration": 6.4,
+  "text": "Take a vector of arbitrary real numbers and turn it into a probability distribution.",
+  "voice": "am_michael"
+ },
+ "s2-003-109611fb64c50455.wav": {
+  "duration": 4.1386666666666665,
+  "text": "Exponentiate everything, then divide by the total.",
+  "voice": "am_michael"
+ },
+ "s2-004-e7723692fc292689.wav": {
+  "duration": 1.3866666666666667,
+  "text": "In symbols.",
+  "voice": "am_michael"
+ },
+ "s2-005-7e6685fa9582302c.wav": {
+  "duration": 7.744,
+  "text": "Softmax of x, component i, is e to the x i over the sum over j of e to the x j.",
+  "voice": "am_michael"
+ },
+ "s2-006-7c29e3dea043f6c6.wav": {
+  "duration": 4.629333333333333,
+  "text": "And in code, two lines of NumPy that are a direct transcription.",
+  "voice": "am_michael"
+ },
+ "s2-007-d21bccb1776ca0fc.wav": {
+  "duration": 2.9226666666666667,
+  "text": "Every symbol in that middle line is correct.",
+  "voice": "am_michael"
+ },
+ "s2-008-9b39f40180e238dd.wav": {
+  "duration": 3.2213333333333334,
+  "text": "The code is a faithful implementation of it.",
+  "voice": "am_michael"
+ },
+ "s2-009-7b9c92dab6d4c945.wav": {
+  "duration": 6.314666666666667,
+  "text": "And it is unusable, for a reason that has nothing at all to do with the mathematics.",
+  "voice": "am_michael"
+ },
+ "s3-000-1d740c10cfabc1ed.wav": {
+  "duration": 1.6213333333333333,
+  "text": "Here is the reason.",
+  "voice": "am_michael"
+ },
+ "s3-001-a2f96b55576621b2.wav": {
+  "duration": 7.509333333333333,
+  "text": "Exponentiation has a finite range in every floating point format, because the result has to fit.",
+  "voice": "am_michael"
+ },
+ "s3-002-9fbe8aa157ad1790.wav": {
+  "duration": 7.274666666666667,
+  "text": "In double precision, the largest input with a finite exponential is about seven hundred and nine.",
+  "voice": "am_michael"
+ },
+ "s3-003-61935b60e5e1fa94.wav": {
+  "duration": 2.965333333333333,
+  "text": "In single precision it is eighty eight.",
+  "voice": "am_michael"
+ },
+ "s3-004-e5ebf4c16c7139b9.wav": {
+  "duration": 7.381333333333333,
+  "text": "And in half precision, which is what a great deal of modern inference actually runs in, it is eleven.",
+  "voice": "am_michael"
+ },
+ "s3-005-02f85973c7631482.wav": {
+  "duration": 1.856,
+  "text": "Not eleven thousand.",
+  "voice": "am_michael"
+ },
+ "s3-006-56d120b0fe6eff8c.wav": {
+  "duration": 1.0453333333333332,
+  "text": "Eleven.",
+  "voice": "am_michael"
+ },
+ "s3-007-4457a986d9afb9bc.wav": {
+  "duration": 4.949333333333334,
+  "text": "Attention logits leave that range routinely and without warning.",
+  "voice": "am_michael"
+ },
+ "s3-008-3f7e67d0556b1781.wav": {
+  "duration": 4.394666666666667,
+  "text": "So this is not an edge case you handle for robustness.",
+  "voice": "am_michael"
+ },
+ "s3-009-fdb63b0323a5fc44.wav": {
+  "duration": 3.050666666666667,
+  "text": "It is the normal operating condition.",
+  "voice": "am_michael"
+ },
+ "s4-000-6c24e23792f75ef6.wav": {
+  "duration": 6.506666666666667,
+  "text": "And the failure has two faces, which is worth separating because only one of them is loud.",
+  "voice": "am_michael"
+ },
+ "s4-001-7edf7c5325adf0ee.wav": {
+  "duration": 2.1546666666666665,
+  "text": "Overflow is the loud one.",
+  "voice": "am_michael"
+ },
+ "s4-002-ebd07f9af5c29c8c.wav": {
+  "duration": 3.776,
+  "text": "Exponentiate ten thousand and you get infinity.",
+  "voice": "am_michael"
+ },
+ "s4-003-f67182556959be61.wav": {
+  "duration": 4.16,
+  "text": "Divide infinity by infinity and you get not a number.",
+  "voice": "am_michael"
+ },
+ "s4-004-617499f186da67a6.wav": {
+  "duration": 4.970666666666666,
+  "text": "And a single nan spreads through an entire model in one forward pass.",
+  "voice": "am_michael"
+ },
+ "s4-005-886321cad6977657.wav": {
+  "duration": 1.344,
+  "text": "You will notice.",
+  "voice": "am_michael"
+ },
+ "s4-006-4a1480f27ecb0c1f.wav": {
+  "duration": 2.432,
+  "text": "Underflow is the quiet one.",
+  "voice": "am_michael"
+ },
+ "s4-007-e32a448af9a57813.wav": {
+  "duration": 4.8853333333333335,
+  "text": "Softmax of zero and minus eight hundred gives you one and zero.",
+  "voice": "am_michael"
+ },
+ "s4-008-b40cffdfc6491960.wav": {
+  "duration": 2.112,
+  "text": "That zero is not an error.",
+  "voice": "am_michael"
+ },
+ "s4-009-f31bc144273fb65c.wav": {
+  "duration": 8.853333333333333,
+  "text": "It is the correct answer to within the precision of the dtype, because the true value fell below the smallest representable number.",
+  "voice": "am_michael"
+ },
+ "s4-010-cc1c6a9e5e02e347.wav": {
+  "duration": 13.866666666666667,
+  "text": "It sits there behaving perfectly until somebody takes its logarithm, and then you get minus infinity in a loss function, and the bill arrives in a completely different part of the codebase.",
+  "voice": "am_michael"
+ },
+ "s4-011-fd066544c9e5ccdf.wav": {
+  "duration": 1.6213333333333333,
+  "text": "Hold onto that one.",
+  "voice": "am_michael"
+ },
+ "s4-012-bb96fcffd16faeaf.wav": {
+  "duration": 2.048,
+  "text": "Episode two settles it.",
+  "voice": "am_michael"
+ },
+ "s5-000-bc24bbe62170b66f.wav": {
+  "duration": 2.6666666666666665,
+  "text": "The fix, and it is a one line proof.",
+  "voice": "am_michael"
+ },
+ "s5-001-c4019f85592118a1.wav": {
+  "duration": 1.3226666666666667,
+  "text": "In English.",
+  "voice": "am_michael"
+ },
+ "s5-002-3771af930cf7612a.wav": {
+  "duration": 4.757333333333333,
+  "text": "Softmax does not care if you add the same constant to every input.",
+  "voice": "am_michael"
+ },
+ "s5-003-1abb7d2eb4eb54f9.wav": {
+  "duration": 1.7066666666666668,
+  "text": "Not approximately.",
+  "voice": "am_michael"
+ },
+ "s5-004-fc89ae4c7db49f25.wav": {
+  "duration": 1.28,
+  "text": "Exactly.",
+  "voice": "am_michael"
+ },
+ "s5-005-e7723692fc292689.wav": {
+  "duration": 1.3866666666666667,
+  "text": "In symbols.",
+  "voice": "am_michael"
+ },
+ "s5-006-64487efc42d136f4.wav": {
+  "duration": 12.138666666666667,
+  "text": "Exponent of x i minus c, over the sum of exponent of x j minus c, equals softmax of x at i, for any constant c whatsoever.",
+  "voice": "am_michael"
+ },
+ "s5-007-a5efcb656f2ceca8.wav": {
+  "duration": 7.445333333333333,
+  "text": "The proof is to multiply the numerator and the denominator by e to the minus c, which cancels.",
+  "voice": "am_michael"
+ },
+ "s5-008-9848935cda874aa9.wav": {
+  "duration": 2.24,
+  "text": "That is the entire derivation.",
+  "voice": "am_michael"
+ },
+ "s5-009-01474cbc64fb7bce.wav": {
+  "duration": 1.3866666666666667,
+  "text": "And in code.",
+  "voice": "am_michael"
+ },
+ "s5-010-6aae087d689603b5.wav": {
+  "duration": 2.2186666666666666,
+  "text": "Take c to be the row maximum.",
+  "voice": "am_michael"
+ },
+ "s5-011-82f7e1ea3274d13a.wav": {
+  "duration": 8.192,
+  "text": "Now the largest exponent is exactly e to the zero, which is one, and every other exponent is smaller.",
+  "voice": "am_michael"
+ },
+ "s5-012-eec5946cad1ff2cc.wav": {
+  "duration": 5.0986666666666665,
+  "text": "Overflow has become structurally impossible rather than unlikely.",
+  "voice": "am_michael"
+ },
+ "s6-000-5e852e71c27d73c3.wav": {
+  "duration": 2.3253333333333335,
+  "text": "But why the maximum specifically.",
+  "voice": "am_michael"
+ },
+ "s6-001-c5de9a4ed8fa597e.wav": {
+  "duration": 7.082666666666666,
+  "text": "Any constant fixes the scale in principle, so why not the mean, which is a natural choice.",
+  "voice": "am_michael"
+ },
+ "s6-002-f54bee292f7554df.wav": {
+  "duration": 2.7733333333333334,
+  "text": "Take the vector zero and one thousand.",
+  "voice": "am_michael"
+ },
+ "s6-003-9e55c814a66e3b3b.wav": {
+  "duration": 2.176,
+  "text": "Its mean is five hundred.",
+  "voice": "am_michael"
+ },
+ "s6-004-31c78411a0270c7a.wav": {
+  "duration": 7.466666666666667,
+  "text": "Subtract that and you are computing e to the five hundred, which is still infinity in double precision.",
+  "voice": "am_michael"
+ },
+ "s6-005-6d5e58204644d5f1.wav": {
+  "duration": 3.1573333333333333,
+  "text": "You have not fixed anything, you have moved it.",
+  "voice": "am_michael"
+ },
+ "s6-006-f12432f6de5e0d66.wav": {
+  "duration": 3.6693333333333333,
+  "text": "Take the maximum instead, which is one thousand.",
+  "voice": "am_michael"
+ },
+ "s6-007-de295c868e218d35.wav": {
+  "duration": 4.8,
+  "text": "Now you compute e to the minus one thousand and e to the zero.",
+  "voice": "am_michael"
+ },
+ "s6-008-8fd3d197b6430489.wav": {
+  "duration": 5.354666666666667,
+  "text": "The first underflows to zero and the second is one, and both are fine.",
+  "voice": "am_michael"
+ },
+ "s6-009-12b82717425c993c.wav": {
+  "duration": 2.474666666666667,
+  "text": "And that underflow is not a loss.",
+  "voice": "am_michael"
+ },
+ "s6-010-c2c714bf8afdbf80.wav": {
+  "duration": 7.274666666666667,
+  "text": "Those terms were negligible relative to the largest one, which is what the arithmetic just told us.",
+  "voice": "am_michael"
+ },
+ "s6-011-afcbefda9296979d.wav": {
+  "duration": 8.789333333333333,
+  "text": "So max subtraction costs one extra pass over the data and, in exchange, cannot fail for any input at all.",
+  "voice": "am_michael"
+ },
+ "s6-012-5d9505ac02a7f4b2.wav": {
+  "duration": 4.608,
+  "text": "Learn this identity properly, because it comes back constantly.",
+  "voice": "am_michael"
+ },
+ "s6-013-c963d5d76fd2e32e.wav": {
+  "duration": 1.792,
+  "text": "Log sum exp is this.",
+  "voice": "am_michael"
+ },
+ "s6-014-09fbbd3e659b09ce.wav": {
+  "duration": 1.7493333333333334,
+  "text": "Log softmax is this.",
+  "voice": "am_michael"
+ },
+ "s6-015-56aa5a431604c86e.wav": {
+  "duration": 1.7493333333333334,
+  "text": "Cross entropy is this.",
+  "voice": "am_michael"
+ },
+ "s6-016-15f1e8da1e2986dd.wav": {
+  "duration": 3.776,
+  "text": "The softplus form of binary cross entropy is this.",
+  "voice": "am_michael"
+ },
+ "s7-000-822098f30e57cc4c.wav": {
+  "duration": 3.3493333333333335,
+  "text": "Here is the measurement from the topic's benchmark.",
+  "voice": "am_michael"
+ },
+ "s7-001-cae0b89d3f44c833.wav": {
+  "duration": 15.701333333333332,
+  "text": "Sixty four rows of adversarial logits, ranging from minus ten thousand to plus ten thousand, including one row that is entirely eight hundred and one that is entirely minus ten thousand.",
+  "voice": "am_michael"
+ },
+ "s7-002-994f1cfbfe2f16dd.wav": {
+  "duration": 9.642666666666667,
+  "text": "The naive implementation produces infinity or not a number on sixty four out of sixty four rows, in every dtype.",
+  "voice": "am_michael"
+ },
+ "s7-003-947db76a91d6f3ab.wav": {
+  "duration": 4.565333333333333,
+  "text": "The stable version produces zero failures in every dtype.",
+  "voice": "am_michael"
+ },
+ "s7-004-de92593b93a1bb65.wav": {
+  "duration": 12.053333333333333,
+  "text": "And note that the broken implementation is kept in the codebase and executed by the benchmark on purpose, rather than deleted with a comment saying do not do this.",
+  "voice": "am_michael"
+ },
+ "s7-005-233b2092a12f0812.wav": {
+  "duration": 4.8213333333333335,
+  "text": "A failure you have watched happen is worth more than a warning you have read.",
+  "voice": "am_michael"
+ },
+ "s8-000-2482ddde8423e0e0.wav": {
+  "duration": 1.1946666666666668,
+  "text": "To recap.",
+  "voice": "am_michael"
+ },
+ "s8-001-3d78e9b0446e84c1.wav": {
+  "duration": 13.034666666666666,
+  "text": "Exponentiation overflows at seven hundred and nine in double precision, eighty eight in single, and eleven in half, and attention logits leave those ranges routinely.",
+  "voice": "am_michael"
+ },
+ "s8-002-7f4f802be85c996b.wav": {
+  "duration": 5.632,
+  "text": "Overflow is loud, because one nan spreads through a model in a single pass.",
+  "voice": "am_michael"
+ },
+ "s8-003-a94d1d4ddef26a97.wav": {
+  "duration": 5.930666666666666,
+  "text": "Underflow is quiet, and sends you the bill later when something takes a logarithm.",
+  "voice": "am_michael"
+ },
+ "s8-004-70842309f00d6e5f.wav": {
+  "duration": 6.976,
+  "text": "Softmax is exactly invariant to adding a constant to every input, with a one line proof.",
+  "voice": "am_michael"
+ },
+ "s8-005-2b82651c78270361.wav": {
+  "duration": 10.368,
+  "text": "Subtract the maximum and the largest exponent becomes e to the zero, so overflow stops being unlikely and becomes impossible.",
+  "voice": "am_michael"
+ },
+ "s8-006-c3313671baf4bffb.wav": {
+  "duration": 9.685333333333332,
+  "text": "And only the maximum works unconditionally, because the mean still overflows on a vector as simple as zero and one thousand.",
+  "voice": "am_michael"
+ },
+ "s8-007-27f024cb38620673.wav": {
+  "duration": 10.048,
+  "text": "Every masked attention, every logit processor and every cross entropy in the rest of this course assumes this identity holds.",
+  "voice": "am_michael"
+ },
+ "s8-008-def6cca429a8ecea.wav": {
+  "duration": 3.3066666666666666,
+  "text": "Next episode is the one I have been promising.",
+  "voice": "am_michael"
+ },
+ "s8-009-d2b2dde268ea4a6a.wav": {
+  "duration": 9.877333333333333,
+  "text": "Computing the normaliser in a single pass, which is the trick Flash Attention is built on, derived slowly on one whiteboard.",
+  "voice": "am_michael"
+ }
+}
