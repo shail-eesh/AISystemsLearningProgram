@@ -94,7 +94,7 @@ def distribution_stats(logits: Tensor) -> dict[str, float]:
     read as "how many tokens is the model effectively choosing between"."""
     p = logits.softmax(-1)
     nz = p > 0
-    entropy = float(-(p[nz] * p[nz].log()).sum() / max(p.shape[0], 1))
+    entropy = max(0.0, float(-(p[nz] * p[nz].log()).sum() / max(p.shape[0], 1)))
     return {
         "entropy_nats": entropy,
         "effective_choices": float(torch.exp(torch.tensor(entropy))),
