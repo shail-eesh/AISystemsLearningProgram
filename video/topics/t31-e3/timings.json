@@ -1,0 +1,997 @@
+{
+ "topic": "t31-e3",
+ "episode": 3,
+ "title": "Broadcasting gradients, slowly",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 642.0427,
+ "wordCount": 1419,
+ "wordsPerMinute": 132.6,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 24.52,
+ "generatedInSeconds": 394.9,
+ "segmentsSynthesised": 109,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Autograd, part three",
+    "subtitle": "Forward broadcast equals backward sum. This episode is deliberately slow, because this is the one that costs people a day.",
+    "topicId": "T31",
+    "episode": "Episode 3"
+   },
+   "start": 0.0,
+   "duration": 24.5233,
+   "segments": [
+    {
+     "text": "Episode three, and the reason the scalar engine was never the destination.",
+     "file": "t31-e3/audio/s1-000-709f6893813871e0.wav",
+     "start": 0.0,
+     "duration": 5.44
+    },
+    {
+     "text": "Today we move to arrays, and we meet the single subtlety that separates an autograd engine that works from one that appears to.",
+     "file": "t31-e3/audio/s1-001-eb08e48baf0aad58.wav",
+     "start": 5.86,
+     "duration": 9.5787
+    },
+    {
+     "text": "Broadcasting.",
+     "file": "t31-e3/audio/s1-002-dcc627fd50a00431.wav",
+     "start": 15.8587,
+     "duration": 1.3227
+    },
+    {
+     "text": "I am going to take this slowly, because in my experience this is where the day goes.",
+     "file": "t31-e3/audio/s1-003-fccb83cd4c9a3c9c.wav",
+     "start": 17.6013,
+     "duration": 6.272
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the motivation",
+    "title": "Why the scalar engine cannot be the destination",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "scalar engine",
+      "value": 498,
+      "color": "#e05e6b",
+      "note": "27,777 Python objects"
+     },
+     {
+      "label": "tensor engine",
+      "value": 1,
+      "color": "#5ac48c",
+      "note": "4 lines, one node"
+     }
+    ],
+    "logScale": true,
+    "caption": "One 64x8 -> 16 layer, forward and backward. Relative time, log scale. Measured, not estimated."
+   },
+   "start": 24.5233,
+   "duration": 54.0153,
+   "segments": [
+    {
+     "text": "First, the motivation, measured rather than asserted.",
+     "file": "t31-e3/audio/s2-000-5f18f76c6ffb38cf.wav",
+     "start": 24.5233,
+     "duration": 3.6693
+    },
+    {
+     "text": "Take one small layer.",
+     "file": "t31-e3/audio/s2-001-79dd28bff04fb15b.wav",
+     "start": 28.6127,
+     "duration": 1.728
+    },
+    {
+     "text": "Sixty four samples, eight features in, sixteen units out.",
+     "file": "t31-e3/audio/s2-002-b25c5daa5db1bb5c.wav",
+     "start": 30.7607,
+     "duration": 4.544
+    },
+    {
+     "text": "Unrolled to scalars, that graph is twenty seven thousand seven hundred and seventy seven nodes, each one a Python object holding a closure.",
+     "file": "t31-e3/audio/s2-003-75bd71258a252b8a.wav",
+     "start": 35.7247,
+     "duration": 11.1573
+    },
+    {
+     "text": "It runs four hundred and ninety eight times slower than the same computation as four lines of array code.",
+     "file": "t31-e3/audio/s2-004-5db81c26a1d795a9.wav",
+     "start": 47.302,
+     "duration": 7.6373
+    },
+    {
+     "text": "That factor is not a tuning problem.",
+     "file": "t31-e3/audio/s2-005-32ded894f6a65f3f.wav",
+     "start": 55.3593,
+     "duration": 2.816
+    },
+    {
+     "text": "It is the interpreter, and it is the concrete reason every real framework is array first.",
+     "file": "t31-e3/audio/s2-006-215a2fdb7e3f93bf.wav",
+     "start": 58.5953,
+     "duration": 6.7627
+    },
+    {
+     "text": "The structure we built in the last two episodes survives completely.",
+     "file": "t31-e3/audio/s2-007-d385af1284f73e2a.wav",
+     "start": 65.778,
+     "duration": 4.5653
+    },
+    {
+     "text": "What changes is that one node now holds an entire matrix, and the inner loops happen in C.",
+     "file": "t31-e3/audio/s2-008-61e771cb24165174.wav",
+     "start": 70.7633,
+     "duration": 7.1253
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the rule",
+    "title": "Forward broadcast equals backward sum",
+    "body": "NumPy silently stretches a (1, 8) bias across 32 rows so it can add it to a (32, 8) activation. Forward, that is free and invisible. Backward, it is a summation \u2014 and it is invisible there too, which is the problem.",
+    "points": [
+     "The bias contributed to all 32 rows, so it receives gradient from all 32.",
+     "Its gradient is therefore the SUM of 32 upstream gradients, not one of them.",
+     "Axes NumPy invented (rank promotion) must be summed away entirely.",
+     "Axes NumPy stretched (length-1) must be summed with keepdims, to preserve rank."
+    ],
+    "aside": "Say it once more: forward broadcast == backward sum-and-reshape. Everything in unbroadcast() is those five words."
+   },
+   "start": 78.5387,
+   "duration": 80.3927,
+   "segments": [
+    {
+     "text": "Here is the rule, and I want to state it before any code, because it is the whole episode.",
+     "file": "t31-e3/audio/s3-000-dd289cd7962d6658.wav",
+     "start": 78.5387,
+     "duration": 6.6347
+    },
+    {
+     "text": "NumPy will silently stretch a bias of shape one by eight across thirty two rows so it can be added to an activation of shape thirty two by eight.",
+     "file": "t31-e3/audio/s3-001-4cb7c479e2cfb91f.wav",
+     "start": 85.5933,
+     "duration": 11.2213
+    },
+    {
+     "text": "Forwards, that stretch is free and completely invisible.",
+     "file": "t31-e3/audio/s3-002-8a3f0ee354cafe3b.wav",
+     "start": 97.2347,
+     "duration": 3.8613
+    },
+    {
+     "text": "Backwards, it is a summation.",
+     "file": "t31-e3/audio/s3-003-4f0dea8286c26099.wav",
+     "start": 101.516,
+     "duration": 2.0693
+    },
+    {
+     "text": "And it is invisible there too, which is exactly the problem.",
+     "file": "t31-e3/audio/s3-004-a8a178cae3121105.wav",
+     "start": 104.0053,
+     "duration": 4.5867
+    },
+    {
+     "text": "Think about why.",
+     "file": "t31-e3/audio/s3-005-d15da22d827c60d7.wav",
+     "start": 109.012,
+     "duration": 1.5147
+    },
+    {
+     "text": "The bias contributed to all thirty two rows.",
+     "file": "t31-e3/audio/s3-006-93ef81a90756fd6b.wav",
+     "start": 110.9467,
+     "duration": 3.3707
+    },
+    {
+     "text": "So on the way back, it receives gradient from all thirty two rows.",
+     "file": "t31-e3/audio/s3-007-66664104fc0cc458.wav",
+     "start": 114.7373,
+     "duration": 4.992
+    },
+    {
+     "text": "Its gradient is the sum of thirty two upstream gradients, not one of them, and not the average of them.",
+     "file": "t31-e3/audio/s3-008-b0c5c4453202c953.wav",
+     "start": 120.1493,
+     "duration": 7.68
+    },
+    {
+     "text": "There are two flavours of this.",
+     "file": "t31-e3/audio/s3-009-e47a49800ac80f98.wav",
+     "start": 128.2493,
+     "duration": 2.0053
+    },
+    {
+     "text": "Axes that NumPy invented, because your operand had fewer dimensions than the result, get summed away entirely.",
+     "file": "t31-e3/audio/s3-010-615b6cc91178b270.wav",
+     "start": 130.6747,
+     "duration": 8.9813
+    },
+    {
+     "text": "Axes that NumPy stretched, because your operand had length one there, get summed with keep dimensions set, so the result keeps its rank.",
+     "file": "t31-e3/audio/s3-011-ead8f068e5da27de.wav",
+     "start": 140.076,
+     "duration": 10.1333
+    },
+    {
+     "text": "Say it once more and then we will look at the code.",
+     "file": "t31-e3/audio/s3-012-534c171ee43b04ba.wav",
+     "start": 150.6293,
+     "duration": 3.6053
+    },
+    {
+     "text": "Forward broadcast equals backward sum and reshape.",
+     "file": "t31-e3/audio/s3-013-d215a2491a80450f.wav",
+     "start": 154.6547,
+     "duration": 3.6267
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the code",
+    "title": "unbroadcast, in six lines",
+    "filename": "phases/p1/t31-autograd/src/t31_autograd/tensor.py",
+    "code": "def unbroadcast(grad, shape):\n    while grad.ndim > len(shape):\n        grad = grad.sum(axis=0)\n    for axis, size in enumerate(shape):\n        if size == 1 and grad.shape[axis] != 1:\n            grad = grad.sum(axis=axis, keepdims=True)\n    return grad.reshape(shape)",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2,
+       3
+      ],
+      "caption": "Rank promotion: leading axes the operand never had are summed away, one at a time."
+     },
+     {
+      "at": 170,
+      "lines": [
+       4,
+       5,
+       6
+      ],
+      "caption": "Stretched axes: length 1 in the target but not in the gradient \u2014 sum with keepdims to hold the rank."
+     },
+     {
+      "at": 330,
+      "lines": [
+       7
+      ],
+      "caption": "The reshape is a no-op assertion: if the two loops were right, this cannot fail."
+     },
+     {
+      "at": 420,
+      "lines": [
+       1
+      ],
+      "caption": "Every single op's backward funnels through this. Get it right once."
+     }
+    ]
+   },
+   "start": 158.9313,
+   "duration": 65.1607,
+   "segments": [
+    {
+     "text": "And here is the whole thing.",
+     "file": "t31-e3/audio/s4-000-29bac2f7ed209705.wav",
+     "start": 158.9313,
+     "duration": 2.1547
+    },
+    {
+     "text": "Six lines.",
+     "file": "t31-e3/audio/s4-001-e2a026644e8fabc5.wav",
+     "start": 161.506,
+     "duration": 1.3653
+    },
+    {
+     "text": "The first loop handles rank promotion.",
+     "file": "t31-e3/audio/s4-002-459b0b260895d30b.wav",
+     "start": 163.2913,
+     "duration": 2.6027
+    },
+    {
+     "text": "While the gradient has more dimensions than the target shape, sum away the leading axis.",
+     "file": "t31-e3/audio/s4-003-1132b7b8d76361d6.wav",
+     "start": 166.314,
+     "duration": 6.08
+    },
+    {
+     "text": "One at a time, because each sum removes exactly one.",
+     "file": "t31-e3/audio/s4-004-e75fdb70ffeb1d38.wav",
+     "start": 172.814,
+     "duration": 4.224
+    },
+    {
+     "text": "The second loop handles stretching.",
+     "file": "t31-e3/audio/s4-005-8125c59febaf96a5.wav",
+     "start": 177.458,
+     "duration": 2.1333
+    },
+    {
+     "text": "For every axis where the target has length one but the gradient does not, sum along that axis with keep dimensions set, so the rank does not collapse.",
+     "file": "t31-e3/audio/s4-006-6efa92a184b20e21.wav",
+     "start": 180.0113,
+     "duration": 11.3067
+    },
+    {
+     "text": "And then the reshape at the end.",
+     "file": "t31-e3/audio/s4-007-dda652985bd36486.wav",
+     "start": 191.738,
+     "duration": 2.176
+    },
+    {
+     "text": "That reshape should always be a no operation.",
+     "file": "t31-e3/audio/s4-008-486946d3f25fddeb.wav",
+     "start": 194.334,
+     "duration": 3.0507
+    },
+    {
+     "text": "It is there as an assertion.",
+     "file": "t31-e3/audio/s4-009-3ae16f5bb9d3063d.wav",
+     "start": 197.8047,
+     "duration": 2.24
+    },
+    {
+     "text": "If the two loops did their job the shape already matches, and if they did not, this line raises immediately rather than letting a wrong shaped gradient escape into the rest of the graph.",
+     "file": "t31-e3/audio/s4-010-271c0614947642dd.wav",
+     "start": 200.4647,
+     "duration": 13.184
+    },
+    {
+     "text": "Every operator's backward pass funnels through this function.",
+     "file": "t31-e3/audio/s4-011-e87dee801411ce55.wav",
+     "start": 214.0687,
+     "duration": 3.904
+    },
+    {
+     "text": "Which is the good news.",
+     "file": "t31-e3/audio/s4-012-af9f6122459bd3c1.wav",
+     "start": 218.3927,
+     "duration": 1.7707
+    },
+    {
+     "text": "You have to get it right exactly once.",
+     "file": "t31-e3/audio/s4-013-da36445d7053aec6.wav",
+     "start": 220.5833,
+     "duration": 2.8587
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the invariant",
+    "title": "Gradient is conserved, only regrouped",
+    "english": "Reducing a gradient to a smaller shape must not change its total. The 256 numbers in a (32,8) gradient become 8 numbers in a (1,8) gradient, and both sum to the same thing.",
+    "equation": "sum( unbroadcast(g, s) )  ==  sum(g)     for every valid s",
+    "code": "grad = np.ones((32, 8))          # total 256\nunbroadcast(grad, (1, 8)).sum()  # 256\nunbroadcast(grad, (8,)).sum()    # 256\nunbroadcast(grad, ()).sum()      # 256",
+    "note": "A cheap property test that catches mean-instead-of-sum, and the wrong axis, in one line.",
+    "stageFrames": [
+     10,
+     130,
+     250
+    ]
+   },
+   "start": 224.092,
+   "duration": 75.3513,
+   "segments": [
+    {
+     "text": "There is a property here that is worth having as a test, and I will show it three ways.",
+     "file": "t31-e3/audio/s5-000-0a3298094f2d2deb.wav",
+     "start": 224.092,
+     "duration": 5.8667
+    },
+    {
+     "text": "In English.",
+     "file": "t31-e3/audio/s5-001-c4019f85592118a1.wav",
+     "start": 230.3787,
+     "duration": 1.3227
+    },
+    {
+     "text": "Reducing a gradient to a smaller shape must not change its total.",
+     "file": "t31-e3/audio/s5-002-40182e68f9541dfa.wav",
+     "start": 232.1213,
+     "duration": 4.992
+    },
+    {
+     "text": "The two hundred and fifty six numbers in a thirty two by eight gradient become eight numbers in a one by eight gradient, and both collections sum to the same value.",
+     "file": "t31-e3/audio/s5-003-973b8b19941c6d7a.wav",
+     "start": 237.5333,
+     "duration": 11.9893
+    },
+    {
+     "text": "In symbols.",
+     "file": "t31-e3/audio/s5-004-e7723692fc292689.wav",
+     "start": 249.9427,
+     "duration": 1.3867
+    },
+    {
+     "text": "The sum of unbroadcast of g to shape s equals the sum of g, for every valid s.",
+     "file": "t31-e3/audio/s5-005-636ef5dd5461e196.wav",
+     "start": 251.7493,
+     "duration": 6.7413
+    },
+    {
+     "text": "And in code.",
+     "file": "t31-e3/audio/s5-006-01474cbc64fb7bce.wav",
+     "start": 258.9107,
+     "duration": 1.3867
+    },
+    {
+     "text": "A gradient of all ones with shape thirty two by eight totals two hundred and fifty six.",
+     "file": "t31-e3/audio/s5-007-f593b6cc0d1391da.wav",
+     "start": 260.7173,
+     "duration": 6.3573
+    },
+    {
+     "text": "Reduce it to one by eight and it still totals two hundred and fifty six.",
+     "file": "t31-e3/audio/s5-008-49e65229acf25f39.wav",
+     "start": 267.4947,
+     "duration": 5.2267
+    },
+    {
+     "text": "Reduce it to a bare vector of eight, still two hundred and fifty six.",
+     "file": "t31-e3/audio/s5-009-7c305b1bd125f988.wav",
+     "start": 273.1413,
+     "duration": 4.9707
+    },
+    {
+     "text": "Reduce it all the way to a scalar, still two hundred and fifty six.",
+     "file": "t31-e3/audio/s5-010-bcbc5b5948748765.wav",
+     "start": 278.532,
+     "duration": 4.928
+    },
+    {
+     "text": "Gradient is conserved.",
+     "file": "t31-e3/audio/s5-011-8fb6d654402b8782.wav",
+     "start": 283.88,
+     "duration": 1.92
+    },
+    {
+     "text": "It is only ever regrouped.",
+     "file": "t31-e3/audio/s5-012-59dd4486e8904492.wav",
+     "start": 286.22,
+     "duration": 2.1547
+    },
+    {
+     "text": "And that single assertion catches two of the three ways people get this wrong.",
+     "file": "t31-e3/audio/s5-013-0789adaa108b7e00.wav",
+     "start": 288.7947,
+     "duration": 5.0987
+    },
+    {
+     "text": "Using mean instead of sum, and summing over the wrong axis.",
+     "file": "t31-e3/audio/s5-014-2a0731fd2ada6263.wav",
+     "start": 294.3133,
+     "duration": 4.48
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the payoff",
+    "title": "Matmul: derive it once with indices",
+    "filename": "src/t31_autograd/tensor.py",
+    "code": "def __matmul__(self, other):\n    out = Tensor(self.data @ other.data, (self, other), \"@\")\n\n    def _backward():\n        self._accumulate(out.grad @ swapaxes(other.data, -1, -2))\n        other._accumulate(swapaxes(self.data, -1, -2) @ out.grad)\n\n    out._backward = _backward\n    return out",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       1,
+       2
+      ],
+      "caption": "C = A @ B. Forward is one line, as always."
+     },
+     {
+      "at": 140,
+      "lines": [
+       5
+      ],
+      "caption": "dL/dA = dL/dC @ B^T. Derive it from C_ij = sum_k A_ik B_kj: dC_ij/dA_ik = B_kj."
+     },
+     {
+      "at": 280,
+      "lines": [
+       6
+      ],
+      "caption": "dL/dB = A^T @ dL/dC. Same derivation, other index."
+     },
+     {
+      "at": 380,
+      "lines": [
+       5,
+       6
+      ],
+      "caption": "Shape check as a sanity rule: the answer must come out the shape of the input it is a gradient for."
+     }
+    ]
+   },
+   "start": 299.4433,
+   "duration": 66.3407,
+   "segments": [
+    {
+     "text": "Now the operator everybody looks up instead of deriving.",
+     "file": "t31-e3/audio/s6-000-48a27bb2a242a7e8.wav",
+     "start": 299.4433,
+     "duration": 4.4587
+    },
+    {
+     "text": "Matrix multiply.",
+     "file": "t31-e3/audio/s6-001-b35b6cb55db5d345.wav",
+     "start": 304.322,
+     "duration": 1.9627
+    },
+    {
+     "text": "The forward is one line as usual.",
+     "file": "t31-e3/audio/s6-002-60f1d511b9b40e3e.wav",
+     "start": 306.7047,
+     "duration": 2.624
+    },
+    {
+     "text": "The backward is two, and they are worth deriving once so you never look them up again.",
+     "file": "t31-e3/audio/s6-003-fae6b1d55b68ad7c.wav",
+     "start": 309.7487,
+     "duration": 5.5467
+    },
+    {
+     "text": "Write out the definition with indices.",
+     "file": "t31-e3/audio/s6-004-5a92365f3556e2a7.wav",
+     "start": 315.7153,
+     "duration": 2.944
+    },
+    {
+     "text": "C i j equals the sum over k of A i k times B k j.",
+     "file": "t31-e3/audio/s6-005-30e794f4ab4525e9.wav",
+     "start": 319.0793,
+     "duration": 5.568
+    },
+    {
+     "text": "So the derivative of C i j with respect to A i k is simply B k j.",
+     "file": "t31-e3/audio/s6-006-26d19049fa87ec02.wav",
+     "start": 325.0673,
+     "duration": 6.208
+    },
+    {
+     "text": "Collect those into matrix form and you get.",
+     "file": "t31-e3/audio/s6-007-8f3651ae618de8b5.wav",
+     "start": 331.6953,
+     "duration": 3.1573
+    },
+    {
+     "text": "The gradient of A is the upstream gradient times B transposed.",
+     "file": "t31-e3/audio/s6-008-ca44bc4b30a82913.wav",
+     "start": 335.2727,
+     "duration": 4.8213
+    },
+    {
+     "text": "And symmetrically, the gradient of B is A transposed times the upstream gradient.",
+     "file": "t31-e3/audio/s6-009-abcdd1bfa10d4137.wav",
+     "start": 340.514,
+     "duration": 6.08
+    },
+    {
+     "text": "If you ever forget which transpose goes where, there is a sanity rule that never fails.",
+     "file": "t31-e3/audio/s6-010-5dd9fab62a706d70.wav",
+     "start": 347.014,
+     "duration": 6.2293
+    },
+    {
+     "text": "The gradient of a thing has the shape of that thing.",
+     "file": "t31-e3/audio/s6-011-ed2862178e98c19f.wav",
+     "start": 353.6633,
+     "duration": 3.3707
+    },
+    {
+     "text": "There is usually only one arrangement of the transposes that produces the right shape, and it is the correct one.",
+     "file": "t31-e3/audio/s6-012-c1ceab6be833b9ea.wav",
+     "start": 357.454,
+     "duration": 7.68
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "The bug this engine actually shipped with",
+    "body": "Numerically safe binary cross-entropy needs log(1 + e^-|z|). Building |z| as a detached constant computes the right forward value and silently zeroes that term's gradient. Gradcheck caught it in one second. The loss curve never would have.",
+    "code": "# wrong: forward correct, gradient half missing\nabs_z = Tensor(np.abs(z.data), requires_grad=False)\n\n# right: d|z|/dz = sign(z), so build it as z * sign\nsign  = Tensor(np.sign(z.data), requires_grad=False)\nabs_z = z * sign"
+   },
+   "start": 365.784,
+   "duration": 76.2673,
+   "segments": [
+    {
+     "text": "I want to show you a real bug, because this one shipped in a draft of the engine you are building.",
+     "file": "t31-e3/audio/s7-000-054dda595c6331e2.wav",
+     "start": 365.784,
+     "duration": 6.528
+    },
+    {
+     "text": "Numerically safe binary cross entropy uses the identity log of one plus e to the z equals max of z and zero, plus log of one plus e to the minus absolute z.",
+     "file": "t31-e3/audio/s7-001-4fb7303519b08912.wav",
+     "start": 372.732,
+     "duration": 14.9333
+    },
+    {
+     "text": "That absolute value has to stay differentiable.",
+     "file": "t31-e3/audio/s7-002-dfb807e2f2e5b7cb.wav",
+     "start": 388.0853,
+     "duration": 3.6053
+    },
+    {
+     "text": "The first version built it as a detached constant.",
+     "file": "t31-e3/audio/s7-003-a6c94515b5fa02d1.wav",
+     "start": 392.1107,
+     "duration": 3.6053
+    },
+    {
+     "text": "Take the data, call numpy absolute, wrap it as a tensor with gradients off.",
+     "file": "t31-e3/audio/s7-004-745aff33a6f58a2b.wav",
+     "start": 396.136,
+     "duration": 5.7387
+    },
+    {
+     "text": "The forward value was exactly right.",
+     "file": "t31-e3/audio/s7-005-621292831e7d761b.wav",
+     "start": 402.2947,
+     "duration": 2.88
+    },
+    {
+     "text": "Every test on the loss value passed.",
+     "file": "t31-e3/audio/s7-006-bd8a52326ed6baa5.wav",
+     "start": 405.5947,
+     "duration": 2.5813
+    },
+    {
+     "text": "And the gradient of that entire term was zero, because no gradient can flow through a detached node.",
+     "file": "t31-e3/audio/s7-007-652819e1af096ede.wav",
+     "start": 408.596,
+     "duration": 7.4027
+    },
+    {
+     "text": "The fix is to remember that the derivative of absolute z is the sign of z, so you build it as z times sign, with the sign detached and the z not.",
+     "file": "t31-e3/audio/s7-008-4563e835ea0fe7bb.wav",
+     "start": 416.4187,
+     "duration": 12.1813
+    },
+    {
+     "text": "Here is the part worth internalising.",
+     "file": "t31-e3/audio/s7-009-9e081047ae4bfaff.wav",
+     "start": 429.02,
+     "duration": 2.7307
+    },
+    {
+     "text": "Gradcheck found this in one second.",
+     "file": "t31-e3/audio/s7-010-3ca027714d3a4b33.wav",
+     "start": 432.1707,
+     "duration": 2.5173
+    },
+    {
+     "text": "The loss curve would never have found it, because a loss with half a gradient still goes down.",
+     "file": "t31-e3/audio/s7-011-e53575c23f4bc614.wav",
+     "start": 435.108,
+     "duration": 6.2933
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "verification",
+    "title": "Two implementations, one trajectory",
+    "kind": "line",
+    "series": [
+     {
+      "label": "your engine",
+      "color": "#5ac48c",
+      "points": [
+       [
+        0,
+        0.787
+       ],
+       [
+        20,
+        0.352
+       ],
+       [
+        40,
+        0.163
+       ],
+       [
+        60,
+        0.084
+       ],
+       [
+        80,
+        0.048
+       ],
+       [
+        100,
+        0.03
+       ],
+       [
+        140,
+        0.015
+       ],
+       [
+        199,
+        0.0074
+       ]
+      ]
+     },
+     {
+      "label": "hand-derived reference",
+      "color": "#7a8aa0",
+      "points": [
+       [
+        0,
+        0.787
+       ],
+       [
+        20,
+        0.352
+       ],
+       [
+        40,
+        0.163
+       ],
+       [
+        60,
+        0.084
+       ],
+       [
+        80,
+        0.048
+       ],
+       [
+        100,
+        0.03
+       ],
+       [
+        140,
+        0.015
+       ],
+       [
+        199,
+        0.0074
+       ]
+      ]
+     }
+    ],
+    "xLabel": "Adam step",
+    "yLabel": "BCE loss",
+    "caption": "Identical init, identical optimiser, gradients derived two independent ways. Max divergence over 200 steps: 6e-17."
+   },
+   "start": 442.0513,
+   "duration": 61.1913,
+   "segments": [
+    {
+     "text": "And here is the verification for the whole topic.",
+     "file": "t31-e3/audio/s8-000-1e0b350b6a1fc709.wav",
+     "start": 442.0513,
+     "duration": 3.6053
+    },
+    {
+     "text": "Two networks.",
+     "file": "t31-e3/audio/s8-001-c95de19c19d7f27e.wav",
+     "start": 446.0767,
+     "duration": 1.3653
+    },
+    {
+     "text": "Same architecture, same initialisation, same Adam hyper parameters, same data.",
+     "file": "t31-e3/audio/s8-002-404e8ff6af80d1e9.wav",
+     "start": 447.862,
+     "duration": 6.1227
+    },
+    {
+     "text": "One is differentiated by the closures we have spent three episodes writing.",
+     "file": "t31-e3/audio/s8-003-b2d071a3c836e351.wav",
+     "start": 454.4047,
+     "duration": 5.6533
+    },
+    {
+     "text": "The other has its gradients derived by hand on paper, written out in plain NumPy, sharing no code with the engine at all.",
+     "file": "t31-e3/audio/s8-004-1488167b95cf044d.wav",
+     "start": 460.478,
+     "duration": 9.344
+    },
+    {
+     "text": "Train both for two hundred steps and plot the loss.",
+     "file": "t31-e3/audio/s8-005-f0c81af553508222.wav",
+     "start": 470.242,
+     "duration": 3.4773
+    },
+    {
+     "text": "You cannot see two lines because there are not two lines.",
+     "file": "t31-e3/audio/s8-006-fc884d1152d91546.wav",
+     "start": 474.1393,
+     "duration": 4.096
+    },
+    {
+     "text": "The maximum divergence across all two hundred steps is six times ten to the minus seventeen, which is machine epsilon.",
+     "file": "t31-e3/audio/s8-007-fcfb32add62fc51b.wav",
+     "start": 478.6553,
+     "duration": 9.9627
+    },
+    {
+     "text": "And that is the sentence I want you to leave with.",
+     "file": "t31-e3/audio/s8-008-919e51e1cd43a3ba.wav",
+     "start": 489.038,
+     "duration": 3.3493
+    },
+    {
+     "text": "Automatic differentiation is not an approximation of the derivative.",
+     "file": "t31-e3/audio/s8-009-c88b82e3513e4514.wav",
+     "start": 492.8073,
+     "duration": 5.1627
+    },
+    {
+     "text": "It is the derivative, evaluated in a different order.",
+     "file": "t31-e3/audio/s8-010-5e2f3b9147005cd8.wav",
+     "start": 498.39,
+     "duration": 4.2027
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the cost",
+    "title": "What the engine costs you",
+    "body": "The same benchmark also times both. Your engine is 3.7x slower than the hand-written gradients it matches exactly. That is the price of generality, and it is worth understanding rather than hiding.",
+    "points": [
+     "Every op allocates a node and a closure \u2014 Python object overhead per operation.",
+     "Nothing is fused: exp then sum then log is three full passes over memory.",
+     "No graph is compiled, so no algebraic simplification happens.",
+     "All three are exactly what torch.compile, XLA and TorchScript exist to fix."
+    ],
+    "aside": "Knowing the shape of that 3.7x is what makes the compiler chapters later in the course make sense."
+   },
+   "start": 503.2427,
+   "duration": 62.534,
+   "segments": [
+    {
+     "text": "The same benchmark also times both, and honesty is worth more here than a flattering number.",
+     "file": "t31-e3/audio/s9-000-7d51e6b7fd59a818.wav",
+     "start": 503.2427,
+     "duration": 6.912
+    },
+    {
+     "text": "Your engine is three point seven times slower than the hand written gradients it matches exactly.",
+     "file": "t31-e3/audio/s9-001-48467a4cf3e066af.wav",
+     "start": 510.5747,
+     "duration": 7.04
+    },
+    {
+     "text": "Where does that go.",
+     "file": "t31-e3/audio/s9-002-c8b432c7f2bb5060.wav",
+     "start": 518.0347,
+     "duration": 1.536
+    },
+    {
+     "text": "Every operation allocates a node and a closure, which is Python object overhead per operation rather than per batch.",
+     "file": "t31-e3/audio/s9-003-cea50e2f301c82c2.wav",
+     "start": 519.9907,
+     "duration": 9.3013
+    },
+    {
+     "text": "Nothing is fused, so exponent then sum then logarithm is three separate full passes over memory instead of one.",
+     "file": "t31-e3/audio/s9-004-ef92922699ad632c.wav",
+     "start": 529.712,
+     "duration": 8.96
+    },
+    {
+     "text": "And nothing is compiled, so no algebraic simplification ever happens.",
+     "file": "t31-e3/audio/s9-005-382e60cfd5c6569e.wav",
+     "start": 539.092,
+     "duration": 5.5253
+    },
+    {
+     "text": "Those three sentences are, almost word for word, the problems that torch compile, XLA and TorchScript exist to solve.",
+     "file": "t31-e3/audio/s9-006-dd8b1050d5d202a5.wav",
+     "start": 545.0373,
+     "duration": 9.8133
+    },
+    {
+     "text": "Understanding the shape of this three point seven times is what makes those tools legible later, instead of magic with a decorator.",
+     "file": "t31-e3/audio/s9-007-fa0d15bdb09e1e5a.wav",
+     "start": 555.2707,
+     "duration": 9.856
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "topic recap",
+    "points": [
+     "Forward broadcast equals backward sum-and-reshape. Six lines, and every operator funnels through them.",
+     "Gradient is conserved through unbroadcast \u2014 a free property test.",
+     "Derive matmul's backward from indices once; check it with 'a gradient has the shape of its thing'.",
+     "Detaching a value that should be differentiable is the bug that ships. Gradcheck finds it; loss curves do not.",
+     "Your engine matches a hand-derived reference to 6e-17, at 3.7x the cost."
+    ],
+    "ifSkipped": "Phase 7 rebuilds this same backward pass to fit in GPU cache. Without this topic, that is an incantation.",
+    "next": "Next topic: T16A \u2014 matrix multiplication, and why the same arithmetic can run 36x apart."
+   },
+   "start": 565.7767,
+   "duration": 76.266,
+   "segments": [
+    {
+     "text": "To recap the whole topic.",
+     "file": "t31-e3/audio/s10-000-d9bb37f4c7e95452.wav",
+     "start": 565.7767,
+     "duration": 2.1333
+    },
+    {
+     "text": "Forward broadcast equals backward sum and reshape, six lines, and every operator funnels through them.",
+     "file": "t31-e3/audio/s10-001-a3eaad1c42457a43.wav",
+     "start": 568.33,
+     "duration": 7.68
+    },
+    {
+     "text": "Gradient is conserved through that reduction, which gives you a free property test.",
+     "file": "t31-e3/audio/s10-002-3acb26e953a19f43.wav",
+     "start": 576.43,
+     "duration": 5.76
+    },
+    {
+     "text": "Derive matmul's backward from index notation once, and check yourself with the rule that a gradient has the shape of the thing it is a gradient for.",
+     "file": "t31-e3/audio/s10-003-52ef48b63ccc0f8e.wav",
+     "start": 582.61,
+     "duration": 10.8373
+    },
+    {
+     "text": "Detaching a value that should have stayed differentiable is the bug that actually ships, and gradcheck finds it while loss curves never will.",
+     "file": "t31-e3/audio/s10-004-86245b828824af46.wav",
+     "start": 593.8673,
+     "duration": 10.0053
+    },
+    {
+     "text": "And your engine matches an independently hand derived reference to six times ten to the minus seventeen, at three point seven times the cost.",
+     "file": "t31-e3/audio/s10-005-a2d871a2f5b34114.wav",
+     "start": 604.2927,
+     "duration": 10.8587
+    },
+    {
+     "text": "Phase seven will rebuild this exact backward pass so that it fits in a GPU's cache, and without this topic that would be an incantation.",
+     "file": "t31-e3/audio/s10-006-d5a7c36763c79f05.wav",
+     "start": 615.5713,
+     "duration": 10.5173
+    },
+    {
+     "text": "Next topic is sixteen A.",
+     "file": "t31-e3/audio/s10-007-5dea2525740d133a.wav",
+     "start": 626.5087,
+     "duration": 2.24
+    },
+    {
+     "text": "Matrix multiplication, where the same arithmetic, compiled with the same flags, runs thirty six times apart depending only on the order it touches memory.",
+     "file": "t31-e3/audio/s10-008-f0b3a7d6b950239e.wav",
+     "start": 629.1687,
+     "duration": 12.224
+    }
+   ]
+  }
+ ]
+}

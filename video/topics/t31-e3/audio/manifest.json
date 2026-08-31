@@ -1,0 +1,547 @@
+{
+ "s1-000-709f6893813871e0.wav": {
+  "duration": 5.44,
+  "text": "Episode three, and the reason the scalar engine was never the destination.",
+  "voice": "am_michael"
+ },
+ "s1-001-eb08e48baf0aad58.wav": {
+  "duration": 9.578666666666667,
+  "text": "Today we move to arrays, and we meet the single subtlety that separates an autograd engine that works from one that appears to.",
+  "voice": "am_michael"
+ },
+ "s1-002-dcc627fd50a00431.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Broadcasting.",
+  "voice": "am_michael"
+ },
+ "s1-003-fccb83cd4c9a3c9c.wav": {
+  "duration": 6.272,
+  "text": "I am going to take this slowly, because in my experience this is where the day goes.",
+  "voice": "am_michael"
+ },
+ "s10-000-d9bb37f4c7e95452.wav": {
+  "duration": 2.1333333333333333,
+  "text": "To recap the whole topic.",
+  "voice": "am_michael"
+ },
+ "s10-001-a3eaad1c42457a43.wav": {
+  "duration": 7.68,
+  "text": "Forward broadcast equals backward sum and reshape, six lines, and every operator funnels through them.",
+  "voice": "am_michael"
+ },
+ "s10-002-3acb26e953a19f43.wav": {
+  "duration": 5.76,
+  "text": "Gradient is conserved through that reduction, which gives you a free property test.",
+  "voice": "am_michael"
+ },
+ "s10-003-52ef48b63ccc0f8e.wav": {
+  "duration": 10.837333333333333,
+  "text": "Derive matmul's backward from index notation once, and check yourself with the rule that a gradient has the shape of the thing it is a gradient for.",
+  "voice": "am_michael"
+ },
+ "s10-004-86245b828824af46.wav": {
+  "duration": 10.005333333333333,
+  "text": "Detaching a value that should have stayed differentiable is the bug that actually ships, and gradcheck finds it while loss curves never will.",
+  "voice": "am_michael"
+ },
+ "s10-005-a2d871a2f5b34114.wav": {
+  "duration": 10.858666666666666,
+  "text": "And your engine matches an independently hand derived reference to six times ten to the minus seventeen, at three point seven times the cost.",
+  "voice": "am_michael"
+ },
+ "s10-006-d5a7c36763c79f05.wav": {
+  "duration": 10.517333333333333,
+  "text": "Phase seven will rebuild this exact backward pass so that it fits in a GPU's cache, and without this topic that would be an incantation.",
+  "voice": "am_michael"
+ },
+ "s10-007-5dea2525740d133a.wav": {
+  "duration": 2.24,
+  "text": "Next topic is sixteen A.",
+  "voice": "am_michael"
+ },
+ "s10-008-f0b3a7d6b950239e.wav": {
+  "duration": 12.224,
+  "text": "Matrix multiplication, where the same arithmetic, compiled with the same flags, runs thirty six times apart depending only on the order it touches memory.",
+  "voice": "am_michael"
+ },
+ "s2-000-5f18f76c6ffb38cf.wav": {
+  "duration": 3.6693333333333333,
+  "text": "First, the motivation, measured rather than asserted.",
+  "voice": "am_michael"
+ },
+ "s2-001-79dd28bff04fb15b.wav": {
+  "duration": 1.728,
+  "text": "Take one small layer.",
+  "voice": "am_michael"
+ },
+ "s2-002-b25c5daa5db1bb5c.wav": {
+  "duration": 4.544,
+  "text": "Sixty four samples, eight features in, sixteen units out.",
+  "voice": "am_michael"
+ },
+ "s2-003-75bd71258a252b8a.wav": {
+  "duration": 11.157333333333334,
+  "text": "Unrolled to scalars, that graph is twenty seven thousand seven hundred and seventy seven nodes, each one a Python object holding a closure.",
+  "voice": "am_michael"
+ },
+ "s2-004-5db81c26a1d795a9.wav": {
+  "duration": 7.637333333333333,
+  "text": "It runs four hundred and ninety eight times slower than the same computation as four lines of array code.",
+  "voice": "am_michael"
+ },
+ "s2-005-32ded894f6a65f3f.wav": {
+  "duration": 2.816,
+  "text": "That factor is not a tuning problem.",
+  "voice": "am_michael"
+ },
+ "s2-006-215a2fdb7e3f93bf.wav": {
+  "duration": 6.762666666666667,
+  "text": "It is the interpreter, and it is the concrete reason every real framework is array first.",
+  "voice": "am_michael"
+ },
+ "s2-007-d385af1284f73e2a.wav": {
+  "duration": 4.565333333333333,
+  "text": "The structure we built in the last two episodes survives completely.",
+  "voice": "am_michael"
+ },
+ "s2-008-61e771cb24165174.wav": {
+  "duration": 7.125333333333334,
+  "text": "What changes is that one node now holds an entire matrix, and the inner loops happen in C.",
+  "voice": "am_michael"
+ },
+ "s3-000-dd289cd7962d6658.wav": {
+  "duration": 6.634666666666667,
+  "text": "Here is the rule, and I want to state it before any code, because it is the whole episode.",
+  "voice": "am_michael"
+ },
+ "s3-001-4cb7c479e2cfb91f.wav": {
+  "duration": 11.221333333333334,
+  "text": "NumPy will silently stretch a bias of shape one by eight across thirty two rows so it can be added to an activation of shape thirty two by eight.",
+  "voice": "am_michael"
+ },
+ "s3-002-8a3f0ee354cafe3b.wav": {
+  "duration": 3.8613333333333335,
+  "text": "Forwards, that stretch is free and completely invisible.",
+  "voice": "am_michael"
+ },
+ "s3-003-4f0dea8286c26099.wav": {
+  "duration": 2.0693333333333332,
+  "text": "Backwards, it is a summation.",
+  "voice": "am_michael"
+ },
+ "s3-004-a8a178cae3121105.wav": {
+  "duration": 4.586666666666667,
+  "text": "And it is invisible there too, which is exactly the problem.",
+  "voice": "am_michael"
+ },
+ "s3-005-d15da22d827c60d7.wav": {
+  "duration": 1.5146666666666666,
+  "text": "Think about why.",
+  "voice": "am_michael"
+ },
+ "s3-006-93ef81a90756fd6b.wav": {
+  "duration": 3.3706666666666667,
+  "text": "The bias contributed to all thirty two rows.",
+  "voice": "am_michael"
+ },
+ "s3-007-66664104fc0cc458.wav": {
+  "duration": 4.992,
+  "text": "So on the way back, it receives gradient from all thirty two rows.",
+  "voice": "am_michael"
+ },
+ "s3-008-b0c5c4453202c953.wav": {
+  "duration": 7.68,
+  "text": "Its gradient is the sum of thirty two upstream gradients, not one of them, and not the average of them.",
+  "voice": "am_michael"
+ },
+ "s3-009-e47a49800ac80f98.wav": {
+  "duration": 2.005333333333333,
+  "text": "There are two flavours of this.",
+  "voice": "am_michael"
+ },
+ "s3-010-615b6cc91178b270.wav": {
+  "duration": 8.981333333333334,
+  "text": "Axes that NumPy invented, because your operand had fewer dimensions than the result, get summed away entirely.",
+  "voice": "am_michael"
+ },
+ "s3-011-ead8f068e5da27de.wav": {
+  "duration": 10.133333333333333,
+  "text": "Axes that NumPy stretched, because your operand had length one there, get summed with keep dimensions set, so the result keeps its rank.",
+  "voice": "am_michael"
+ },
+ "s3-012-534c171ee43b04ba.wav": {
+  "duration": 3.6053333333333333,
+  "text": "Say it once more and then we will look at the code.",
+  "voice": "am_michael"
+ },
+ "s3-013-d215a2491a80450f.wav": {
+  "duration": 3.6266666666666665,
+  "text": "Forward broadcast equals backward sum and reshape.",
+  "voice": "am_michael"
+ },
+ "s4-000-29bac2f7ed209705.wav": {
+  "duration": 2.1546666666666665,
+  "text": "And here is the whole thing.",
+  "voice": "am_michael"
+ },
+ "s4-001-e2a026644e8fabc5.wav": {
+  "duration": 1.3653333333333333,
+  "text": "Six lines.",
+  "voice": "am_michael"
+ },
+ "s4-002-459b0b260895d30b.wav": {
+  "duration": 2.6026666666666665,
+  "text": "The first loop handles rank promotion.",
+  "voice": "am_michael"
+ },
+ "s4-003-1132b7b8d76361d6.wav": {
+  "duration": 6.08,
+  "text": "While the gradient has more dimensions than the target shape, sum away the leading axis.",
+  "voice": "am_michael"
+ },
+ "s4-004-e75fdb70ffeb1d38.wav": {
+  "duration": 4.224,
+  "text": "One at a time, because each sum removes exactly one.",
+  "voice": "am_michael"
+ },
+ "s4-005-8125c59febaf96a5.wav": {
+  "duration": 2.1333333333333333,
+  "text": "The second loop handles stretching.",
+  "voice": "am_michael"
+ },
+ "s4-006-6efa92a184b20e21.wav": {
+  "duration": 11.306666666666667,
+  "text": "For every axis where the target has length one but the gradient does not, sum along that axis with keep dimensions set, so the rank does not collapse.",
+  "voice": "am_michael"
+ },
+ "s4-007-dda652985bd36486.wav": {
+  "duration": 2.176,
+  "text": "And then the reshape at the end.",
+  "voice": "am_michael"
+ },
+ "s4-008-486946d3f25fddeb.wav": {
+  "duration": 3.050666666666667,
+  "text": "That reshape should always be a no operation.",
+  "voice": "am_michael"
+ },
+ "s4-009-3ae16f5bb9d3063d.wav": {
+  "duration": 2.24,
+  "text": "It is there as an assertion.",
+  "voice": "am_michael"
+ },
+ "s4-010-271c0614947642dd.wav": {
+  "duration": 13.184,
+  "text": "If the two loops did their job the shape already matches, and if they did not, this line raises immediately rather than letting a wrong shaped gradient escape into the rest of the graph.",
+  "voice": "am_michael"
+ },
+ "s4-011-e87dee801411ce55.wav": {
+  "duration": 3.904,
+  "text": "Every operator's backward pass funnels through this function.",
+  "voice": "am_michael"
+ },
+ "s4-012-af9f6122459bd3c1.wav": {
+  "duration": 1.7706666666666666,
+  "text": "Which is the good news.",
+  "voice": "am_michael"
+ },
+ "s4-013-da36445d7053aec6.wav": {
+  "duration": 2.8586666666666667,
+  "text": "You have to get it right exactly once.",
+  "voice": "am_michael"
+ },
+ "s5-000-0a3298094f2d2deb.wav": {
+  "duration": 5.866666666666666,
+  "text": "There is a property here that is worth having as a test, and I will show it three ways.",
+  "voice": "am_michael"
+ },
+ "s5-001-c4019f85592118a1.wav": {
+  "duration": 1.3226666666666667,
+  "text": "In English.",
+  "voice": "am_michael"
+ },
+ "s5-002-40182e68f9541dfa.wav": {
+  "duration": 4.992,
+  "text": "Reducing a gradient to a smaller shape must not change its total.",
+  "voice": "am_michael"
+ },
+ "s5-003-973b8b19941c6d7a.wav": {
+  "duration": 11.989333333333333,
+  "text": "The two hundred and fifty six numbers in a thirty two by eight gradient become eight numbers in a one by eight gradient, and both collections sum to the same value.",
+  "voice": "am_michael"
+ },
+ "s5-004-e7723692fc292689.wav": {
+  "duration": 1.3866666666666667,
+  "text": "In symbols.",
+  "voice": "am_michael"
+ },
+ "s5-005-636ef5dd5461e196.wav": {
+  "duration": 6.741333333333333,
+  "text": "The sum of unbroadcast of g to shape s equals the sum of g, for every valid s.",
+  "voice": "am_michael"
+ },
+ "s5-006-01474cbc64fb7bce.wav": {
+  "duration": 1.3866666666666667,
+  "text": "And in code.",
+  "voice": "am_michael"
+ },
+ "s5-007-f593b6cc0d1391da.wav": {
+  "duration": 6.357333333333333,
+  "text": "A gradient of all ones with shape thirty two by eight totals two hundred and fifty six.",
+  "voice": "am_michael"
+ },
+ "s5-008-49e65229acf25f39.wav": {
+  "duration": 5.226666666666667,
+  "text": "Reduce it to one by eight and it still totals two hundred and fifty six.",
+  "voice": "am_michael"
+ },
+ "s5-009-7c305b1bd125f988.wav": {
+  "duration": 4.970666666666666,
+  "text": "Reduce it to a bare vector of eight, still two hundred and fifty six.",
+  "voice": "am_michael"
+ },
+ "s5-010-bcbc5b5948748765.wav": {
+  "duration": 4.928,
+  "text": "Reduce it all the way to a scalar, still two hundred and fifty six.",
+  "voice": "am_michael"
+ },
+ "s5-011-8fb6d654402b8782.wav": {
+  "duration": 1.92,
+  "text": "Gradient is conserved.",
+  "voice": "am_michael"
+ },
+ "s5-012-59dd4486e8904492.wav": {
+  "duration": 2.1546666666666665,
+  "text": "It is only ever regrouped.",
+  "voice": "am_michael"
+ },
+ "s5-013-0789adaa108b7e00.wav": {
+  "duration": 5.0986666666666665,
+  "text": "And that single assertion catches two of the three ways people get this wrong.",
+  "voice": "am_michael"
+ },
+ "s5-014-2a0731fd2ada6263.wav": {
+  "duration": 4.48,
+  "text": "Using mean instead of sum, and summing over the wrong axis.",
+  "voice": "am_michael"
+ },
+ "s6-000-48a27bb2a242a7e8.wav": {
+  "duration": 4.458666666666667,
+  "text": "Now the operator everybody looks up instead of deriving.",
+  "voice": "am_michael"
+ },
+ "s6-001-b35b6cb55db5d345.wav": {
+  "duration": 1.9626666666666666,
+  "text": "Matrix multiply.",
+  "voice": "am_michael"
+ },
+ "s6-002-60f1d511b9b40e3e.wav": {
+  "duration": 2.624,
+  "text": "The forward is one line as usual.",
+  "voice": "am_michael"
+ },
+ "s6-003-fae6b1d55b68ad7c.wav": {
+  "duration": 5.546666666666667,
+  "text": "The backward is two, and they are worth deriving once so you never look them up again.",
+  "voice": "am_michael"
+ },
+ "s6-004-5a92365f3556e2a7.wav": {
+  "duration": 2.944,
+  "text": "Write out the definition with indices.",
+  "voice": "am_michael"
+ },
+ "s6-005-30e794f4ab4525e9.wav": {
+  "duration": 5.568,
+  "text": "C i j equals the sum over k of A i k times B k j.",
+  "voice": "am_michael"
+ },
+ "s6-006-26d19049fa87ec02.wav": {
+  "duration": 6.208,
+  "text": "So the derivative of C i j with respect to A i k is simply B k j.",
+  "voice": "am_michael"
+ },
+ "s6-007-8f3651ae618de8b5.wav": {
+  "duration": 3.1573333333333333,
+  "text": "Collect those into matrix form and you get.",
+  "voice": "am_michael"
+ },
+ "s6-008-ca44bc4b30a82913.wav": {
+  "duration": 4.8213333333333335,
+  "text": "The gradient of A is the upstream gradient times B transposed.",
+  "voice": "am_michael"
+ },
+ "s6-009-abcdd1bfa10d4137.wav": {
+  "duration": 6.08,
+  "text": "And symmetrically, the gradient of B is A transposed times the upstream gradient.",
+  "voice": "am_michael"
+ },
+ "s6-010-5dd9fab62a706d70.wav": {
+  "duration": 6.229333333333333,
+  "text": "If you ever forget which transpose goes where, there is a sanity rule that never fails.",
+  "voice": "am_michael"
+ },
+ "s6-011-ed2862178e98c19f.wav": {
+  "duration": 3.3706666666666667,
+  "text": "The gradient of a thing has the shape of that thing.",
+  "voice": "am_michael"
+ },
+ "s6-012-c1ceab6be833b9ea.wav": {
+  "duration": 7.68,
+  "text": "There is usually only one arrangement of the transposes that produces the right shape, and it is the correct one.",
+  "voice": "am_michael"
+ },
+ "s7-000-054dda595c6331e2.wav": {
+  "duration": 6.528,
+  "text": "I want to show you a real bug, because this one shipped in a draft of the engine you are building.",
+  "voice": "am_michael"
+ },
+ "s7-001-4fb7303519b08912.wav": {
+  "duration": 14.933333333333334,
+  "text": "Numerically safe binary cross entropy uses the identity log of one plus e to the z equals max of z and zero, plus log of one plus e to the minus absolute z.",
+  "voice": "am_michael"
+ },
+ "s7-002-dfb807e2f2e5b7cb.wav": {
+  "duration": 3.6053333333333333,
+  "text": "That absolute value has to stay differentiable.",
+  "voice": "am_michael"
+ },
+ "s7-003-a6c94515b5fa02d1.wav": {
+  "duration": 3.6053333333333333,
+  "text": "The first version built it as a detached constant.",
+  "voice": "am_michael"
+ },
+ "s7-004-745aff33a6f58a2b.wav": {
+  "duration": 5.738666666666667,
+  "text": "Take the data, call numpy absolute, wrap it as a tensor with gradients off.",
+  "voice": "am_michael"
+ },
+ "s7-005-621292831e7d761b.wav": {
+  "duration": 2.88,
+  "text": "The forward value was exactly right.",
+  "voice": "am_michael"
+ },
+ "s7-006-bd8a52326ed6baa5.wav": {
+  "duration": 2.5813333333333333,
+  "text": "Every test on the loss value passed.",
+  "voice": "am_michael"
+ },
+ "s7-007-652819e1af096ede.wav": {
+  "duration": 7.402666666666667,
+  "text": "And the gradient of that entire term was zero, because no gradient can flow through a detached node.",
+  "voice": "am_michael"
+ },
+ "s7-008-4563e835ea0fe7bb.wav": {
+  "duration": 12.181333333333333,
+  "text": "The fix is to remember that the derivative of absolute z is the sign of z, so you build it as z times sign, with the sign detached and the z not.",
+  "voice": "am_michael"
+ },
+ "s7-009-9e081047ae4bfaff.wav": {
+  "duration": 2.7306666666666666,
+  "text": "Here is the part worth internalising.",
+  "voice": "am_michael"
+ },
+ "s7-010-3ca027714d3a4b33.wav": {
+  "duration": 2.517333333333333,
+  "text": "Gradcheck found this in one second.",
+  "voice": "am_michael"
+ },
+ "s7-011-e53575c23f4bc614.wav": {
+  "duration": 6.293333333333333,
+  "text": "The loss curve would never have found it, because a loss with half a gradient still goes down.",
+  "voice": "am_michael"
+ },
+ "s8-000-1e0b350b6a1fc709.wav": {
+  "duration": 3.6053333333333333,
+  "text": "And here is the verification for the whole topic.",
+  "voice": "am_michael"
+ },
+ "s8-001-c95de19c19d7f27e.wav": {
+  "duration": 1.3653333333333333,
+  "text": "Two networks.",
+  "voice": "am_michael"
+ },
+ "s8-002-404e8ff6af80d1e9.wav": {
+  "duration": 6.1226666666666665,
+  "text": "Same architecture, same initialisation, same Adam hyper parameters, same data.",
+  "voice": "am_michael"
+ },
+ "s8-003-b2d071a3c836e351.wav": {
+  "duration": 5.653333333333333,
+  "text": "One is differentiated by the closures we have spent three episodes writing.",
+  "voice": "am_michael"
+ },
+ "s8-004-1488167b95cf044d.wav": {
+  "duration": 9.344,
+  "text": "The other has its gradients derived by hand on paper, written out in plain NumPy, sharing no code with the engine at all.",
+  "voice": "am_michael"
+ },
+ "s8-005-f0c81af553508222.wav": {
+  "duration": 3.477333333333333,
+  "text": "Train both for two hundred steps and plot the loss.",
+  "voice": "am_michael"
+ },
+ "s8-006-fc884d1152d91546.wav": {
+  "duration": 4.096,
+  "text": "You cannot see two lines because there are not two lines.",
+  "voice": "am_michael"
+ },
+ "s8-007-fcfb32add62fc51b.wav": {
+  "duration": 9.962666666666667,
+  "text": "The maximum divergence across all two hundred steps is six times ten to the minus seventeen, which is machine epsilon.",
+  "voice": "am_michael"
+ },
+ "s8-008-919e51e1cd43a3ba.wav": {
+  "duration": 3.3493333333333335,
+  "text": "And that is the sentence I want you to leave with.",
+  "voice": "am_michael"
+ },
+ "s8-009-c88b82e3513e4514.wav": {
+  "duration": 5.1626666666666665,
+  "text": "Automatic differentiation is not an approximation of the derivative.",
+  "voice": "am_michael"
+ },
+ "s8-010-5e2f3b9147005cd8.wav": {
+  "duration": 4.2026666666666666,
+  "text": "It is the derivative, evaluated in a different order.",
+  "voice": "am_michael"
+ },
+ "s9-000-7d51e6b7fd59a818.wav": {
+  "duration": 6.912,
+  "text": "The same benchmark also times both, and honesty is worth more here than a flattering number.",
+  "voice": "am_michael"
+ },
+ "s9-001-48467a4cf3e066af.wav": {
+  "duration": 7.04,
+  "text": "Your engine is three point seven times slower than the hand written gradients it matches exactly.",
+  "voice": "am_michael"
+ },
+ "s9-002-c8b432c7f2bb5060.wav": {
+  "duration": 1.536,
+  "text": "Where does that go.",
+  "voice": "am_michael"
+ },
+ "s9-003-cea50e2f301c82c2.wav": {
+  "duration": 9.301333333333334,
+  "text": "Every operation allocates a node and a closure, which is Python object overhead per operation rather than per batch.",
+  "voice": "am_michael"
+ },
+ "s9-004-ef92922699ad632c.wav": {
+  "duration": 8.96,
+  "text": "Nothing is fused, so exponent then sum then logarithm is three separate full passes over memory instead of one.",
+  "voice": "am_michael"
+ },
+ "s9-005-382e60cfd5c6569e.wav": {
+  "duration": 5.525333333333333,
+  "text": "And nothing is compiled, so no algebraic simplification ever happens.",
+  "voice": "am_michael"
+ },
+ "s9-006-dd8b1050d5d202a5.wav": {
+  "duration": 9.813333333333333,
+  "text": "Those three sentences are, almost word for word, the problems that torch compile, XLA and TorchScript exist to solve.",
+  "voice": "am_michael"
+ },
+ "s9-007-fa0d15bdb09e1e5a.wav": {
+  "duration": 9.856,
+  "text": "Understanding the shape of this three point seven times is what makes those tools legible later, instead of magic with a decorator.",
+  "voice": "am_michael"
+ }
+}
