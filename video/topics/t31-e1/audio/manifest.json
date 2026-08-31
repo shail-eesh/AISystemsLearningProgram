@@ -1,0 +1,627 @@
+{
+ "s1-000-11515aeabd0fd8e4.wav": {
+  "duration": 2.9226666666666667,
+  "text": "Welcome back to the AI Systems Forge.",
+  "voice": "am_michael"
+ },
+ "s1-001-4db314933252efb9.wav": {
+  "duration": 2.9013333333333335,
+  "text": "This is phase one, topic thirty one.",
+  "voice": "am_michael"
+ },
+ "s1-002-de9be4e4e92a4882.wav": {
+  "duration": 1.728,
+  "text": "The autograd engine.",
+  "voice": "am_michael"
+ },
+ "s1-003-68d02f42cbce3828.wav": {
+  "duration": 4.181333333333333,
+  "text": "In phase zero you called dot backward and a number appeared.",
+  "voice": "am_michael"
+ },
+ "s1-004-8fc03b5376f762da.wav": {
+  "duration": 2.3466666666666667,
+  "text": "This topic removes the magic.",
+  "voice": "am_michael"
+ },
+ "s1-005-3b02a0d37ceb604b.wav": {
+  "duration": 16.277333333333335,
+  "text": "By the end of these three episodes you will have written reverse mode automatic differentiation twice, once on scalars and once on arrays, and you will never again wonder what a framework is doing when you call that method.",
+  "voice": "am_michael"
+ },
+ "s10-000-2482ddde8423e0e0.wav": {
+  "duration": 1.1946666666666668,
+  "text": "To recap.",
+  "voice": "am_michael"
+ },
+ "s10-001-b5208bd73d5351e5.wav": {
+  "duration": 2.0693333333333332,
+  "text": "A node stores four things.",
+  "voice": "am_michael"
+ },
+ "s10-002-c6758b0a9b401aae.wav": {
+  "duration": 6.976,
+  "text": "A value, a gradient slot, its children, and one closure holding its local derivative.",
+  "voice": "am_michael"
+ },
+ "s10-003-2b30af0a424d0c0d.wav": {
+  "duration": 9.813333333333333,
+  "text": "The chain rule, as an algorithm, says to accumulate over every consumer the consumer's gradient times the local derivative.",
+  "voice": "am_michael"
+ },
+ "s10-004-364362007876c6f9.wav": {
+  "duration": 6.272,
+  "text": "Plus equals, never equals, because a node used twice receives gradient twice.",
+  "voice": "am_michael"
+ },
+ "s10-005-167f2b1c14bb748a.wav": {
+  "duration": 7.1466666666666665,
+  "text": "Keep the primitive set small, since subtraction and division are sugar over negation and reciprocal.",
+  "voice": "am_michael"
+ },
+ "s10-006-d748b1b14e3b9705.wav": {
+  "duration": 7.594666666666667,
+  "text": "And gradcheck with central differences on random graphs, because an autodiff bug will not announce itself.",
+  "voice": "am_michael"
+ },
+ "s10-007-242fcca68c048006.wav": {
+  "duration": 14.037333333333333,
+  "text": "If you skip this topic, every later dot backward in the course stays magic, including Flash Attention in phase seven, which is nothing more than this backward pass rewritten to fit in cache.",
+  "voice": "am_michael"
+ },
+ "s10-008-a900b8555c45ecba.wav": {
+  "duration": 1.536,
+  "text": "Next episode.",
+  "voice": "am_michael"
+ },
+ "s10-009-fe33ada6bc9021dc.wav": {
+  "duration": 2.2186666666666666,
+  "text": "We have all the local rules.",
+  "voice": "am_michael"
+ },
+ "s10-010-e3f2ddb32fef0dec.wav": {
+  "duration": 5.418666666666667,
+  "text": "Now we have to run them in the right order, and there is exactly one right order.",
+  "voice": "am_michael"
+ },
+ "s2-000-764be60a57f232b9.wav": {
+  "duration": 1.792,
+  "text": "Here is where we are.",
+  "voice": "am_michael"
+ },
+ "s2-001-ce0986b0616beb03.wav": {
+  "duration": 6.016,
+  "text": "AlphaDesk is the fictional trading desk this course builds, one topic at a time.",
+  "voice": "am_michael"
+ },
+ "s2-002-12c70f134fbcf363.wav": {
+  "duration": 2.432,
+  "text": "The lit block is the training loop.",
+  "voice": "am_michael"
+ },
+ "s2-003-64f7c2b6980d285a.wav": {
+  "duration": 4.245333333333333,
+  "text": "Phase zero borrowed PyTorch's autograd to fill it.",
+  "voice": "am_michael"
+ },
+ "s2-004-38e8f9344bec0292.wav": {
+  "duration": 3.7973333333333334,
+  "text": "This topic replaces the borrowed part with your own.",
+  "voice": "am_michael"
+ },
+ "s2-005-9cc20fa1d21fb705.wav": {
+  "duration": 3.712,
+  "text": "Nothing else on the desk changes, which is the point.",
+  "voice": "am_michael"
+ },
+ "s2-006-220c2c5f5f8861ae.wav": {
+  "duration": 8.32,
+  "text": "Once you know what dot backward does, every later topic that trains something is one less thing you are taking on faith.",
+  "voice": "am_michael"
+ },
+ "s3-000-277db63d2e4617a9.wav": {
+  "duration": 2.965333333333333,
+  "text": "Here is the whole idea before any code.",
+  "voice": "am_michael"
+ },
+ "s3-001-fe7239c26a9800ca.wav": {
+  "duration": 3.328,
+  "text": "A numeric expression is a directed graph.",
+  "voice": "am_michael"
+ },
+ "s3-002-ae1505e587332edd.wav": {
+  "duration": 7.765333333333333,
+  "text": "The leaves are your inputs, the interior nodes are operations, and the root is the number you care about.",
+  "voice": "am_michael"
+ },
+ "s3-003-d984dda8d97a9f19.wav": {
+  "duration": 5.9093333333333335,
+  "text": "Evaluating it forwards is ordinary arithmetic, and nobody is impressed.",
+  "voice": "am_michael"
+ },
+ "s3-004-929221b91281938d.wav": {
+  "duration": 3.3066666666666666,
+  "text": "What is surprising is the backwards direction.",
+  "voice": "am_michael"
+ },
+ "s3-005-74b2f106857b06b7.wav": {
+  "duration": 10.816,
+  "text": "Every partial derivative of the root, with respect to every leaf, falls out of a single sweep in reverse, for roughly the cost of the forward pass.",
+  "voice": "am_michael"
+ },
+ "s3-006-8ea955acffc33e3d.wav": {
+  "duration": 5.0986666666666665,
+  "text": "And it works because each node only ever needs to know one local fact.",
+  "voice": "am_michael"
+ },
+ "s3-007-6476a98bd108d2cb.wav": {
+  "duration": 3.264,
+  "text": "How does my output move when my inputs move.",
+  "voice": "am_michael"
+ },
+ "s3-008-0fab748c63fb49b7.wav": {
+  "duration": 2.026666666666667,
+  "text": "Multiplication knows that.",
+  "voice": "am_michael"
+ },
+ "s3-009-afa425aa6a85a362.wav": {
+  "duration": 1.4506666666666668,
+  "text": "Tanh knows that.",
+  "voice": "am_michael"
+ },
+ "s3-010-0ca6266dea203910.wav": {
+  "duration": 8.554666666666666,
+  "text": "Neither of them knows what a loss function is, and that ignorance is exactly what lets you compose them without limit.",
+  "voice": "am_michael"
+ },
+ "s3-011-e1e93a9725128dfa.wav": {
+  "duration": 1.856,
+  "text": "One aside worth banking.",
+  "voice": "am_michael"
+ },
+ "s3-012-0d2fdd086d1302f8.wav": {
+  "duration": 1.8133333333333332,
+  "text": "This is reverse mode.",
+  "voice": "am_michael"
+ },
+ "s3-013-756ceb9437e2005e.wav": {
+  "duration": 3.6906666666666665,
+  "text": "It is cheap when you have one output and many inputs.",
+  "voice": "am_michael"
+ },
+ "s3-014-183defde011b0c80.wav": {
+  "duration": 6.549333333333333,
+  "text": "There is a forward mode which is the mirror image, cheap for one input and many outputs.",
+  "voice": "am_michael"
+ },
+ "s3-015-55cb71f5d386b451.wav": {
+  "duration": 6.890666666666666,
+  "text": "A neural network has one loss and millions of parameters, so reverse mode is the one that won.",
+  "voice": "am_michael"
+ },
+ "s4-000-a3a4ec69224b21d9.wav": {
+  "duration": 2.56,
+  "text": "Look at the smallest interesting graph.",
+  "voice": "am_michael"
+ },
+ "s4-001-30e62b99895f1f7c.wav": {
+  "duration": 1.8133333333333332,
+  "text": "Two leaves, a and b.",
+  "voice": "am_michael"
+ },
+ "s4-002-1218528efdea7c0d.wav": {
+  "duration": 2.0906666666666665,
+  "text": "They feed a multiply.",
+  "voice": "am_michael"
+ },
+ "s4-003-e98343ee858721f4.wav": {
+  "duration": 2.026666666666667,
+  "text": "The multiply feeds a tanh.",
+  "voice": "am_michael"
+ },
+ "s4-004-ba27066120a8f725.wav": {
+  "duration": 3.2,
+  "text": "The tanh is the root, and we will call it L.",
+  "voice": "am_michael"
+ },
+ "s4-005-67e8c488463748e7.wav": {
+  "duration": 5.077333333333334,
+  "text": "The solid arrows are the forward pass, and they are just evaluation.",
+  "voice": "am_michael"
+ },
+ "s4-006-6f9ec1ce4f1c9b29.wav": {
+  "duration": 1.984,
+  "text": "Now the dashed arrows.",
+  "voice": "am_michael"
+ },
+ "s4-007-e25bea534dd15643.wav": {
+  "duration": 2.6026666666666665,
+  "text": "They are the same graph walked backwards.",
+  "voice": "am_michael"
+ },
+ "s4-008-dda0c27be8a296b2.wav": {
+  "duration": 7.488,
+  "text": "The root starts with a gradient of one, because the derivative of anything with respect to itself is one.",
+  "voice": "am_michael"
+ },
+ "s4-009-b3ea54c42be53597.wav": {
+  "duration": 4.501333333333333,
+  "text": "Tanh receives that and passes on one minus tanh squared.",
+  "voice": "am_michael"
+ },
+ "s4-010-a9faf685095847d0.wav": {
+  "duration": 7.850666666666666,
+  "text": "The multiply receives that and hands each of its inputs the upstream gradient scaled by the other input.",
+  "voice": "am_michael"
+ },
+ "s4-011-af7eaf83fe691466.wav": {
+  "duration": 2.2186666666666666,
+  "text": "That is the entire mechanism.",
+  "voice": "am_michael"
+ },
+ "s4-012-dc892414968d5ad2.wav": {
+  "duration": 7.274666666666667,
+  "text": "Every dashed arrow is one small multiplication that the node it belongs to already knew how to do.",
+  "voice": "am_michael"
+ },
+ "s5-000-6fae75f410154c2c.wav": {
+  "duration": 1.5786666666666667,
+  "text": "Here is the class.",
+  "voice": "am_michael"
+ },
+ "s5-001-c5d6f6f4f928be6b.wav": {
+  "duration": 1.856,
+  "text": "Look at how little there is.",
+  "voice": "am_michael"
+ },
+ "s5-002-fa84c3d1af220321.wav": {
+  "duration": 2.026666666666667,
+  "text": "A node holds two numbers.",
+  "voice": "am_michael"
+ },
+ "s5-003-32ac0006e70a9e8b.wav": {
+  "duration": 6.954666666666666,
+  "text": "Data, which is the forward value, and grad, which is the slot the derivative will land in.",
+  "voice": "am_michael"
+ },
+ "s5-004-e354f895fdfb1a09.wav": {
+  "duration": 4.629333333333333,
+  "text": "Then it holds a closure called backward, and a tuple of children.",
+  "voice": "am_michael"
+ },
+ "s5-005-56064e79cfc9b958.wav": {
+  "duration": 2.005333333333333,
+  "text": "Those two fields are the graph.",
+  "voice": "am_michael"
+ },
+ "s5-006-c64b92166fecdadb.wav": {
+  "duration": 2.7946666666666666,
+  "text": "Nobody builds a separate graph object.",
+  "voice": "am_michael"
+ },
+ "s5-007-4d8767bff5b64fb8.wav": {
+  "duration": 4.970666666666666,
+  "text": "It exists because every node remembers the nodes it was made from.",
+  "voice": "am_michael"
+ },
+ "s5-008-8243ce4cc9f0911b.wav": {
+  "duration": 1.8133333333333332,
+  "text": "Now the multiply.",
+  "voice": "am_michael"
+ },
+ "s5-009-ce6c7ba502172c4a.wav": {
+  "duration": 9.109333333333334,
+  "text": "It computes the forward value straight away, and constructs the output node with itself and the other operand as children.",
+  "voice": "am_michael"
+ },
+ "s5-010-06e4905626c6d7ca.wav": {
+  "duration": 3.648,
+  "text": "Then it defines the local rule and attaches it.",
+  "voice": "am_michael"
+ },
+ "s5-011-7597b37aa79213f9.wav": {
+  "duration": 3.072,
+  "text": "Read the two lines inside that closure.",
+  "voice": "am_michael"
+ },
+ "s5-012-adff8146452edf2b.wav": {
+  "duration": 4.245333333333333,
+  "text": "The derivative of a times b, with respect to a, is b.",
+  "voice": "am_michael"
+ },
+ "s5-013-709b88655aa369ac.wav": {
+  "duration": 3.7333333333333334,
+  "text": "So a receives the upstream gradient scaled by b.",
+  "voice": "am_michael"
+ },
+ "s5-014-6026306a75a5ae7c.wav": {
+  "duration": 1.8986666666666667,
+  "text": "And symmetrically for b.",
+  "voice": "am_michael"
+ },
+ "s5-015-879c748196d11204.wav": {
+  "duration": 5.653333333333333,
+  "text": "That is the whole of the chain rule for multiplication, and it fits on two lines.",
+  "voice": "am_michael"
+ },
+ "s5-016-e72fa647190f788d.wav": {
+  "duration": 4.416,
+  "text": "And now look very carefully at the operator on those two lines.",
+  "voice": "am_michael"
+ },
+ "s5-017-4b4b872fa43946c1.wav": {
+  "duration": 1.6853333333333333,
+  "text": "It is plus equals.",
+  "voice": "am_michael"
+ },
+ "s5-018-f8df420b0423260f.wav": {
+  "duration": 1.3653333333333333,
+  "text": "Not equals.",
+  "voice": "am_michael"
+ },
+ "s5-019-d9383b59ec277da8.wav": {
+  "duration": 8.448,
+  "text": "That single character is the most common bug in a hand written autograd engine, and it is what the next scene is about.",
+  "voice": "am_michael"
+ },
+ "s6-000-183d088994a3b232.wav": {
+  "duration": 1.344,
+  "text": "Here is why.",
+  "voice": "am_michael"
+ },
+ "s6-001-f4cdb8eef4c3bdd6.wav": {
+  "duration": 3.648,
+  "text": "Consider y equals x times x, plus x.",
+  "voice": "am_michael"
+ },
+ "s6-002-e500e6bb8175ec3c.wav": {
+  "duration": 9.792,
+  "text": "The node x is used twice, so on the way back it receives gradient from two different parents, and the correct answer is the sum of the two.",
+  "voice": "am_michael"
+ },
+ "s6-003-83d68a6981918f67.wav": {
+  "duration": 4.117333333333334,
+  "text": "Two x plus one, which at x equals three is seven.",
+  "voice": "am_michael"
+ },
+ "s6-004-29101be8d60827a7.wav": {
+  "duration": 3.2213333333333334,
+  "text": "Now suppose you had written plain assignment.",
+  "voice": "am_michael"
+ },
+ "s6-005-a010ecfa1e80298f.wav": {
+  "duration": 10.410666666666666,
+  "text": "The last parent to run overwrites whatever the first one deposited, and you get six, or you get one, depending on evaluation order.",
+  "voice": "am_michael"
+ },
+ "s6-006-389192f3ca4d064c.wav": {
+  "duration": 2.112,
+  "text": "Notice what does not happen.",
+  "voice": "am_michael"
+ },
+ "s6-007-ef81b732f4264ab7.wav": {
+  "duration": 1.344,
+  "text": "Nothing raises.",
+  "voice": "am_michael"
+ },
+ "s6-008-d9d8a6976efac1a0.wav": {
+  "duration": 1.92,
+  "text": "No shape check fails.",
+  "voice": "am_michael"
+ },
+ "s6-009-85df4dc2891a7548.wav": {
+  "duration": 4.650666666666667,
+  "text": "The loss still goes down, just a little worse than it should, forever.",
+  "voice": "am_michael"
+ },
+ "s6-010-21352dadf5c8912d.wav": {
+  "duration": 8.106666666666667,
+  "text": "That is the character of autograd bugs, and it is why the last scene of this episode is about how you catch them.",
+  "voice": "am_michael"
+ },
+ "s7-000-c90b1227a1e554b9.wav": {
+  "duration": 7.168,
+  "text": "Let us say the rule three times, because it is the only piece of mathematics in this episode.",
+  "voice": "am_michael"
+ },
+ "s7-001-eecd8cf412b7fc90.wav": {
+  "duration": 1.408,
+  "text": "First in English.",
+  "voice": "am_michael"
+ },
+ "s7-002-e5833a5f57580a5e.wav": {
+  "duration": 13.418666666666667,
+  "text": "The derivative of the root with respect to some node is the sum, over every consumer of that node, of the consumer's own gradient multiplied by the local derivative between them.",
+  "voice": "am_michael"
+ },
+ "s7-003-27616fd68bed6584.wav": {
+  "duration": 10.048,
+  "text": "Second, in symbols. d L by d v equals the sum over consumers c of d L by d c, times d c by d v.",
+  "voice": "am_michael"
+ },
+ "s7-004-3289cdd31cc8fde0.wav": {
+  "duration": 4.330666666666667,
+  "text": "And third, in code, where it collapses to a single line.",
+  "voice": "am_michael"
+ },
+ "s7-005-8c16b478cf328810.wav": {
+  "duration": 5.610666666666667,
+  "text": "Self dot grad plus equals the local derivative times out dot grad.",
+  "voice": "am_michael"
+ },
+ "s7-006-dfe69a011cba04d8.wav": {
+  "duration": 2.7306666666666666,
+  "text": "Look at how the three map onto each other.",
+  "voice": "am_michael"
+ },
+ "s7-007-2ea36606e0f31ecd.wav": {
+  "duration": 3.2853333333333334,
+  "text": "The sum over consumers is the plus equals.",
+  "voice": "am_michael"
+ },
+ "s7-008-dce35ee241d4bb00.wav": {
+  "duration": 6.208,
+  "text": "The consumer's own gradient is out dot grad, which was filled in earlier in the sweep.",
+  "voice": "am_michael"
+ },
+ "s7-009-551ca0a7c9511cd6.wav": {
+  "duration": 6.570666666666667,
+  "text": "And the local derivative is the only thing any individual operator has to supply.",
+  "voice": "am_michael"
+ },
+ "s7-010-4027ceb78676a87f.wav": {
+  "duration": 3.968,
+  "text": "Add, multiply, tanh, exponent, logarithm.",
+  "voice": "am_michael"
+ },
+ "s7-011-6a8aab5f3627bd04.wav": {
+  "duration": 4.736,
+  "text": "Five lines of calculus you already know, and the engine is done.",
+  "voice": "am_michael"
+ },
+ "s8-000-af914f322477de07.wav": {
+  "duration": 5.44,
+  "text": "Here is the rest of the operator set, and there is less of it than you expect.",
+  "voice": "am_michael"
+ },
+ "s8-001-78f4ccc7ceeadeed.wav": {
+  "duration": 2.304,
+  "text": "Exponent is the pleasant one.",
+  "voice": "am_michael"
+ },
+ "s8-002-58c43e7355c2c73b.wav": {
+  "duration": 8.938666666666666,
+  "text": "It is its own derivative, and notice we reuse the forward value we already computed rather than calling exp twice.",
+  "voice": "am_michael"
+ },
+ "s8-003-446398f78ff3c750.wav": {
+  "duration": 6.442666666666667,
+  "text": "Tanh does the same trick, because one minus t squared needs the output, not the input.",
+  "voice": "am_michael"
+ },
+ "s8-004-cb927604f925e53d.wav": {
+  "duration": 2.6453333333333333,
+  "text": "ReLU is the interesting one.",
+  "voice": "am_michael"
+ },
+ "s8-005-6bbceeec9e85582c.wav": {
+  "duration": 3.562666666666667,
+  "text": "At exactly zero it has no derivative at all.",
+  "voice": "am_michael"
+ },
+ "s8-006-75a03bf7988a9f99.wav": {
+  "duration": 1.92,
+  "text": "The function has a corner.",
+  "voice": "am_michael"
+ },
+ "s8-007-7eceb5793a5f214a.wav": {
+  "duration": 5.1626666666666665,
+  "text": "Every framework picks a subgradient there, and the choice is arbitrary.",
+  "voice": "am_michael"
+ },
+ "s8-008-3614d5a40c12434d.wav": {
+  "duration": 3.3493333333333335,
+  "text": "We pick zero, which is what PyTorch does.",
+  "voice": "am_michael"
+ },
+ "s8-009-c42e399fbdfa0d39.wav": {
+  "duration": 5.781333333333333,
+  "text": "The sin is not picking a convention, it is failing to write down which one you picked.",
+  "voice": "am_michael"
+ },
+ "s8-010-9fc5bff482630968.wav": {
+  "duration": 2.538666666666667,
+  "text": "And then look at the bottom three lines.",
+  "voice": "am_michael"
+ },
+ "s8-011-d73f2e3f64b47f6f.wav": {
+  "duration": 2.453333333333333,
+  "text": "Subtraction is not a primitive.",
+  "voice": "am_michael"
+ },
+ "s8-012-f88d325a2a12eff7.wav": {
+  "duration": 2.453333333333333,
+  "text": "It is addition of a negation.",
+  "voice": "am_michael"
+ },
+ "s8-013-528cafe0bc37fc17.wav": {
+  "duration": 2.2826666666666666,
+  "text": "Division is not a primitive.",
+  "voice": "am_michael"
+ },
+ "s8-014-a50e813e4b02ecf8.wav": {
+  "duration": 3.136,
+  "text": "It is multiplication by a reciprocal.",
+  "voice": "am_michael"
+ },
+ "s8-015-897196a4a310937a.wav": {
+  "duration": 11.605333333333334,
+  "text": "Every primitive you add is another backward rule you can get wrong, so the right instinct in an autograd engine is to have as few of them as you can live with.",
+  "voice": "am_michael"
+ },
+ "s9-000-a8f292143f737db6.wav": {
+  "duration": 5.9093333333333335,
+  "text": "And now the part that makes the difference between an engine and a plausible looking engine.",
+  "voice": "am_michael"
+ },
+ "s9-001-19d714b006f68e2e.wav": {
+  "duration": 1.1733333333333333,
+  "text": "Gradcheck.",
+  "voice": "am_michael"
+ },
+ "s9-002-662b150010b6c886.wav": {
+  "duration": 4.373333333333333,
+  "text": "The problem with an autodiff bug is that it does not raise.",
+  "voice": "am_michael"
+ },
+ "s9-003-4659081484965dfd.wav": {
+  "duration": 8.576,
+  "text": "It hands back a number of the right sign and roughly the right magnitude, the loss still goes down, and you lose a week.",
+  "voice": "am_michael"
+ },
+ "s9-004-821d0d54c0c1b399.wav": {
+  "duration": 7.445333333333333,
+  "text": "So the only real defence is to compute the same derivative a completely different way and compare.",
+  "voice": "am_michael"
+ },
+ "s9-005-0cd43b04c33f348f.wav": {
+  "duration": 1.5786666666666667,
+  "text": "Finite differences.",
+  "voice": "am_michael"
+ },
+ "s9-006-70da0960cdce78eb.wav": {
+  "duration": 7.68,
+  "text": "Take the function at x plus h, subtract the function at x minus h, divide by two h.",
+  "voice": "am_michael"
+ },
+ "s9-007-fc1984b8f534f783.wav": {
+  "duration": 4.672,
+  "text": "That is the central difference, and its error goes like h squared.",
+  "voice": "am_michael"
+ },
+ "s9-008-0491aec8477c4dba.wav": {
+  "duration": 13.717333333333332,
+  "text": "The one sided version, f of x plus h minus f of x, over h, has error going like h, which costs you about three correct digits for exactly the same work.",
+  "voice": "am_michael"
+ },
+ "s9-009-b1480f2c7e08e166.wav": {
+  "duration": 11.349333333333334,
+  "text": "Compare the two answers relatively, not absolutely, so that the test does not care whether your gradients are of size one or size ten thousand.",
+  "voice": "am_michael"
+ },
+ "s9-010-840e2e912b866eba.wav": {
+  "duration": 13.376,
+  "text": "And run it on randomly generated expressions, not on the one example you had in your head while writing the code, because that example is the one your bug already agrees with.",
+  "voice": "am_michael"
+ },
+ "s9-011-bd163f57d1374782.wav": {
+  "duration": 9.173333333333334,
+  "text": "On thirty random scalar graphs, this engine's worst relative error is three point six times ten to the minus ten.",
+  "voice": "am_michael"
+ },
+ "s9-012-064b1f79ffd3db13.wav": {
+  "duration": 4.48,
+  "text": "That number is the reason you can believe the next two episodes.",
+  "voice": "am_michael"
+ }
+}

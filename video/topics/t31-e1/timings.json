@@ -1,0 +1,1100 @@
+{
+ "topic": "t31-e1",
+ "episode": 1,
+ "title": "The chain rule, turned into code",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 665.296,
+ "wordCount": 1473,
+ "wordsPerMinute": 132.8,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 33.11,
+ "generatedInSeconds": 256.0,
+ "segmentsSynthesised": 125,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Autograd, part one",
+    "subtitle": "The chain rule is three lines of bookkeeping per operation. Here they are.",
+    "topicId": "T31",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 33.1073,
+   "segments": [
+    {
+     "text": "Welcome back to the AI Systems Forge.",
+     "file": "t31-e1/audio/s1-000-11515aeabd0fd8e4.wav",
+     "start": 0.0,
+     "duration": 2.9227
+    },
+    {
+     "text": "This is phase one, topic thirty one.",
+     "file": "t31-e1/audio/s1-001-4db314933252efb9.wav",
+     "start": 3.3427,
+     "duration": 2.9013
+    },
+    {
+     "text": "The autograd engine.",
+     "file": "t31-e1/audio/s1-002-de9be4e4e92a4882.wav",
+     "start": 6.664,
+     "duration": 1.728
+    },
+    {
+     "text": "In phase zero you called dot backward and a number appeared.",
+     "file": "t31-e1/audio/s1-003-68d02f42cbce3828.wav",
+     "start": 8.812,
+     "duration": 4.1813
+    },
+    {
+     "text": "This topic removes the magic.",
+     "file": "t31-e1/audio/s1-004-8fc03b5376f762da.wav",
+     "start": 13.4133,
+     "duration": 2.3467
+    },
+    {
+     "text": "By the end of these three episodes you will have written reverse mode automatic differentiation twice, once on scalars and once on arrays, and you will never again wonder what a framework is doing when you call that method.",
+     "file": "t31-e1/audio/s1-005-3b02a0d37ceb604b.wav",
+     "start": 16.18,
+     "duration": 16.2773
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ArchitectureMap",
+   "props": {
+    "eyebrow": "where we are",
+    "highlight": [
+     "training"
+    ],
+    "caption": "T31 rebuilds the training loop's differentiation on your own engine."
+   },
+   "start": 33.1073,
+   "duration": 33.4847,
+   "segments": [
+    {
+     "text": "Here is where we are.",
+     "file": "t31-e1/audio/s2-000-764be60a57f232b9.wav",
+     "start": 33.1073,
+     "duration": 1.792
+    },
+    {
+     "text": "AlphaDesk is the fictional trading desk this course builds, one topic at a time.",
+     "file": "t31-e1/audio/s2-001-ce0986b0616beb03.wav",
+     "start": 35.3193,
+     "duration": 6.016
+    },
+    {
+     "text": "The lit block is the training loop.",
+     "file": "t31-e1/audio/s2-002-12c70f134fbcf363.wav",
+     "start": 41.7553,
+     "duration": 2.432
+    },
+    {
+     "text": "Phase zero borrowed PyTorch's autograd to fill it.",
+     "file": "t31-e1/audio/s2-003-64f7c2b6980d285a.wav",
+     "start": 44.6073,
+     "duration": 4.2453
+    },
+    {
+     "text": "This topic replaces the borrowed part with your own.",
+     "file": "t31-e1/audio/s2-004-38e8f9344bec0292.wav",
+     "start": 49.2727,
+     "duration": 3.7973
+    },
+    {
+     "text": "Nothing else on the desk changes, which is the point.",
+     "file": "t31-e1/audio/s2-005-9cc20fa1d21fb705.wav",
+     "start": 53.49,
+     "duration": 3.712
+    },
+    {
+     "text": "Once you know what dot backward does, every later topic that trains something is one less thing you are taking on faith.",
+     "file": "t31-e1/audio/s2-006-220c2c5f5f8861ae.wav",
+     "start": 57.622,
+     "duration": 8.32
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the premise",
+    "title": "An expression is a graph, and derivatives flow backwards through it",
+    "body": "Evaluating an expression forwards is ordinary arithmetic. What is surprising is that every partial derivative of the final value, with respect to every input, can be had in one backwards sweep \u2014 for roughly the cost of the forward pass.",
+    "points": [
+     "Each node knows one local fact: how its output moves when its inputs move.",
+     "The chain rule glues those local facts into a global answer.",
+     "No node ever knows what the loss is. That is what makes it composable.",
+     "Reverse mode is cheap when there is one output and many inputs \u2014 which is exactly a loss function."
+    ],
+    "aside": "Forward mode is the other way round: cheap for one input and many outputs. Neural networks are the other shape, so reverse mode won."
+   },
+   "start": 66.592,
+   "duration": 82.2353,
+   "segments": [
+    {
+     "text": "Here is the whole idea before any code.",
+     "file": "t31-e1/audio/s3-000-277db63d2e4617a9.wav",
+     "start": 66.592,
+     "duration": 2.9653
+    },
+    {
+     "text": "A numeric expression is a directed graph.",
+     "file": "t31-e1/audio/s3-001-fe7239c26a9800ca.wav",
+     "start": 69.9773,
+     "duration": 3.328
+    },
+    {
+     "text": "The leaves are your inputs, the interior nodes are operations, and the root is the number you care about.",
+     "file": "t31-e1/audio/s3-002-ae1505e587332edd.wav",
+     "start": 73.7253,
+     "duration": 7.7653
+    },
+    {
+     "text": "Evaluating it forwards is ordinary arithmetic, and nobody is impressed.",
+     "file": "t31-e1/audio/s3-003-d984dda8d97a9f19.wav",
+     "start": 81.9107,
+     "duration": 5.9093
+    },
+    {
+     "text": "What is surprising is the backwards direction.",
+     "file": "t31-e1/audio/s3-004-929221b91281938d.wav",
+     "start": 88.24,
+     "duration": 3.3067
+    },
+    {
+     "text": "Every partial derivative of the root, with respect to every leaf, falls out of a single sweep in reverse, for roughly the cost of the forward pass.",
+     "file": "t31-e1/audio/s3-005-74b2f106857b06b7.wav",
+     "start": 91.9667,
+     "duration": 10.816
+    },
+    {
+     "text": "And it works because each node only ever needs to know one local fact.",
+     "file": "t31-e1/audio/s3-006-8ea955acffc33e3d.wav",
+     "start": 103.2027,
+     "duration": 5.0987
+    },
+    {
+     "text": "How does my output move when my inputs move.",
+     "file": "t31-e1/audio/s3-007-6476a98bd108d2cb.wav",
+     "start": 108.7213,
+     "duration": 3.264
+    },
+    {
+     "text": "Multiplication knows that.",
+     "file": "t31-e1/audio/s3-008-0fab748c63fb49b7.wav",
+     "start": 112.4053,
+     "duration": 2.0267
+    },
+    {
+     "text": "Tanh knows that.",
+     "file": "t31-e1/audio/s3-009-afa425aa6a85a362.wav",
+     "start": 114.852,
+     "duration": 1.4507
+    },
+    {
+     "text": "Neither of them knows what a loss function is, and that ignorance is exactly what lets you compose them without limit.",
+     "file": "t31-e1/audio/s3-010-0ca6266dea203910.wav",
+     "start": 116.7227,
+     "duration": 8.5547
+    },
+    {
+     "text": "One aside worth banking.",
+     "file": "t31-e1/audio/s3-011-e1e93a9725128dfa.wav",
+     "start": 125.6973,
+     "duration": 1.856
+    },
+    {
+     "text": "This is reverse mode.",
+     "file": "t31-e1/audio/s3-012-0d2fdd086d1302f8.wav",
+     "start": 127.9733,
+     "duration": 1.8133
+    },
+    {
+     "text": "It is cheap when you have one output and many inputs.",
+     "file": "t31-e1/audio/s3-013-756ceb9437e2005e.wav",
+     "start": 130.2067,
+     "duration": 3.6907
+    },
+    {
+     "text": "There is a forward mode which is the mirror image, cheap for one input and many outputs.",
+     "file": "t31-e1/audio/s3-014-183defde011b0c80.wav",
+     "start": 134.3173,
+     "duration": 6.5493
+    },
+    {
+     "text": "A neural network has one loss and millions of parameters, so reverse mode is the one that won.",
+     "file": "t31-e1/audio/s3-015-55cb71f5d386b451.wav",
+     "start": 141.2867,
+     "duration": 6.8907
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the mechanism",
+    "title": "One node, two directions",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "a",
+      "sub": "leaf",
+      "x": 0.12,
+      "y": 0.3,
+      "appearAt": 8
+     },
+     {
+      "id": "b",
+      "label": "b",
+      "sub": "leaf",
+      "x": 0.12,
+      "y": 0.72,
+      "appearAt": 14
+     },
+     {
+      "id": "m",
+      "label": "a x b",
+      "sub": "op node",
+      "x": 0.44,
+      "y": 0.5,
+      "appearAt": 30,
+      "color": "#5ac48c"
+     },
+     {
+      "id": "t",
+      "label": "tanh",
+      "sub": "op node",
+      "x": 0.74,
+      "y": 0.5,
+      "appearAt": 48
+     },
+     {
+      "id": "L",
+      "label": "L",
+      "sub": "the root",
+      "x": 0.94,
+      "y": 0.5,
+      "w": 0.1,
+      "appearAt": 60
+     }
+    ],
+    "edges": [
+     {
+      "from": "a",
+      "to": "m",
+      "appearAt": 34
+     },
+     {
+      "from": "b",
+      "to": "m",
+      "appearAt": 38
+     },
+     {
+      "from": "m",
+      "to": "t",
+      "appearAt": 52
+     },
+     {
+      "from": "t",
+      "to": "L",
+      "appearAt": 64
+     },
+     {
+      "from": "L",
+      "to": "t",
+      "label": "grad",
+      "appearAt": 90,
+      "dashed": true
+     },
+     {
+      "from": "t",
+      "to": "m",
+      "label": "grad",
+      "appearAt": 100,
+      "dashed": true
+     },
+     {
+      "from": "m",
+      "to": "a",
+      "label": "b x grad",
+      "appearAt": 112,
+      "dashed": true
+     }
+    ],
+    "caption": "Solid arrows are the forward pass. Dashed arrows are the same graph, walked in reverse."
+   },
+   "start": 148.8273,
+   "duration": 56.378,
+   "segments": [
+    {
+     "text": "Look at the smallest interesting graph.",
+     "file": "t31-e1/audio/s4-000-a3a4ec69224b21d9.wav",
+     "start": 148.8273,
+     "duration": 2.56
+    },
+    {
+     "text": "Two leaves, a and b.",
+     "file": "t31-e1/audio/s4-001-30e62b99895f1f7c.wav",
+     "start": 151.8073,
+     "duration": 1.8133
+    },
+    {
+     "text": "They feed a multiply.",
+     "file": "t31-e1/audio/s4-002-1218528efdea7c0d.wav",
+     "start": 154.0407,
+     "duration": 2.0907
+    },
+    {
+     "text": "The multiply feeds a tanh.",
+     "file": "t31-e1/audio/s4-003-e98343ee858721f4.wav",
+     "start": 156.5513,
+     "duration": 2.0267
+    },
+    {
+     "text": "The tanh is the root, and we will call it L.",
+     "file": "t31-e1/audio/s4-004-ba27066120a8f725.wav",
+     "start": 158.998,
+     "duration": 3.2
+    },
+    {
+     "text": "The solid arrows are the forward pass, and they are just evaluation.",
+     "file": "t31-e1/audio/s4-005-67e8c488463748e7.wav",
+     "start": 162.618,
+     "duration": 5.0773
+    },
+    {
+     "text": "Now the dashed arrows.",
+     "file": "t31-e1/audio/s4-006-6f9ec1ce4f1c9b29.wav",
+     "start": 168.1153,
+     "duration": 1.984
+    },
+    {
+     "text": "They are the same graph walked backwards.",
+     "file": "t31-e1/audio/s4-007-e25bea534dd15643.wav",
+     "start": 170.5193,
+     "duration": 2.6027
+    },
+    {
+     "text": "The root starts with a gradient of one, because the derivative of anything with respect to itself is one.",
+     "file": "t31-e1/audio/s4-008-dda0c27be8a296b2.wav",
+     "start": 173.542,
+     "duration": 7.488
+    },
+    {
+     "text": "Tanh receives that and passes on one minus tanh squared.",
+     "file": "t31-e1/audio/s4-009-b3ea54c42be53597.wav",
+     "start": 181.45,
+     "duration": 4.5013
+    },
+    {
+     "text": "The multiply receives that and hands each of its inputs the upstream gradient scaled by the other input.",
+     "file": "t31-e1/audio/s4-010-a9faf685095847d0.wav",
+     "start": 186.3713,
+     "duration": 7.8507
+    },
+    {
+     "text": "That is the entire mechanism.",
+     "file": "t31-e1/audio/s4-011-af7eaf83fe691466.wav",
+     "start": 194.642,
+     "duration": 2.2187
+    },
+    {
+     "text": "Every dashed arrow is one small multiplication that the node it belongs to already knew how to do.",
+     "file": "t31-e1/audio/s4-012-dc892414968d5ad2.wav",
+     "start": 197.2807,
+     "duration": 7.2747
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the code",
+    "title": "A scalar that remembers where it came from",
+    "filename": "phases/p1/t31-autograd/src/t31_autograd/engine.py",
+    "code": "class Value:\n    def __init__(self, data, _children=(), _op=\"\"):\n        self.data = float(data)\n        self.grad = 0.0\n        self._backward = lambda: None\n        self._prev = tuple(_children)\n\n    def __mul__(self, other):\n        other = self._coerce(other)\n        out = Value(self.data * other.data, (self, other), \"*\")\n\n        def _backward():\n            self.grad += other.data * out.grad\n            other.grad += self.data * out.grad\n\n        out._backward = _backward\n        return out",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       3,
+       4
+      ],
+      "caption": "Two numbers per node: the forward value, and the slot the gradient will land in."
+     },
+     {
+      "at": 110,
+      "lines": [
+       5,
+       6
+      ],
+      "caption": "A closure for the local rule, and the children \u2014 that is the graph, stored implicitly."
+     },
+     {
+      "at": 210,
+      "lines": [
+       10
+      ],
+      "caption": "The forward value is computed immediately; the node records who made it."
+     },
+     {
+      "at": 300,
+      "lines": [
+       12,
+       13,
+       14
+      ],
+      "caption": "The local rule. d(ab)/da = b, so each input gets the upstream gradient scaled by the OTHER input."
+     },
+     {
+      "at": 400,
+      "lines": [
+       13,
+       14
+      ],
+      "caption": "Plus-equals, not equals. This single character is the most common bug in a hand-rolled engine."
+     }
+    ]
+   },
+   "start": 205.2053,
+   "duration": 84.534,
+   "segments": [
+    {
+     "text": "Here is the class.",
+     "file": "t31-e1/audio/s5-000-6fae75f410154c2c.wav",
+     "start": 205.2053,
+     "duration": 1.5787
+    },
+    {
+     "text": "Look at how little there is.",
+     "file": "t31-e1/audio/s5-001-c5d6f6f4f928be6b.wav",
+     "start": 207.204,
+     "duration": 1.856
+    },
+    {
+     "text": "A node holds two numbers.",
+     "file": "t31-e1/audio/s5-002-fa84c3d1af220321.wav",
+     "start": 209.48,
+     "duration": 2.0267
+    },
+    {
+     "text": "Data, which is the forward value, and grad, which is the slot the derivative will land in.",
+     "file": "t31-e1/audio/s5-003-32ac0006e70a9e8b.wav",
+     "start": 211.9267,
+     "duration": 6.9547
+    },
+    {
+     "text": "Then it holds a closure called backward, and a tuple of children.",
+     "file": "t31-e1/audio/s5-004-e354f895fdfb1a09.wav",
+     "start": 219.3013,
+     "duration": 4.6293
+    },
+    {
+     "text": "Those two fields are the graph.",
+     "file": "t31-e1/audio/s5-005-56064e79cfc9b958.wav",
+     "start": 224.3507,
+     "duration": 2.0053
+    },
+    {
+     "text": "Nobody builds a separate graph object.",
+     "file": "t31-e1/audio/s5-006-c64b92166fecdadb.wav",
+     "start": 226.776,
+     "duration": 2.7947
+    },
+    {
+     "text": "It exists because every node remembers the nodes it was made from.",
+     "file": "t31-e1/audio/s5-007-4d8767bff5b64fb8.wav",
+     "start": 229.9907,
+     "duration": 4.9707
+    },
+    {
+     "text": "Now the multiply.",
+     "file": "t31-e1/audio/s5-008-8243ce4cc9f0911b.wav",
+     "start": 235.3813,
+     "duration": 1.8133
+    },
+    {
+     "text": "It computes the forward value straight away, and constructs the output node with itself and the other operand as children.",
+     "file": "t31-e1/audio/s5-009-ce6c7ba502172c4a.wav",
+     "start": 237.6147,
+     "duration": 9.1093
+    },
+    {
+     "text": "Then it defines the local rule and attaches it.",
+     "file": "t31-e1/audio/s5-010-06e4905626c6d7ca.wav",
+     "start": 247.144,
+     "duration": 3.648
+    },
+    {
+     "text": "Read the two lines inside that closure.",
+     "file": "t31-e1/audio/s5-011-7597b37aa79213f9.wav",
+     "start": 251.212,
+     "duration": 3.072
+    },
+    {
+     "text": "The derivative of a times b, with respect to a, is b.",
+     "file": "t31-e1/audio/s5-012-adff8146452edf2b.wav",
+     "start": 254.704,
+     "duration": 4.2453
+    },
+    {
+     "text": "So a receives the upstream gradient scaled by b.",
+     "file": "t31-e1/audio/s5-013-709b88655aa369ac.wav",
+     "start": 259.3693,
+     "duration": 3.7333
+    },
+    {
+     "text": "And symmetrically for b.",
+     "file": "t31-e1/audio/s5-014-6026306a75a5ae7c.wav",
+     "start": 263.5227,
+     "duration": 1.8987
+    },
+    {
+     "text": "That is the whole of the chain rule for multiplication, and it fits on two lines.",
+     "file": "t31-e1/audio/s5-015-879c748196d11204.wav",
+     "start": 265.8413,
+     "duration": 5.6533
+    },
+    {
+     "text": "And now look very carefully at the operator on those two lines.",
+     "file": "t31-e1/audio/s5-016-e72fa647190f788d.wav",
+     "start": 271.9147,
+     "duration": 4.416
+    },
+    {
+     "text": "It is plus equals.",
+     "file": "t31-e1/audio/s5-017-4b4b872fa43946c1.wav",
+     "start": 276.7507,
+     "duration": 1.6853
+    },
+    {
+     "text": "Not equals.",
+     "file": "t31-e1/audio/s5-018-f8df420b0423260f.wav",
+     "start": 278.856,
+     "duration": 1.3653
+    },
+    {
+     "text": "That single character is the most common bug in a hand written autograd engine, and it is what the next scene is about.",
+     "file": "t31-e1/audio/s5-019-d9383b59ec277da8.wav",
+     "start": 280.6413,
+     "duration": 8.448
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "Accumulate, never assign",
+    "body": "If a node feeds two consumers, it receives gradient from both, and the total is the sum. Write = instead of += and you silently keep only the last contribution \u2014 the network still trains, slightly worse, forever.",
+    "code": "x = Value(3.0)\ny = x * x + x        # x is used twice\ny.backward()\n\nx.grad == 7.0        # 2x + 1, correct\n# with '=' instead of '+=' you get 6.0 or 1.0,\n# depending on which parent ran last."
+   },
+   "start": 289.7393,
+   "duration": 55.5167,
+   "segments": [
+    {
+     "text": "Here is why.",
+     "file": "t31-e1/audio/s6-000-183d088994a3b232.wav",
+     "start": 289.7393,
+     "duration": 1.344
+    },
+    {
+     "text": "Consider y equals x times x, plus x.",
+     "file": "t31-e1/audio/s6-001-f4cdb8eef4c3bdd6.wav",
+     "start": 291.5033,
+     "duration": 3.648
+    },
+    {
+     "text": "The node x is used twice, so on the way back it receives gradient from two different parents, and the correct answer is the sum of the two.",
+     "file": "t31-e1/audio/s6-002-e500e6bb8175ec3c.wav",
+     "start": 295.5713,
+     "duration": 9.792
+    },
+    {
+     "text": "Two x plus one, which at x equals three is seven.",
+     "file": "t31-e1/audio/s6-003-83d68a6981918f67.wav",
+     "start": 305.7833,
+     "duration": 4.1173
+    },
+    {
+     "text": "Now suppose you had written plain assignment.",
+     "file": "t31-e1/audio/s6-004-29101be8d60827a7.wav",
+     "start": 310.3207,
+     "duration": 3.2213
+    },
+    {
+     "text": "The last parent to run overwrites whatever the first one deposited, and you get six, or you get one, depending on evaluation order.",
+     "file": "t31-e1/audio/s6-005-a010ecfa1e80298f.wav",
+     "start": 313.962,
+     "duration": 10.4107
+    },
+    {
+     "text": "Notice what does not happen.",
+     "file": "t31-e1/audio/s6-006-389192f3ca4d064c.wav",
+     "start": 324.7927,
+     "duration": 2.112
+    },
+    {
+     "text": "Nothing raises.",
+     "file": "t31-e1/audio/s6-007-ef81b732f4264ab7.wav",
+     "start": 327.3247,
+     "duration": 1.344
+    },
+    {
+     "text": "No shape check fails.",
+     "file": "t31-e1/audio/s6-008-d9d8a6976efac1a0.wav",
+     "start": 329.0887,
+     "duration": 1.92
+    },
+    {
+     "text": "The loss still goes down, just a little worse than it should, forever.",
+     "file": "t31-e1/audio/s6-009-85df4dc2891a7548.wav",
+     "start": 331.4287,
+     "duration": 4.6507
+    },
+    {
+     "text": "That is the character of autograd bugs, and it is why the last scene of this episode is about how you catch them.",
+     "file": "t31-e1/audio/s6-010-21352dadf5c8912d.wav",
+     "start": 336.4993,
+     "duration": 8.1067
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the rule",
+    "title": "The chain rule, stated as an algorithm",
+    "english": "The derivative of the root with respect to a node is the sum, over every consumer of that node, of the consumer's own gradient times the local derivative between them.",
+    "equation": "dL/dv = SUM over consumers c of ( dL/dc x dc/dv )",
+    "code": "def _backward():\n    self.grad += LOCAL_DERIVATIVE * out.grad",
+    "note": "The sum over consumers is the '+=' from the previous scene. The local derivative is the only thing each operator has to supply.",
+    "stageFrames": [
+     10,
+     140,
+     280
+    ]
+   },
+   "start": 345.256,
+   "duration": 74.7527,
+   "segments": [
+    {
+     "text": "Let us say the rule three times, because it is the only piece of mathematics in this episode.",
+     "file": "t31-e1/audio/s7-000-c90b1227a1e554b9.wav",
+     "start": 345.256,
+     "duration": 7.168
+    },
+    {
+     "text": "First in English.",
+     "file": "t31-e1/audio/s7-001-eecd8cf412b7fc90.wav",
+     "start": 352.844,
+     "duration": 1.408
+    },
+    {
+     "text": "The derivative of the root with respect to some node is the sum, over every consumer of that node, of the consumer's own gradient multiplied by the local derivative between them.",
+     "file": "t31-e1/audio/s7-002-e5833a5f57580a5e.wav",
+     "start": 354.672,
+     "duration": 13.4187
+    },
+    {
+     "text": "Second, in symbols. d L by d v equals the sum over consumers c of d L by d c, times d c by d v.",
+     "file": "t31-e1/audio/s7-003-27616fd68bed6584.wav",
+     "start": 368.5107,
+     "duration": 10.048
+    },
+    {
+     "text": "And third, in code, where it collapses to a single line.",
+     "file": "t31-e1/audio/s7-004-3289cdd31cc8fde0.wav",
+     "start": 378.9787,
+     "duration": 4.3307
+    },
+    {
+     "text": "Self dot grad plus equals the local derivative times out dot grad.",
+     "file": "t31-e1/audio/s7-005-8c16b478cf328810.wav",
+     "start": 383.7293,
+     "duration": 5.6107
+    },
+    {
+     "text": "Look at how the three map onto each other.",
+     "file": "t31-e1/audio/s7-006-dfe69a011cba04d8.wav",
+     "start": 389.76,
+     "duration": 2.7307
+    },
+    {
+     "text": "The sum over consumers is the plus equals.",
+     "file": "t31-e1/audio/s7-007-2ea36606e0f31ecd.wav",
+     "start": 392.9107,
+     "duration": 3.2853
+    },
+    {
+     "text": "The consumer's own gradient is out dot grad, which was filled in earlier in the sweep.",
+     "file": "t31-e1/audio/s7-008-dce35ee241d4bb00.wav",
+     "start": 396.616,
+     "duration": 6.208
+    },
+    {
+     "text": "And the local derivative is the only thing any individual operator has to supply.",
+     "file": "t31-e1/audio/s7-009-551ca0a7c9511cd6.wav",
+     "start": 403.244,
+     "duration": 6.5707
+    },
+    {
+     "text": "Add, multiply, tanh, exponent, logarithm.",
+     "file": "t31-e1/audio/s7-010-4027ceb78676a87f.wav",
+     "start": 410.2347,
+     "duration": 3.968
+    },
+    {
+     "text": "Five lines of calculus you already know, and the engine is done.",
+     "file": "t31-e1/audio/s7-011-6a8aab5f3627bd04.wav",
+     "start": 414.6227,
+     "duration": 4.736
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the operator set",
+    "title": "Five local rules and everything else is sugar",
+    "filename": "src/t31_autograd/engine.py",
+    "code": "def exp(self):\n    e = math.exp(self.data)\n    out = Value(e, (self,), \"exp\")\n    out._backward = lambda: setattr(self, 'grad', self.grad + e * out.grad)\n    return out\n\ndef tanh(self):\n    t = math.tanh(self.data)\n    ...  self.grad += (1 - t * t) * out.grad\n\ndef relu(self):\n    ...  self.grad += (out.data > 0) * out.grad\n\ndef __neg__(self):      return self * -1\ndef __sub__(self, o):   return self + (-o)\ndef __truediv__(self, o): return self * (o ** -1)",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "caption": "exp is its own derivative \u2014 and we reuse the forward value rather than recomputing it."
+     },
+     {
+      "at": 130,
+      "lines": [
+       7,
+       8,
+       9
+      ],
+      "caption": "tanh caches its forward value too: 1 - t^2 needs the output, not the input."
+     },
+     {
+      "at": 240,
+      "lines": [
+       11,
+       12
+      ],
+      "caption": "ReLU has no derivative at exactly zero. Every framework picks a subgradient; we pick 0, matching PyTorch."
+     },
+     {
+      "at": 340,
+      "lines": [
+       14,
+       15,
+       16
+      ],
+      "caption": "Subtraction and division are not primitives. Fewer primitives, fewer backward rules to get wrong."
+     }
+    ]
+   },
+   "start": 420.0087,
+   "duration": 76.966,
+   "segments": [
+    {
+     "text": "Here is the rest of the operator set, and there is less of it than you expect.",
+     "file": "t31-e1/audio/s8-000-af914f322477de07.wav",
+     "start": 420.0087,
+     "duration": 5.44
+    },
+    {
+     "text": "Exponent is the pleasant one.",
+     "file": "t31-e1/audio/s8-001-78f4ccc7ceeadeed.wav",
+     "start": 425.8687,
+     "duration": 2.304
+    },
+    {
+     "text": "It is its own derivative, and notice we reuse the forward value we already computed rather than calling exp twice.",
+     "file": "t31-e1/audio/s8-002-58c43e7355c2c73b.wav",
+     "start": 428.5927,
+     "duration": 8.9387
+    },
+    {
+     "text": "Tanh does the same trick, because one minus t squared needs the output, not the input.",
+     "file": "t31-e1/audio/s8-003-446398f78ff3c750.wav",
+     "start": 437.9513,
+     "duration": 6.4427
+    },
+    {
+     "text": "ReLU is the interesting one.",
+     "file": "t31-e1/audio/s8-004-cb927604f925e53d.wav",
+     "start": 444.814,
+     "duration": 2.6453
+    },
+    {
+     "text": "At exactly zero it has no derivative at all.",
+     "file": "t31-e1/audio/s8-005-6bbceeec9e85582c.wav",
+     "start": 447.8793,
+     "duration": 3.5627
+    },
+    {
+     "text": "The function has a corner.",
+     "file": "t31-e1/audio/s8-006-75a03bf7988a9f99.wav",
+     "start": 451.862,
+     "duration": 1.92
+    },
+    {
+     "text": "Every framework picks a subgradient there, and the choice is arbitrary.",
+     "file": "t31-e1/audio/s8-007-7eceb5793a5f214a.wav",
+     "start": 454.202,
+     "duration": 5.1627
+    },
+    {
+     "text": "We pick zero, which is what PyTorch does.",
+     "file": "t31-e1/audio/s8-008-3614d5a40c12434d.wav",
+     "start": 459.7847,
+     "duration": 3.3493
+    },
+    {
+     "text": "The sin is not picking a convention, it is failing to write down which one you picked.",
+     "file": "t31-e1/audio/s8-009-c42e399fbdfa0d39.wav",
+     "start": 463.554,
+     "duration": 5.7813
+    },
+    {
+     "text": "And then look at the bottom three lines.",
+     "file": "t31-e1/audio/s8-010-9fc5bff482630968.wav",
+     "start": 469.7553,
+     "duration": 2.5387
+    },
+    {
+     "text": "Subtraction is not a primitive.",
+     "file": "t31-e1/audio/s8-011-d73f2e3f64b47f6f.wav",
+     "start": 472.714,
+     "duration": 2.4533
+    },
+    {
+     "text": "It is addition of a negation.",
+     "file": "t31-e1/audio/s8-012-f88d325a2a12eff7.wav",
+     "start": 475.5873,
+     "duration": 2.4533
+    },
+    {
+     "text": "Division is not a primitive.",
+     "file": "t31-e1/audio/s8-013-528cafe0bc37fc17.wav",
+     "start": 478.4607,
+     "duration": 2.2827
+    },
+    {
+     "text": "It is multiplication by a reciprocal.",
+     "file": "t31-e1/audio/s8-014-a50e813e4b02ecf8.wav",
+     "start": 481.1633,
+     "duration": 3.136
+    },
+    {
+     "text": "Every primitive you add is another backward rule you can get wrong, so the right instinct in an autograd engine is to have as few of them as you can live with.",
+     "file": "t31-e1/audio/s8-015-897196a4a310937a.wav",
+     "start": 484.7193,
+     "duration": 11.6053
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the defence",
+    "title": "Gradcheck, or you are guessing",
+    "body": "An autodiff bug does not raise. It returns a number of the right sign and roughly the right magnitude, the loss still falls, and you lose a week. The only defence is comparing against a derivative computed a completely different way.",
+    "points": [
+     "Central differences: (f(x+h) - f(x-h)) / 2h, error of order h squared.",
+     "Forward differences are error of order h \u2014 about three fewer correct digits, for the same effort.",
+     "Compare relatively: |a - b| / max(eps, |a| + |b|), so the test does not care about scale.",
+     "Run it on random graphs, not on the one example you had in mind."
+    ],
+    "aside": "On thirty random scalar graphs the worst relative error is 3.6e-10. That number is the reason to trust the next two episodes."
+   },
+   "start": 496.9747,
+   "duration": 99.194,
+   "segments": [
+    {
+     "text": "And now the part that makes the difference between an engine and a plausible looking engine.",
+     "file": "t31-e1/audio/s9-000-a8f292143f737db6.wav",
+     "start": 496.9747,
+     "duration": 5.9093
+    },
+    {
+     "text": "Gradcheck.",
+     "file": "t31-e1/audio/s9-001-19d714b006f68e2e.wav",
+     "start": 503.304,
+     "duration": 1.1733
+    },
+    {
+     "text": "The problem with an autodiff bug is that it does not raise.",
+     "file": "t31-e1/audio/s9-002-662b150010b6c886.wav",
+     "start": 504.8973,
+     "duration": 4.3733
+    },
+    {
+     "text": "It hands back a number of the right sign and roughly the right magnitude, the loss still goes down, and you lose a week.",
+     "file": "t31-e1/audio/s9-003-4659081484965dfd.wav",
+     "start": 509.6907,
+     "duration": 8.576
+    },
+    {
+     "text": "So the only real defence is to compute the same derivative a completely different way and compare.",
+     "file": "t31-e1/audio/s9-004-821d0d54c0c1b399.wav",
+     "start": 518.6867,
+     "duration": 7.4453
+    },
+    {
+     "text": "Finite differences.",
+     "file": "t31-e1/audio/s9-005-0cd43b04c33f348f.wav",
+     "start": 526.552,
+     "duration": 1.5787
+    },
+    {
+     "text": "Take the function at x plus h, subtract the function at x minus h, divide by two h.",
+     "file": "t31-e1/audio/s9-006-70da0960cdce78eb.wav",
+     "start": 528.5507,
+     "duration": 7.68
+    },
+    {
+     "text": "That is the central difference, and its error goes like h squared.",
+     "file": "t31-e1/audio/s9-007-fc1984b8f534f783.wav",
+     "start": 536.6507,
+     "duration": 4.672
+    },
+    {
+     "text": "The one sided version, f of x plus h minus f of x, over h, has error going like h, which costs you about three correct digits for exactly the same work.",
+     "file": "t31-e1/audio/s9-008-0491aec8477c4dba.wav",
+     "start": 541.7427,
+     "duration": 13.7173
+    },
+    {
+     "text": "Compare the two answers relatively, not absolutely, so that the test does not care whether your gradients are of size one or size ten thousand.",
+     "file": "t31-e1/audio/s9-009-b1480f2c7e08e166.wav",
+     "start": 555.88,
+     "duration": 11.3493
+    },
+    {
+     "text": "And run it on randomly generated expressions, not on the one example you had in your head while writing the code, because that example is the one your bug already agrees with.",
+     "file": "t31-e1/audio/s9-010-840e2e912b866eba.wav",
+     "start": 567.6493,
+     "duration": 13.376
+    },
+    {
+     "text": "On thirty random scalar graphs, this engine's worst relative error is three point six times ten to the minus ten.",
+     "file": "t31-e1/audio/s9-011-bd163f57d1374782.wav",
+     "start": 581.4453,
+     "duration": 9.1733
+    },
+    {
+     "text": "That number is the reason you can believe the next two episodes.",
+     "file": "t31-e1/audio/s9-012-064b1f79ffd3db13.wav",
+     "start": 591.0387,
+     "duration": 4.48
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "episode one",
+    "points": [
+     "A node stores a value, a gradient slot, its children, and one closure for its local derivative.",
+     "The chain rule is: accumulate, over every consumer, the consumer's gradient times the local derivative.",
+     "Plus-equals, not equals \u2014 a node used twice receives gradient twice.",
+     "Keep the primitive set small; subtraction and division are sugar over negation and reciprocal.",
+     "Gradcheck with central differences, on random graphs, or you are guessing."
+    ],
+    "ifSkipped": "Skip this and every later topic's '.backward()' stays magic \u2014 including Flash Attention in Phase 7, which is nothing but this backward pass written to fit in cache.",
+    "next": "Episode 2: the backward pass, in the only order that is correct."
+   },
+   "start": 596.1687,
+   "duration": 69.1273,
+   "segments": [
+    {
+     "text": "To recap.",
+     "file": "t31-e1/audio/s10-000-2482ddde8423e0e0.wav",
+     "start": 596.1687,
+     "duration": 1.1947
+    },
+    {
+     "text": "A node stores four things.",
+     "file": "t31-e1/audio/s10-001-b5208bd73d5351e5.wav",
+     "start": 597.7833,
+     "duration": 2.0693
+    },
+    {
+     "text": "A value, a gradient slot, its children, and one closure holding its local derivative.",
+     "file": "t31-e1/audio/s10-002-c6758b0a9b401aae.wav",
+     "start": 600.2727,
+     "duration": 6.976
+    },
+    {
+     "text": "The chain rule, as an algorithm, says to accumulate over every consumer the consumer's gradient times the local derivative.",
+     "file": "t31-e1/audio/s10-003-2b30af0a424d0c0d.wav",
+     "start": 607.6687,
+     "duration": 9.8133
+    },
+    {
+     "text": "Plus equals, never equals, because a node used twice receives gradient twice.",
+     "file": "t31-e1/audio/s10-004-364362007876c6f9.wav",
+     "start": 617.902,
+     "duration": 6.272
+    },
+    {
+     "text": "Keep the primitive set small, since subtraction and division are sugar over negation and reciprocal.",
+     "file": "t31-e1/audio/s10-005-167f2b1c14bb748a.wav",
+     "start": 624.594,
+     "duration": 7.1467
+    },
+    {
+     "text": "And gradcheck with central differences on random graphs, because an autodiff bug will not announce itself.",
+     "file": "t31-e1/audio/s10-006-d748b1b14e3b9705.wav",
+     "start": 632.1607,
+     "duration": 7.5947
+    },
+    {
+     "text": "If you skip this topic, every later dot backward in the course stays magic, including Flash Attention in phase seven, which is nothing more than this backward pass rewritten to fit in cache.",
+     "file": "t31-e1/audio/s10-007-242fcca68c048006.wav",
+     "start": 640.1753,
+     "duration": 14.0373
+    },
+    {
+     "text": "Next episode.",
+     "file": "t31-e1/audio/s10-008-a900b8555c45ecba.wav",
+     "start": 654.6327,
+     "duration": 1.536
+    },
+    {
+     "text": "We have all the local rules.",
+     "file": "t31-e1/audio/s10-009-fe33ada6bc9021dc.wav",
+     "start": 656.5887,
+     "duration": 2.2187
+    },
+    {
+     "text": "Now we have to run them in the right order, and there is exactly one right order.",
+     "file": "t31-e1/audio/s10-010-e3f2ddb32fef0dec.wav",
+     "start": 659.2273,
+     "duration": 5.4187
+    }
+   ]
+  }
+ ]
+}

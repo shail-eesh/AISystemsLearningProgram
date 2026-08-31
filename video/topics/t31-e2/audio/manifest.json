@@ -1,0 +1,417 @@
+{
+ "s1-000-fd2ac3fbd51cf420.wav": {
+  "duration": 2.944,
+  "text": "Episode two of the autograd engine.",
+  "voice": "am_michael"
+ },
+ "s1-001-900065d6b76fa02c.wav": {
+  "duration": 4.330666666666667,
+  "text": "Last time we built the local rules, one per operation.",
+  "voice": "am_michael"
+ },
+ "s1-002-cf6b4d3a7519f065.wav": {
+  "duration": 5.76,
+  "text": "Today we run them, and the entire content of this episode is the word order.",
+  "voice": "am_michael"
+ },
+ "s1-003-54f177b7e2cb8f56.wav": {
+  "duration": 8.576,
+  "text": "Because the local rules are individually correct and collectively useless until they execute in the right sequence.",
+  "voice": "am_michael"
+ },
+ "s2-000-8d9da9defe31c00d.wav": {
+  "duration": 5.013333333333334,
+  "text": "Here is the constraint, and it is the only thing you have to hold onto.",
+  "voice": "am_michael"
+ },
+ "s2-001-794d1af5cfa49a2f.wav": {
+  "duration": 2.8373333333333335,
+  "text": "A node hands gradient to its children.",
+  "voice": "am_michael"
+ },
+ "s2-002-7aab5f59768dbd73.wav": {
+  "duration": 10.005333333333333,
+  "text": "But that node's own gradient is a sum over all of its consumers, and the sum is only complete once every consumer has contributed.",
+  "voice": "am_michael"
+ },
+ "s2-003-b9fc02f5e1515316.wav": {
+  "duration": 8.746666666666666,
+  "text": "So if you run a node too early, it pushes a partial sum downstream, and every node below it inherits the mistake.",
+  "voice": "am_michael"
+ },
+ "s2-004-c8ef382b18561b80.wav": {
+  "duration": 2.026666666666667,
+  "text": "The correct order is therefore.",
+  "voice": "am_michael"
+ },
+ "s2-005-f3aa5e99a7fe1d45.wav": {
+  "duration": 3.4133333333333336,
+  "text": "Every node strictly after all of its consumers.",
+  "voice": "am_michael"
+ },
+ "s2-006-7d555dc793c115f2.wav": {
+  "duration": 3.7973333333333334,
+  "text": "Which is a topological sort of the graph, reversed.",
+  "voice": "am_michael"
+ },
+ "s2-007-3b5e298b92932ba6.wav": {
+  "duration": 4.757333333333333,
+  "text": "And it is worth naming three orders that look plausible and are not it.",
+  "voice": "am_michael"
+ },
+ "s2-008-a2922fd493e2ca79.wav": {
+  "duration": 3.328,
+  "text": "The order you created the nodes in is not it.",
+  "voice": "am_michael"
+ },
+ "s2-009-d971559e4bed49ad.wav": {
+  "duration": 2.1973333333333334,
+  "text": "Sorting by depth is not it.",
+  "voice": "am_michael"
+ },
+ "s2-010-4379f4daae60c473.wav": {
+  "duration": 7.338666666666667,
+  "text": "And the order that naive recursion happens to visit in is not it either, though it comes closest.",
+  "voice": "am_michael"
+ },
+ "s2-011-ef56b40a6d4e06c3.wav": {
+  "duration": 4.8853333333333335,
+  "text": "If you have ever written a build system, this is the same constraint.",
+  "voice": "am_michael"
+ },
+ "s2-012-49d94454ca5e2361.wav": {
+  "duration": 4.309333333333333,
+  "text": "Compile a dependency before the things that depend on it.",
+  "voice": "am_michael"
+ },
+ "s2-013-765f02e730667107.wav": {
+  "duration": 3.7546666666666666,
+  "text": "Reverse mode autodiff is make, run backwards.",
+  "voice": "am_michael"
+ },
+ "s3-000-8bfe5997563cf303.wav": {
+  "duration": 9.749333333333333,
+  "text": "The smallest graph that can catch you is the diamond. x feeds two different operations. a is two x. b is tanh of x.",
+  "voice": "am_michael"
+ },
+ "s3-001-b1b951e2c4d583da.wav": {
+  "duration": 2.6666666666666665,
+  "text": "And y multiplies them together.",
+  "voice": "am_michael"
+ },
+ "s3-002-cb510f955ac328a6.wav": {
+  "duration": 4.352,
+  "text": "Watch the dashed arrows and their numbers. y runs first.",
+  "voice": "am_michael"
+ },
+ "s3-003-4f382bf13532bf20.wav": {
+  "duration": 2.816,
+  "text": "It pushes into a, then into b.",
+  "voice": "am_michael"
+ },
+ "s3-004-534cdfbfd616619d.wav": {
+  "duration": 1.9413333333333334,
+  "text": "Then a pushes into x.",
+  "voice": "am_michael"
+ },
+ "s3-005-476c247d4adc82ca.wav": {
+  "duration": 2.048,
+  "text": "Then b pushes into x.",
+  "voice": "am_michael"
+ },
+ "s3-006-c76057f3c080dc93.wav": {
+  "duration": 3.1573333333333333,
+  "text": "And only now is x's gradient complete.",
+  "voice": "am_michael"
+ },
+ "s3-007-5df4d38bda314b94.wav": {
+  "duration": 9.664,
+  "text": "Now imagine we ran x after a but before b. x would push a gradient downstream that is missing the entire tanh path.",
+  "voice": "am_michael"
+ },
+ "s3-008-09253007f8d843ba.wav": {
+  "duration": 8.746666666666666,
+  "text": "In this tiny graph x is a leaf, so nothing is downstream and the damage is contained to a wrong final answer.",
+  "voice": "am_michael"
+ },
+ "s3-009-64df0ad2f7db5a7e.wav": {
+  "duration": 10.581333333333333,
+  "text": "In a real network x is a hidden activation with fifty layers under it, and every one of them is now wrong by a factor nobody can see.",
+  "voice": "am_michael"
+ },
+ "s4-000-5794d550ead20524.wav": {
+  "duration": 8.298666666666668,
+  "text": "Here is the traversal, and it is worth reading slowly because the two phase trick is not obvious the first time.",
+  "voice": "am_michael"
+ },
+ "s4-001-52d8e3ddd6527f22.wav": {
+  "duration": 6.826666666666667,
+  "text": "Each stack entry is a node plus a boolean saying whether its children have already been pushed.",
+  "voice": "am_michael"
+ },
+ "s4-002-7285de6b6ae74298.wav": {
+  "duration": 1.408,
+  "text": "Pop an entry.",
+  "voice": "am_michael"
+ },
+ "s4-003-69aa2914909921cc.wav": {
+  "duration": 6.378666666666667,
+  "text": "If the flag is set, the children are already emitted, so this node is safe to append.",
+  "voice": "am_michael"
+ },
+ "s4-004-44d0905b9052ce20.wav": {
+  "duration": 4.8853333333333335,
+  "text": "If the flag is clear, this is the first time we have reached the node.",
+  "voice": "am_michael"
+ },
+ "s4-005-ad3fb683948730eb.wav": {
+  "duration": 3.776,
+  "text": "Mark it seen, so a diamond cannot enqueue it twice.",
+  "voice": "am_michael"
+ },
+ "s4-006-cc0e14fc967963d4.wav": {
+  "duration": 5.12,
+  "text": "Then push the node back with the flag set, and after that push its children.",
+  "voice": "am_michael"
+ },
+ "s4-007-9bce9e2f47fb0f69.wav": {
+  "duration": 8.405333333333333,
+  "text": "The stack is last in first out, so the children pop before the node does, which is exactly the post order we want.",
+  "voice": "am_michael"
+ },
+ "s4-008-84464eadf615691e.wav": {
+  "duration": 5.1626666666666665,
+  "text": "The result is a list where every node appears after all of its children.",
+  "voice": "am_michael"
+ },
+ "s4-009-eebddc1ae30e42ae.wav": {
+  "duration": 8.405333333333333,
+  "text": "Reverse that list and every node appears after all of its consumers, which is the constraint from two scenes ago.",
+  "voice": "am_michael"
+ },
+ "s5-000-118309b7abfb1242.wav": {
+  "duration": 5.077333333333334,
+  "text": "And here is why we did it with an explicit stack rather than recursion.",
+  "voice": "am_michael"
+ },
+ "s5-001-5caba4ef93571fe3.wav": {
+  "duration": 4.906666666666666,
+  "text": "The recursive version is three lines and it is correct, and it dies.",
+  "voice": "am_michael"
+ },
+ "s5-002-9966d4f32ad155d2.wav": {
+  "duration": 5.632,
+  "text": "Take a single value and multiply it by a constant twenty thousand times.",
+  "voice": "am_michael"
+ },
+ "s5-003-d3178420b5243552.wav": {
+  "duration": 9.621333333333334,
+  "text": "That is a chain twenty thousand nodes deep, which is not an unusual depth once you unroll even a small network to scalars.",
+  "voice": "am_michael"
+ },
+ "s5-004-054e8f26ecf1dc98.wav": {
+  "duration": 3.7546666666666666,
+  "text": "Python's default recursion limit is one thousand.",
+  "voice": "am_michael"
+ },
+ "s5-005-0fc9b630d3f93b2f.wav": {
+  "duration": 2.6453333333333333,
+  "text": "The recursive implementation raises.",
+  "voice": "am_michael"
+ },
+ "s5-006-7a9503e42738fdd0.wav": {
+  "duration": 13.354666666666667,
+  "text": "The iterative one does not, and there is a test in the suite that does exactly this, because it is the kind of limit you would rather find in continuous integration than during a training run.",
+  "voice": "am_michael"
+ },
+ "s6-000-2da1b06b9acb6a92.wav": {
+  "duration": 2.453333333333333,
+  "text": "And here is the whole backward pass.",
+  "voice": "am_michael"
+ },
+ "s6-001-e4cf34783df1e3c8.wav": {
+  "duration": 1.28,
+  "text": "Seven lines.",
+  "voice": "am_michael"
+ },
+ "s6-002-0a279d2cb249d3b4.wav": {
+  "duration": 1.8773333333333333,
+  "text": "Compute the order once.",
+  "voice": "am_michael"
+ },
+ "s6-003-257b09ad02d602ae.wav": {
+  "duration": 7.189333333333333,
+  "text": "Zero every gradient, because calling backward twice on the same graph must not double the numbers.",
+  "voice": "am_michael"
+ },
+ "s6-004-072fc21f5733a424.wav": {
+  "duration": 9.173333333333334,
+  "text": "Set the root's gradient to one, which is the seed, and the only derivative in the entire system that you write down by hand.",
+  "voice": "am_michael"
+ },
+ "s6-005-8c50130f2c57179e.wav": {
+  "duration": 5.568,
+  "text": "Then walk the order in reverse and call each node's closure exactly once.",
+  "voice": "am_michael"
+ },
+ "s6-006-66af51f6771731b5.wav": {
+  "duration": 1.1733333333333333,
+  "text": "That is it.",
+  "voice": "am_michael"
+ },
+ "s6-007-645a62e9ba9ac064.wav": {
+  "duration": 5.546666666666667,
+  "text": "Everything else in this episode was explaining why line six says reversed.",
+  "voice": "am_michael"
+ },
+ "s7-000-ac895be8f53a6e01.wav": {
+  "duration": 8.704,
+  "text": "There is a design decision hiding in line three that is worth pulling out, because you will meet the other side of it constantly.",
+  "voice": "am_michael"
+ },
+ "s7-001-fb86e25cb02bff83.wav": {
+  "duration": 3.989333333333333,
+  "text": "This engine zeroes gradients at the start of backward.",
+  "voice": "am_michael"
+ },
+ "s7-002-136a342d909b890e.wav": {
+  "duration": 1.7493333333333334,
+  "text": "PyTorch does not.",
+  "voice": "am_michael"
+ },
+ "s7-003-5703f9955caa5b41.wav": {
+  "duration": 5.866666666666666,
+  "text": "PyTorch accumulates across calls and makes you call zero grad yourself.",
+  "voice": "am_michael"
+ },
+ "s7-004-a68aa38ae549efe5.wav": {
+  "duration": 7.168,
+  "text": "That choice is why forgetting zero grad is the single most common beginner bug in PyTorch.",
+  "voice": "am_michael"
+ },
+ "s7-005-2531a3d558ecdc09.wav": {
+  "duration": 6.634666666666667,
+  "text": "It is also why gradient accumulation across micro batches is completely free there.",
+  "voice": "am_michael"
+ },
+ "s7-006-b6bddacd47c1fd78.wav": {
+  "duration": 7.722666666666667,
+  "text": "Call backward four times, step once, and you have trained on a batch four times larger than fits in memory.",
+  "voice": "am_michael"
+ },
+ "s7-007-675269b7fd67bc63.wav": {
+  "duration": 2.048,
+  "text": "Neither choice is wrong.",
+  "voice": "am_michael"
+ },
+ "s7-008-1951331b84b1e9bb.wav": {
+  "duration": 7.445333333333333,
+  "text": "But an engine has to pick one and say so, because the two behave identically right up until they do not.",
+  "voice": "am_michael"
+ },
+ "s8-000-d3ea2ca02f6731ad.wav": {
+  "duration": 5.717333333333333,
+  "text": "And to make the point concrete, here is the diamond evaluated numerically.",
+  "voice": "am_michael"
+ },
+ "s8-001-10b5382c93ecfd42.wav": {
+  "duration": 5.674666666666667,
+  "text": "The derivative of two x times tanh x, at x equals one point five.",
+  "voice": "am_michael"
+ },
+ "s8-002-60a2ec5a8cfd85c7.wav": {
+  "duration": 4.586666666666667,
+  "text": "Reverse topological order gives two point nine two nine.",
+  "voice": "am_michael"
+ },
+ "s8-003-f15a74ce3001ec51.wav": {
+  "duration": 5.0986666666666665,
+  "text": "The analytic answer, worked out on paper, gives two point nine two nine.",
+  "voice": "am_michael"
+ },
+ "s8-004-51d288dd7df5fdd2.wav": {
+  "duration": 3.7333333333333334,
+  "text": "Insertion order gives one point nine nine five.",
+  "voice": "am_michael"
+ },
+ "s8-005-be47a586bd97c406.wav": {
+  "duration": 2.3466666666666667,
+  "text": "Look at that third bar for a moment.",
+  "voice": "am_michael"
+ },
+ "s8-006-944a8b759de9c7e5.wav": {
+  "duration": 1.7706666666666666,
+  "text": "It is the right sign.",
+  "voice": "am_michael"
+ },
+ "s8-007-202aa818346dad8e.wav": {
+  "duration": 2.6453333333333333,
+  "text": "It is the right order of magnitude.",
+  "voice": "am_michael"
+ },
+ "s8-008-bde16b61141a742a.wav": {
+  "duration": 1.92,
+  "text": "It would train a network.",
+  "voice": "am_michael"
+ },
+ "s8-009-69c4850cb9f6e121.wav": {
+  "duration": 4.970666666666666,
+  "text": "It is thirty two percent wrong and nothing anywhere raised an exception.",
+  "voice": "am_michael"
+ },
+ "s8-010-3c18955331464423.wav": {
+  "duration": 11.306666666666667,
+  "text": "This is what I mean when I say autograd bugs do not announce themselves, and it is why the gradcheck from episode one is not optional infrastructure.",
+  "voice": "am_michael"
+ },
+ "s9-000-2482ddde8423e0e0.wav": {
+  "duration": 1.1946666666666668,
+  "text": "To recap.",
+  "voice": "am_michael"
+ },
+ "s9-001-d9672414c62587cd.wav": {
+  "duration": 6.016,
+  "text": "A node may push gradient only after every one of its consumers has pushed into it.",
+  "voice": "am_michael"
+ },
+ "s9-002-7c591a3b0825069c.wav": {
+  "duration": 7.253333333333333,
+  "text": "That ordering is a topological sort, reversed, and it is not insertion order and not depth.",
+  "voice": "am_michael"
+ },
+ "s9-003-eee08994a798f1ed.wav": {
+  "duration": 12.629333333333333,
+  "text": "Implement the traversal with an explicit two phase stack, because a scalar unrolled network is tens of thousands of nodes deep and recursion will not survive it.",
+  "voice": "am_michael"
+ },
+ "s9-004-cb99737ab5884330.wav": {
+  "duration": 7.082666666666666,
+  "text": "Backward itself is one traversal, zero everything, seed the root with one, run in reverse.",
+  "voice": "am_michael"
+ },
+ "s9-005-da4d2644092d3851.wav": {
+  "duration": 11.050666666666666,
+  "text": "And the zeroing policy is a genuine design choice where PyTorch went the other way, which is the entire reason zero grad exists.",
+  "voice": "am_michael"
+ },
+ "s9-006-a77eb7cfd6dc76e1.wav": {
+  "duration": 2.9013333333333335,
+  "text": "Skip this and the wrong order will not crash.",
+  "voice": "am_michael"
+ },
+ "s9-007-5499a0d37da51d62.wav": {
+  "duration": 7.701333333333333,
+  "text": "It will hand you a plausible number that is a third too small, and train a slightly worse model forever.",
+  "voice": "am_michael"
+ },
+ "s9-008-06306db8ec1fe0ed.wav": {
+  "duration": 2.538666666666667,
+  "text": "Next episode is the hard one.",
+  "voice": "am_michael"
+ },
+ "s9-009-48762234dae9c8ed.wav": {
+  "duration": 11.392,
+  "text": "The same engine, on arrays, where broadcasting turns a one line convenience in the forward pass into a summation you have to get exactly right on the way back.",
+  "voice": "am_michael"
+ }
+}

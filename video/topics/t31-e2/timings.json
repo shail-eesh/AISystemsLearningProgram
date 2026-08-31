@@ -1,0 +1,825 @@
+{
+ "topic": "t31-e2",
+ "episode": 2,
+ "title": "The backward pass, line by line",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 489.4527,
+ "wordCount": 1102,
+ "wordsPerMinute": 135.1,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 23.52,
+ "generatedInSeconds": 190.5,
+ "segmentsSynthesised": 83,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Autograd, part two",
+    "subtitle": "There is exactly one correct order to run the local rules in. Here is why, and what going wrong looks like.",
+    "topicId": "T31",
+    "episode": "Episode 2"
+   },
+   "start": 0.0,
+   "duration": 23.5207,
+   "segments": [
+    {
+     "text": "Episode two of the autograd engine.",
+     "file": "t31-e2/audio/s1-000-fd2ac3fbd51cf420.wav",
+     "start": 0.0,
+     "duration": 2.944
+    },
+    {
+     "text": "Last time we built the local rules, one per operation.",
+     "file": "t31-e2/audio/s1-001-900065d6b76fa02c.wav",
+     "start": 3.364,
+     "duration": 4.3307
+    },
+    {
+     "text": "Today we run them, and the entire content of this episode is the word order.",
+     "file": "t31-e2/audio/s1-002-cf6b4d3a7519f065.wav",
+     "start": 8.1147,
+     "duration": 5.76
+    },
+    {
+     "text": "Because the local rules are individually correct and collectively useless until they execute in the right sequence.",
+     "file": "t31-e2/audio/s1-003-54f177b7e2cb8f56.wav",
+     "start": 14.2947,
+     "duration": 8.576
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the constraint",
+    "title": "A node may only push once all of its consumers have pushed into it",
+    "body": "Node v hands gradient to its children. But v's own gradient is a sum over its consumers, and it is only complete once every consumer has contributed. Run v too early and it pushes a partial sum downstream, and everything below inherits the error.",
+    "points": [
+     "Correct order: every node strictly after all of its consumers.",
+     "That is a topological sort of the graph, reversed.",
+     "Insertion order is not it. Depth is not it. Recursion order is not it.",
+     "Get it wrong and nothing raises \u2014 you get a plausible, smaller number."
+    ],
+    "aside": "This is the same constraint a build system has: compile a dependency before its dependents. Reverse mode is 'make', run backwards."
+   },
+   "start": 23.5207,
+   "duration": 72.5207,
+   "segments": [
+    {
+     "text": "Here is the constraint, and it is the only thing you have to hold onto.",
+     "file": "t31-e2/audio/s2-000-8d9da9defe31c00d.wav",
+     "start": 23.5207,
+     "duration": 5.0133
+    },
+    {
+     "text": "A node hands gradient to its children.",
+     "file": "t31-e2/audio/s2-001-794d1af5cfa49a2f.wav",
+     "start": 28.954,
+     "duration": 2.8373
+    },
+    {
+     "text": "But that node's own gradient is a sum over all of its consumers, and the sum is only complete once every consumer has contributed.",
+     "file": "t31-e2/audio/s2-002-7aab5f59768dbd73.wav",
+     "start": 32.2113,
+     "duration": 10.0053
+    },
+    {
+     "text": "So if you run a node too early, it pushes a partial sum downstream, and every node below it inherits the mistake.",
+     "file": "t31-e2/audio/s2-003-b9fc02f5e1515316.wav",
+     "start": 42.6367,
+     "duration": 8.7467
+    },
+    {
+     "text": "The correct order is therefore.",
+     "file": "t31-e2/audio/s2-004-c8ef382b18561b80.wav",
+     "start": 51.8033,
+     "duration": 2.0267
+    },
+    {
+     "text": "Every node strictly after all of its consumers.",
+     "file": "t31-e2/audio/s2-005-f3aa5e99a7fe1d45.wav",
+     "start": 54.25,
+     "duration": 3.4133
+    },
+    {
+     "text": "Which is a topological sort of the graph, reversed.",
+     "file": "t31-e2/audio/s2-006-7d555dc793c115f2.wav",
+     "start": 58.0833,
+     "duration": 3.7973
+    },
+    {
+     "text": "And it is worth naming three orders that look plausible and are not it.",
+     "file": "t31-e2/audio/s2-007-3b5e298b92932ba6.wav",
+     "start": 62.3007,
+     "duration": 4.7573
+    },
+    {
+     "text": "The order you created the nodes in is not it.",
+     "file": "t31-e2/audio/s2-008-a2922fd493e2ca79.wav",
+     "start": 67.478,
+     "duration": 3.328
+    },
+    {
+     "text": "Sorting by depth is not it.",
+     "file": "t31-e2/audio/s2-009-d971559e4bed49ad.wav",
+     "start": 71.226,
+     "duration": 2.1973
+    },
+    {
+     "text": "And the order that naive recursion happens to visit in is not it either, though it comes closest.",
+     "file": "t31-e2/audio/s2-010-4379f4daae60c473.wav",
+     "start": 73.8433,
+     "duration": 7.3387
+    },
+    {
+     "text": "If you have ever written a build system, this is the same constraint.",
+     "file": "t31-e2/audio/s2-011-ef56b40a6d4e06c3.wav",
+     "start": 81.602,
+     "duration": 4.8853
+    },
+    {
+     "text": "Compile a dependency before the things that depend on it.",
+     "file": "t31-e2/audio/s2-012-49d94454ca5e2361.wav",
+     "start": 86.9073,
+     "duration": 4.3093
+    },
+    {
+     "text": "Reverse mode autodiff is make, run backwards.",
+     "file": "t31-e2/audio/s2-013-765f02e730667107.wav",
+     "start": 91.6367,
+     "duration": 3.7547
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the failure",
+    "title": "The diamond: one node, two paths",
+    "nodes": [
+     {
+      "id": "x",
+      "label": "x",
+      "sub": "used twice",
+      "x": 0.12,
+      "y": 0.5,
+      "color": "#e0b04e",
+      "appearAt": 6
+     },
+     {
+      "id": "a",
+      "label": "a = 2x",
+      "x": 0.44,
+      "y": 0.24,
+      "appearAt": 20
+     },
+     {
+      "id": "b",
+      "label": "b = tanh(x)",
+      "x": 0.44,
+      "y": 0.76,
+      "appearAt": 30
+     },
+     {
+      "id": "y",
+      "label": "y = a x b",
+      "x": 0.8,
+      "y": 0.5,
+      "appearAt": 44,
+      "color": "#5ac48c"
+     }
+    ],
+    "edges": [
+     {
+      "from": "x",
+      "to": "a",
+      "appearAt": 24
+     },
+     {
+      "from": "x",
+      "to": "b",
+      "appearAt": 34
+     },
+     {
+      "from": "a",
+      "to": "y",
+      "appearAt": 48
+     },
+     {
+      "from": "b",
+      "to": "y",
+      "appearAt": 52
+     },
+     {
+      "from": "y",
+      "to": "a",
+      "label": "1st",
+      "appearAt": 80,
+      "dashed": true
+     },
+     {
+      "from": "y",
+      "to": "b",
+      "label": "2nd",
+      "appearAt": 90,
+      "dashed": true
+     },
+     {
+      "from": "a",
+      "to": "x",
+      "label": "3rd",
+      "appearAt": 100,
+      "dashed": true
+     },
+     {
+      "from": "b",
+      "to": "x",
+      "label": "4th",
+      "appearAt": 110,
+      "dashed": true
+     }
+    ],
+    "caption": "x must run last. Run it after 'a' but before 'b' and you keep only half its gradient."
+   },
+   "start": 96.0413,
+   "duration": 60.1527,
+   "segments": [
+    {
+     "text": "The smallest graph that can catch you is the diamond. x feeds two different operations. a is two x. b is tanh of x.",
+     "file": "t31-e2/audio/s3-000-8bfe5997563cf303.wav",
+     "start": 96.0413,
+     "duration": 9.7493
+    },
+    {
+     "text": "And y multiplies them together.",
+     "file": "t31-e2/audio/s3-001-b1b951e2c4d583da.wav",
+     "start": 106.2107,
+     "duration": 2.6667
+    },
+    {
+     "text": "Watch the dashed arrows and their numbers. y runs first.",
+     "file": "t31-e2/audio/s3-002-cb510f955ac328a6.wav",
+     "start": 109.2973,
+     "duration": 4.352
+    },
+    {
+     "text": "It pushes into a, then into b.",
+     "file": "t31-e2/audio/s3-003-4f382bf13532bf20.wav",
+     "start": 114.0693,
+     "duration": 2.816
+    },
+    {
+     "text": "Then a pushes into x.",
+     "file": "t31-e2/audio/s3-004-534cdfbfd616619d.wav",
+     "start": 117.3053,
+     "duration": 1.9413
+    },
+    {
+     "text": "Then b pushes into x.",
+     "file": "t31-e2/audio/s3-005-476c247d4adc82ca.wav",
+     "start": 119.6667,
+     "duration": 2.048
+    },
+    {
+     "text": "And only now is x's gradient complete.",
+     "file": "t31-e2/audio/s3-006-c76057f3c080dc93.wav",
+     "start": 122.1347,
+     "duration": 3.1573
+    },
+    {
+     "text": "Now imagine we ran x after a but before b. x would push a gradient downstream that is missing the entire tanh path.",
+     "file": "t31-e2/audio/s3-007-5df4d38bda314b94.wav",
+     "start": 125.712,
+     "duration": 9.664
+    },
+    {
+     "text": "In this tiny graph x is a leaf, so nothing is downstream and the damage is contained to a wrong final answer.",
+     "file": "t31-e2/audio/s3-008-09253007f8d843ba.wav",
+     "start": 135.796,
+     "duration": 8.7467
+    },
+    {
+     "text": "In a real network x is a hidden activation with fifty layers under it, and every one of them is now wrong by a factor nobody can see.",
+     "file": "t31-e2/audio/s3-009-64df0ad2f7db5a7e.wav",
+     "start": 144.9627,
+     "duration": 10.5813
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the code",
+    "title": "An iterative post-order traversal",
+    "filename": "src/t31_autograd/engine.py",
+    "code": "def topo_order(self):\n    order, seen = [], set()\n    stack = [(self, False)]\n    while stack:\n        node, expanded = stack.pop()\n        if expanded:\n            order.append(node)\n            continue\n        if id(node) in seen:\n            continue\n        seen.add(id(node))\n        stack.append((node, True))\n        for child in node._prev:\n            if id(child) not in seen:\n                stack.append((child, False))\n    return order",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       3
+      ],
+      "caption": "The flag says whether this node's children have already been pushed."
+     },
+     {
+      "at": 130,
+      "lines": [
+       5,
+       6,
+       7
+      ],
+      "caption": "Second visit: children are done, so the node is safe to emit."
+     },
+     {
+      "at": 230,
+      "lines": [
+       9,
+       10,
+       11
+      ],
+      "caption": "First visit: mark it seen, so a diamond does not enqueue it twice."
+     },
+     {
+      "at": 320,
+      "lines": [
+       12,
+       13,
+       14,
+       15
+      ],
+      "caption": "Push self back with the flag set, THEN the children \u2014 the stack is LIFO, so children pop first."
+     }
+    ]
+   },
+   "start": 156.194,
+   "duration": 63.0967,
+   "segments": [
+    {
+     "text": "Here is the traversal, and it is worth reading slowly because the two phase trick is not obvious the first time.",
+     "file": "t31-e2/audio/s4-000-5794d550ead20524.wav",
+     "start": 156.194,
+     "duration": 8.2987
+    },
+    {
+     "text": "Each stack entry is a node plus a boolean saying whether its children have already been pushed.",
+     "file": "t31-e2/audio/s4-001-52d8e3ddd6527f22.wav",
+     "start": 164.9127,
+     "duration": 6.8267
+    },
+    {
+     "text": "Pop an entry.",
+     "file": "t31-e2/audio/s4-002-7285de6b6ae74298.wav",
+     "start": 172.1593,
+     "duration": 1.408
+    },
+    {
+     "text": "If the flag is set, the children are already emitted, so this node is safe to append.",
+     "file": "t31-e2/audio/s4-003-69aa2914909921cc.wav",
+     "start": 173.9873,
+     "duration": 6.3787
+    },
+    {
+     "text": "If the flag is clear, this is the first time we have reached the node.",
+     "file": "t31-e2/audio/s4-004-44d0905b9052ce20.wav",
+     "start": 180.786,
+     "duration": 4.8853
+    },
+    {
+     "text": "Mark it seen, so a diamond cannot enqueue it twice.",
+     "file": "t31-e2/audio/s4-005-ad3fb683948730eb.wav",
+     "start": 186.0913,
+     "duration": 3.776
+    },
+    {
+     "text": "Then push the node back with the flag set, and after that push its children.",
+     "file": "t31-e2/audio/s4-006-cc0e14fc967963d4.wav",
+     "start": 190.2873,
+     "duration": 5.12
+    },
+    {
+     "text": "The stack is last in first out, so the children pop before the node does, which is exactly the post order we want.",
+     "file": "t31-e2/audio/s4-007-9bce9e2f47fb0f69.wav",
+     "start": 195.8273,
+     "duration": 8.4053
+    },
+    {
+     "text": "The result is a list where every node appears after all of its children.",
+     "file": "t31-e2/audio/s4-008-84464eadf615691e.wav",
+     "start": 204.6527,
+     "duration": 5.1627
+    },
+    {
+     "text": "Reverse that list and every node appears after all of its consumers, which is the constraint from two scenes ago.",
+     "file": "t31-e2/audio/s4-009-eebddc1ae30e42ae.wav",
+     "start": 210.2353,
+     "duration": 8.4053
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "Why this is iterative and not recursive",
+    "body": "The obvious implementation is a recursive depth-first walk, and it is correct. It also dies. Unroll one small network to scalars and the graph is tens of thousands of nodes deep; Python's default recursion limit is one thousand.",
+    "code": "v = Value(1.0)\nfor _ in range(20_000):\n    v = v * 1.0001\nv.backward()      # recursive: RecursionError\n                  # iterative: fine, and there is a test for it"
+   },
+   "start": 219.2907,
+   "duration": 48.162,
+   "segments": [
+    {
+     "text": "And here is why we did it with an explicit stack rather than recursion.",
+     "file": "t31-e2/audio/s5-000-118309b7abfb1242.wav",
+     "start": 219.2907,
+     "duration": 5.0773
+    },
+    {
+     "text": "The recursive version is three lines and it is correct, and it dies.",
+     "file": "t31-e2/audio/s5-001-5caba4ef93571fe3.wav",
+     "start": 224.788,
+     "duration": 4.9067
+    },
+    {
+     "text": "Take a single value and multiply it by a constant twenty thousand times.",
+     "file": "t31-e2/audio/s5-002-9966d4f32ad155d2.wav",
+     "start": 230.1147,
+     "duration": 5.632
+    },
+    {
+     "text": "That is a chain twenty thousand nodes deep, which is not an unusual depth once you unroll even a small network to scalars.",
+     "file": "t31-e2/audio/s5-003-d3178420b5243552.wav",
+     "start": 236.1667,
+     "duration": 9.6213
+    },
+    {
+     "text": "Python's default recursion limit is one thousand.",
+     "file": "t31-e2/audio/s5-004-054e8f26ecf1dc98.wav",
+     "start": 246.208,
+     "duration": 3.7547
+    },
+    {
+     "text": "The recursive implementation raises.",
+     "file": "t31-e2/audio/s5-005-0fc9b630d3f93b2f.wav",
+     "start": 250.3827,
+     "duration": 2.6453
+    },
+    {
+     "text": "The iterative one does not, and there is a test in the suite that does exactly this, because it is the kind of limit you would rather find in continuous integration than during a training run.",
+     "file": "t31-e2/audio/s5-006-7a9503e42738fdd0.wav",
+     "start": 253.448,
+     "duration": 13.3547
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the code",
+    "title": "backward(), in full",
+    "filename": "src/t31_autograd/engine.py",
+    "code": "def backward(self):\n    order = self.topo_order()\n    for node in order:\n        node.grad = 0.0\n    self.grad = 1.0\n    for node in reversed(order):\n        node._backward()",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2
+      ],
+      "caption": "One traversal, reused for both loops."
+     },
+     {
+      "at": 120,
+      "lines": [
+       3,
+       4
+      ],
+      "caption": "Zero first: calling backward() twice must not double the gradients."
+     },
+     {
+      "at": 240,
+      "lines": [
+       5
+      ],
+      "caption": "The seed. d(self)/d(self) = 1 \u2014 the only derivative in the whole system you write by hand."
+     },
+     {
+      "at": 340,
+      "lines": [
+       6,
+       7
+      ],
+      "caption": "Reverse topological order, one call each. That is the algorithm."
+     }
+    ]
+   },
+   "start": 267.4527,
+   "duration": 37.8513,
+   "segments": [
+    {
+     "text": "And here is the whole backward pass.",
+     "file": "t31-e2/audio/s6-000-2da1b06b9acb6a92.wav",
+     "start": 267.4527,
+     "duration": 2.4533
+    },
+    {
+     "text": "Seven lines.",
+     "file": "t31-e2/audio/s6-001-e4cf34783df1e3c8.wav",
+     "start": 270.326,
+     "duration": 1.28
+    },
+    {
+     "text": "Compute the order once.",
+     "file": "t31-e2/audio/s6-002-0a279d2cb249d3b4.wav",
+     "start": 272.026,
+     "duration": 1.8773
+    },
+    {
+     "text": "Zero every gradient, because calling backward twice on the same graph must not double the numbers.",
+     "file": "t31-e2/audio/s6-003-257b09ad02d602ae.wav",
+     "start": 274.3233,
+     "duration": 7.1893
+    },
+    {
+     "text": "Set the root's gradient to one, which is the seed, and the only derivative in the entire system that you write down by hand.",
+     "file": "t31-e2/audio/s6-004-072fc21f5733a424.wav",
+     "start": 281.9327,
+     "duration": 9.1733
+    },
+    {
+     "text": "Then walk the order in reverse and call each node's closure exactly once.",
+     "file": "t31-e2/audio/s6-005-8c50130f2c57179e.wav",
+     "start": 291.526,
+     "duration": 5.568
+    },
+    {
+     "text": "That is it.",
+     "file": "t31-e2/audio/s6-006-66af51f6771731b5.wav",
+     "start": 297.514,
+     "duration": 1.1733
+    },
+    {
+     "text": "Everything else in this episode was explaining why line six says reversed.",
+     "file": "t31-e2/audio/s6-007-645a62e9ba9ac064.wav",
+     "start": 299.1073,
+     "duration": 5.5467
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "PyTorch made the opposite choice about zeroing",
+    "body": "This engine zeroes gradients at the start of backward(). PyTorch accumulates across calls and makes you call zero_grad() yourself \u2014 which is why forgetting it is the classic beginner bug, and also why gradient accumulation over micro-batches is free.",
+    "code": "# here\nloss.backward()          # gradients are exactly this batch's\n\n# PyTorch\nopt.zero_grad()\nloss.backward()          # or they add to whatever was there"
+   },
+   "start": 305.304,
+   "duration": 55.338,
+   "segments": [
+    {
+     "text": "There is a design decision hiding in line three that is worth pulling out, because you will meet the other side of it constantly.",
+     "file": "t31-e2/audio/s7-000-ac895be8f53a6e01.wav",
+     "start": 305.304,
+     "duration": 8.704
+    },
+    {
+     "text": "This engine zeroes gradients at the start of backward.",
+     "file": "t31-e2/audio/s7-001-fb86e25cb02bff83.wav",
+     "start": 314.428,
+     "duration": 3.9893
+    },
+    {
+     "text": "PyTorch does not.",
+     "file": "t31-e2/audio/s7-002-136a342d909b890e.wav",
+     "start": 318.8373,
+     "duration": 1.7493
+    },
+    {
+     "text": "PyTorch accumulates across calls and makes you call zero grad yourself.",
+     "file": "t31-e2/audio/s7-003-5703f9955caa5b41.wav",
+     "start": 321.0067,
+     "duration": 5.8667
+    },
+    {
+     "text": "That choice is why forgetting zero grad is the single most common beginner bug in PyTorch.",
+     "file": "t31-e2/audio/s7-004-a68aa38ae549efe5.wav",
+     "start": 327.2933,
+     "duration": 7.168
+    },
+    {
+     "text": "It is also why gradient accumulation across micro batches is completely free there.",
+     "file": "t31-e2/audio/s7-005-2531a3d558ecdc09.wav",
+     "start": 334.8813,
+     "duration": 6.6347
+    },
+    {
+     "text": "Call backward four times, step once, and you have trained on a batch four times larger than fits in memory.",
+     "file": "t31-e2/audio/s7-006-b6bddacd47c1fd78.wav",
+     "start": 341.936,
+     "duration": 7.7227
+    },
+    {
+     "text": "Neither choice is wrong.",
+     "file": "t31-e2/audio/s7-007-675269b7fd67bc63.wav",
+     "start": 350.0787,
+     "duration": 2.048
+    },
+    {
+     "text": "But an engine has to pick one and say so, because the two behave identically right up until they do not.",
+     "file": "t31-e2/audio/s7-008-1951331b84b1e9bb.wav",
+     "start": 352.5467,
+     "duration": 7.4453
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "verification",
+    "title": "The order is not a matter of taste",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "reverse topological",
+      "value": 2.929,
+      "color": "#5ac48c",
+      "note": "correct"
+     },
+     {
+      "label": "analytic answer",
+      "value": 2.929,
+      "color": "#7a8aa0",
+      "note": "2\u00b7tanh(x) + 2x(1-tanh\u00b2x)"
+     },
+     {
+      "label": "insertion order",
+      "value": 1.995,
+      "color": "#e05e6b",
+      "note": "32% low, no error raised"
+     }
+    ],
+    "caption": "d/dx of 2x\u00b7tanh(x) at x=1.5, computed three ways. The wrong one is not obviously wrong."
+   },
+   "start": 360.642,
+   "duration": 54.6207,
+   "segments": [
+    {
+     "text": "And to make the point concrete, here is the diamond evaluated numerically.",
+     "file": "t31-e2/audio/s8-000-d3ea2ca02f6731ad.wav",
+     "start": 360.642,
+     "duration": 5.7173
+    },
+    {
+     "text": "The derivative of two x times tanh x, at x equals one point five.",
+     "file": "t31-e2/audio/s8-001-10b5382c93ecfd42.wav",
+     "start": 366.7793,
+     "duration": 5.6747
+    },
+    {
+     "text": "Reverse topological order gives two point nine two nine.",
+     "file": "t31-e2/audio/s8-002-60a2ec5a8cfd85c7.wav",
+     "start": 372.874,
+     "duration": 4.5867
+    },
+    {
+     "text": "The analytic answer, worked out on paper, gives two point nine two nine.",
+     "file": "t31-e2/audio/s8-003-f15a74ce3001ec51.wav",
+     "start": 377.8807,
+     "duration": 5.0987
+    },
+    {
+     "text": "Insertion order gives one point nine nine five.",
+     "file": "t31-e2/audio/s8-004-51d288dd7df5fdd2.wav",
+     "start": 383.3993,
+     "duration": 3.7333
+    },
+    {
+     "text": "Look at that third bar for a moment.",
+     "file": "t31-e2/audio/s8-005-be47a586bd97c406.wav",
+     "start": 387.5527,
+     "duration": 2.3467
+    },
+    {
+     "text": "It is the right sign.",
+     "file": "t31-e2/audio/s8-006-944a8b759de9c7e5.wav",
+     "start": 390.3193,
+     "duration": 1.7707
+    },
+    {
+     "text": "It is the right order of magnitude.",
+     "file": "t31-e2/audio/s8-007-202aa818346dad8e.wav",
+     "start": 392.51,
+     "duration": 2.6453
+    },
+    {
+     "text": "It would train a network.",
+     "file": "t31-e2/audio/s8-008-bde16b61141a742a.wav",
+     "start": 395.5753,
+     "duration": 1.92
+    },
+    {
+     "text": "It is thirty two percent wrong and nothing anywhere raised an exception.",
+     "file": "t31-e2/audio/s8-009-69c4850cb9f6e121.wav",
+     "start": 397.9153,
+     "duration": 4.9707
+    },
+    {
+     "text": "This is what I mean when I say autograd bugs do not announce themselves, and it is why the gradcheck from episode one is not optional infrastructure.",
+     "file": "t31-e2/audio/s8-010-3c18955331464423.wav",
+     "start": 403.306,
+     "duration": 11.3067
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "episode two",
+    "points": [
+     "A node may push gradient only after every one of its consumers has pushed into it.",
+     "That ordering is a topological sort, reversed \u2014 not insertion order, not depth.",
+     "Use an explicit two-phase stack: a scalar-unrolled network is tens of thousands of nodes deep.",
+     "backward() = one traversal, zero everything, seed the root with 1.0, run in reverse.",
+     "Zeroing policy is a design choice; PyTorch made the other one, which is why zero_grad() exists."
+    ],
+    "ifSkipped": "The wrong order does not crash. It returns a plausible number that is 32% low, and trains a slightly worse model forever.",
+    "next": "Episode 3: the same engine on arrays \u2014 and broadcasting, which is where the day goes."
+   },
+   "start": 415.2627,
+   "duration": 74.19,
+   "segments": [
+    {
+     "text": "To recap.",
+     "file": "t31-e2/audio/s9-000-2482ddde8423e0e0.wav",
+     "start": 415.2627,
+     "duration": 1.1947
+    },
+    {
+     "text": "A node may push gradient only after every one of its consumers has pushed into it.",
+     "file": "t31-e2/audio/s9-001-d9672414c62587cd.wav",
+     "start": 416.8773,
+     "duration": 6.016
+    },
+    {
+     "text": "That ordering is a topological sort, reversed, and it is not insertion order and not depth.",
+     "file": "t31-e2/audio/s9-002-7c591a3b0825069c.wav",
+     "start": 423.3133,
+     "duration": 7.2533
+    },
+    {
+     "text": "Implement the traversal with an explicit two phase stack, because a scalar unrolled network is tens of thousands of nodes deep and recursion will not survive it.",
+     "file": "t31-e2/audio/s9-003-eee08994a798f1ed.wav",
+     "start": 430.9867,
+     "duration": 12.6293
+    },
+    {
+     "text": "Backward itself is one traversal, zero everything, seed the root with one, run in reverse.",
+     "file": "t31-e2/audio/s9-004-cb99737ab5884330.wav",
+     "start": 444.036,
+     "duration": 7.0827
+    },
+    {
+     "text": "And the zeroing policy is a genuine design choice where PyTorch went the other way, which is the entire reason zero grad exists.",
+     "file": "t31-e2/audio/s9-005-da4d2644092d3851.wav",
+     "start": 451.5387,
+     "duration": 11.0507
+    },
+    {
+     "text": "Skip this and the wrong order will not crash.",
+     "file": "t31-e2/audio/s9-006-a77eb7cfd6dc76e1.wav",
+     "start": 463.0093,
+     "duration": 2.9013
+    },
+    {
+     "text": "It will hand you a plausible number that is a third too small, and train a slightly worse model forever.",
+     "file": "t31-e2/audio/s9-007-5499a0d37da51d62.wav",
+     "start": 466.3307,
+     "duration": 7.7013
+    },
+    {
+     "text": "Next episode is the hard one.",
+     "file": "t31-e2/audio/s9-008-06306db8ec1fe0ed.wav",
+     "start": 474.452,
+     "duration": 2.5387
+    },
+    {
+     "text": "The same engine, on arrays, where broadcasting turns a one line convenience in the forward pass into a summation you have to get exactly right on the way back.",
+     "file": "t31-e2/audio/s9-009-48762234dae9c8ed.wav",
+     "start": 477.4107,
+     "duration": 11.392
+    }
+   ]
+  }
+ ]
+}
