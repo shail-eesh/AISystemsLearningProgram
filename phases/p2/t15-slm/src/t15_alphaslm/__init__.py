@@ -11,7 +11,9 @@ from .corpus import (
     split_documents,
 )
 from .evaluate import (
+    compare_by_token_class,
     compare_models,
+    loss_by_token_class,
     perplexity_by_tag,
     perplexity_on_documents,
     sample_commentary,
@@ -31,7 +33,8 @@ from .shards import (
 __all__ = [
     "CPU_RUNGS", "GPU_RUNGS", "LADDER", "TAGS", "RunState", "Rung", "ShardDataset",
     "TrainSpec", "Trainer", "analyse", "build_corpus", "compare_models", "corpus_stats",
-    "describe_ladder", "encode_documents", "ensure_shards", "extrapolate",
+    "compare_by_token_class", "describe_ladder", "encode_documents", "ensure_shards",
+    "extrapolate", "loss_by_token_class",
     "filing_excerpts", "format_table", "load_meta", "load_tokenizer", "lr_at",
     "open_shards", "order_tickets", "pack_documents", "perplexity_by_tag",
     "perplexity_on_documents", "price_tape", "run_study", "sample_commentary",

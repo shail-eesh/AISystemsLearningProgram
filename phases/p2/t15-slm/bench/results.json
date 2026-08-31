@@ -1,0 +1,243 @@
+{
+ "topic": "T15",
+ "title": "Small Language Model (AlphaSLM)",
+ "quick": false,
+ "torch": "2.13.0+cu130",
+ "threads": 2,
+ "numpy": "2.4.4",
+ "tokenizer": "fintok",
+ "vocab_size": 3495,
+ "shards": {
+  "checksums_match_committed": {
+   "train": true,
+   "val": true
+  },
+  "train_tokens": 2371748,
+  "val_tokens": 116650,
+  "documents_in_both_splits": 0,
+  "val_registers": [
+   "<|filing|>"
+  ],
+  "chars_per_token": 4.821948096727292,
+  "passed": true
+ },
+ "resume": {
+  "steps": 160,
+  "resumed_from_step": 160,
+  "max_parameter_difference": 0.0,
+  "passed": true
+ },
+ "accumulation": {
+  "loss_full_batch": 4.243863582611084,
+  "loss_accumulated": 4.2438637018203735,
+  "loss_difference": 1.1920928955078125e-07,
+  "max_parameter_difference": 6.274320185184479e-06,
+  "note": "not bit-identical: summing four partial gradients reassociates float32 additions (see T45A)",
+  "passed": true
+ },
+ "scaling": {
+  "steps": 1200,
+  "rungs": [
+   {
+    "name": "alphaslm-0.6m",
+    "params": 557184,
+    "val_loss": 0.8128589888413748,
+    "val_perplexity": 2.254343926282727,
+    "final_train_loss": 0.8089071202278137,
+    "tokens_per_param": 4.410751206064783,
+    "chinchilla_fraction": 0.22053756030323915,
+    "seconds": 280.33561705899956
+   },
+   {
+    "name": "alphaslm-1.8m",
+    "params": 1789440,
+    "val_loss": 0.8016706916193167,
+    "val_perplexity": 2.2292622287771677,
+    "final_train_loss": 0.7977872776985169,
+    "tokens_per_param": 1.3733905579399142,
+    "chinchilla_fraction": 0.06866952789699571,
+    "seconds": 290.6029353519998
+   },
+   {
+    "name": "alphaslm-5m",
+    "params": 5944224,
+    "val_loss": 0.7955429628491402,
+    "val_perplexity": 2.215643682474224,
+    "final_train_loss": 0.7887001824378967,
+    "tokens_per_param": 0.41344336956346195,
+    "chinchilla_fraction": 0.020672168478173096,
+    "seconds": 733.3913592600002
+   }
+  ],
+  "ordering_holds": true,
+  "loss_improvement": 0.017316025992234585,
+  "perplexity_ratio": 1.0174668174827128,
+  "params_ratio": 10.668332184700207,
+  "power_law": {
+   "a": 0.9168132093390607,
+   "exponent_b": 0.009096007949541447,
+   "note": "fitted on the two end rungs, checked on the middle one"
+  },
+  "max_relative_fit_error": 0.003252130452773809,
+  "generalisation_gap": [
+   {
+    "name": "alphaslm-0.6m",
+    "train": 0.8089071202278137,
+    "val": 0.8128589888413748,
+    "gap": 0.003951868613561005
+   },
+   {
+    "name": "alphaslm-1.8m",
+    "train": 0.7977872776985169,
+    "val": 0.8016706916193167,
+    "gap": 0.0038834139207998275
+   },
+   {
+    "name": "alphaslm-5m",
+    "train": 0.7887001824378967,
+    "val": 0.7955429628491402,
+    "gap": 0.006842780411243421
+   }
+  ],
+  "passed": true
+ },
+ "perplexity": {
+  "held_out_documents": 150,
+  "scores": {
+   "alphaslm-0.6m": {
+    "documents": 150,
+    "tokens": 11973,
+    "loss": 0.8323075522443938,
+    "perplexity": 2.298616803498317,
+    "bits_per_char": 0.24868143388915548
+   },
+   "alphaslm-1.8m": {
+    "documents": 150,
+    "tokens": 11973,
+    "loss": 0.8269103319709844,
+    "perplexity": 2.286244081473506,
+    "bits_per_char": 0.24706882269394556
+   },
+   "alphaslm-5m": {
+    "documents": 150,
+    "tokens": 11973,
+    "loss": 0.8183136377768301,
+    "perplexity": 2.2666741790083074,
+    "bits_per_char": 0.24450025506153128
+   }
+  },
+  "margins": {
+   "alphaslm-0.6m vs alphaslm-1.8m": {
+    "loss_delta": 0.005397220273409387,
+    "perplexity_ratio": 1.0054118115056363
+   },
+   "alphaslm-0.6m vs alphaslm-5m": {
+    "loss_delta": 0.013993914467563706,
+    "perplexity_ratio": 1.0140922876282048
+   },
+   "alphaslm-1.8m vs alphaslm-5m": {
+    "loss_delta": 0.00859669419415432,
+    "perplexity_ratio": 1.0086337518847817
+   }
+  },
+  "smallest": "alphaslm-0.6m",
+  "largest": "alphaslm-5m",
+  "perplexity_ratio": 1.0140922876282048,
+  "loss_delta_nats": 0.013993914467563755,
+  "by_tag_largest": {
+   "filing": {
+    "documents": 60,
+    "tokens": 4723,
+    "loss": 0.8214574520388019,
+    "perplexity": 2.2738113947814576,
+    "bits_per_char": 0.24491497215827615
+   }
+  },
+  "by_token_class": {
+   "per_model": {
+    "alphaslm-0.6m": {
+     "numeric": {
+      "tokens": 1287,
+      "share": 0.19452841596130593,
+      "loss": 3.6271851810750335,
+      "perplexity": 37.60681113037106
+     },
+     "prose": {
+      "tokens": 5329,
+      "share": 0.8054715840386941,
+      "loss": 0.085302442204747,
+      "perplexity": 1.0890463904865926
+     },
+     "overall_loss": 0.7742992809178756
+    },
+    "alphaslm-1.8m": {
+     "numeric": {
+      "tokens": 1287,
+      "share": 0.19452841596130593,
+      "loss": 3.5828262906103747,
+      "perplexity": 35.97507331125873
+     },
+     "prose": {
+      "tokens": 5329,
+      "share": 0.8054715840386941,
+      "loss": 0.09511300189665949,
+      "perplexity": 1.0997831256836827
+     },
+     "overall_loss": 0.7735723432773354
+    },
+    "alphaslm-5m": {
+     "numeric": {
+      "tokens": 1287,
+      "share": 0.19452841596130593,
+      "loss": 3.562910896397675,
+      "perplexity": 35.26570268813486
+     },
+     "prose": {
+      "tokens": 5329,
+      "share": 0.8054715840386941,
+      "loss": 0.0862801263031193,
+      "perplexity": 1.0901116544859433
+     },
+     "overall_loss": 0.7625836028919484
+    }
+   },
+   "prose_loss_improvement": -0.0009776840983723029,
+   "numeric_loss_improvement": 0.0642742846773583,
+   "smallest": "alphaslm-0.6m",
+   "largest": "alphaslm-5m"
+  },
+  "prose_loss_improvement": -0.0009776840983723029,
+  "numeric_loss_improvement": 0.0642742846773583,
+  "passed": false
+ },
+ "register": {
+  "samples": {
+   "commentary": "EASTPOWER outperformed the benchmark index for the third consecutive session, settling at Rs 2172.05 (-3.82%) on turnover of Rs 4659.9 crore. The stock traded between Rs 2132.7 and Rs 2200.5 with delivery at 54.2% of traded quantity. DECCANMOT and BHARATCHEM were the other notable movers in the power transmission space.<|endoftext|><|commentary|> Market commentary for 2024-07-06. DECCANMOT outperf",
+   "filing": "O 2024-05-26.2 percent an average of Rs 611.2 crore, of lareducational use only.<|endoftext|><|commentary|> Market commentary for 2022-01-13. COASTBANK outperformed the benchmark index for the third consecutive session, settling at Rs 1420.49 (-2.51%) on turnover of Rs 7632.9 crore. The stock traded between Rs 1408.97 and Rs 1407.57 with delivery at 29.3% of traded quantity. BHARATCHEM and BHARATC",
+   "announcement": "to consider unaudited financial results. Symbol: ALPHAINFRA. ISIN: INE001A01011. Series: EQ. The company has informed the exchange that the board will meet on 2024-01-24 to consider and approve the unaudited financial results for the quarter ended 2022-01-18.<|endoftext|><|commentary|> Market commentary for 2022-03-03. DECCANMOT outperformed the benchmark index for the third consecutive session, s"
+  },
+  "register_and_issuer_hits": 5,
+  "checks": 6,
+  "hit_rate": 0.8333333333333334,
+  "passed": true
+ },
+ "gpu_lane": {
+  "runner": "gpu-runner/t15_alphaslm_40m.py",
+  "rungs": [
+   "alphaslm-15m",
+   "alphaslm-40m"
+  ],
+  "status": "awaiting-4070",
+  "note": "the 15M and 40M rungs need a CUDA device; this bench covers the three CPU rungs and every claim that does not require one"
+ },
+ "seconds": 1343.172810438,
+ "checks": {
+  "shards": true,
+  "resume": true,
+  "accumulation": true,
+  "scaling": true,
+  "perplexity": false,
+  "register": true
+ },
+ "all_passed": false
+}

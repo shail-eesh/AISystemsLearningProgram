@@ -10,6 +10,15 @@ import { Folder } from "remotion";
 import { P0_1_EPISODES } from "../topics/p0.1/scenes";
 import { P0_2_EPISODES } from "../topics/p0.2/scenes";
 import { P0_3_EPISODES } from "../topics/p0.3/scenes";
+import { T15_E1_EPISODES } from "../topics/t15-e1/scenes";
+import { T15_E2_EPISODES } from "../topics/t15-e2/scenes";
+import { T15_E3_EPISODES } from "../topics/t15-e3/scenes";
+import { T15_E4_EPISODES } from "../topics/t15-e4/scenes";
+import { T4_E1_EPISODES } from "../topics/t4-e1/scenes";
+import { T4_E2_EPISODES } from "../topics/t4-e2/scenes";
+import { T4_E3_EPISODES } from "../topics/t4-e3/scenes";
+import { T4_E4_EPISODES } from "../topics/t4-e4/scenes";
+import { T4_E5_EPISODES } from "../topics/t4-e5/scenes";
 import { T16A_E1_EPISODES } from "../topics/t16a-e1/scenes";
 import { T16A_E2_EPISODES } from "../topics/t16a-e2/scenes";
 import { T30_E1_EPISODES } from "../topics/t30-e1/scenes";
@@ -37,6 +46,18 @@ const PHASE_1: EpisodeSpec[] = [
   ...T30_E3_EPISODES,
 ];
 
+const PHASE_2: EpisodeSpec[] = [
+  ...T4_E1_EPISODES,
+  ...T4_E2_EPISODES,
+  ...T4_E3_EPISODES,
+  ...T4_E4_EPISODES,
+  ...T4_E5_EPISODES,
+  ...T15_E1_EPISODES,
+  ...T15_E2_EPISODES,
+  ...T15_E3_EPISODES,
+  ...T15_E4_EPISODES,
+];
+
 export const RemotionRoot: React.FC = () => (
   <>
     <Folder name="Phase-0">
@@ -46,6 +67,11 @@ export const RemotionRoot: React.FC = () => (
     </Folder>
     <Folder name="Phase-1">
       {PHASE_1.map((spec) => (
+        <EpisodeComposition key={spec.id} spec={spec} />
+      ))}
+    </Folder>
+    <Folder name="Phase-2">
+      {PHASE_2.map((spec) => (
         <EpisodeComposition key={spec.id} spec={spec} />
       ))}
     </Folder>

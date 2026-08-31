@@ -95,6 +95,59 @@ def sample_commentary(model, tokenizer, *, prompt: str = "<|commentary|> Market 
     return tokenizer.decode(out[0].tolist())
 
 
+@torch.no_grad()
+def loss_by_token_class(model, tokenizer, documents: list[str], *, device: str = "cpu",
+                        max_docs: int = 60) -> dict:
+    """Split the loss into the part a model can reduce and the part it cannot.
+
+    This corpus is generated: prices, volumes, percentages and dates are drawn
+    from continuous ranges, so the digits after the first are close to uniform
+    noise. No model of any size can predict them, and they are a large fraction
+    of the tokens — which puts a hard floor under the average loss and squashes
+    the visible difference between model sizes.
+
+    Splitting the per-token loss into *numeric* and *prose* tokens shows exactly
+    where that floor is, and moves the scaling comparison onto the part of the
+    corpus where scaling can actually show up. It is the difference between
+    "the models are all about the same" and "the models are all about the same
+    on the 40% of tokens that are dice rolls".
+    """
+    model.eval().to(device)
+    block = model.config.block_size
+    numeric_ids = {i for i in range(len(tokenizer.vocab))
+                   if any(c.isdigit() for c in
+                          tokenizer.vocab[i].decode("utf-8", "replace"))}
+    sums = {"numeric": 0.0, "prose": 0.0}
+    counts = {"numeric": 0, "prose": 0}
+    for doc in documents[:max_docs]:
+        ids = tokenizer.encode(doc)
+        for start in range(0, len(ids) - 1, block):
+            chunk = ids[start : start + block + 1]
+            if len(chunk) < 2:
+                continue
+            x = torch.tensor([chunk[:-1]], device=device)
+            y = torch.tensor([chunk[1:]], device=device)
+            logits, _ = model(x)
+            per_token = torch.nn.functional.cross_entropy(
+                logits[0], y[0], reduction="none")
+            for tok, loss in zip(chunk[1:], per_token.tolist(), strict=True):
+                key = "numeric" if tok in numeric_ids else "prose"
+                sums[key] += loss
+                counts[key] += 1
+    out = {}
+    total = sum(counts.values())
+    for key in ("numeric", "prose"):
+        n = counts[key]
+        out[key] = {
+            "tokens": n,
+            "share": n / max(total, 1),
+            "loss": sums[key] / max(n, 1),
+            "perplexity": math.exp(sums[key] / max(n, 1)),
+        }
+    out["overall_loss"] = sum(sums.values()) / max(total, 1)
+    return out
+
+
 def compare_models(models: dict, tokenizer, documents: list[str], *, device: str = "cpu",
                    max_docs: int = 80) -> dict:
     """Rung name -> held-out perplexity, plus the pairwise margins."""
@@ -110,3 +163,22 @@ def compare_models(models: dict, tokenizer, documents: list[str], *, device: str
         for i, a in enumerate(names) for b in names[i + 1 :]
     }
     return {"scores": scores, "margins": margins}
+
+
+def compare_by_token_class(models: dict, tokenizer, documents: list[str], *,
+                           device: str = "cpu", max_docs: int = 60) -> dict:
+    """``compare_models``, split into the reducible and irreducible halves."""
+    per_model = {name: loss_by_token_class(m, tokenizer, documents, device=device,
+                                           max_docs=max_docs)
+                 for name, m in models.items()}
+    names = list(per_model)
+    small, large = names[0], names[-1]
+    return {
+        "per_model": per_model,
+        "prose_loss_improvement": (per_model[small]["prose"]["loss"]
+                                   - per_model[large]["prose"]["loss"]),
+        "numeric_loss_improvement": (per_model[small]["numeric"]["loss"]
+                                     - per_model[large]["numeric"]["loss"]),
+        "smallest": small,
+        "largest": large,
+    }

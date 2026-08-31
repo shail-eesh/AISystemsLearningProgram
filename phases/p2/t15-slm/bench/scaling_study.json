@@ -1,0 +1,179 @@
+{
+ "steps": 1200,
+ "batch_size": 16,
+ "rungs": [
+  {
+   "name": "alphaslm-0.6m",
+   "params": 557184,
+   "n_layer": 2,
+   "n_embd": 96,
+   "tokens_seen": 2457600,
+   "tokens_per_param": 4.410751206064783,
+   "chinchilla_tokens": 11143680,
+   "chinchilla_fraction": 0.22053756030323915,
+   "final_train_loss": 0.8089071202278137,
+   "val_loss": 0.8128589888413748,
+   "val_perplexity": 2.254343926282727,
+   "eval_curve": [
+    {
+     "step": 200,
+     "loss": 1.0214
+    },
+    {
+     "step": 400,
+     "loss": 0.9273
+    },
+    {
+     "step": 600,
+     "loss": 0.8984
+    },
+    {
+     "step": 800,
+     "loss": 0.8609
+    },
+    {
+     "step": 1000,
+     "loss": 0.8413
+    },
+    {
+     "step": 1200,
+     "loss": 0.8343
+    }
+   ],
+   "seconds": 231.60539201600022
+  },
+  {
+   "name": "alphaslm-1.8m",
+   "params": 1789440,
+   "n_layer": 4,
+   "n_embd": 160,
+   "tokens_seen": 2457600,
+   "tokens_per_param": 1.3733905579399142,
+   "chinchilla_tokens": 35788800,
+   "chinchilla_fraction": 0.06866952789699571,
+   "final_train_loss": 0.7977872776985169,
+   "val_loss": 0.8016706916193167,
+   "val_perplexity": 2.2292622287771677,
+   "eval_curve": [
+    {
+     "step": 200,
+     "loss": 1.0118
+    },
+    {
+     "step": 400,
+     "loss": 0.9513
+    },
+    {
+     "step": 600,
+     "loss": 0.8919
+    },
+    {
+     "step": 800,
+     "loss": 0.8575
+    },
+    {
+     "step": 1000,
+     "loss": 0.8328
+    },
+    {
+     "step": 1200,
+     "loss": 0.8217
+    }
+   ],
+   "seconds": 290.193912875
+  },
+  {
+   "name": "alphaslm-5m",
+   "params": 5944224,
+   "n_layer": 6,
+   "n_embd": 264,
+   "tokens_seen": 2457600,
+   "tokens_per_param": 0.41344336956346195,
+   "chinchilla_tokens": 118884480,
+   "chinchilla_fraction": 0.020672168478173096,
+   "final_train_loss": 0.7887001824378967,
+   "val_loss": 0.7955429628491402,
+   "val_perplexity": 2.215643682474224,
+   "eval_curve": [
+    {
+     "step": 200,
+     "loss": 1.012
+    },
+    {
+     "step": 400,
+     "loss": 0.9733
+    },
+    {
+     "step": 600,
+     "loss": 0.9074
+    },
+    {
+     "step": 800,
+     "loss": 0.8614
+    },
+    {
+     "step": 1000,
+     "loss": 0.8246
+    },
+    {
+     "step": 1200,
+     "loss": 0.8162
+    }
+   ],
+   "seconds": 727.9061635179996
+  }
+ ],
+ "train_tokens": 2371748,
+ "ordering_holds": true,
+ "smallest": "alphaslm-0.6m",
+ "largest": "alphaslm-5m",
+ "loss_improvement": 0.017316025992234585,
+ "perplexity_ratio": 1.0174668174827128,
+ "params_ratio": 10.668332184700207,
+ "power_law": {
+  "a": 0.9168132093390607,
+  "exponent_b": 0.009096007949541447,
+  "note": "fitted on the two end rungs, checked on the middle one"
+ },
+ "power_law_residuals": [
+  {
+   "name": "alphaslm-0.6m",
+   "predicted": 0.8128589888413748,
+   "actual": 0.8128589888413748,
+   "relative_error": 0.0
+  },
+  {
+   "name": "alphaslm-1.8m",
+   "predicted": 0.8042778292886281,
+   "actual": 0.8016706916193167,
+   "relative_error": 0.003252130452773809
+  },
+  {
+   "name": "alphaslm-5m",
+   "predicted": 0.7955429628491403,
+   "actual": 0.7955429628491402,
+   "relative_error": 1.3955538248355916e-16
+  }
+ ],
+ "max_relative_fit_error": 0.003252130452773809,
+ "generalisation_gap": [
+  {
+   "name": "alphaslm-0.6m",
+   "train": 0.8089071202278137,
+   "val": 0.8128589888413748,
+   "gap": 0.003951868613561005
+  },
+  {
+   "name": "alphaslm-1.8m",
+   "train": 0.7977872776985169,
+   "val": 0.8016706916193167,
+   "gap": 0.0038834139207998275
+  },
+  {
+   "name": "alphaslm-5m",
+   "train": 0.7887001824378967,
+   "val": 0.7955429628491402,
+   "gap": 0.006842780411243421
+  }
+ ]
+}

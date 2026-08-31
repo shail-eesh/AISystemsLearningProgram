@@ -32,12 +32,14 @@ from .harness import TrainSpec, Trainer, train_rung
 
 def run_study(shards, *, rungs: list[Rung] | None = None, steps: int = 1200,
               batch_size: int = 16, vocab_size: int = 3495, seed: int = 15,
-              verbose: bool = True) -> dict:
+              verbose: bool = True, keep_models: bool = False) -> dict:
     """Train each rung under an identical schedule and collect the curves."""
     rungs = rungs or CPU_RUNGS
     train_shard, _ = shards
     out: dict = {"steps": steps, "batch_size": batch_size, "rungs": [],
                  "train_tokens": len(train_shard)}
+    #: Trained models, when the caller asked for them. Not JSON — pop before writing.
+    models: dict = {}
     for rung in rungs:
         spec = TrainSpec(steps=steps, batch_size=batch_size, lr=3e-3, warmup=100,
                          eval_every=max(steps // 6, 1), eval_batches=24,
@@ -63,11 +65,15 @@ def run_study(shards, *, rungs: list[Rung] | None = None, steps: int = 1200,
             "seconds": time.perf_counter() - t0,
         }
         out["rungs"].append(row)
+        if keep_models:
+            models[rung.name] = model
         if verbose:
             print(f"    {rung.name:<15} {params:>10,} params  "
                   f"val {row['val_loss']:.4f}  ppl {row['val_perplexity']:7.2f}  "
                   f"({row['seconds']:.0f}s)")
     out |= analyse(out["rungs"])
+    if keep_models:
+        out["models"] = models
     return out
 
 
@@ -75,7 +81,7 @@ def analyse(rows: list[dict]) -> dict:
     """Ordering, margins, generalisation gap, and a two-point power-law fit."""
     by_size = sorted(rows, key=lambda r: r["params"])
     losses = [r["val_loss"] for r in by_size]
-    monotone = all(a > b for a, b in zip(losses, losses[1:], strict=True))
+    monotone = all(a > b for a, b in zip(losses, losses[1:]))  # noqa: B905
 
     # L(N) = a * N^(-b), fitted on the smallest and largest rung only, then
     # *checked* on the middle one. A fit through all three points would hide
