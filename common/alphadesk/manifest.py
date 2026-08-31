@@ -17,4 +17,5 @@ TOPIC_MODULES: dict[str, str] = {
     "t45a_softmax.alphadesk_hook": "T45A",
     "t30_fintok.alphadesk_hook": "T30",
     "t4_transformer.alphadesk_hook": "T4",
+    "t15_alphaslm.alphadesk_hook": "T15",
 }

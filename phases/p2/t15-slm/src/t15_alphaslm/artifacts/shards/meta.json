@@ -1,0 +1,23 @@
+{
+ "tokenizer": "fintok",
+ "vocab_size": 3495,
+ "dtype": "uint16",
+ "separator": "<|endoftext|>",
+ "separator_id": 3489,
+ "splits": {
+  "train": {
+   "documents": 28886,
+   "tokens": 2371748,
+   "bytes": 4743496,
+   "sha256": "0c2ed1e5ac939d85",
+   "max_id": 3494
+  },
+  "val": {
+   "documents": 1374,
+   "tokens": 116650,
+   "bytes": 233300,
+   "sha256": "adc386c251030577",
+   "max_id": 3491
+  }
+ }
+}
