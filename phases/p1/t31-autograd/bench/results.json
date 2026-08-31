@@ -1,0 +1,134 @@
+{
+  "topic": "T31",
+  "benchmark": "finite-difference gradcheck + loss-curve parity vs a hand-derived reference",
+  "generated_at": "2026-08-30T21:42:59+00:00",
+  "tolerance": 1e-06,
+  "passed": true,
+  "failures": [],
+  "scalar_gradcheck": {
+    "graphs": 30,
+    "max_rel_error": 3.61137567380289e-10,
+    "failures": [],
+    "per_template": [
+      {
+        "template": "a*b + tanh(a)",
+        "draws": 5,
+        "max_rel_error": 5.7068690475855354e-11
+      },
+      {
+        "template": "(a+b)^3",
+        "draws": 5,
+        "max_rel_error": 1.564023066752904e-10
+      },
+      {
+        "template": "a/b - exp(b)",
+        "draws": 5,
+        "max_rel_error": 3.61137567380289e-10
+      },
+      {
+        "template": "sigmoid(a*b)",
+        "draws": 5,
+        "max_rel_error": 2.7682532502386786e-10
+      },
+      {
+        "template": "relu(a)*b + b/a",
+        "draws": 5,
+        "max_rel_error": 2.7827952671887345e-10
+      },
+      {
+        "template": "log(a^2+b)*(a-b)",
+        "draws": 5,
+        "max_rel_error": 5.768486875218755e-11
+      }
+    ]
+  },
+  "tensor_gradcheck": {
+    "cases": 10,
+    "entries": 147,
+    "max_rel_error": 7.823869169040231e-08,
+    "failures": [],
+    "per_case": [
+      {
+        "case": "matmul + bias broadcast",
+        "entries": 31,
+        "max_rel_error": 7.823869169040231e-08
+      },
+      {
+        "case": "column broadcast (n,1)",
+        "entries": 16,
+        "max_rel_error": 6.518768003292838e-10
+      },
+      {
+        "case": "rank promotion (3,)",
+        "entries": 15,
+        "max_rel_error": 3.1273224243450366e-10
+      },
+      {
+        "case": "sum along axis, reused",
+        "entries": 12,
+        "max_rel_error": 3.5566784664806756e-10
+      },
+      {
+        "case": "mean x sum",
+        "entries": 12,
+        "max_rel_error": 1.2860655570626257e-10
+      },
+      {
+        "case": "max along axis",
+        "entries": 12,
+        "max_rel_error": 1.6667999467773902e-09
+      },
+      {
+        "case": "reshape + transpose + matmul",
+        "entries": 12,
+        "max_rel_error": 6.784522579839509e-10
+      },
+      {
+        "case": "divide",
+        "entries": 12,
+        "max_rel_error": 1.5223823696288215e-10
+      },
+      {
+        "case": "exp/log/sigmoid chain",
+        "entries": 9,
+        "max_rel_error": 1.823103789146279e-09
+      },
+      {
+        "case": "relu",
+        "entries": 16,
+        "max_rel_error": 5.636645597226126e-10
+      }
+    ]
+  },
+  "whole_network_gradcheck": {
+    "parameters": 44,
+    "entries": 44,
+    "max_rel_error": 8.722031264590595e-09,
+    "passed": true
+  },
+  "loss_curve_parity": {
+    "steps": 200,
+    "samples": 512,
+    "parameters": 161,
+    "engine_first_loss": 0.787335134304838,
+    "engine_final_loss": 0.007442797361365517,
+    "reference_final_loss": 0.007442797361365517,
+    "max_abs_curve_divergence": 6.071532165918825e-17,
+    "engine_seconds": 0.091,
+    "reference_seconds": 0.028,
+    "overhead_vs_handwritten": 3.23,
+    "train_accuracy": 1.0
+  },
+  "scalar_vs_tensor_cost": {
+    "shape": "(64,8) @ (8,16)",
+    "scalar_graph_nodes": 27777,
+    "scalar_seconds": 0.0724,
+    "tensor_seconds": 0.000214,
+    "speedup": 338.9
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.4",
+    "machine": "x86_64"
+  }
+}
