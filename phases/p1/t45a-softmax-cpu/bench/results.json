@@ -1,0 +1,113 @@
+{
+  "topic": "T45A",
+  "benchmark": "softmax numerics: overflow, online-vs-two-pass, dtype accuracy, chunk independence",
+  "generated_at": "2026-08-30T21:57:40+00:00",
+  "passed": true,
+  "failures": [],
+  "adversarial_grid": {
+    "shape": [
+      64,
+      128
+    ],
+    "range": [
+      -10000.0,
+      10000.0
+    ]
+  },
+  "naive_softmax_failure": {
+    "float64": {
+      "rows": 64,
+      "rows_with_inf_or_nan": 64
+    },
+    "float32": {
+      "rows": 64,
+      "rows_with_inf_or_nan": 64
+    },
+    "float16": {
+      "rows": 64,
+      "rows_with_inf_or_nan": 64
+    }
+  },
+  "accuracy": {
+    "per_dtype": {
+      "float64": {
+        "tolerance": 1e-15,
+        "online_vs_two_pass": 0.0,
+        "vs_float64_reference": {
+          "stable": 0.0,
+          "two_pass": 0.0,
+          "online": 0.0
+        }
+      },
+      "float32": {
+        "tolerance": 1e-07,
+        "online_vs_two_pass": 0.0,
+        "vs_float64_reference": {
+          "stable": 6.3862119481505886e-09,
+          "two_pass": 6.3862119481505886e-09,
+          "online": 6.3862119481505886e-09
+        }
+      },
+      "float16": {
+        "tolerance": 0.001,
+        "online_vs_two_pass": 0.0,
+        "vs_float64_reference": {
+          "stable": 4.88281250000111e-05,
+          "two_pass": 4.88281250000111e-05,
+          "online": 4.88281250000111e-05
+        }
+      }
+    },
+    "failures": []
+  },
+  "chunk_independence": {
+    "rows": [
+      {
+        "chunk": 1,
+        "max_abs_error": 0.0
+      },
+      {
+        "chunk": 3,
+        "max_abs_error": 0.0
+      },
+      {
+        "chunk": 16,
+        "max_abs_error": 0.0
+      },
+      {
+        "chunk": 64,
+        "max_abs_error": 0.0
+      },
+      {
+        "chunk": 512,
+        "max_abs_error": 0.0
+      }
+    ],
+    "max": 0.0
+  },
+  "throughput": {
+    "stable": {
+      "ms": 2.29,
+      "gb_per_s": 1.83
+    },
+    "two_pass": {
+      "ms": 2.37,
+      "gb_per_s": 1.77
+    },
+    "online(chunk=512)": {
+      "ms": 4.04,
+      "gb_per_s": 1.04
+    },
+    "_note": "On a CPU with NumPy the online version is slower: it pays Python loop overhead per chunk to save a pass it does not need here. Its value is in a fused kernel where the row never fits in fast memory (T45B, T7)."
+  },
+  "loss_sanity": {
+    "fused_cross_entropy": 450.0,
+    "unfused_minus_log_softmax": "inf",
+    "log_softmax_of_minus_800": -800.0
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.4",
+    "machine": "x86_64"
+  }
+}

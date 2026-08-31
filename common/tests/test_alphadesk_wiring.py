@@ -16,7 +16,7 @@ import pytest
 
 from common.alphadesk import REGISTRY, Registry, Surface, load_all
 
-EXPECTED_ALWAYS = {"P0.1", "P0.2", "T31", "T16A"}
+EXPECTED_ALWAYS = {"P0.1", "P0.2", "T31", "T16A", "T45A"}
 #: topic -> the optional import it needs
 OPTIONAL = {"P0.3": "torch"}
 
