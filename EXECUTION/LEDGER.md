@@ -1,4 +1,4 @@
-# Progress Ledger  ·  3/55 code-complete (5%)
+# Progress Ledger  ·  7/55 code-complete (13%)
 
 Regenerated from `EXECUTION/status.json` by `scripts/gen_index.py`. Legend: ✅ done · 🟡 in progress/pending · 🖥️ awaiting-4070 · ⏭️ deferred · ⬜ scheduled.
 A run picks the earliest row whose **Code** isn't ✅, finishes it, continues down. Video may lag (best-effort).
@@ -8,10 +8,10 @@ A run picks the earliest row whose **Code** isn't ✅, finishes it, continues do
 | 1 | P0 | [P0.1](phases/p0/p0-1-python-for-dotnet/) | Python for the .NET veteran | ✅ | ✅ | ✅ | ✅ | ✅ | OMS domain model · 63 tests · tape replay reconciles to 3.1e-07 · E1 15m47s |
 | 1 | P0 | [P0.2](phases/p0/p0-2-numpy-as-linq/) | NumPy as your new LINQ | ✅ | ✅ | ✅ | ✅ | ✅ | Vectorised indicators · 116 tests · 70/70 parity, worst 4.7e-14, 72x over the loop · E1 14m27s |
 | 1 | P0 | [P0.3](phases/p0/p0-3-pytorch-training-loop/) | PyTorch tensors & the training loop | ✅ | ✅ | ✅ | ✅ | ✅ | Training loop · 27 tests · memorises 64 rows, honest split at chance (z=+0.30) · E1 13m58s |
-| 2 | P1 | [T31](phases/p1/t31-autograd/) | Autograd engine (micrograd-style) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
-| 2 | P1 | [T16A](phases/p1/t16a-matmul-cpu/) | Matrix multiplication kernel — CPU | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
-| 2 | P1 | [T45A](phases/p1/t45a-softmax-cpu/) | Softmax & online softmax — CPU | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
-| 2 | P1 | [T30](phases/p1/t30-tokenizer-bpe/) | Tokenizer (BPE) → FinTok | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
+| 2 | P1 | [T31](phases/p1/t31-autograd/) | Autograd engine (micrograd-style) | ✅ | ✅ | ✅ | 🟡 | ✅ | Scalar Value + NumPy Tensor autodiff · 61 tests · gradcheck 3.6e-10 · loss curve matches a hand-derived reference to 6e-17 · 3 scripts written |
+| 2 | P1 | [T16A](phases/p1/t16a-matmul-cpu/) | Matrix multiplication kernel — CPU | ✅ | ✅ | ✅ | 🟡 | ✅ | 5 CPU matmul kernels via ctypes · 36 tests · blocking alone 22.6x over naive C, best 35.6x, 14% of OpenBLAS · 2 scripts written |
+| 2 | P1 | [T45A](phases/p1/t45a-softmax-cpu/) | Softmax & online softmax — CPU | ✅ | ✅ | ✅ | 🟡 | ✅ | naive/stable/two-pass/online softmax + fused CE · 49 tests · online bit-identical to two-pass in f64/f32/f16 · 2 scripts written |
+| 2 | P1 | [T30](phases/p1/t30-tokenizer-bpe/) | Tokenizer (BPE) → FinTok | ✅ | ✅ | ✅ | 🟡 | ✅ | Byte-level BPE + FinTok-3.5k · 54 tests · 100k-string round-trip fuzz clean · 2.73x over a matched general vocab · 3 scripts written |
 | 3 | P2 | [T4](phases/p2/t4-transformer/) | Transformer from scratch (Attention Is All You Need) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 | 3 | P2 | [T15](phases/p2/t15-slm/) | Small Language Model (AlphaSLM-40M) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 | 4 | P2 | [T43](phases/p2/t43-embedding-model/) | Embedding model (contrastive) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |  |
