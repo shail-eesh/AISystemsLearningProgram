@@ -36,7 +36,17 @@ Total topics: **51** (52 build modules) · Total planned video episodes: **168**
 Branch: `main`
 
 **Phase 0 complete** (Day 1): 232 tests passing, `ruff` clean, three verification benchmarks,
-three narrated video episodes. See [`EXECUTION/runs/`](EXECUTION/runs/) for the per-run log.
+three narrated video episodes.
+
+**Phase 1 complete** (Day 2): T31 autograd · T16A matmul-CPU · T45A softmax-CPU · T30 tokenizer/FinTok.
+**261 tests passing**, `ruff` clean, four verification benchmarks, ten narrated episodes
+(~1h34m). Headlines: the hand-rolled engine matches an independently derived reference loss
+curve to **6e-17**; cache blocking alone beats naive C by **22.6x**; online softmax is
+**bit-identical** to two-pass in f64/f32/f16; FinTok round-trips **100,000** fuzzed strings and
+compresses financial text **2.73x** better than a matched general-domain vocabulary.
+
+See [`EXECUTION/runs/`](EXECUTION/runs/) for the per-run log, including the two deviations from
+the plan this run made and why.
 
 ---
 *AlphaDesk is a fictional educational simulation — no real orders, money, brokerage systems, or market-data redistribution.*
