@@ -1,0 +1,230 @@
+{
+  "topic": "T16A",
+  "benchmark": "CPU matmul ladder: correctness, throughput vs OpenBLAS, block sweep, bandwidth",
+  "generated_at": "2026-08-30T21:53:01+00:00",
+  "passed": true,
+  "correctness": {
+    "max_abs_error": {
+      "matmul_naive_ijk": 1.7763568394002505e-14,
+      "matmul_ikj": 7.105427357601002e-15,
+      "matmul_blocked": 7.105427357601002e-15,
+      "matmul_blocked_omp": 7.105427357601002e-15,
+      "matmul_blocked_regtile": 7.105427357601002e-15
+    },
+    "passed": true
+  },
+  "headline": {
+    "n": 1024,
+    "naive_c_ms": 4081.65,
+    "blocked_single_thread_ms": 160.95,
+    "blocked_single_thread_speedup": 25.4,
+    "best_kernel": "matmul_blocked_regtile",
+    "best_kernel_ms": 71.35,
+    "best_kernel_speedup_over_naive": 57.2,
+    "best_kernel_gflops": 30.1,
+    "openblas_gflops": 137.79,
+    "fraction_of_openblas": 0.218,
+    "required_speedup": 10.0,
+    "passed": true
+  },
+  "throughput": {
+    "rows": [
+      {
+        "n": 256,
+        "matmul_naive_ijk": {
+          "ms": 21.46,
+          "gflops": 1.56
+        },
+        "matmul_ikj": {
+          "ms": 2.34,
+          "gflops": 14.31
+        },
+        "matmul_blocked": {
+          "ms": 2.45,
+          "gflops": 13.72
+        },
+        "matmul_blocked_omp": {
+          "ms": 8.08,
+          "gflops": 4.15
+        },
+        "matmul_blocked_regtile": {
+          "ms": 3.85,
+          "gflops": 8.71
+        },
+        "numpy_openblas": {
+          "ms": 0.507,
+          "gflops": 66.21
+        },
+        "arithmetic_intensity": 21.3
+      },
+      {
+        "n": 512,
+        "matmul_naive_ijk": {
+          "ms": 258.34,
+          "gflops": 1.04
+        },
+        "matmul_ikj": {
+          "ms": 23.84,
+          "gflops": 11.26
+        },
+        "matmul_blocked": {
+          "ms": 19.72,
+          "gflops": 13.61
+        },
+        "matmul_blocked_omp": {
+          "ms": 15.6,
+          "gflops": 17.2
+        },
+        "matmul_blocked_regtile": {
+          "ms": 9.93,
+          "gflops": 27.04
+        },
+        "numpy_openblas": {
+          "ms": 2.087,
+          "gflops": 128.63
+        },
+        "arithmetic_intensity": 42.7
+      },
+      {
+        "n": 1024,
+        "matmul_naive_ijk": {
+          "ms": 4081.65,
+          "gflops": 0.53
+        },
+        "matmul_ikj": {
+          "ms": 280.26,
+          "gflops": 7.66
+        },
+        "matmul_blocked": {
+          "ms": 160.95,
+          "gflops": 13.34
+        },
+        "matmul_blocked_omp": {
+          "ms": 102.04,
+          "gflops": 21.05
+        },
+        "matmul_blocked_regtile": {
+          "ms": 71.35,
+          "gflops": 30.1
+        },
+        "numpy_openblas": {
+          "ms": 15.585,
+          "gflops": 137.79
+        },
+        "arithmetic_intensity": 85.3
+      }
+    ]
+  },
+  "block_sweep": {
+    "n": 1024,
+    "sweep": [
+      {
+        "mc": 64,
+        "kc": 64,
+        "nc": 128,
+        "b_tile_kb": 64,
+        "ms": 176.92,
+        "gflops": 12.14
+      },
+      {
+        "mc": 128,
+        "kc": 128,
+        "nc": 256,
+        "b_tile_kb": 256,
+        "ms": 164.61,
+        "gflops": 13.05
+      },
+      {
+        "mc": 256,
+        "kc": 128,
+        "nc": 256,
+        "b_tile_kb": 256,
+        "ms": 158.99,
+        "gflops": 13.51
+      },
+      {
+        "mc": 128,
+        "kc": 256,
+        "nc": 512,
+        "b_tile_kb": 1024,
+        "ms": 163.84,
+        "gflops": 13.11
+      },
+      {
+        "mc": 64,
+        "kc": 256,
+        "nc": 1024,
+        "b_tile_kb": 2048,
+        "ms": 193.37,
+        "gflops": 11.11
+      },
+      {
+        "mc": 256,
+        "kc": 256,
+        "nc": 256,
+        "b_tile_kb": 512,
+        "ms": 168.75,
+        "gflops": 12.73
+      }
+    ],
+    "best": {
+      "mc": 256,
+      "kc": 128,
+      "nc": 256,
+      "b_tile_kb": 256,
+      "ms": 158.99,
+      "gflops": 13.51
+    },
+    "worst_over_best": 1.22
+  },
+  "bandwidth": {
+    "note": "in-place scale; 2 bytes moved per array byte (one read, one write)",
+    "rows": [
+      {
+        "working_set_kb": 16,
+        "passes": 12207,
+        "gb_per_s": 41.8
+      },
+      {
+        "working_set_kb": 64,
+        "passes": 3051,
+        "gb_per_s": 53.2
+      },
+      {
+        "working_set_kb": 256,
+        "passes": 762,
+        "gb_per_s": 79.2
+      },
+      {
+        "working_set_kb": 1024,
+        "passes": 190,
+        "gb_per_s": 82.1
+      },
+      {
+        "working_set_kb": 4096,
+        "passes": 47,
+        "gb_per_s": 49.8
+      },
+      {
+        "working_set_kb": 16384,
+        "passes": 11,
+        "gb_per_s": 44.7
+      },
+      {
+        "working_set_kb": 65536,
+        "passes": 3,
+        "gb_per_s": 32.6
+      }
+    ]
+  },
+  "environment": {
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "compiler_available": true,
+    "flags": "-O3 -march=native -fopenmp -funroll-loops",
+    "openmp": true,
+    "threads": 2,
+    "python": "3.11.15",
+    "numpy": "2.4.4"
+  }
+}

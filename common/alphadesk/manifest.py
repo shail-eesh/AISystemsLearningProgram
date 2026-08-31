@@ -13,4 +13,5 @@ TOPIC_MODULES: dict[str, str] = {
     "p0_2_indicators.alphadesk_hook": "P0.2",
     "p0_3_training.alphadesk_hook": "P0.3",
     "t31_autograd.alphadesk_hook": "T31",
+    "t16a_matmul.alphadesk_hook": "T16A",
 }
