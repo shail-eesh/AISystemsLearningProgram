@@ -44,7 +44,6 @@ def build_autograd() -> dict[str, Any]:
         "Toy up/down MLP trained by the hand-rolled engine -- a demonstration that "
         "the engine learns, not a trading signal; never routed to an order"
     ),
-    requires=("P0.3",),
 )
 def build_handrolled_signal_model(hidden: int = 16, seed: int = 0) -> Any:
     from .train import SignalTrainer

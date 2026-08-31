@@ -16,7 +16,7 @@ import pytest
 
 from common.alphadesk import REGISTRY, Registry, Surface, load_all
 
-EXPECTED_ALWAYS = {"P0.1", "P0.2"}
+EXPECTED_ALWAYS = {"P0.1", "P0.2", "T31"}
 #: topic -> the optional import it needs
 OPTIONAL = {"P0.3": "torch"}
 
@@ -30,15 +30,19 @@ def _expected() -> set[str]:
     return EXPECTED_ALWAYS | {t for t in OPTIONAL if _available(t)}
 
 
-@pytest.fixture
-def desk() -> Registry:
-    reg = Registry()
-    errors = load_all(reg)
-    real = {
+def _drop_optional_dependency_errors(errors: dict[str, str]) -> dict[str, str]:
+    """Keep only errors that mean *broken code*, not *extra not installed*."""
+    return {
         m: e
         for m, e in errors.items()
         if not any(f"No module named '{dep}'" in e for dep in OPTIONAL.values())
     }
+
+
+@pytest.fixture
+def desk() -> Registry:
+    reg = Registry()
+    real = _drop_optional_dependency_errors(load_all(reg))
     assert real == {}, f"topic modules failed to import: {real}"
     return reg
 
@@ -70,7 +74,10 @@ def test_describe_mentions_the_surfaces_in_use(desk: Registry):
 
 def test_registering_twice_into_the_same_registry_is_refused(desk: Registry):
     """A second load_all into a live registry must not silently duplicate."""
-    errors = load_all(desk)
+    # An optional extra that is missing fails on *both* loads for an unrelated
+    # reason; filter those out or this test only passes on a machine with the
+    # full extras installed.
+    errors = _drop_optional_dependency_errors(load_all(desk))
     assert errors, "re-registering the same components should surface a conflict"
     assert all("Duplicate" in e or "already registered" in e for e in errors.values())
 
