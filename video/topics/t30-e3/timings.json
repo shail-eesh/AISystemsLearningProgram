@@ -10,9 +10,9 @@
  "wordsPerMinute": 124.7,
  "sceneCount": 10,
  "shortestSceneSeconds": 25.58,
- "generatedInSeconds": 241.7,
- "segmentsSynthesised": 96,
- "segmentsReused": 0,
+ "generatedInSeconds": 0.0,
+ "segmentsSynthesised": 0,
+ "segmentsReused": 96,
  "scenes": [
   {
    "id": "s1",
@@ -618,29 +618,16 @@
      {
       "label": "merges learned (16,128 requested)",
       "color": "#e0b04e",
-      "points": [
-       [
-        126,
-        1450
-       ],
-       [
-        380,
-        2203
-       ],
-       [
-        951,
-        3233
-       ],
-       [
-        2853,
-        4481
-       ]
+      "values": [
+       1450,
+       2203,
+       3233,
+       4481
       ]
      }
     ],
-    "xLabel": "training corpus (KB, log)",
+    "xLabel": "corpus: 126 KB -> 380 KB -> 951 KB -> 2.8 MB",
     "yLabel": "merges learned",
-    "logScale": true,
     "caption": "The plan asked for FinTok-16k. This corpus supports 3,233. Shipping the curve beats padding the vocabulary."
    },
    "start": 421.3513,

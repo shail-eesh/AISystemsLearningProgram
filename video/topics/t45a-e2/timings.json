@@ -10,9 +10,9 @@
  "wordsPerMinute": 133.2,
  "sceneCount": 10,
  "shortestSceneSeconds": 25.96,
- "generatedInSeconds": 256.1,
- "segmentsSynthesised": 112,
- "segmentsReused": 0,
+ "generatedInSeconds": 0.0,
+ "segmentsSynthesised": 0,
+ "segmentsReused": 112,
  "scenes": [
   {
    "id": "s1",
@@ -273,49 +273,25 @@
      {
       "label": "running max m",
       "color": "#e0b04e",
-      "points": [
-       [
-        0,
-        3
-       ],
-       [
-        1,
-        3
-       ],
-       [
-        2,
-        9
-       ],
-       [
-        3,
-        9
-       ]
+      "values": [
+       3,
+       3,
+       9,
+       9
       ]
      },
      {
       "label": "running denominator d",
       "color": "#5ac48c",
-      "points": [
-       [
-        0,
-        1.0
-       ],
-       [
-        1,
-        1.135
-       ],
-       [
-        2,
-        1.0028
-       ],
-       [
-        3,
-        1.0037
-       ]
+      "values": [
+       1.0,
+       1.135,
+       1.0028,
+       1.0037
       ]
      }
     ],
-    "xLabel": "step",
+    "xLabel": "step 0 -> 3, one value absorbed each",
     "caption": "At step 2 the max jumps 3 -> 9 and d is rescaled by exp(3-9) = 0.0025, from 1.135 down to 1.0028."
    },
    "start": 170.0767,

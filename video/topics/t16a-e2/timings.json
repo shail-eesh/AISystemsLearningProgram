@@ -10,9 +10,9 @@
  "wordsPerMinute": 135.0,
  "sceneCount": 9,
  "shortestSceneSeconds": 31.41,
- "generatedInSeconds": 511.3,
- "segmentsSynthesised": 90,
- "segmentsReused": 0,
+ "generatedInSeconds": 0.0,
+ "segmentsSynthesised": 0,
+ "segmentsReused": 90,
  "scenes": [
   {
    "id": "s1",
@@ -400,41 +400,19 @@
      {
       "label": "read+write bandwidth",
       "color": "#5ac48c",
-      "points": [
-       [
-        16,
-        41.5
-       ],
-       [
-        64,
-        54.2
-       ],
-       [
-        256,
-        70.9
-       ],
-       [
-        1024,
-        81.1
-       ],
-       [
-        4096,
-        44.6
-       ],
-       [
-        16384,
-        43.2
-       ],
-       [
-        65536,
-        33.8
-       ]
+      "values": [
+       41.5,
+       54.2,
+       70.9,
+       81.1,
+       44.6,
+       43.2,
+       33.8
       ]
      }
     ],
-    "xLabel": "working set (KB, log)",
+    "xLabel": "working set: 16 KB -> 64 MB, x4 per step",
     "yLabel": "GB/s",
-    "logScale": true,
     "caption": "In-place scale over arrays of growing size. The cliff between 1 MB and 4 MB is a cache level ending."
    },
    "start": 217.904,

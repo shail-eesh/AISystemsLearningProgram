@@ -10,9 +10,9 @@
  "wordsPerMinute": 132.6,
  "sceneCount": 10,
  "shortestSceneSeconds": 24.52,
- "generatedInSeconds": 394.9,
- "segmentsSynthesised": 109,
- "segmentsReused": 0,
+ "generatedInSeconds": 0.0,
+ "segmentsSynthesised": 0,
+ "segmentsReused": 109,
  "scenes": [
   {
    "id": "s1",
@@ -702,81 +702,35 @@
      {
       "label": "your engine",
       "color": "#5ac48c",
-      "points": [
-       [
-        0,
-        0.787
-       ],
-       [
-        20,
-        0.352
-       ],
-       [
-        40,
-        0.163
-       ],
-       [
-        60,
-        0.084
-       ],
-       [
-        80,
-        0.048
-       ],
-       [
-        100,
-        0.03
-       ],
-       [
-        140,
-        0.015
-       ],
-       [
-        199,
-        0.0074
-       ]
+      "values": [
+       0.7873,
+       0.0856,
+       0.0624,
+       0.0422,
+       0.0281,
+       0.0192,
+       0.0135,
+       0.0097,
+       0.0074
       ]
      },
      {
       "label": "hand-derived reference",
       "color": "#7a8aa0",
-      "points": [
-       [
-        0,
-        0.787
-       ],
-       [
-        20,
-        0.352
-       ],
-       [
-        40,
-        0.163
-       ],
-       [
-        60,
-        0.084
-       ],
-       [
-        80,
-        0.048
-       ],
-       [
-        100,
-        0.03
-       ],
-       [
-        140,
-        0.015
-       ],
-       [
-        199,
-        0.0074
-       ]
+      "values": [
+       0.7873,
+       0.0856,
+       0.0624,
+       0.0422,
+       0.0281,
+       0.0192,
+       0.0135,
+       0.0097,
+       0.0074
       ]
      }
     ],
-    "xLabel": "Adam step",
+    "xLabel": "Adam step, sampled every 25 (0 -> 199)",
     "yLabel": "BCE loss",
     "caption": "Identical init, identical optimiser, gradients derived two independent ways. Max divergence over 200 steps: 6e-17."
    },

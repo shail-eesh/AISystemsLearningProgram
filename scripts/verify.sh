@@ -28,6 +28,7 @@ step "pytest"        python3 -m pytest -q
 step "ruff"          python3 -m ruff check .
 step "index/ledger"  python3 scripts/gen_index.py
 step "video scripts" python3 video/kokoro/narrate.py --check --all
+step "scene props"    python3 scripts/check_scene_props.py
 
 if [ "$FAST" != "--fast" ]; then
   step "P0.1 bench" python3 phases/p0/p0-1-python-for-dotnet/bench/replay_orders.py
