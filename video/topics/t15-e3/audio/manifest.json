@@ -1,0 +1,362 @@
+{
+ "s1-000-e19396f98ddd78fa.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Welcome back.",
+  "voice": "am_michael"
+ },
+ "s1-001-10e0931710e7d3c9.wav": {
+  "duration": 1.472,
+  "text": "Episode three.",
+  "voice": "am_michael"
+ },
+ "s1-002-c2fd551a866a341c.wav": {
+  "duration": 8.042666666666667,
+  "text": "Three models, zero point six million, one point eight million and five point nine million parameters.",
+  "voice": "am_michael"
+ },
+ "s1-003-1650cb338dcbfcb6.wav": {
+  "duration": 4.501333333333333,
+  "text": "Identical corpus, identical schedule, identical seed.",
+  "voice": "am_michael"
+ },
+ "s1-004-d068bfb5bbee745c.wav": {
+  "duration": 1.9626666666666666,
+  "text": "Nothing varies but size.",
+  "voice": "am_michael"
+ },
+ "s1-005-ffebf20bd22afb8d.wav": {
+  "duration": 20.650666666666666,
+  "text": "This is the least glamorous experiment in machine learning and the one that decides whether anyone spends a month of GPU time, so it is worth doing carefully \u2014 and ours produced a result I want to walk through honestly, because the honest version is more useful than the tidy one.",
+  "voice": "am_michael"
+ },
+ "s2-000-13bc9189e8d2db28.wav": {
+  "duration": 5.504,
+  "text": "The setup first, because a scaling study that varies two things measures nothing.",
+  "voice": "am_michael"
+ },
+ "s2-001-a429963233c76459.wav": {
+  "duration": 1.28,
+  "text": "Three rungs.",
+  "voice": "am_michael"
+ },
+ "s2-002-da62e0c750357bbb.wav": {
+  "duration": 5.269333333333333,
+  "text": "Zero point six million parameters: two layers, width ninety six.",
+  "voice": "am_michael"
+ },
+ "s2-003-d55ec62deadbd640.wav": {
+  "duration": 4.8853333333333335,
+  "text": "One point eight million: four layers, width one hundred and sixty.",
+  "voice": "am_michael"
+ },
+ "s2-004-e6ad62a70d99d08a.wav": {
+  "duration": 5.290666666666667,
+  "text": "Five point nine million: six layers, width two hundred and sixty four.",
+  "voice": "am_michael"
+ },
+ "s2-005-f9e161f32f1ab512.wav": {
+  "duration": 16.341333333333335,
+  "text": "Width and depth grow together, roughly as width proportional to the square root of depth, which is how real model families are built \u2014 growing depth alone gives you a slow model, growing width alone gives you a shallow one.",
+  "voice": "am_michael"
+ },
+ "s2-006-6cfc9b42f33ccb32.wav": {
+  "duration": 13.077333333333334,
+  "text": "And everything else is nailed down: same shards, same tokenizer, same context, same optimiser, same learning rate, same warmup, same number of steps, same seed.",
+  "voice": "am_michael"
+ },
+ "s2-007-d8112ad57ed36ca1.wav": {
+  "duration": 3.498666666666667,
+  "text": "The parameter count is the only thing that moves.",
+  "voice": "am_michael"
+ },
+ "s3-000-ecfbfbe817913d4e.wav": {
+  "duration": 1.472,
+  "text": "Here is the result.",
+  "voice": "am_michael"
+ },
+ "s3-001-02e096a82df44d37.wav": {
+  "duration": 7.061333333333334,
+  "text": "Zero point eight one three, zero point eight zero two, zero point seven nine six.",
+  "voice": "am_michael"
+ },
+ "s3-002-b230eca71051d26b.wav": {
+  "duration": 12.096,
+  "text": "The ordering holds: every larger model reaches a lower held-out loss than the one below it, under a matched schedule, which is the claim the study exists to test.",
+  "voice": "am_michael"
+ },
+ "s3-003-b28207c2c76e5528.wav": {
+  "duration": 2.0693333333333332,
+  "text": "And the margins are tiny.",
+  "voice": "am_michael"
+ },
+ "s3-004-c2936c99ddaf9de4.wav": {
+  "duration": 5.461333333333333,
+  "text": "Ten point seven times the parameters buys seventeen thousandths of a nat.",
+  "voice": "am_michael"
+ },
+ "s3-005-edfd3787cb88024a.wav": {
+  "duration": 9.728,
+  "text": "If you have seen scaling charts in papers, where a ten-fold increase moves the loss by a substantial fraction, this looks broken.",
+  "voice": "am_michael"
+ },
+ "s3-006-32cdde1c77890796.wav": {
+  "duration": 1.7706666666666666,
+  "text": "It is not broken.",
+  "voice": "am_michael"
+ },
+ "s3-007-10d56133b12e34d0.wav": {
+  "duration": 6.784,
+  "text": "It is telling us something specific about our corpus, and finding out what took one more measurement.",
+  "voice": "am_michael"
+ },
+ "s4-000-ca7d576f192a5401.wav": {
+  "duration": 7.018666666666666,
+  "text": "So we split the per-token loss into two classes: tokens containing digits, and everything else.",
+  "voice": "am_michael"
+ },
+ "s4-001-d9c91733f518575a.wav": {
+  "duration": 1.6426666666666667,
+  "text": "Look at the two numbers.",
+  "voice": "am_michael"
+ },
+ "s4-002-9ee80b035a5f4cd8.wav": {
+  "duration": 22.336,
+  "text": "Numeric tokens are nineteen percent of the corpus and cost three point five six nats each \u2014 that is close to uniformly random over a large alphabet of digit pieces, which makes sense, because our corpus generator draws prices and volumes and percentages from continuous ranges.",
+  "voice": "am_michael"
+ },
+ "s4-003-f53436904297f367.wav": {
+  "duration": 2.1333333333333333,
+  "text": "Nobody can predict those.",
+  "voice": "am_michael"
+ },
+ "s4-004-7f41040e82b7bc80.wav": {
+  "duration": 6.954666666666666,
+  "text": "And prose tokens, eighty one percent of the corpus, cost zero point zero eight six nats.",
+  "voice": "am_michael"
+ },
+ "s4-005-33abcd8a0f889edd.wav": {
+  "duration": 2.432,
+  "text": "Zero point zero eight six.",
+  "voice": "am_michael"
+ },
+ "s4-006-b656a6e412f73470.wav": {
+  "duration": 3.6266666666666665,
+  "text": "That is a perplexity of about one point zero nine.",
+  "voice": "am_michael"
+ },
+ "s4-007-3cfe1b940d64b009.wav": {
+  "duration": 8.192,
+  "text": "The prose is *nearly deterministic*, because it is generated from a fixed set of templates.",
+  "voice": "am_michael"
+ },
+ "s5-000-b9fb1c6873f4e4bf.wav": {
+  "duration": 5.141333333333334,
+  "text": "And now the two halves go together and the whole shape of the result falls out.",
+  "voice": "am_michael"
+ },
+ "s5-001-b4e9af369a9fc5d0.wav": {
+  "duration": 7.189333333333333,
+  "text": "Nineteen percent of our loss budget is dice rolls that no model of any size can reduce.",
+  "voice": "am_michael"
+ },
+ "s5-002-be681df7827e108f.wav": {
+  "duration": 6.72,
+  "text": "The other eighty one percent was already exhausted by the *smallest* model.",
+  "voice": "am_michael"
+ },
+ "s5-003-0a12895909d204dc.wav": {
+  "duration": 13.354666666666667,
+  "text": "So there is essentially nothing left for extra parameters to win, and the seventeen-thousandths-of-a-nat margin is not a weak result \u2014 it is close to all the headroom that existed.",
+  "voice": "am_michael"
+ },
+ "s5-004-f2569cfe4d5b8938.wav": {
+  "duration": 4.309333333333333,
+  "text": "This is a statement about our data, not about transformers.",
+  "voice": "am_michael"
+ },
+ "s5-005-43715e3d6889ae54.wav": {
+  "duration": 9.664,
+  "text": "And it is the most useful thing this study produced, because it says what to do next: the fix is a harder corpus, not a bigger model.",
+  "voice": "am_michael"
+ },
+ "s5-006-9ae792572eff256b.wav": {
+  "duration": 7.573333333333333,
+  "text": "Which is exactly what topic twenty three, synthetic data, and topic thirty eight, curation, are for.",
+  "voice": "am_michael"
+ },
+ "s5-007-69394d0be84c9ad2.wav": {
+  "duration": 3.008,
+  "text": "Those two topics usually read as chores.",
+  "voice": "am_michael"
+ },
+ "s5-008-96732c3ad5bf74a8.wav": {
+  "duration": 3.7333333333333334,
+  "text": "After this measurement they read as the bottleneck.",
+  "voice": "am_michael"
+ },
+ "s6-000-41de9720d0658d72.wav": {
+  "duration": 5.205333333333333,
+  "text": "There is a second constraint on top of the first, and it points the same way.",
+  "voice": "am_michael"
+ },
+ "s6-001-233ce07d3efc8474.wav": {
+  "duration": 7.658666666666667,
+  "text": "Chinchilla's rule of thumb says a compute-optimal run trains on roughly twenty tokens per parameter.",
+  "voice": "am_michael"
+ },
+ "s6-002-01946a615b912ca2.wav": {
+  "duration": 3.3493333333333335,
+  "text": "Our corpus has two point four million tokens.",
+  "voice": "am_michael"
+ },
+ "s6-003-eb3ec6ffa59ec0fd.wav": {
+  "duration": 11.562666666666667,
+  "text": "So the smallest rung sees about twenty two percent of its compute-optimal budget, the middle one about seven percent, and the largest one about two percent.",
+  "voice": "am_michael"
+ },
+ "s6-004-5fdff5807b36a779.wav": {
+  "duration": 9.770666666666667,
+  "text": "Every model in this study is deep in the data-limited regime, which is precisely the regime where extra parameters stop paying.",
+  "voice": "am_michael"
+ },
+ "s6-005-8ac235b6f8c21b4e.wav": {
+  "duration": 7.189333333333333,
+  "text": "Almost no published scaling chart is drawn from here \u2014 and almost every hobby project lives here.",
+  "voice": "am_michael"
+ },
+ "s6-006-c6992b1546ab946c.wav": {
+  "duration": 7.402666666666667,
+  "text": "That mismatch is worth carrying around: the charts you have seen were made in a place you are not standing.",
+  "voice": "am_michael"
+ },
+ "s7-000-32bd8b079b77334d.wav": {
+  "duration": 6.016,
+  "text": "One methodological note, because this is where scaling studies get oversold.",
+  "voice": "am_michael"
+ },
+ "s7-001-4e4f48ffed6f3b2e.wav": {
+  "duration": 14.442666666666666,
+  "text": "We fit a power law, loss equals a times parameters to the minus b, using only the smallest and largest rungs \u2014 and then we check it against the middle rung, which was not used to fit it.",
+  "voice": "am_michael"
+ },
+ "s7-002-5bd61741e64221b5.wav": {
+  "duration": 9.045333333333334,
+  "text": "A curve fitted through all three points would pass through all three points and tell you nothing about whether the relationship is real.",
+  "voice": "am_michael"
+ },
+ "s7-003-0c08b29f463dc7c8.wav": {
+  "duration": 16.704,
+  "text": "Ours predicts zero point eight zero four for the middle rung against an actual of zero point eight zero two, an error of a third of a percent \u2014 which is genuine evidence, because that point did not draw the line.",
+  "voice": "am_michael"
+ },
+ "s7-004-07aa3b3e8f89d3cb.wav": {
+  "duration": 7.210666666666667,
+  "text": "And then we extrapolate out to the forty million parameter model, which gives zero point seven eight.",
+  "voice": "am_michael"
+ },
+ "s7-005-70cb5492c36cb549.wav": {
+  "duration": 11.306666666666667,
+  "text": "Look at what that number actually is: a two-point fit, stretched by nearly an order of magnitude, on a corpus none of those models could saturate.",
+  "voice": "am_michael"
+ },
+ "s7-006-42af16fd08aab3b2.wav": {
+  "duration": 5.76,
+  "text": "It is exactly the kind of number people commit a month of GPU time to.",
+  "voice": "am_michael"
+ },
+ "s7-007-ac18c1a3ac415eba.wav": {
+  "duration": 5.461333333333333,
+  "text": "Report it, extrapolate with it if you must, and never forget how it was made.",
+  "voice": "am_michael"
+ },
+ "s8-000-b1626817647b3b89.wav": {
+  "duration": 1.344,
+  "text": "Last chart.",
+  "voice": "am_michael"
+ },
+ "s8-001-fb7f498a1b455d35.wav": {
+  "duration": 3.968,
+  "text": "The gap between training loss and held-out loss, per rung.",
+  "voice": "am_michael"
+ },
+ "s8-002-e45c2df5a81958b1.wav": {
+  "duration": 3.776,
+  "text": "Four thousandths, four thousandths, seven thousandths.",
+  "voice": "am_michael"
+ },
+ "s8-003-535b3b3412702422.wav": {
+  "duration": 6.229333333333333,
+  "text": "All small \u2014 nobody here is badly overfitting after one pass over the corpus.",
+  "voice": "am_michael"
+ },
+ "s8-004-7578ce2f29353388.wav": {
+  "duration": 1.7706666666666666,
+  "text": "But watch the direction.",
+  "voice": "am_michael"
+ },
+ "s8-005-82d0150cce7f2e97.wav": {
+  "duration": 7.616,
+  "text": "Between the middle and top rungs the gap grew by nearly three thousandths while the held-out loss fell by six.",
+  "voice": "am_michael"
+ },
+ "s8-006-6f667fb53f5fbb5f.wav": {
+  "duration": 2.624,
+  "text": "That ratio is the thing to watch.",
+  "voice": "am_michael"
+ },
+ "s8-007-02ea6fd8f076445a.wav": {
+  "duration": 14.272,
+  "text": "When the gap starts growing faster than the loss is falling, you have stopped buying generalisation and started buying memorisation, and the correct response is more data rather than fewer parameters.",
+  "voice": "am_michael"
+ },
+ "s8-008-0915bc8de8f00aa2.wav": {
+  "duration": 4.266666666666667,
+  "text": "On this corpus, at these sizes, we are right at the turn.",
+  "voice": "am_michael"
+ },
+ "s9-000-612ae6df2d818804.wav": {
+  "duration": 1.28,
+  "text": "Three things.",
+  "voice": "am_michael"
+ },
+ "s9-001-cadf3811dd6afddb.wav": {
+  "duration": 0.832,
+  "text": "One.",
+  "voice": "am_michael"
+ },
+ "s9-002-c6326ed46c16adb4.wav": {
+  "duration": 10.602666666666666,
+  "text": "The ordering holds \u2014 every larger model reaches a lower held-out loss under a matched schedule, which is the claim the study was built to test.",
+  "voice": "am_michael"
+ },
+ "s9-003-8848b45411fcacef.wav": {
+  "duration": 0.8106666666666666,
+  "text": "Two.",
+  "voice": "am_michael"
+ },
+ "s9-004-a52788ecdbdc71ae.wav": {
+  "duration": 15.061333333333334,
+  "text": "The margin is small because nineteen percent of the corpus is irreducible digits and the other eighty one percent was already solved by the smallest model, so there was very little headroom to compete for.",
+  "voice": "am_michael"
+ },
+ "s9-005-301665492da4bf47.wav": {
+  "duration": 0.896,
+  "text": "Three.",
+  "voice": "am_michael"
+ },
+ "s9-006-9eb8c538d49da5f7.wav": {
+  "duration": 10.901333333333334,
+  "text": "Both constraints, the entropy floor and the Chinchilla token budget, point at the same conclusion: the data is the bottleneck here, not the model.",
+  "voice": "am_michael"
+ },
+ "s9-007-963fd06351fee5be.wav": {
+  "duration": 15.36,
+  "text": "If you take away only one thing, take away that the interesting question was not \"did bigger win\" but \"why was the margin that size\", and that the second question is answerable with one extra measurement.",
+  "voice": "am_michael"
+ },
+ "s9-008-4918980f9a63395d.wav": {
+  "duration": 6.72,
+  "text": "Next time: reading a pretrain, and four different ways to be wrong about a perplexity number.",
+  "voice": "am_michael"
+ }
+}

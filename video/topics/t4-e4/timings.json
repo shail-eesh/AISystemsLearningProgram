@@ -1,0 +1,808 @@
+{
+ "topic": "t4-e4",
+ "episode": 4,
+ "title": "Training it, and the experiment that lied",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 566.2547,
+ "wordCount": 1256,
+ "wordsPerMinute": 133.1,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 25.78,
+ "generatedInSeconds": 218.9,
+ "segmentsSynthesised": 82,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Training it, and the experiment that lied",
+    "subtitle": "A loss curve, an attention map, and why the second one nearly fooled us.",
+    "topicId": "T4",
+    "episode": "Episode 4",
+    "paper": "Olsson et al. 2022"
+   },
+   "start": 0.0,
+   "duration": 25.7753,
+   "segments": [
+    {
+     "text": "Welcome back.",
+     "file": "t4-e4/audio/s1-000-e19396f98ddd78fa.wav",
+     "start": 0.0,
+     "duration": 1.3227
+    },
+    {
+     "text": "Episode four.",
+     "file": "t4-e4/audio/s1-001-d998a86ff147b2e4.wav",
+     "start": 1.7427,
+     "duration": 1.5147
+    },
+    {
+     "text": "The model is built.",
+     "file": "t4-e4/audio/s1-002-92ac6803e8a795d7.wav",
+     "start": 3.6773,
+     "duration": 1.6213
+    },
+    {
+     "text": "Today we train it, look at what it learned, and then I am going to walk you through an experiment we ran that produced a beautiful, convincing, completely wrong result \u2014 and how we caught it.",
+     "file": "t4-e4/audio/s1-003-036e8930ab9d7970.wav",
+     "start": 5.7187,
+     "duration": 13.6747
+    },
+    {
+     "text": "That last part is the most useful thing in this series, so stay to the end.",
+     "file": "t4-e4/audio/s1-004-628a62eaa70328f6.wav",
+     "start": 19.8133,
+     "duration": 5.312
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the loss curve",
+    "title": "Reading a loss curve like an ECG",
+    "kind": "line",
+    "series": [
+     {
+      "label": "validation loss",
+      "values": [
+       4.0862,
+       1.6298,
+       1.2908,
+       1.1878,
+       1.142,
+       1.1002
+      ],
+      "color": "#5ac48c"
+     }
+    ],
+    "xLabel": "step: 0, 100, 200, 300, 400, 499",
+    "yLabel": "loss (nats per character)",
+    "reference": {
+     "value": 4.19,
+     "label": "ln(66) \u2014 uniform guessing"
+    },
+    "caption": "Four layers, 810k parameters, a 92,743-character market tape. 29 seconds on two CPU cores."
+   },
+   "start": 25.7753,
+   "duration": 66.1473,
+   "segments": [
+    {
+     "text": "Here is the first thing you should do with any new model: check that step zero is where it must be.",
+     "file": "t4-e4/audio/s2-000-39ae0cea4f7756d3.wav",
+     "start": 25.7753,
+     "duration": 6.7627
+    },
+    {
+     "text": "The reference line is log of sixty six, the vocabulary size, which is four point one nine.",
+     "file": "t4-e4/audio/s2-001-c9448ca220c0aa74.wav",
+     "start": 32.958,
+     "duration": 7.3173
+    },
+    {
+     "text": "That is the loss of a model that guesses uniformly.",
+     "file": "t4-e4/audio/s2-002-9ff623ddecbb3870.wav",
+     "start": 40.6953,
+     "duration": 3.8187
+    },
+    {
+     "text": "Our step-zero measurement is four point zero nine.",
+     "file": "t4-e4/audio/s2-003-3ebc3c04d669d8ee.wav",
+     "start": 44.934,
+     "duration": 3.968
+    },
+    {
+     "text": "Not lower, which would mean something is leaking the answer, and not higher, which would mean the initialisation is broken.",
+     "file": "t4-e4/audio/s2-004-98efdb5fe2ff4e03.wav",
+     "start": 49.322,
+     "duration": 8.704
+    },
+    {
+     "text": "Then it falls: one point six three at a hundred steps, one point two nine at two hundred, one point one at five hundred.",
+     "file": "t4-e4/audio/s2-005-c801380b1e76a706.wav",
+     "start": 58.446,
+     "duration": 9.6427
+    },
+    {
+     "text": "Four layers, eight hundred and ten thousand parameters, twenty nine seconds on two CPU cores.",
+     "file": "t4-e4/audio/s2-006-aa4df09d06f66521.wav",
+     "start": 68.5087,
+     "duration": 7.5307
+    },
+    {
+     "text": "The shape matters more than the endpoint.",
+     "file": "t4-e4/audio/s2-007-bedd4610ff4bb31d.wav",
+     "start": 76.4593,
+     "duration": 2.7733
+    },
+    {
+     "text": "A steep initial drop is the model learning character frequencies, which is cheap.",
+     "file": "t4-e4/audio/s2-008-26314e27ecea7b55.wav",
+     "start": 79.6527,
+     "duration": 5.8453
+    },
+    {
+     "text": "The long shallow tail after it is the model learning structure, which is not.",
+     "file": "t4-e4/audio/s2-009-c539fa99792a3fd2.wav",
+     "start": 85.918,
+     "duration": 5.3547
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "read the output",
+    "title": "The model learned the grammar of the tape perfectly and its meaning barely at all",
+    "body": "Generated lines, scored automatically against the exact tape grammar and against basic market arithmetic:",
+    "points": [
+     "100% of generated lines match the field grammar exactly \u2014 date, symbol, O/H/L/C/V, two decimal places.",
+     "100% are distinct \u2014 it is not reciting one memorised line.",
+     "36% have a coherent high and low \u2014 that is, H >= max(O,C) and L <= min(O,C).",
+     "It learned the language. It did not learn what 'high' means."
+    ],
+    "aside": "Every eval you write after this should be built with that gap in mind. Language models are extremely good at the shape of a thing."
+   },
+   "start": 91.9227,
+   "duration": 71.3033,
+   "segments": [
+    {
+     "text": "Now read what it writes, because no aggregate will tell you this.",
+     "file": "t4-e4/audio/s3-000-e1ea53045073f747.wav",
+     "start": 91.9227,
+     "duration": 4.5653
+    },
+    {
+     "text": "We scored eight hundred generated characters two ways.",
+     "file": "t4-e4/audio/s3-001-0c100f294f06886d.wav",
+     "start": 96.908,
+     "duration": 3.8613
+    },
+    {
+     "text": "First against the exact grammar of the tape: date, symbol, the letters O H L C V in order, two decimal places on every price.",
+     "file": "t4-e4/audio/s3-002-ca9e77a10fc240fc.wav",
+     "start": 101.1893,
+     "duration": 10.9227
+    },
+    {
+     "text": "One hundred percent of the generated lines match.",
+     "file": "t4-e4/audio/s3-003-3773cef6aa18a40c.wav",
+     "start": 112.532,
+     "duration": 3.84
+    },
+    {
+     "text": "And they are all distinct, so it is not reciting one memorised line.",
+     "file": "t4-e4/audio/s3-004-4f0ba4a37298bc8b.wav",
+     "start": 116.792,
+     "duration": 5.3547
+    },
+    {
+     "text": "Then we scored them against basic market arithmetic: is the high at least as large as the open and the close, is the low at most as small.",
+     "file": "t4-e4/audio/s3-005-1173842eccecd7b6.wav",
+     "start": 122.5667,
+     "duration": 10.304
+    },
+    {
+     "text": "Thirty six percent.",
+     "file": "t4-e4/audio/s3-006-3a10e4f7a2f9e383.wav",
+     "start": 133.2907,
+     "duration": 1.7067
+    },
+    {
+     "text": "So the model learned the *language* of the tape completely and learned what high and low *mean* barely at all.",
+     "file": "t4-e4/audio/s3-007-47bf85dcd785084d.wav",
+     "start": 135.4173,
+     "duration": 10.2613
+    },
+    {
+     "text": "That gap is the single most useful thing on this slide, and it generalises.",
+     "file": "t4-e4/audio/s3-008-c55788dccb96dec3.wav",
+     "start": 146.0987,
+     "duration": 5.504
+    },
+    {
+     "text": "Language models are extremely good at the shape of a thing.",
+     "file": "t4-e4/audio/s3-009-96601f7cbf553ef8.wav",
+     "start": 152.0227,
+     "duration": 4.2453
+    },
+    {
+     "text": "Every eval you write for the rest of this course should be built by someone who knows that.",
+     "file": "t4-e4/audio/s3-010-1e9c8e8253270a2d.wav",
+     "start": 156.688,
+     "duration": 5.888
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "interpretability",
+    "title": "An induction head is the first real algorithm a transformer invents",
+    "body": "It implements: 'the pattern A-B happened earlier, I have just seen A, so B comes next.' It needs two layers \u2014 one head to carry the previous token's identity forward, a second to match on it \u2014 and it is the mechanism behind in-context learning.",
+    "points": [
+     "At position i, find an earlier occurrence of the current token.",
+     "Attend to the token that came AFTER it.",
+     "Copy that token's identity into the prediction.",
+     "Nobody trains it to do this. It appears on its own from ordinary next-token training."
+    ],
+    "aside": "Olsson et al. traced in-context learning in real models to exactly this circuit, and watched it appear as a visible bend in the loss curve."
+   },
+   "start": 163.226,
+   "duration": 57.8327,
+   "segments": [
+    {
+     "text": "Now let us go looking inside.",
+     "file": "t4-e4/audio/s4-000-fc4bc5698db2363d.wav",
+     "start": 163.226,
+     "duration": 2.3893
+    },
+    {
+     "text": "The thing worth looking for is called an induction head, and it implements one sentence: the pattern A B happened earlier, I have just seen A, so B comes next.",
+     "file": "t4-e4/audio/s4-001-190133c0db937374.wav",
+     "start": 166.0353,
+     "duration": 12.0107
+    },
+    {
+     "text": "Mechanically, at position i, find an earlier occurrence of the token you are currently at, attend to the token that came *after* that occurrence, and copy it.",
+     "file": "t4-e4/audio/s4-002-59a2ab0a1c05108f.wav",
+     "start": 178.466,
+     "duration": 13.5253
+    },
+    {
+     "text": "It needs two layers, because one head has to carry the previous token's identity forward before a second head can match on it.",
+     "file": "t4-e4/audio/s4-003-b3720c501737c016.wav",
+     "start": 192.4113,
+     "duration": 9.0027
+    },
+    {
+     "text": "And nobody trains it to do this.",
+     "file": "t4-e4/audio/s4-004-0ab80ef18ce491e5.wav",
+     "start": 201.834,
+     "duration": 2.3467
+    },
+    {
+     "text": "It emerges from ordinary next-token prediction, and Olsson and colleagues traced in-context learning in real production models back to exactly this circuit, appearing as a visible bend in the loss curve.",
+     "file": "t4-e4/audio/s4-005-921dfae9e9166033.wav",
+     "start": 204.6007,
+     "duration": 15.808
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the first experiment",
+    "title": "prefix + prefix \u2014 and the shortcut hiding inside it",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "random prefix",
+      "sub": "24 tokens",
+      "x": 0.22,
+      "y": 0.3,
+      "w": 0.34,
+      "appearAt": 8
+     },
+     {
+      "id": "b",
+      "label": "the same prefix again",
+      "sub": "24 tokens",
+      "x": 0.68,
+      "y": 0.3,
+      "w": 0.34,
+      "appearAt": 20
+     },
+     {
+      "id": "ind",
+      "label": "induction",
+      "sub": "match on content",
+      "x": 0.28,
+      "y": 0.76,
+      "w": 0.28,
+      "appearAt": 48,
+      "color": "#5ac48c"
+     },
+     {
+      "id": "pos",
+      "label": "positional",
+      "sub": "'look 24 back'",
+      "x": 0.7,
+      "y": 0.76,
+      "w": 0.28,
+      "appearAt": 62,
+      "color": "#d98b4a"
+     }
+    ],
+    "edges": [
+     {
+      "from": "a",
+      "to": "b",
+      "label": "repeat",
+      "appearAt": 30
+     },
+     {
+      "from": "b",
+      "to": "ind",
+      "appearAt": 54
+     },
+     {
+      "from": "b",
+      "to": "pos",
+      "appearAt": 68
+     }
+    ],
+    "caption": "Two ways to solve the same task. Only one of them is an induction head."
+   },
+   "start": 221.0587,
+   "duration": 57.834,
+   "segments": [
+    {
+     "text": "So we built the obvious experiment.",
+     "file": "t4-e4/audio/s5-000-c4dcd368006a1964.wav",
+     "start": 221.0587,
+     "duration": 2.4747
+    },
+    {
+     "text": "Take a random prefix of twenty four tokens and repeat it.",
+     "file": "t4-e4/audio/s5-001-fec303caf65e8e0a.wav",
+     "start": 223.9533,
+     "duration": 4.224
+    },
+    {
+     "text": "The second half is perfectly predictable, but only by something that can say \"I have seen this token before, what followed it last time\".",
+     "file": "t4-e4/audio/s5-002-58f7e17c72f353aa.wav",
+     "start": 228.5973,
+     "duration": 10.0267
+    },
+    {
+     "text": "We trained a two-layer model on it, measured how much attention the best head put on the induction target, and got thirty times chance with one hundred percent accuracy on the second half.",
+     "file": "t4-e4/audio/s5-003-651318c16f306277.wav",
+     "start": 239.044,
+     "duration": 13.4827
+    },
+    {
+     "text": "Beautiful heat map.",
+     "file": "t4-e4/audio/s5-004-b4cc26c00243bda4.wav",
+     "start": 252.9467,
+     "duration": 1.6
+    },
+    {
+     "text": "And then, because the repository has a control for everything, we ran the same experiment with a *one-layer* model.",
+     "file": "t4-e4/audio/s5-005-783781b854404957.wav",
+     "start": 254.9667,
+     "duration": 9.92
+    },
+    {
+     "text": "Which should be impossible.",
+     "file": "t4-e4/audio/s5-006-0b937f8a47ecf8f4.wav",
+     "start": 265.3067,
+     "duration": 1.8773
+    },
+    {
+     "text": "One layer cannot form an induction circuit; there is no second layer to do the matching.",
+     "file": "t4-e4/audio/s5-007-5459f48d4b85818e.wav",
+     "start": 267.604,
+     "duration": 6.3147
+    },
+    {
+     "text": "The one-layer model scored one hundred percent as well.",
+     "file": "t4-e4/audio/s5-008-d8cb7b5948c871da.wav",
+     "start": 274.3387,
+     "duration": 3.904
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "A fixed period is a positional shortcut, not induction",
+    "body": "With a prefix length that never changes, 'attend to the slot 24 back' solves the task perfectly \u2014 and a learned positional embedding can express that rule in one layer. No content matching required, no induction head involved, and a beautiful attention map to go with it. We had measured the wrong thing.",
+    "code": "# the fix: every row repeats with its OWN random period\nseq[b, i] = base[b, i % period[b]]     # period ~ U[10, 14]"
+   },
+   "start": 278.8927,
+   "duration": 57.706,
+   "segments": [
+    {
+     "text": "Here is what had gone wrong, and it is worth sitting with because the failure mode is so plausible.",
+     "file": "t4-e4/audio/s6-000-6f7bb1940239021c.wav",
+     "start": 278.8927,
+     "duration": 6.6133
+    },
+    {
+     "text": "Our prefix length was always twenty four.",
+     "file": "t4-e4/audio/s6-001-f8b3784ce2f21daa.wav",
+     "start": 285.926,
+     "duration": 2.9867
+    },
+    {
+     "text": "So \"attend to the slot twenty four back\" solves the task perfectly, and a learned positional embedding can express that rule in a single layer.",
+     "file": "t4-e4/audio/s6-002-aaa10b3806d9ff06.wav",
+     "start": 289.3327,
+     "duration": 10.9653
+    },
+    {
+     "text": "No content matching.",
+     "file": "t4-e4/audio/s6-003-8e0b77af37da1b60.wav",
+     "start": 300.718,
+     "duration": 1.7493
+    },
+    {
+     "text": "No induction circuit.",
+     "file": "t4-e4/audio/s6-004-151fb4f766a518f2.wav",
+     "start": 302.8873,
+     "duration": 1.8347
+    },
+    {
+     "text": "And a gorgeous attention heat map showing enormous weight in exactly the right place.",
+     "file": "t4-e4/audio/s6-005-5c2dedaa7aeca7b5.wav",
+     "start": 305.142,
+     "duration": 6.1227
+    },
+    {
+     "text": "We had measured a positional shortcut and called it an induction head.",
+     "file": "t4-e4/audio/s6-006-04ee8304e6208ad6.wav",
+     "start": 311.6847,
+     "duration": 4.8427
+    },
+    {
+     "text": "The fix is one line: give every row in the batch its own random period, drawn between ten and fourteen.",
+     "file": "t4-e4/audio/s6-007-faf33980402ea432.wav",
+     "start": 316.9473,
+     "duration": 8.1067
+    },
+    {
+     "text": "Now the induction target moves from row to row, no fixed-offset rule works, and the task can only be solved by matching on content.",
+     "file": "t4-e4/audio/s6-008-05bb6b26388a5fe2.wav",
+     "start": 325.474,
+     "duration": 10.4747
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the corrected experiment",
+    "title": "Two layers learn it. One layer plateaus.",
+    "kind": "line",
+    "series": [
+     {
+      "label": "2-layer: repeat accuracy",
+      "values": [
+       0.014,
+       0.285,
+       0.401,
+       0.493,
+       0.502,
+       0.503,
+       0.63,
+       0.687,
+       0.72,
+       0.78,
+       0.851,
+       0.894,
+       0.92
+      ],
+      "color": "#5ac48c"
+     },
+     {
+      "label": "2-layer: best head attention score x2",
+      "values": [
+       0.076,
+       0.414,
+       0.601,
+       0.68,
+       0.704,
+       0.689,
+       0.708,
+       0.71,
+       0.699,
+       0.715,
+       0.718,
+       0.719,
+       0.703
+      ],
+      "color": "#d98b4a"
+     }
+    ],
+    "xLabel": "training step (0 to 3000, every 250)",
+    "yLabel": "fraction",
+    "caption": "The attention score plateaus by step 750. Accuracy keeps climbing for the next 2,250 steps."
+   },
+   "start": 336.5987,
+   "duration": 52.4367,
+   "segments": [
+    {
+     "text": "And here is the corrected experiment, which tells a much more interesting story than the wrong one did.",
+     "file": "t4-e4/audio/s7-000-dda8eb89227a803e.wav",
+     "start": 336.5987,
+     "duration": 7.4453
+    },
+    {
+     "text": "The green line is behaviour: how often the two-layer model correctly predicts the repeated token.",
+     "file": "t4-e4/audio/s7-001-ccb4fb5987c5e13b.wav",
+     "start": 344.464,
+     "duration": 7.0827
+    },
+    {
+     "text": "It climbs from one percent to ninety two percent over three thousand steps.",
+     "file": "t4-e4/audio/s7-002-dc0f0b4c79e786e4.wav",
+     "start": 351.9667,
+     "duration": 5.3547
+    },
+    {
+     "text": "The orange line is the attention score of the best head \u2014 how much weight it places on the induction target.",
+     "file": "t4-e4/audio/s7-003-315de8b52490a4e9.wav",
+     "start": 357.7413,
+     "duration": 7.552
+    },
+    {
+     "text": "Watch what it does.",
+     "file": "t4-e4/audio/s7-004-05960a4b7d365b6f.wav",
+     "start": 365.7133,
+     "duration": 1.5787
+    },
+    {
+     "text": "It rises fast, and then by step seven hundred and fifty it is *flat*.",
+     "file": "t4-e4/audio/s7-005-c798d06ed592c39e.wav",
+     "start": 367.712,
+     "duration": 6.976
+    },
+    {
+     "text": "It never moves again.",
+     "file": "t4-e4/audio/s7-006-2fe266ad8f66dfb9.wav",
+     "start": 375.108,
+     "duration": 1.7707
+    },
+    {
+     "text": "And accuracy climbs for another two thousand two hundred and fifty steps after that.",
+     "file": "t4-e4/audio/s7-007-7801465e290c44f8.wav",
+     "start": 377.2987,
+     "duration": 5.9093
+    },
+    {
+     "text": "The attention map stopped changing long before the model stopped learning.",
+     "file": "t4-e4/audio/s7-008-9d1147339b9a16da.wav",
+     "start": 383.628,
+     "duration": 4.7573
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the control",
+    "title": "The one-layer model has the BETTER attention score and much worse behaviour",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "2 layers\nrepeat accuracy",
+      "value": 0.94,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "1 layer\nrepeat accuracy",
+      "value": 0.649
+     },
+     {
+      "label": "2 layers\nattention score",
+      "value": 0.347
+     },
+     {
+      "label": "1 layer\nattention score",
+      "value": 0.438,
+      "color": "#d98b4a"
+     }
+    ],
+    "yLabel": "score",
+    "caption": "Chance for the attention score is 0.038. The one-layer model hedges across five offsets and looks excellent."
+   },
+   "start": 389.0353,
+   "duration": 66.6153,
+   "segments": [
+    {
+     "text": "And now the control, which is the punchline of the whole episode.",
+     "file": "t4-e4/audio/s8-000-7e0156ffad863997.wav",
+     "start": 389.0353,
+     "duration": 4.8427
+    },
+    {
+     "text": "Two layers: ninety four percent accuracy, attention score zero point three five.",
+     "file": "t4-e4/audio/s8-001-c1b4dd35f00ff6b4.wav",
+     "start": 394.298,
+     "duration": 6.5707
+    },
+    {
+     "text": "One layer: sixty five percent accuracy \u2014 and an attention score of zero point four four, which is *higher*.",
+     "file": "t4-e4/audio/s8-002-ef4ee89d197df738.wav",
+     "start": 401.2887,
+     "duration": 10.3253
+    },
+    {
+     "text": "The one-layer model looks better on the attention map and performs far worse.",
+     "file": "t4-e4/audio/s8-003-d349b03d38021042.wav",
+     "start": 412.034,
+     "duration": 5.6107
+    },
+    {
+     "text": "What it is doing is hedging: there are only five possible periods, so it spreads weight across the five candidate offsets, and enough of that lands on the right one to score well on the metric while never being able to commit to a prediction.",
+     "file": "t4-e4/audio/s8-004-7f3bb8077f9035a1.wav",
+     "start": 418.0647,
+     "duration": 17.152
+    },
+    {
+     "text": "We verified that directly by planting a synthetic head that always looks exactly eleven positions back \u2014 a rule with no content matching in it at all \u2014 and it scores three and a half times chance.",
+     "file": "t4-e4/audio/s8-005-20bbad9b719aba80.wav",
+     "start": 435.6367,
+     "duration": 14.592
+    },
+    {
+     "text": "An attention map that looks right is not a circuit that works.",
+     "file": "t4-e4/audio/s8-006-53c35b06a0799af8.wav",
+     "start": 450.6487,
+     "duration": 4.352
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "Calibrate your interpretability metric in both directions",
+    "body": "Our probe now has two synthetic controls, and every interpretability metric you write should have the same pair: one input that must score maximum, and one plausible-but-wrong mechanism that must score low.",
+    "code": "planted head, attends exactly at the target   -> 1.000\nfixed-offset head, always 11 back             -> 0.128  (3.5x chance)\nuntrained model                               -> 1.0x chance"
+   },
+   "start": 455.6507,
+   "duration": 52.0447,
+   "segments": [
+    {
+     "text": "So the probe now has controls in both directions, and I would push this as a general rule.",
+     "file": "t4-e4/audio/s9-000-52d92600deb2b765.wav",
+     "start": 455.6507,
+     "duration": 6.5707
+    },
+    {
+     "text": "Any interpretability metric you write needs two synthetic inputs.",
+     "file": "t4-e4/audio/s9-001-3623b3e527886ca1.wav",
+     "start": 462.6413,
+     "duration": 4.9067
+    },
+    {
+     "text": "One that must score the maximum \u2014 here, a planted head that attends exactly at the target, which scores one point zero zero zero.",
+     "file": "t4-e4/audio/s9-002-200d8f200e4b93b7.wav",
+     "start": 467.968,
+     "duration": 10.3253
+    },
+    {
+     "text": "And one plausible-but-wrong mechanism that must score low \u2014 here, a fixed-offset head, which scores zero point one three.",
+     "file": "t4-e4/audio/s9-003-9dd0b6fb5c61eb9d.wav",
+     "start": 478.7133,
+     "duration": 9.152
+    },
+    {
+     "text": "Without the first, you do not know what a good score looks like.",
+     "file": "t4-e4/audio/s9-004-1cf9141ee434f192.wav",
+     "start": 488.2853,
+     "duration": 4.3093
+    },
+    {
+     "text": "Without the second, you do not know what your metric will accept.",
+     "file": "t4-e4/audio/s9-005-18674e8926d06fa4.wav",
+     "start": 493.0147,
+     "duration": 4.4587
+    },
+    {
+     "text": "And the whole thing sits on top of a behavioural measure, because behaviour is the only thing that cannot be faked by a picture.",
+     "file": "t4-e4/audio/s9-006-7ada510b46644264.wav",
+     "start": 497.8933,
+     "duration": 9.152
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "What we found, and how we nearly did not",
+    "points": [
+     "The model learned the tape's grammar completely (100% well-formed) and its semantics barely (36% coherent high/low).",
+     "Induction heads emerge from ordinary next-token training \u2014 but only if the task cannot be solved positionally.",
+     "The one-layer control had the better attention map and the worse behaviour: an attention map is not a circuit."
+    ],
+    "ifSkipped": "Skip this and you will believe the first beautiful heat map you produce, which is how most bad interpretability claims are made.",
+    "next": "Episode 5 \u2014 sampling and the KV cache: turning logits into text, and stopping the model doing the same work n times."
+   },
+   "start": 507.6953,
+   "duration": 58.5593,
+   "segments": [
+    {
+     "text": "Three things.",
+     "file": "t4-e4/audio/s10-000-612ae6df2d818804.wav",
+     "start": 507.6953,
+     "duration": 1.28
+    },
+    {
+     "text": "One.",
+     "file": "t4-e4/audio/s10-001-cadf3811dd6afddb.wav",
+     "start": 509.3953,
+     "duration": 0.832
+    },
+    {
+     "text": "The model learned the grammar of the tape completely and its semantics barely at all, and you only find that out by reading the output.",
+     "file": "t4-e4/audio/s10-002-c1bbf5a4f71a62c2.wav",
+     "start": 510.6473,
+     "duration": 9.4293
+    },
+    {
+     "text": "Two.",
+     "file": "t4-e4/audio/s10-003-8848b45411fcacef.wav",
+     "start": 520.4967,
+     "duration": 0.8107
+    },
+    {
+     "text": "Induction heads do emerge on their own from ordinary next-token training \u2014 but only when the task genuinely cannot be solved by a positional rule, and our first version of the task could.",
+     "file": "t4-e4/audio/s10-004-e4931ee289ac1ed9.wav",
+     "start": 521.7273,
+     "duration": 14.1227
+    },
+    {
+     "text": "Three.",
+     "file": "t4-e4/audio/s10-005-301665492da4bf47.wav",
+     "start": 536.27,
+     "duration": 0.896
+    },
+    {
+     "text": "The one-layer control had a better attention map and much worse behaviour, which means an attention map is evidence about attention and not evidence about a circuit.",
+     "file": "t4-e4/audio/s10-006-551ed160076f6d0e.wav",
+     "start": 537.586,
+     "duration": 12.2027
+    },
+    {
+     "text": "Next time, the last episode: sampling, and the KV cache.",
+     "file": "t4-e4/audio/s10-007-5119d5c652860a29.wav",
+     "start": 550.2087,
+     "duration": 4.5653
+    },
+    {
+     "text": "How to turn a logit vector into text that is not the word \"the\" forever, and how to stop the model redoing the same arithmetic on every step.",
+     "file": "t4-e4/audio/s10-008-eb407075ad56c47d.wav",
+     "start": 555.194,
+     "duration": 10.4107
+    }
+   ]
+  }
+ ]
+}

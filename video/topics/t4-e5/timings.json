@@ -1,0 +1,765 @@
+{
+ "topic": "t4-e5",
+ "episode": 5,
+ "title": "Sampling, and the cache that removes a mistake",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 622.5947,
+ "wordCount": 1346,
+ "wordsPerMinute": 129.7,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 26.69,
+ "generatedInSeconds": 239.1,
+ "segmentsSynthesised": 79,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Sampling and the KV cache",
+    "subtitle": "Turning logits into text, and stopping the model doing the same work n times.",
+    "topicId": "T4",
+    "episode": "Episode 5"
+   },
+   "start": 0.0,
+   "duration": 26.6927,
+   "segments": [
+    {
+     "text": "Welcome back.",
+     "file": "t4-e5/audio/s1-000-e19396f98ddd78fa.wav",
+     "start": 0.0,
+     "duration": 1.3227
+    },
+    {
+     "text": "The last episode of the transformer series.",
+     "file": "t4-e5/audio/s1-001-50e535afcecd3c64.wav",
+     "start": 1.7427,
+     "duration": 3.2
+    },
+    {
+     "text": "Two topics that both look like implementation details and are not.",
+     "file": "t4-e5/audio/s1-002-3019f41fcfb2510b.wav",
+     "start": 5.3627,
+     "duration": 5.0987
+    },
+    {
+     "text": "Sampling, which is where \"the model is bad\" usually turns out to mean \"the sampler is wrong\".",
+     "file": "t4-e5/audio/s1-003-1b75cabba7e94807.wav",
+     "start": 10.8813,
+     "duration": 7.0187
+    },
+    {
+     "text": "And the key-value cache, which is not an optimisation so much as the removal of an obvious mistake.",
+     "file": "t4-e5/audio/s1-004-168464496fe65e9b.wav",
+     "start": 18.32,
+     "duration": 7.7227
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the setup",
+    "title": "The model gives you a distribution. Turning it into text is a separate design problem.",
+    "body": "A trained language model hands back a probability for every token in the vocabulary. Choosing one is not part of the model, and the choice has more effect on perceived quality than most architecture decisions.",
+    "points": [
+     "Greedy: always take the argmax. Deterministic, and it loops.",
+     "Temperature: divide the logits before the softmax. Sharpens or flattens; never removes an option.",
+     "Top-k: keep the k most likely tokens. A fixed budget regardless of confidence.",
+     "Top-p / nucleus: keep the smallest set whose probability mass reaches p. The budget adapts."
+    ],
+    "aside": "All four are pure functions of a logit vector, which means they can be tested by construction rather than by squinting at generated text."
+   },
+   "start": 26.6927,
+   "duration": 69.518,
+   "segments": [
+    {
+     "text": "Here is the setup.",
+     "file": "t4-e5/audio/s2-000-8930ca93e513c292.wav",
+     "start": 26.6927,
+     "duration": 1.4933
+    },
+    {
+     "text": "A trained model hands you a probability for every token in the vocabulary.",
+     "file": "t4-e5/audio/s2-001-e7d6e283f4405498.wav",
+     "start": 28.606,
+     "duration": 5.952
+    },
+    {
+     "text": "Choosing one of them is not part of the model.",
+     "file": "t4-e5/audio/s2-002-56c6ce8a3bca75d9.wav",
+     "start": 34.978,
+     "duration": 3.3067
+    },
+    {
+     "text": "It is a separate design problem, and it affects perceived quality more than most architecture decisions do.",
+     "file": "t4-e5/audio/s2-003-03873ebd1b898967.wav",
+     "start": 38.7047,
+     "duration": 7.808
+    },
+    {
+     "text": "Four options.",
+     "file": "t4-e5/audio/s2-004-fa479568a58dda74.wav",
+     "start": 46.9327,
+     "duration": 1.472
+    },
+    {
+     "text": "Greedy, always take the most likely token: deterministic, and it loops.",
+     "file": "t4-e5/audio/s2-005-1e4bc45256bda4df.wav",
+     "start": 48.8247,
+     "duration": 5.44
+    },
+    {
+     "text": "Temperature, divide the logits before the softmax: below one sharpens, above one flattens, and it never removes an option, only reweights.",
+     "file": "t4-e5/audio/s2-006-b274144e0edefb95.wav",
+     "start": 54.6847,
+     "duration": 10.9013
+    },
+    {
+     "text": "Top-k, keep the k most likely: a fixed budget regardless of how confident the model is.",
+     "file": "t4-e5/audio/s2-007-20baeabf2a1c2312.wav",
+     "start": 66.006,
+     "duration": 7.2747
+    },
+    {
+     "text": "And top-p, also called nucleus: keep the smallest set of tokens whose probability adds up to p.",
+     "file": "t4-e5/audio/s2-008-b9030c5105ec752c.wav",
+     "start": 73.7007,
+     "duration": 7.8507
+    },
+    {
+     "text": "All four are pure functions of a logit vector, which is worth noticing, because it means you can test them properly instead of squinting at generated text and forming an impression.",
+     "file": "t4-e5/audio/s2-009-d4cfc972ba05fffa.wav",
+     "start": 81.9713,
+     "duration": 13.5893
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the off-by-one everyone writes",
+    "title": "Nucleus filtering, and the token that crosses the threshold",
+    "filename": "phases/p2/t4-transformer/src/t4_transformer/sampling.py",
+    "code": "def top_p_filter(logits, p):\n    sorted_logits, sorted_idx = logits.sort(dim=-1, descending=True)\n    probs = sorted_logits.softmax(-1).cumsum(-1)\n    drop = probs - sorted_logits.softmax(-1) >= p   # mass BEFORE this token\n    drop[..., 0] = False                            # always keep the argmax\n    mask = torch.zeros_like(drop).scatter(-1, sorted_idx, drop)\n    return logits.masked_fill(mask, float('-inf'))",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2,
+       3
+      ],
+      "caption": "Sort descending, then take the cumulative probability."
+     },
+     {
+      "at": 130,
+      "lines": [
+       4
+      ],
+      "caption": "The subtraction is the whole trick: compare the mass BEFORE this token, so the token that CROSSES p is kept."
+     },
+     {
+      "at": 250,
+      "lines": [
+       5
+      ],
+      "caption": "Without this, top_p(0.0) would leave zero tokens alive and multinomial would throw."
+     },
+     {
+      "at": 340,
+      "lines": [
+       6
+      ],
+      "caption": "Scatter the mask back into the original vocabulary order \u2014 the filter must not reorder the logits."
+     }
+    ]
+   },
+   "start": 96.2107,
+   "duration": 69.5313,
+   "segments": [
+    {
+     "text": "Here is nucleus sampling in seven lines, with the mistake everyone makes marked.",
+     "file": "t4-e5/audio/s3-000-a248c2ce32eb0e26.wav",
+     "start": 96.2107,
+     "duration": 5.9093
+    },
+    {
+     "text": "Sort descending, take the cumulative probability.",
+     "file": "t4-e5/audio/s3-001-e0ecefa59f5bdcd6.wav",
+     "start": 102.54,
+     "duration": 3.6907
+    },
+    {
+     "text": "Now line four.",
+     "file": "t4-e5/audio/s3-002-50f9a19d36462d94.wav",
+     "start": 106.6507,
+     "duration": 1.5573
+    },
+    {
+     "text": "We subtract this token's own probability from the cumulative sum, so what we compare against p is the mass *before* this token.",
+     "file": "t4-e5/audio/s3-003-4d6549974fa135ee.wav",
+     "start": 108.628,
+     "duration": 10.7093
+    },
+    {
+     "text": "That means the token which *crosses* the threshold is kept, not dropped.",
+     "file": "t4-e5/audio/s3-004-8766fb0f23c4e3f4.wav",
+     "start": 119.7573,
+     "duration": 6.7413
+    },
+    {
+     "text": "Get that wrong \u2014 compare the cumulative sum directly \u2014 and you systematically drop the token that was about to complete the nucleus, which quietly makes the model more conservative than you asked for.",
+     "file": "t4-e5/audio/s3-005-09e509b85d76486a.wav",
+     "start": 126.9187,
+     "duration": 13.7813
+    },
+    {
+     "text": "Line five keeps the argmax alive unconditionally, which is what makes top p of zero point zero one still leave exactly one token rather than none.",
+     "file": "t4-e5/audio/s3-006-ef451113ddc74126.wav",
+     "start": 141.12,
+     "duration": 12.1813
+    },
+    {
+     "text": "And line six scatters the mask back into vocabulary order, because a filter that reorders your logits is a filter that samples the wrong token.",
+     "file": "t4-e5/audio/s3-007-46152e11582cbce6.wav",
+     "start": 153.7213,
+     "duration": 11.3707
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the case for nucleus",
+    "title": "Same model, two positions: confident, and unsure",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "confident\ntop-k 20",
+      "value": 20,
+      "color": "#d98b4a"
+     },
+     {
+      "label": "confident\ntop-p 0.9",
+      "value": 1,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "unsure\ntop-k 20",
+      "value": 20,
+      "color": "#d98b4a"
+     },
+     {
+      "label": "unsure\ntop-p 0.9",
+      "value": 5,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "tokens still drawable",
+    "caption": "After '...ALPHAINF' the model is 99.8% sure the next character is R. After a date, it is choosing between five tickers."
+   },
+   "start": 165.742,
+   "duration": 74.3953,
+   "segments": [
+    {
+     "text": "And this is the argument for nucleus sampling, on two real rows from one real model.",
+     "file": "t4-e5/audio/s4-000-30be8dcc81b11240.wav",
+     "start": 165.742,
+     "duration": 6.5067
+    },
+    {
+     "text": "On the left, a confident position: the model has just seen A-L-P-H-A-I-N-F and is ninety nine point eight percent sure the next character is R.",
+     "file": "t4-e5/audio/s4-001-f82da8086da8935e.wav",
+     "start": 172.6687,
+     "duration": 11.5627
+    },
+    {
+     "text": "Top-k with k of twenty keeps twenty candidates \u2014 nineteen of which the model has already ruled out, every one of them a typo waiting to be drawn.",
+     "file": "t4-e5/audio/s4-002-ec90397a67c5a434.wav",
+     "start": 184.6513,
+     "duration": 11.4133
+    },
+    {
+     "text": "Top-p with p of zero point nine keeps one.",
+     "file": "t4-e5/audio/s4-003-be718982c405cb20.wav",
+     "start": 196.4847,
+     "duration": 3.4347
+    },
+    {
+     "text": "On the right, an genuinely uncertain position: the model has just emitted a date and is choosing between five ticker symbols, with probabilities zero point three one, zero point two one, zero point one nine, zero point one eight, zero point one.",
+     "file": "t4-e5/audio/s4-004-7af51236a9045f54.wav",
+     "start": 200.3393,
+     "duration": 20.416
+    },
+    {
+     "text": "Top-k still keeps twenty.",
+     "file": "t4-e5/audio/s4-005-c115adbad2a9c36b.wav",
+     "start": 221.1753,
+     "duration": 2.0693
+    },
+    {
+     "text": "Top-p opens up to five.",
+     "file": "t4-e5/audio/s4-006-bd53e03cd08eae8f.wav",
+     "start": 223.6647,
+     "duration": 2.4107
+    },
+    {
+     "text": "The budget follows the model's own confidence, which is a thing a constant k cannot do, and that is why nucleus sampling is the default in every serving stack you will meet.",
+     "file": "t4-e5/audio/s4-007-0c07a0b9c05b7004.wav",
+     "start": 226.4953,
+     "duration": 12.992
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "Eleven samplers, scored by the tape grammar",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "greedy",
+      "value": 0.25,
+      "note": "distinct lines"
+     },
+     {
+      "label": "T=0.5",
+      "value": 1.0,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "T=0.8",
+      "value": 1.0,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "T=1.5",
+      "value": 1.0
+     },
+     {
+      "label": "T=1.0\ntop-k 5",
+      "value": 1.0
+     },
+     {
+      "label": "T=0.8\ntop-p 0.9",
+      "value": 1.0,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "fraction of generated lines that are distinct",
+    "caption": "Greedy scores 100% on grammar and 25% on distinctness \u2014 it emits the same safe line over and over."
+   },
+   "start": 240.1373,
+   "duration": 54.4833,
+   "segments": [
+    {
+     "text": "We swept eleven settings and scored each on two things: how many generated lines match the tape grammar exactly, and how many are distinct.",
+     "file": "t4-e5/audio/s5-000-7f28f8a62d05e06e.wav",
+     "start": 240.1373,
+     "duration": 10.624
+    },
+    {
+     "text": "Greedy is the interesting one.",
+     "file": "t4-e5/audio/s5-001-6ec1f8d68bc911b7.wav",
+     "start": 251.1813,
+     "duration": 2.5173
+    },
+    {
+     "text": "It scores one hundred percent on grammar and twenty five percent on distinctness.",
+     "file": "t4-e5/audio/s5-002-49dfb3c639593309.wav",
+     "start": 254.1187,
+     "duration": 5.7387
+    },
+    {
+     "text": "It produces the same safe line over and over, because the argmax of a language model is not fluent text \u2014 it is the least risky token at every step, forever, and least-risky compounds into a loop.",
+     "file": "t4-e5/audio/s5-003-6eee49fb94dfa248.wav",
+     "start": 260.2773,
+     "duration": 15.424
+    },
+    {
+     "text": "At the other end, temperature one point five scores zero percent on grammar: variety bought by breaking the structure.",
+     "file": "t4-e5/audio/s5-004-63385064744de0cb.wav",
+     "start": 276.1213,
+     "duration": 8.5333
+    },
+    {
+     "text": "The useful settings sit in the middle, and the two columns together catch both failure modes, which one column alone would not.",
+     "file": "t4-e5/audio/s5-005-4736d62c3bbfe5a8.wav",
+     "start": 285.0747,
+     "duration": 8.896
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the cache",
+    "title": "Generating token t re-runs a prefix that cannot have changed",
+    "body": "The causal mask guarantees the past does not depend on the future. So the keys and values for positions 0 to t-1 are bit-for-bit identical to what they were on the previous step \u2014 and without a cache you compute them again anyway.",
+    "points": [
+     "Counted, for 128 generated tokens from an 11-token prompt:",
+     "without a cache: 9,536 position-passes through every layer",
+     "with a cache: 139",
+     "68x the work, all of it recomputing identical numbers."
+    ],
+    "aside": "This is not an optimisation trick. It is the removal of an obvious mistake, and it is quadratic."
+   },
+   "start": 294.6207,
+   "duration": 63.95,
+   "segments": [
+    {
+     "text": "Now the cache.",
+     "file": "t4-e5/audio/s6-000-117a60296528b44a.wav",
+     "start": 294.6207,
+     "duration": 1.344
+    },
+    {
+     "text": "Think about what generating token t costs without one.",
+     "file": "t4-e5/audio/s6-001-e254c64609742ba5.wav",
+     "start": 296.3847,
+     "duration": 4.096
+    },
+    {
+     "text": "You take the whole sequence so far, run it through every layer, and read the logits off the last position.",
+     "file": "t4-e5/audio/s6-002-aafb791ff571069c.wav",
+     "start": 300.9007,
+     "duration": 7.5307
+    },
+    {
+     "text": "Next step, you do it again with one more token.",
+     "file": "t4-e5/audio/s6-003-ffdcee5ac3d9c251.wav",
+     "start": 308.8513,
+     "duration": 3.5413
+    },
+    {
+     "text": "But the causal mask guarantees that nothing in the past depends on the future, so the keys and values for every position before the newest one are bit-for-bit what they were a moment ago.",
+     "file": "t4-e5/audio/s6-004-8dfeece1a72f091c.wav",
+     "start": 312.8127,
+     "duration": 13.1627
+    },
+    {
+     "text": "You computed them again anyway.",
+     "file": "t4-e5/audio/s6-005-b2707c2885b09c53.wav",
+     "start": 326.3953,
+     "duration": 2.5173
+    },
+    {
+     "text": "Counted for one hundred and twenty eight generated tokens from an eleven-token prompt: nine thousand five hundred and thirty six position-passes through every layer without a cache, one hundred and thirty nine with one.",
+     "file": "t4-e5/audio/s6-006-2a4eff5468a165f0.wav",
+     "start": 329.3327,
+     "duration": 15.8933
+    },
+    {
+     "text": "Sixty eight times the work, every bit of it reproducing numbers you already had.",
+     "file": "t4-e5/audio/s6-007-81e033d74180068a.wav",
+     "start": 345.646,
+     "duration": 5.8667
+    },
+    {
+     "text": "That is not a missed optimisation.",
+     "file": "t4-e5/audio/s6-008-e586b701be05584f.wav",
+     "start": 351.9327,
+     "duration": 2.6027
+    },
+    {
+     "text": "That is a mistake, and it is quadratic.",
+     "file": "t4-e5/audio/s6-009-a7f8c7f4ae9a8cf1.wav",
+     "start": 354.9553,
+     "duration": 2.9653
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "measured",
+    "title": "The speedup grows with length, because the waste does",
+    "kind": "line",
+    "series": [
+     {
+      "label": "no cache (seconds)",
+      "values": [
+       0.07,
+       0.17,
+       0.42,
+       0.92
+      ]
+     },
+     {
+      "label": "cached (seconds)",
+      "values": [
+       0.04,
+       0.09,
+       0.15,
+       0.23
+      ],
+      "color": "#5ac48c"
+     }
+    ],
+    "xLabel": "tokens generated: 32, 64, 128, 200",
+    "yLabel": "seconds",
+    "caption": "1.73x at 32 tokens, 3.99x at 200. Identical output at every length \u2014 the cache changes nothing but the arithmetic done."
+   },
+   "start": 358.5707,
+   "duration": 58.5233,
+   "segments": [
+    {
+     "text": "Measured on two CPU cores, and the shape is the point.",
+     "file": "t4-e5/audio/s7-000-767bdd02d272abab.wav",
+     "start": 358.5707,
+     "duration": 4.3733
+    },
+    {
+     "text": "At thirty two tokens the cache is one point seven times faster.",
+     "file": "t4-e5/audio/s7-001-9ebd47e488af79c6.wav",
+     "start": 363.364,
+     "duration": 4.8213
+    },
+    {
+     "text": "At sixty four, one point nine.",
+     "file": "t4-e5/audio/s7-002-9538036f9df725d3.wav",
+     "start": 368.6053,
+     "duration": 2.6453
+    },
+    {
+     "text": "At one hundred and twenty eight, two point eight.",
+     "file": "t4-e5/audio/s7-003-2adff722ef13111d.wav",
+     "start": 371.6707,
+     "duration": 3.264
+    },
+    {
+     "text": "At two hundred, four times.",
+     "file": "t4-e5/audio/s7-004-6a4e1e487e993230.wav",
+     "start": 375.3547,
+     "duration": 2.2613
+    },
+    {
+     "text": "The speedup grows with length because the thing being avoided grows with length.",
+     "file": "t4-e5/audio/s7-005-b48812c700fc82c8.wav",
+     "start": 378.036,
+     "duration": 5.44
+    },
+    {
+     "text": "And at very short lengths a cache can actually lose, because it pays fixed per-step overhead to save arithmetic there is not much of yet.",
+     "file": "t4-e5/audio/s7-006-668fd3cd8593ac06.wav",
+     "start": 383.896,
+     "duration": 9.8773
+    },
+    {
+     "text": "The output is token-identical at every length under greedy decoding, and there is a test that asserts exactly that \u2014 plus a stronger one that compares the *logits*, not just their argmax, because a subtly wrong cache can survive greedy decoding for quite a while before it shows.",
+     "file": "t4-e5/audio/s7-007-12062d34180c4b2e.wav",
+     "start": 394.1933,
+     "duration": 22.2507
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "With RoPE, rotate the key BEFORE you cache it",
+    "body": "A cached key carries the position it had when it was stored. If you rotate after reading from the cache, every cached key is rotated by the current position instead of its own, and the model is quietly wrong in a way no crash will tell you about.",
+    "code": "if self.use_rope:\n    q = apply_rope(q, cos, sin, offset=offset)\n    k = apply_rope(k, cos, sin, offset=offset)   # BEFORE the append\nif cache is not None:\n    k, v = cache.append(k, v)"
+   },
+   "start": 417.094,
+   "duration": 54.8673,
+   "segments": [
+    {
+     "text": "One gotcha, and it is specific to the combination of the last two episodes.",
+     "file": "t4-e5/audio/s8-000-8b249ef347ec9853.wav",
+     "start": 417.094,
+     "duration": 5.6533
+    },
+    {
+     "text": "With rotary embeddings, the key is rotated by its position.",
+     "file": "t4-e5/audio/s8-001-c5371b4f47d5979a.wav",
+     "start": 423.1673,
+     "duration": 4.5653
+    },
+    {
+     "text": "A cached key was stored at some earlier position, and it has to carry that rotation with it.",
+     "file": "t4-e5/audio/s8-002-0a7f567be74860ee.wav",
+     "start": 428.1527,
+     "duration": 6.5067
+    },
+    {
+     "text": "So you rotate before you write into the cache, never after you read out of it.",
+     "file": "t4-e5/audio/s8-003-d87d86e91ae23d46.wav",
+     "start": 435.0793,
+     "duration": 5.376
+    },
+    {
+     "text": "Get the order wrong and every cached key is rotated by the *current* position instead of its own, the relative-phase property silently stops holding, and the model is wrong in a way that produces no crash and no obvious garbage.",
+     "file": "t4-e5/audio/s8-004-2abdb18199cfea70.wav",
+     "start": 440.8753,
+     "duration": 18.7947
+    },
+    {
+     "text": "Our test for this checks the offset path against a contiguous forward pass, and it is one of the few tests in the repository I would call load-bearing.",
+     "file": "t4-e5/audio/s8-005-6f8bb459d9a53724.wav",
+     "start": 460.09,
+     "duration": 11.2213
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the wall",
+    "title": "And then the cache runs out",
+    "body": "The naive cache is one preallocated tensor per layer, filled left to right. Its size is linear in context x batch x layers x heads x head_dim x 2 x 4 bytes \u2014 and when it is full, it is full.",
+    "points": [
+     "1 MB here, for a 256-token context on a 4-layer model.",
+     "For a 7B model at 4k context: gigabytes, per sequence.",
+     "Bigger than the model's activations, and mostly empty most of the time.",
+     "generate(use_cache=True) raises rather than sliding \u2014 on purpose."
+    ],
+    "aside": "That is exactly the problem T12's paged KV cache solves, and you cannot appreciate the design until you have hit this wall with your own model."
+   },
+   "start": 471.9613,
+   "duration": 75.27,
+   "segments": [
+    {
+     "text": "And then the cache runs out, which is the last thing this topic has to teach.",
+     "file": "t4-e5/audio/s9-000-16eba10a5bccbb57.wav",
+     "start": 471.9613,
+     "duration": 5.2907
+    },
+    {
+     "text": "Ours is the naive version: one preallocated tensor per layer, filled left to right, and when it is full it is full.",
+     "file": "t4-e5/audio/s9-001-0d8ce80341873b4d.wav",
+     "start": 477.672,
+     "duration": 9.0453
+    },
+    {
+     "text": "The size is linear in context times batch times layers times heads times head dimension, times two for keys and values, times four bytes.",
+     "file": "t4-e5/audio/s9-002-12e70319593ff97f.wav",
+     "start": 487.1373,
+     "duration": 11.3067
+    },
+    {
+     "text": "Here that is one megabyte for a two hundred and fifty six token context on a four layer model, which is nothing.",
+     "file": "t4-e5/audio/s9-003-a21d5ea6dd7de403.wav",
+     "start": 498.864,
+     "duration": 8.1493
+    },
+    {
+     "text": "For a seven billion parameter model at four thousand tokens of context it is gigabytes \u2014 per sequence.",
+     "file": "t4-e5/audio/s9-004-cc4ac53fc4f1ac38.wav",
+     "start": 507.4333,
+     "duration": 8.128
+    },
+    {
+     "text": "Larger than the model's activations, and mostly empty most of the time, because most requests are shorter than the maximum.",
+     "file": "t4-e5/audio/s9-005-6a50b05705d224c5.wav",
+     "start": 515.9813,
+     "duration": 9.1733
+    },
+    {
+     "text": "Our generate function raises an error rather than quietly sliding the window, deliberately, so that you meet the wall yourself.",
+     "file": "t4-e5/audio/s9-006-20839e5b486e96b2.wav",
+     "start": 525.5747,
+     "duration": 9.5787
+    },
+    {
+     "text": "That wall is the entire motivation for T12, the paged key-value cache, and the design will make a great deal more sense to you having hit it.",
+     "file": "t4-e5/audio/s9-007-e8891eecd3872b7b.wav",
+     "start": 535.5733,
+     "duration": 11.008
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "The series, in five sentences",
+    "points": [
+     "Attention is a differentiable dictionary lookup, and the sqrt(d_k) is a variance fix.",
+     "The block is two writes to a shared residual bus; the MLP holds two thirds of the parameters.",
+     "RoPE falls out of one wish about relative position, and is the only scheme with an answer past the training length.",
+     "The model learned the grammar completely and the semantics barely \u2014 and our first interpretability experiment measured a positional shortcut.",
+     "The KV cache is the removal of quadratic waste, and its memory is the reason paged caches exist."
+    ],
+    "ifSkipped": "This architecture is what AlphaSLM, the embedding model, the ViT and the speech model are all instances of. Everything after this is a variation on what you have just built.",
+    "next": "T15 \u2014 AlphaSLM: this architecture, FinTok, and a real pretraining pipeline."
+   },
+   "start": 547.2313,
+   "duration": 75.3633,
+   "segments": [
+    {
+     "text": "That is the series.",
+     "file": "t4-e5/audio/s10-000-e8f6b783e7471d78.wav",
+     "start": 547.2313,
+     "duration": 1.4933
+    },
+    {
+     "text": "Five things to carry forward.",
+     "file": "t4-e5/audio/s10-001-d606dcc98d63b58d.wav",
+     "start": 549.1447,
+     "duration": 2.0907
+    },
+    {
+     "text": "Attention is a differentiable dictionary lookup, and the square root is a variance fix.",
+     "file": "t4-e5/audio/s10-002-3270024cb897ee86.wav",
+     "start": 551.6553,
+     "duration": 6.2933
+    },
+    {
+     "text": "The block is two writes to a shared residual bus, and the MLP holds two thirds of the parameters.",
+     "file": "t4-e5/audio/s10-003-9361d726336fdf39.wav",
+     "start": 558.3687,
+     "duration": 7.104
+    },
+    {
+     "text": "RoPE falls out of one wish about relative position and is the only scheme that has an answer past the training length.",
+     "file": "t4-e5/audio/s10-004-479cd02e5f566a20.wav",
+     "start": 565.8927,
+     "duration": 9.3227
+    },
+    {
+     "text": "The model learned the grammar of the tape completely and its meaning barely, and our first interpretability experiment measured a positional shortcut rather than the circuit we were looking for.",
+     "file": "t4-e5/audio/s10-005-236577e27d1f9597.wav",
+     "start": 575.6353,
+     "duration": 12.9493
+    },
+    {
+     "text": "And the key-value cache removes quadratic waste, at a memory cost that is the whole reason paged caches exist.",
+     "file": "t4-e5/audio/s10-006-d7743f2f4f214229.wav",
+     "start": 589.0047,
+     "duration": 8.8747
+    },
+    {
+     "text": "What you have built is the architecture that AlphaSLM, the embedding model, the vision transformer and the speech model in this course are all instances of.",
+     "file": "t4-e5/audio/s10-007-6290a55282280eee.wav",
+     "start": 598.2993,
+     "duration": 11.8187
+    },
+    {
+     "text": "Next topic, T15: this architecture, plus the tokenizer you built in phase one, plus a real pretraining pipeline.",
+     "file": "t4-e5/audio/s10-008-dfbef85939c1c2be.wav",
+     "start": 610.538,
+     "duration": 9.7067
+    },
+    {
+     "text": "See you there.",
+     "file": "t4-e5/audio/s10-009-18440a5547d44661.wav",
+     "start": 620.6647,
+     "duration": 1.28
+    }
+   ]
+  }
+ ]
+}

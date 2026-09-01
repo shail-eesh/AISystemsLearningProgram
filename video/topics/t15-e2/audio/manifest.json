@@ -1,0 +1,312 @@
+{
+ "s1-000-e19396f98ddd78fa.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Welcome back.",
+  "voice": "am_michael"
+ },
+ "s1-001-bd99ed1d11fa7010.wav": {
+  "duration": 1.4293333333333333,
+  "text": "Episode two.",
+  "voice": "am_michael"
+ },
+ "s1-002-9b50b26ce3cc70e3.wav": {
+  "duration": 6.656,
+  "text": "In topic four we wrote a training loop in forty lines: run it, read the number, move on.",
+  "voice": "am_michael"
+ },
+ "s1-003-96cc0041f4234b4b.wav": {
+  "duration": 11.136,
+  "text": "Today we write the version you leave running overnight on a GPU, and the entire difference between the two is *what happens when it stops*.",
+  "voice": "am_michael"
+ },
+ "s1-004-622d71afdd223526.wav": {
+  "duration": 6.016,
+  "text": "Four things that loop does not do, and one test that decides whether we got it right.",
+  "voice": "am_michael"
+ },
+ "s2-000-49849687744e29c4.wav": {
+  "duration": 6.229333333333333,
+  "text": "Start with the schedule, because it explains two decisions people copy without knowing why.",
+  "voice": "am_michael"
+ },
+ "s2-001-25f7c56ea3f24a80.wav": {
+  "duration": 5.674666666666667,
+  "text": "The first hundred steps are a linear warmup from almost nothing up to the peak.",
+  "voice": "am_michael"
+ },
+ "s2-002-fdb6d7e84241e2dc.wav": {
+  "duration": 1.8773333333333333,
+  "text": "The reason is Adam.",
+  "voice": "am_michael"
+ },
+ "s2-003-afa35ba0428cffe1.wav": {
+  "duration": 21.44,
+  "text": "Adam divides the gradient by a running estimate of its second moment, and at step zero that estimate has seen essentially no gradients, so the update is roughly the sign of the gradient times the learning rate \u2014 a confident, full-size step in a direction the optimiser has no evidence about.",
+  "voice": "am_michael"
+ },
+ "s2-004-925e7c511924f0f2.wav": {
+  "duration": 1.728,
+  "text": "Warmup is the fix.",
+  "voice": "am_michael"
+ },
+ "s2-005-58ba91af2c6124ee.wav": {
+  "duration": 3.52,
+  "text": "Then the cosine decay down to a tenth of the peak.",
+  "voice": "am_michael"
+ },
+ "s2-006-ee7733940ec6b625.wav": {
+  "duration": 9.322666666666667,
+  "text": "Late in training you want small, careful steps; a constant learning rate bounces around the minimum instead of settling into it.",
+  "voice": "am_michael"
+ },
+ "s2-007-68bcad87fd948a77.wav": {
+  "duration": 12.245333333333333,
+  "text": "Neither of these is a magic recipe: both are answers to a specific problem, and if you can say what the problem is you can decide when the answer does not apply.",
+  "voice": "am_michael"
+ },
+ "s3-000-6088006f760c63a6.wav": {
+  "duration": 2.2186666666666666,
+  "text": "Now the point of the episode.",
+  "voice": "am_michael"
+ },
+ "s3-001-0abacc62603bad73.wav": {
+  "duration": 2.3466666666666667,
+  "text": "A checkpoint is not the weights.",
+  "voice": "am_michael"
+ },
+ "s3-002-8cf56633e945e67f.wav": {
+  "duration": 6.762666666666667,
+  "text": "A checkpoint is everything the loop needs in order for stopping and restarting to be invisible.",
+  "voice": "am_michael"
+ },
+ "s3-003-fa6bb794d8dc22cb.wav": {
+  "duration": 1.2373333333333334,
+  "text": "Five things.",
+  "voice": "am_michael"
+ },
+ "s3-004-d99887e07c91d2f4.wav": {
+  "duration": 2.5813333333333333,
+  "text": "The model, which is the easy part.",
+  "voice": "am_michael"
+ },
+ "s3-005-bc3273402f5478a5.wav": {
+  "duration": 7.466666666666667,
+  "text": "The optimiser \u2014 Adam's two moment tensors for every parameter, which is about two thirds of the file.",
+  "voice": "am_michael"
+ },
+ "s3-006-805c72eae8698ef0.wav": {
+  "duration": 4.864,
+  "text": "The run state: which step we are on, how many tokens have been seen.",
+  "voice": "am_michael"
+ },
+ "s3-007-c748bd8d4a11c78d.wav": {
+  "duration": 7.8933333333333335,
+  "text": "The data sampler's random number generator state, so the resumed run draws the windows it would have drawn.",
+  "voice": "am_michael"
+ },
+ "s3-008-7b44f5144f196baa.wav": {
+  "duration": 5.44,
+  "text": "And torch's own generator, for dropout and anything else stochastic.",
+  "voice": "am_michael"
+ },
+ "s3-009-b7b8dbce6acaa9ec.wav": {
+  "duration": 12.181333333333333,
+  "text": "The optimiser state is the one people omit, and I think I know why: a model that loads and generates text *looks* like a successful resume.",
+  "voice": "am_michael"
+ },
+ "s3-010-70dc6e29a49a44bf.wav": {
+  "duration": 1.8986666666666667,
+  "text": "The failure is silent.",
+  "voice": "am_michael"
+ },
+ "s3-011-997d6862a17a5db4.wav": {
+  "duration": 16.832,
+  "text": "Your moment estimates restart at zero, warmup does not happen because you are at step six thousand, and the first few dozen steps after the resume take large, badly-scaled updates into a model that was nearly converged.",
+  "voice": "am_michael"
+ },
+ "s4-000-44b0635c98321678.wav": {
+  "duration": 3.6266666666666665,
+  "text": "So here is the test, and it is the strong form.",
+  "voice": "am_michael"
+ },
+ "s4-001-7a0801aa04895d34.wav": {
+  "duration": 4.714666666666667,
+  "text": "Train one hundred and twenty steps straight through; that is the reference.",
+  "voice": "am_michael"
+ },
+ "s4-002-32390989bf26f5f8.wav": {
+  "duration": 7.68,
+  "text": "Then train sixty, checkpoint, throw the object away, build a fresh model, load, and train sixty more.",
+  "voice": "am_michael"
+ },
+ "s4-003-69d0c9e5442c3f7c.wav": {
+  "duration": 15.509333333333334,
+  "text": "In between the two halves we deliberately poison torch's global random number generator, because a resume that only works when nothing else in the process touched torch is not a resume, it is a coincidence.",
+  "voice": "am_michael"
+ },
+ "s4-004-2f0bcbd87ba1e7b2.wav": {
+  "duration": 2.112,
+  "text": "Then compare every parameter.",
+  "voice": "am_michael"
+ },
+ "s4-005-448fce80b86e10f4.wav": {
+  "duration": 3.2426666666666666,
+  "text": "The answer is exactly zero point zero.",
+  "voice": "am_michael"
+ },
+ "s4-006-5ab4e6d48957f535.wav": {
+  "duration": 1.2586666666666666,
+  "text": "Not close.",
+  "voice": "am_michael"
+ },
+ "s4-007-581280de42e1d90c.wav": {
+  "duration": 10.837333333333333,
+  "text": "The resumed run computed identical arithmetic, because the sampler's position, the optimiser moments and the schedule position all came back.",
+  "voice": "am_michael"
+ },
+ "s4-008-30d78c0a37215fe5.wav": {
+  "duration": 9.6,
+  "text": "Drop any one of those five keys from the checkpoint and this number stops being zero, which is exactly what makes it a useful test.",
+  "voice": "am_michael"
+ },
+ "s5-000-7705d34377b1b947.wav": {
+  "duration": 8.384,
+  "text": "Next: gradient accumulation, which is what will let a forty million parameter model train on twelve gigabytes.",
+  "voice": "am_michael"
+ },
+ "s5-001-9b4a0c6e24d11947.wav": {
+  "duration": 9.962666666666667,
+  "text": "Instead of one batch of twenty four, run four micro-batches of six, sum their gradients, then take one optimiser step.",
+  "voice": "am_michael"
+ },
+ "s5-002-3673d4bc5dd69468.wav": {
+  "duration": 4.48,
+  "text": "Mathematically the same update, arbitrarily less memory.",
+  "voice": "am_michael"
+ },
+ "s5-003-f672ece8f63c2f9e.wav": {
+  "duration": 4.394666666666667,
+  "text": "There is exactly one thing to get right, and it is a division.",
+  "voice": "am_michael"
+ },
+ "s5-004-13f41e1c32fe5d06.wav": {
+  "duration": 13.12,
+  "text": "Each micro-batch's loss must be divided by the number of micro-batches, so that what accumulates is the *mean* gradient over the full batch rather than the sum.",
+  "voice": "am_michael"
+ },
+ "s5-005-414ba496a2786237.wav": {
+  "duration": 17.066666666666666,
+  "text": "Forget it, and your effective learning rate is silently multiplied by the accumulation factor, training gets unstable, and you conclude that accumulation is unstable rather than that you scaled your learning rate by four without meaning to.",
+  "voice": "am_michael"
+ },
+ "s6-000-b19ccb9762d9a626.wav": {
+  "duration": 4.8213333333333335,
+  "text": "And here is a detail I did not expect and am glad we measured.",
+  "voice": "am_michael"
+ },
+ "s6-001-041bdd67ad5729f0.wav": {
+  "duration": 8.064,
+  "text": "The two runs draw the same sixteen windows in the same order, so you might expect the parameters to match to the bit.",
+  "voice": "am_michael"
+ },
+ "s6-002-ec08bf760f037fa8.wav": {
+  "duration": 1.2373333333333334,
+  "text": "They do not.",
+  "voice": "am_michael"
+ },
+ "s6-003-99a4ecc545b6c241.wav": {
+  "duration": 4.245333333333333,
+  "text": "The difference after thirty steps is six parts in ten million.",
+  "voice": "am_michael"
+ },
+ "s6-004-a48392e16cc99e51.wav": {
+  "duration": 18.133333333333333,
+  "text": "The reason is that summing four partial gradients is a different order of floating-point additions than summing sixteen at once, and floating-point addition is not associative \u2014 which is the same fact topic forty five A spent two episodes on.",
+  "voice": "am_michael"
+ },
+ "s6-005-3c4424ddd1374c95.wav": {
+  "duration": 3.648,
+  "text": "So this is reassociation noise, not a bug.",
+  "voice": "am_michael"
+ },
+ "s6-006-cdddd4b53910a2e9.wav": {
+  "duration": 18.261333333333333,
+  "text": "It is also why a resume test must not change the accumulation factor half way through, and why \"my accumulated run does not exactly reproduce my unaccumulated one\" is an expected observation rather than a defect report.",
+  "voice": "am_michael"
+ },
+ "s7-000-47432dd79cf119cb.wav": {
+  "duration": 2.56,
+  "text": "Two smaller things and then the recap.",
+  "voice": "am_michael"
+ },
+ "s7-001-07bd9586f1655737.wav": {
+  "duration": 3.968,
+  "text": "First, the log: one JSON object per line.",
+  "voice": "am_michael"
+ },
+ "s7-002-0905e4f30a89a2f7.wav": {
+  "duration": 10.154666666666667,
+  "text": "Step, loss, learning rate, gradient norm, tokens seen, seconds elapsed, with evaluation records interleaved in the same file.",
+  "voice": "am_michael"
+ },
+ "s7-003-d319965283659f11.wav": {
+  "duration": 6.912,
+  "text": "It is appended as it goes, so a run that dies still has everything up to the moment it died.",
+  "voice": "am_michael"
+ },
+ "s7-004-c3674111420ac7db.wav": {
+  "duration": 3.008,
+  "text": "No service, no account, no network.",
+  "voice": "am_michael"
+ },
+ "s7-005-2665f51066cf58af.wav": {
+  "duration": 20.266666666666666,
+  "text": "And I want to single out the gradient norm column, because it is the one people forget to log and the first one they want when a run starts behaving oddly \u2014 a loss spike with a normal gradient norm is a different problem from a loss spike with a gradient norm of two hundred.",
+  "voice": "am_michael"
+ },
+ "s7-006-4181b8e614dbd5e2.wav": {
+  "duration": 17.493333333333332,
+  "text": "Second, a wall-clock budget: the loop can be told to stop after so many seconds, and it stops *at a checkpoint*, cleanly, rather than being killed at an arbitrary point by whatever is enforcing your time limit.",
+  "voice": "am_michael"
+ },
+ "s8-000-612ae6df2d818804.wav": {
+  "duration": 1.28,
+  "text": "Three things.",
+  "voice": "am_michael"
+ },
+ "s8-001-cadf3811dd6afddb.wav": {
+  "duration": 0.832,
+  "text": "One.",
+  "voice": "am_michael"
+ },
+ "s8-002-0c72e37c5883bb45.wav": {
+  "duration": 18.069333333333333,
+  "text": "A checkpoint is the model, the optimiser, the run state and both random number generator states, and the test that decides whether you got it right is that sixty plus a resume plus sixty equals one hundred and twenty, exactly.",
+  "voice": "am_michael"
+ },
+ "s8-003-8848b45411fcacef.wav": {
+  "duration": 0.8106666666666666,
+  "text": "Two.",
+  "voice": "am_michael"
+ },
+ "s8-004-3c26f69f2b53de67.wav": {
+  "duration": 15.466666666666667,
+  "text": "Gradient accumulation gives you the same update with less memory, provided you divide by the number of micro-batches \u2014 and it is not bit-identical, for reasons that are about floating point and not about you.",
+  "voice": "am_michael"
+ },
+ "s8-005-301665492da4bf47.wav": {
+  "duration": 0.896,
+  "text": "Three.",
+  "voice": "am_michael"
+ },
+ "s8-006-efb736c9c8e44814.wav": {
+  "duration": 1.856,
+  "text": "Log the gradient norm.",
+  "voice": "am_michael"
+ },
+ "s8-007-c219445370df2bdc.wav": {
+  "duration": 14.186666666666667,
+  "text": "Next time, the scaling mini-study: three model sizes, one corpus, a matched schedule, and a result that turned out to be about the *corpus* rather than about the models.",
+  "voice": "am_michael"
+ }
+}

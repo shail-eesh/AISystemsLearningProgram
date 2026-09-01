@@ -1,0 +1,619 @@
+{
+ "topic": "t15-e1",
+ "episode": 1,
+ "title": "From corpus to shards",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 505.4033,
+ "wordCount": 1061,
+ "wordsPerMinute": 126.0,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 34.7,
+ "generatedInSeconds": 196.9,
+ "segmentsSynthesised": 68,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "From corpus to shards",
+    "subtitle": "Four decisions, three of which are about leakage and waste rather than about text.",
+    "topicId": "T15",
+    "episode": "Episode 1"
+   },
+   "start": 0.0,
+   "duration": 35.2193,
+   "segments": [
+    {
+     "text": "Welcome back to the AI Systems Forge.",
+     "file": "t15-e1/audio/s1-000-11515aeabd0fd8e4.wav",
+     "start": 0.0,
+     "duration": 2.9227
+    },
+    {
+     "text": "Phase two, topic fifteen.",
+     "file": "t15-e1/audio/s1-001-961a11df65794069.wav",
+     "start": 3.3427,
+     "duration": 2.1547
+    },
+    {
+     "text": "AlphaSLM \u2014 the desk's own small language model.",
+     "file": "t15-e1/audio/s1-002-0676ceb948175050.wav",
+     "start": 5.9173,
+     "duration": 4.224
+    },
+    {
+     "text": "You have the architecture from T4 and the tokenizer from T30.",
+     "file": "t15-e1/audio/s1-003-4215afc6f2bd5fcc.wav",
+     "start": 10.5613,
+     "duration": 5.1627
+    },
+    {
+     "text": "This topic is everything around them: the data pipeline, the training harness, and how to tell whether the result is any good.",
+     "file": "t15-e1/audio/s1-004-a8f96db2637ab04c.wav",
+     "start": 16.144,
+     "duration": 9.1947
+    },
+    {
+     "text": "Today, the data pipeline, which is four decisions, and three of them are about leakage and waste rather than about text.",
+     "file": "t15-e1/audio/s1-005-1489c6c6529b9c95.wav",
+     "start": 25.7587,
+     "duration": 8.8107
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ArchitectureMap",
+   "props": {
+    "eyebrow": "where we are",
+    "highlight": [
+     "models",
+     "data"
+    ],
+    "caption": "AlphaSLM is the desk's local model \u2014 later LoRA-tuned, DPO-aligned, distilled, quantized and served."
+   },
+   "start": 35.2193,
+   "duration": 34.7007,
+   "segments": [
+    {
+     "text": "Here is where we are.",
+     "file": "t15-e1/audio/s2-000-764be60a57f232b9.wav",
+     "start": 35.2193,
+     "duration": 1.792
+    },
+    {
+     "text": "Two blocks lit this time: data and models.",
+     "file": "t15-e1/audio/s2-001-b540ece90c32a6b0.wav",
+     "start": 37.4313,
+     "duration": 3.2213
+    },
+    {
+     "text": "AlphaSLM is the model the rest of this course modifies rather than replaces.",
+     "file": "t15-e1/audio/s2-002-d37b65ff91237690.wav",
+     "start": 41.0727,
+     "duration": 6.6773
+    },
+    {
+     "text": "In phase five it gets LoRA-tuned and DPO-aligned.",
+     "file": "t15-e1/audio/s2-003-c4be47d0021abd8a.wav",
+     "start": 48.17,
+     "duration": 4.8
+    },
+    {
+     "text": "In phase six it gets quantized and served by a Rust inference server you will also write.",
+     "file": "t15-e1/audio/s2-004-70297bbb56ace039.wav",
+     "start": 53.39,
+     "duration": 6.848
+    },
+    {
+     "text": "Everything downstream assumes there is a local model with weights you own.",
+     "file": "t15-e1/audio/s2-005-383b1147e6518a59.wav",
+     "start": 60.658,
+     "duration": 5.376
+    },
+    {
+     "text": "This topic is where those weights come from.",
+     "file": "t15-e1/audio/s2-006-5d8170e0906bced9.wav",
+     "start": 66.454,
+     "duration": 2.816
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "decision 1",
+    "title": "What is a document?",
+    "body": "The corpus is 12 MB of deterministically generated financial text plus everything already committed in the repository's sample files. Every document carries a FinTok special token naming its register.",
+    "points": [
+     "<|filing|> \u2014 section-structured filing prose with numbers",
+     "<|commentary|> \u2014 daily market commentary",
+     "<|announcement|> \u2014 exchange announcements",
+     "<|order|> \u2014 order tickets from the committed sample, every one labelled as simulated",
+     "plus the price tape, grouped by symbol rather than by date"
+    ],
+    "aside": "Register as a token means it is something the model can condition on. Prompt with <|filing|> and you get filing prose, not a price line."
+   },
+   "start": 69.92,
+   "duration": 68.658,
+   "segments": [
+    {
+     "text": "Decision one: what is a document?",
+     "file": "t15-e1/audio/s3-000-251981b80534440a.wav",
+     "start": 69.92,
+     "duration": 2.9227
+    },
+    {
+     "text": "Our corpus is about twelve megabytes, generated deterministically from templates with fictional issuers, plus everything already committed in the repository's sample files.",
+     "file": "t15-e1/audio/s3-001-e46d33d4f2dcc145.wav",
+     "start": 73.2627,
+     "duration": 13.056
+    },
+    {
+     "text": "And every document is prefixed with a FinTok special token naming its register.",
+     "file": "t15-e1/audio/s3-002-3c015e5342281875.wav",
+     "start": 86.7387,
+     "duration": 6.144
+    },
+    {
+     "text": "Filing.",
+     "file": "t15-e1/audio/s3-003-ab15388681415724.wav",
+     "start": 93.3027,
+     "duration": 1.024
+    },
+    {
+     "text": "Commentary.",
+     "file": "t15-e1/audio/s3-004-739b45588a93392a.wav",
+     "start": 94.7467,
+     "duration": 1.3227
+    },
+    {
+     "text": "Announcement.",
+     "file": "t15-e1/audio/s3-005-152d45339dbca693.wav",
+     "start": 96.4893,
+     "duration": 1.344
+    },
+    {
+     "text": "Order.",
+     "file": "t15-e1/audio/s3-006-722e21bc542b107e.wav",
+     "start": 98.2533,
+     "duration": 0.9813
+    },
+    {
+     "text": "Plus the price tape, which is grouped by symbol rather than by date, so a single document contains one symbol's whole year and the model has some chance of seeing a series rather than a shuffle.",
+     "file": "t15-e1/audio/s3-007-9f4b3d70764812a6.wav",
+     "start": 99.6547,
+     "duration": 13.7813
+    },
+    {
+     "text": "Making register a *token* rather than a formatting convention means it is something the model can condition on.",
+     "file": "t15-e1/audio/s3-008-48861b19ac714e21.wav",
+     "start": 113.856,
+     "duration": 9.6427
+    },
+    {
+     "text": "Prompt with the filing token and you get filing prose; prompt with the commentary token and you get a market comment.",
+     "file": "t15-e1/audio/s3-009-94c824b790e509f2.wav",
+     "start": 123.9187,
+     "duration": 8.2133
+    },
+    {
+     "text": "That is a free capability and it costs five entries in the vocabulary.",
+     "file": "t15-e1/audio/s3-010-1fbe0ed1ca9b02f1.wav",
+     "start": 132.552,
+     "duration": 5.376
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "Decision 2: the split goes between documents, before packing",
+    "body": "Split a packed token array instead and the boundary lands mid-document, so your validation set contains the continuation of something the model trained on. The number still goes down. It just stops meaning anything.",
+    "code": "train_docs, val_docs = split_documents(build_corpus())   # whole documents\nmeta = pack_documents(train_docs, val_docs)              # then pack\n# documents in both splits: 0"
+   },
+   "start": 138.578,
+   "duration": 71.9487,
+   "segments": [
+    {
+     "text": "Decision two, and this is the one that quietly ruins evaluations.",
+     "file": "t15-e1/audio/s4-000-137bf4dde233879c.wav",
+     "start": 138.578,
+     "duration": 5.248
+    },
+    {
+     "text": "The split goes between *documents*, before anything is packed.",
+     "file": "t15-e1/audio/s4-001-8450cc5619366a32.wav",
+     "start": 144.246,
+     "duration": 5.76
+    },
+    {
+     "text": "If you pack first and then slice the token array at ninety percent, the boundary lands in the middle of some document, and your validation set now contains the second half of a filing whose first half is in your training set.",
+     "file": "t15-e1/audio/s4-002-dbab1f6036a9f1fb.wav",
+     "start": 150.426,
+     "duration": 16.4907
+    },
+    {
+     "text": "The model has seen the style, the issuer, the numbers, and half the sentences.",
+     "file": "t15-e1/audio/s4-003-583062fa20f73289.wav",
+     "start": 167.3367,
+     "duration": 5.312
+    },
+    {
+     "text": "Validation loss still goes down over training, the chart still looks right, and the number has stopped measuring generalisation.",
+     "file": "t15-e1/audio/s4-004-c03d51e1b5e93dea.wav",
+     "start": 173.0687,
+     "duration": 9.1733
+    },
+    {
+     "text": "Our split is by document and there is a test asserting that zero documents appear in both.",
+     "file": "t15-e1/audio/s4-005-508ab8ddc0e5b021.wav",
+     "start": 182.662,
+     "duration": 6.72
+    },
+    {
+     "text": "And we go one step further: the held-out set is *filings only*, because the claim this topic makes is about perplexity on held-out filings, and a validation set diluted with near-deterministic price tape would measure something easier and different.",
+     "file": "t15-e1/audio/s4-006-d8402e45538e5354.wav",
+     "start": 189.802,
+     "duration": 20.0747
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "decision 3",
+    "title": "How it is stored: one flat uint16 array per split",
+    "filename": "phases/p2/t15-slm/src/t15_alphaslm/shards.py",
+    "code": "def encode_documents(documents, tokenizer, *, separator='<|endoftext|>'):\n    sep = tokenizer.special_tokens[separator]\n    if tokenizer.vocab_size > np.iinfo(DTYPE).max + 1:\n        raise ValueError('vocabulary does not fit; widen the dtype')\n    out = []\n    for doc in documents:\n        out.extend(tokenizer.encode(doc))\n        out.append(sep)\n    return np.asarray(out, dtype=np.uint16)",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       2
+      ],
+      "caption": "The separator is a learned token, not a newline \u2014 so 'this document is over' becomes predictable."
+     },
+     {
+      "at": 130,
+      "lines": [
+       3,
+       4
+      ],
+      "caption": "uint16 because FinTok's vocabulary is 3,495. Checked, not assumed: a wider vocab raises instead of wrapping."
+     },
+     {
+      "at": 250,
+      "lines": [
+       6,
+       7,
+       8
+      ],
+      "caption": "One flat array. No padding, no per-example records \u2014 documents just run into each other."
+     }
+    ]
+   },
+   "start": 210.5267,
+   "duration": 70.4487,
+   "segments": [
+    {
+     "text": "Decision three: how it is stored.",
+     "file": "t15-e1/audio/s5-000-b9315175bc2fd94e.wav",
+     "start": 210.5267,
+     "duration": 2.7093
+    },
+    {
+     "text": "One flat unsigned sixteen-bit array per split, with a separator token between documents.",
+     "file": "t15-e1/audio/s5-001-20de38caf7fdadf0.wav",
+     "start": 213.656,
+     "duration": 7.168
+    },
+    {
+     "text": "Three things in that sentence.",
+     "file": "t15-e1/audio/s5-002-95ccc63eff8da417.wav",
+     "start": 221.244,
+     "duration": 2.1973
+    },
+    {
+     "text": "The separator is a learned token rather than a newline, so \"this document is over\" becomes something the model can predict, and therefore something generation can stop on.",
+     "file": "t15-e1/audio/s5-003-21e09d5623713811.wav",
+     "start": 223.8613,
+     "duration": 13.056
+    },
+    {
+     "text": "Sixteen bits because FinTok's vocabulary is three thousand four hundred and ninety five \u2014 a thirty-two-bit array would double the file to store the same numbers \u2014 and it is *checked* rather than assumed: hand this function a wider tokenizer and it raises instead of silently wrapping ids around.",
+     "file": "t15-e1/audio/s5-004-5bf9e07ebdcb4a1e.wav",
+     "start": 237.3373,
+     "duration": 23.68
+    },
+    {
+     "text": "And it is one flat array with no padding anywhere.",
+     "file": "t15-e1/audio/s5-005-83901f5a9a8fbd7d.wav",
+     "start": 261.4373,
+     "duration": 3.328
+    },
+    {
+     "text": "Documents run into each other through the separator.",
+     "file": "t15-e1/audio/s5-006-bde451982b1d604b.wav",
+     "start": 265.1853,
+     "duration": 3.52
+    },
+    {
+     "text": "Our corpus has documents that vary twenty-fold in length; padding them all to a fixed size would throw away roughly a quarter of the compute on nothing.",
+     "file": "t15-e1/audio/s5-007-09746efc8b4c83bb.wav",
+     "start": 269.1253,
+     "duration": 11.2
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "why a memmap",
+    "title": "There are no examples. There is one long array and a window length.",
+    "body": "A pretraining corpus is not a list of examples, and modelling it as one adds a DataLoader, workers, collation and a shuffling buffer to a problem whose answer is a random integer.",
+    "points": [
+     "2,371,748 tokens on disk -> 2,371,619 distinct 128-token windows.",
+     "x is data[i : i+T]; y is data[i+1 : i+T+1]. The targets are the inputs shifted by one.",
+     "Every position in every window is a training example \u2014 that is why transformers are sample-efficient per step.",
+     "np.memmap reads only the windows the batch touches, so the corpus does not have to fit in RAM."
+    ],
+    "aside": "The copy out of the memmap into a tensor is not optional: torch cannot own memory it did not allocate."
+   },
+   "start": 280.9753,
+   "duration": 71.11,
+   "segments": [
+    {
+     "text": "And then reading it back, where there is a design point worth stating plainly.",
+     "file": "t15-e1/audio/s6-000-451c85ca466f66ac.wav",
+     "start": 280.9753,
+     "duration": 5.0987
+    },
+    {
+     "text": "A pretraining corpus is not a list of examples.",
+     "file": "t15-e1/audio/s6-001-a0823ac83a1f5df1.wav",
+     "start": 286.494,
+     "duration": 3.8187
+    },
+    {
+     "text": "It is one long array and a window length.",
+     "file": "t15-e1/audio/s6-002-e3aab4201c0f050d.wav",
+     "start": 290.7327,
+     "duration": 2.9653
+    },
+    {
+     "text": "Modelling it as a list of examples means a DataLoader, worker processes, a collate function and a shuffle buffer, all to solve a problem whose actual answer is \"draw a random integer\".",
+     "file": "t15-e1/audio/s6-003-26b1b00c7c1e96be.wav",
+     "start": 294.118,
+     "duration": 14.848
+    },
+    {
+     "text": "Two point three seven million tokens gives two point three seven million distinct windows of one hundred and twenty eight.",
+     "file": "t15-e1/audio/s6-004-aba01e8643f340d3.wav",
+     "start": 309.386,
+     "duration": 8.7893
+    },
+    {
+     "text": "The inputs are a slice; the targets are the same slice shifted one token to the left.",
+     "file": "t15-e1/audio/s6-005-bf07f4377e03a6e7.wav",
+     "start": 318.5953,
+     "duration": 6.144
+    },
+    {
+     "text": "And note that every position inside the window is a supervised example, not just the last one \u2014 that is why a transformer is so much more sample-efficient per step than a recurrent model.",
+     "file": "t15-e1/audio/s6-006-84a0d92bbea50fd6.wav",
+     "start": 325.1593,
+     "duration": 14.2933
+    },
+    {
+     "text": "The memmap means only the windows a batch actually touches are read from disk, which is the trick that lets a laptop train on a corpus larger than its memory.",
+     "file": "t15-e1/audio/s6-007-dfc93b7e4a921398.wav",
+     "start": 339.8727,
+     "duration": 11.5627
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "decision 4",
+    "title": "What gets recorded, so a rebuild can be proved identical",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "train\ndocuments",
+      "value": 28886
+     },
+     {
+      "label": "val\ndocuments",
+      "value": 1374,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "train tokens\n(thousands)",
+      "value": 2372
+     },
+     {
+      "label": "val tokens\n(thousands)",
+      "value": 117,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "count",
+    "caption": "Plus a sha256 per split. meta.json is committed; the .bin files are not \u2014 they rebuild in two seconds."
+   },
+   "start": 352.0853,
+   "duration": 58.2393,
+   "segments": [
+    {
+     "text": "Decision four: what gets recorded.",
+     "file": "t15-e1/audio/s7-000-bd7c5c720fa1c33e.wav",
+     "start": 352.0853,
+     "duration": 2.9227
+    },
+    {
+     "text": "Token counts, document counts, the tokenizer's identity, the separator id, and a checksum per split.",
+     "file": "t15-e1/audio/s7-001-34938e27dba594e1.wav",
+     "start": 355.428,
+     "duration": 7.6587
+    },
+    {
+     "text": "Twenty eight thousand eight hundred and eighty six training documents, one thousand three hundred and seventy four held-out.",
+     "file": "t15-e1/audio/s7-002-c202f17ba433936a.wav",
+     "start": 363.5067,
+     "duration": 8.4267
+    },
+    {
+     "text": "Two point three seven million training tokens, one hundred and seventeen thousand held out.",
+     "file": "t15-e1/audio/s7-003-b4d641c1817ff706.wav",
+     "start": 372.3533,
+     "duration": 6.72
+    },
+    {
+     "text": "And here is the thing the checksum buys.",
+     "file": "t15-e1/audio/s7-004-eab00126f5f94526.wav",
+     "start": 379.4933,
+     "duration": 2.9013
+    },
+    {
+     "text": "The binary files are gitignored, along with every other weight and blob in this course.",
+     "file": "t15-e1/audio/s7-005-e78a45eb80b80f0b.wav",
+     "start": 382.8147,
+     "duration": 5.9093
+    },
+    {
+     "text": "A fresh clone has the metadata and no arrays.",
+     "file": "t15-e1/audio/s7-006-af8a0116a7718950.wav",
+     "start": 389.144,
+     "duration": 3.6053
+    },
+    {
+     "text": "It rebuilds them in two seconds, and then it can *prove* it got the same corpus by comparing checksums, rather than assuming.",
+     "file": "t15-e1/audio/s7-007-b69e9c061e54b295.wav",
+     "start": 393.1693,
+     "duration": 10.5387
+    },
+    {
+     "text": "That is a better guarantee than shipping the bytes, and it is four megabytes lighter.",
+     "file": "t15-e1/audio/s7-008-c3014ef03998fd42.wav",
+     "start": 404.128,
+     "duration": 5.5467
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "4.82 characters per token \u2014 which is why T30 came first",
+    "body": "FinTok was trained on this domain, so it packs it densely. A general-purpose vocabulary of the same size splits 'consolidated', 'EBITDA' and 'INE005A01049' into many more pieces, and every extra piece is context you paid for and compute you spent.",
+    "code": "12.0 MB of text  ->  2,488,398 FinTok tokens  ->  4.98 MB of uint16"
+   },
+   "start": 410.3247,
+   "duration": 45.1527,
+   "segments": [
+    {
+     "text": "One number to end on.",
+     "file": "t15-e1/audio/s8-000-e948273a90c023ae.wav",
+     "start": 410.3247,
+     "duration": 1.8133
+    },
+    {
+     "text": "Four point eight two characters per token.",
+     "file": "t15-e1/audio/s8-001-0e415862d84cdabc.wav",
+     "start": 412.558,
+     "duration": 2.9653
+    },
+    {
+     "text": "FinTok was trained on exactly this domain in topic thirty, which is why it packs it this densely \u2014 a general vocabulary of the same size splits words like consolidated and EBITDA and ISIN codes into many more pieces, and every extra piece is context window you paid for and compute you spent.",
+     "file": "t15-e1/audio/s8-002-c785c27be57ecc33.wav",
+     "start": 415.9433,
+     "duration": 23.3173
+    },
+    {
+     "text": "This is the concrete reason the tokenizer topic came before the language model topic rather than after it, and in a later episode we will see that same choice show up as a straight discount on training cost.",
+     "file": "t15-e1/audio/s8-003-cac09be62d128217.wav",
+     "start": 439.6807,
+     "duration": 15.1467
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "The pipeline, in three sentences",
+    "points": [
+     "Documents carry their register as a token, so register becomes something the model can condition on.",
+     "The split is between whole documents and happens before packing \u2014 anything else leaks, and the leak is invisible in the chart.",
+     "The packed format is one flat uint16 array with a learned separator: no padding, memory-mappable, and checksummed so a rebuild is provable."
+    ],
+    "ifSkipped": "Skip this and every number in the next three episodes is measured against a validation set that may contain the training set.",
+    "next": "Episode 2 \u2014 the harness: what a checkpoint has to contain for a resume to be invisible."
+   },
+   "start": 455.4773,
+   "duration": 49.926,
+   "segments": [
+    {
+     "text": "Three things.",
+     "file": "t15-e1/audio/s9-000-612ae6df2d818804.wav",
+     "start": 455.4773,
+     "duration": 1.28
+    },
+    {
+     "text": "One.",
+     "file": "t15-e1/audio/s9-001-cadf3811dd6afddb.wav",
+     "start": 457.1773,
+     "duration": 0.832
+    },
+    {
+     "text": "Documents carry their register as a token, which makes register something the model can be prompted with.",
+     "file": "t15-e1/audio/s9-002-63c48cbf5b54b1cb.wav",
+     "start": 458.4293,
+     "duration": 7.2533
+    },
+    {
+     "text": "Two.",
+     "file": "t15-e1/audio/s9-003-8848b45411fcacef.wav",
+     "start": 466.1027,
+     "duration": 0.8107
+    },
+    {
+     "text": "The split is between whole documents and it happens before packing, because anything else leaks, and the leak is completely invisible in your loss chart.",
+     "file": "t15-e1/audio/s9-004-f2c302ee40e6eaf9.wav",
+     "start": 467.3333,
+     "duration": 10.9013
+    },
+    {
+     "text": "Three.",
+     "file": "t15-e1/audio/s9-005-301665492da4bf47.wav",
+     "start": 478.6547,
+     "duration": 0.896
+    },
+    {
+     "text": "The packed format is one flat sixteen-bit array with a learned separator: no padding, memory-mappable, and checksummed so that a rebuild on another machine is provably the same corpus.",
+     "file": "t15-e1/audio/s9-006-42ee328bd9f143e0.wav",
+     "start": 479.9707,
+     "duration": 14.3147
+    },
+    {
+     "text": "Next time, the training harness \u2014 and specifically, what a checkpoint has to contain for stopping and restarting to be genuinely invisible.",
+     "file": "t15-e1/audio/s9-007-9e913ae327cf755c.wav",
+     "start": 494.7053,
+     "duration": 10.048
+    }
+   ]
+  }
+ ]
+}

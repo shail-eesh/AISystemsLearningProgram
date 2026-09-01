@@ -1,0 +1,412 @@
+{
+ "s1-000-e19396f98ddd78fa.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Welcome back.",
+  "voice": "am_michael"
+ },
+ "s1-001-d998a86ff147b2e4.wav": {
+  "duration": 1.5146666666666666,
+  "text": "Episode four.",
+  "voice": "am_michael"
+ },
+ "s1-002-92ac6803e8a795d7.wav": {
+  "duration": 1.6213333333333333,
+  "text": "The model is built.",
+  "voice": "am_michael"
+ },
+ "s1-003-036e8930ab9d7970.wav": {
+  "duration": 13.674666666666667,
+  "text": "Today we train it, look at what it learned, and then I am going to walk you through an experiment we ran that produced a beautiful, convincing, completely wrong result \u2014 and how we caught it.",
+  "voice": "am_michael"
+ },
+ "s1-004-628a62eaa70328f6.wav": {
+  "duration": 5.312,
+  "text": "That last part is the most useful thing in this series, so stay to the end.",
+  "voice": "am_michael"
+ },
+ "s10-000-612ae6df2d818804.wav": {
+  "duration": 1.28,
+  "text": "Three things.",
+  "voice": "am_michael"
+ },
+ "s10-001-cadf3811dd6afddb.wav": {
+  "duration": 0.832,
+  "text": "One.",
+  "voice": "am_michael"
+ },
+ "s10-002-c1bbf5a4f71a62c2.wav": {
+  "duration": 9.429333333333334,
+  "text": "The model learned the grammar of the tape completely and its semantics barely at all, and you only find that out by reading the output.",
+  "voice": "am_michael"
+ },
+ "s10-003-8848b45411fcacef.wav": {
+  "duration": 0.8106666666666666,
+  "text": "Two.",
+  "voice": "am_michael"
+ },
+ "s10-004-e4931ee289ac1ed9.wav": {
+  "duration": 14.122666666666667,
+  "text": "Induction heads do emerge on their own from ordinary next-token training \u2014 but only when the task genuinely cannot be solved by a positional rule, and our first version of the task could.",
+  "voice": "am_michael"
+ },
+ "s10-005-301665492da4bf47.wav": {
+  "duration": 0.896,
+  "text": "Three.",
+  "voice": "am_michael"
+ },
+ "s10-006-551ed160076f6d0e.wav": {
+  "duration": 12.202666666666667,
+  "text": "The one-layer control had a better attention map and much worse behaviour, which means an attention map is evidence about attention and not evidence about a circuit.",
+  "voice": "am_michael"
+ },
+ "s10-007-5119d5c652860a29.wav": {
+  "duration": 4.565333333333333,
+  "text": "Next time, the last episode: sampling, and the KV cache.",
+  "voice": "am_michael"
+ },
+ "s10-008-eb407075ad56c47d.wav": {
+  "duration": 10.410666666666666,
+  "text": "How to turn a logit vector into text that is not the word \"the\" forever, and how to stop the model redoing the same arithmetic on every step.",
+  "voice": "am_michael"
+ },
+ "s2-000-39ae0cea4f7756d3.wav": {
+  "duration": 6.762666666666667,
+  "text": "Here is the first thing you should do with any new model: check that step zero is where it must be.",
+  "voice": "am_michael"
+ },
+ "s2-001-c9448ca220c0aa74.wav": {
+  "duration": 7.317333333333333,
+  "text": "The reference line is log of sixty six, the vocabulary size, which is four point one nine.",
+  "voice": "am_michael"
+ },
+ "s2-002-9ff623ddecbb3870.wav": {
+  "duration": 3.8186666666666667,
+  "text": "That is the loss of a model that guesses uniformly.",
+  "voice": "am_michael"
+ },
+ "s2-003-3ebc3c04d669d8ee.wav": {
+  "duration": 3.968,
+  "text": "Our step-zero measurement is four point zero nine.",
+  "voice": "am_michael"
+ },
+ "s2-004-98efdb5fe2ff4e03.wav": {
+  "duration": 8.704,
+  "text": "Not lower, which would mean something is leaking the answer, and not higher, which would mean the initialisation is broken.",
+  "voice": "am_michael"
+ },
+ "s2-005-c801380b1e76a706.wav": {
+  "duration": 9.642666666666667,
+  "text": "Then it falls: one point six three at a hundred steps, one point two nine at two hundred, one point one at five hundred.",
+  "voice": "am_michael"
+ },
+ "s2-006-aa4df09d06f66521.wav": {
+  "duration": 7.530666666666667,
+  "text": "Four layers, eight hundred and ten thousand parameters, twenty nine seconds on two CPU cores.",
+  "voice": "am_michael"
+ },
+ "s2-007-bedd4610ff4bb31d.wav": {
+  "duration": 2.7733333333333334,
+  "text": "The shape matters more than the endpoint.",
+  "voice": "am_michael"
+ },
+ "s2-008-26314e27ecea7b55.wav": {
+  "duration": 5.8453333333333335,
+  "text": "A steep initial drop is the model learning character frequencies, which is cheap.",
+  "voice": "am_michael"
+ },
+ "s2-009-c539fa99792a3fd2.wav": {
+  "duration": 5.354666666666667,
+  "text": "The long shallow tail after it is the model learning structure, which is not.",
+  "voice": "am_michael"
+ },
+ "s3-000-e1ea53045073f747.wav": {
+  "duration": 4.565333333333333,
+  "text": "Now read what it writes, because no aggregate will tell you this.",
+  "voice": "am_michael"
+ },
+ "s3-001-0c100f294f06886d.wav": {
+  "duration": 3.8613333333333335,
+  "text": "We scored eight hundred generated characters two ways.",
+  "voice": "am_michael"
+ },
+ "s3-002-ca9e77a10fc240fc.wav": {
+  "duration": 10.922666666666666,
+  "text": "First against the exact grammar of the tape: date, symbol, the letters O H L C V in order, two decimal places on every price.",
+  "voice": "am_michael"
+ },
+ "s3-003-3773cef6aa18a40c.wav": {
+  "duration": 3.84,
+  "text": "One hundred percent of the generated lines match.",
+  "voice": "am_michael"
+ },
+ "s3-004-4f0ba4a37298bc8b.wav": {
+  "duration": 5.354666666666667,
+  "text": "And they are all distinct, so it is not reciting one memorised line.",
+  "voice": "am_michael"
+ },
+ "s3-005-1173842eccecd7b6.wav": {
+  "duration": 10.304,
+  "text": "Then we scored them against basic market arithmetic: is the high at least as large as the open and the close, is the low at most as small.",
+  "voice": "am_michael"
+ },
+ "s3-006-3a10e4f7a2f9e383.wav": {
+  "duration": 1.7066666666666668,
+  "text": "Thirty six percent.",
+  "voice": "am_michael"
+ },
+ "s3-007-47bf85dcd785084d.wav": {
+  "duration": 10.261333333333333,
+  "text": "So the model learned the *language* of the tape completely and learned what high and low *mean* barely at all.",
+  "voice": "am_michael"
+ },
+ "s3-008-c55788dccb96dec3.wav": {
+  "duration": 5.504,
+  "text": "That gap is the single most useful thing on this slide, and it generalises.",
+  "voice": "am_michael"
+ },
+ "s3-009-96601f7cbf553ef8.wav": {
+  "duration": 4.245333333333333,
+  "text": "Language models are extremely good at the shape of a thing.",
+  "voice": "am_michael"
+ },
+ "s3-010-1e9c8e8253270a2d.wav": {
+  "duration": 5.888,
+  "text": "Every eval you write for the rest of this course should be built by someone who knows that.",
+  "voice": "am_michael"
+ },
+ "s4-000-fc4bc5698db2363d.wav": {
+  "duration": 2.3893333333333335,
+  "text": "Now let us go looking inside.",
+  "voice": "am_michael"
+ },
+ "s4-001-190133c0db937374.wav": {
+  "duration": 12.010666666666667,
+  "text": "The thing worth looking for is called an induction head, and it implements one sentence: the pattern A B happened earlier, I have just seen A, so B comes next.",
+  "voice": "am_michael"
+ },
+ "s4-002-59a2ab0a1c05108f.wav": {
+  "duration": 13.525333333333334,
+  "text": "Mechanically, at position i, find an earlier occurrence of the token you are currently at, attend to the token that came *after* that occurrence, and copy it.",
+  "voice": "am_michael"
+ },
+ "s4-003-b3720c501737c016.wav": {
+  "duration": 9.002666666666666,
+  "text": "It needs two layers, because one head has to carry the previous token's identity forward before a second head can match on it.",
+  "voice": "am_michael"
+ },
+ "s4-004-0ab80ef18ce491e5.wav": {
+  "duration": 2.3466666666666667,
+  "text": "And nobody trains it to do this.",
+  "voice": "am_michael"
+ },
+ "s4-005-921dfae9e9166033.wav": {
+  "duration": 15.808,
+  "text": "It emerges from ordinary next-token prediction, and Olsson and colleagues traced in-context learning in real production models back to exactly this circuit, appearing as a visible bend in the loss curve.",
+  "voice": "am_michael"
+ },
+ "s5-000-c4dcd368006a1964.wav": {
+  "duration": 2.474666666666667,
+  "text": "So we built the obvious experiment.",
+  "voice": "am_michael"
+ },
+ "s5-001-fec303caf65e8e0a.wav": {
+  "duration": 4.224,
+  "text": "Take a random prefix of twenty four tokens and repeat it.",
+  "voice": "am_michael"
+ },
+ "s5-002-58f7e17c72f353aa.wav": {
+  "duration": 10.026666666666667,
+  "text": "The second half is perfectly predictable, but only by something that can say \"I have seen this token before, what followed it last time\".",
+  "voice": "am_michael"
+ },
+ "s5-003-651318c16f306277.wav": {
+  "duration": 13.482666666666667,
+  "text": "We trained a two-layer model on it, measured how much attention the best head put on the induction target, and got thirty times chance with one hundred percent accuracy on the second half.",
+  "voice": "am_michael"
+ },
+ "s5-004-b4cc26c00243bda4.wav": {
+  "duration": 1.6,
+  "text": "Beautiful heat map.",
+  "voice": "am_michael"
+ },
+ "s5-005-783781b854404957.wav": {
+  "duration": 9.92,
+  "text": "And then, because the repository has a control for everything, we ran the same experiment with a *one-layer* model.",
+  "voice": "am_michael"
+ },
+ "s5-006-0b937f8a47ecf8f4.wav": {
+  "duration": 1.8773333333333333,
+  "text": "Which should be impossible.",
+  "voice": "am_michael"
+ },
+ "s5-007-5459f48d4b85818e.wav": {
+  "duration": 6.314666666666667,
+  "text": "One layer cannot form an induction circuit; there is no second layer to do the matching.",
+  "voice": "am_michael"
+ },
+ "s5-008-d8cb7b5948c871da.wav": {
+  "duration": 3.904,
+  "text": "The one-layer model scored one hundred percent as well.",
+  "voice": "am_michael"
+ },
+ "s6-000-6f7bb1940239021c.wav": {
+  "duration": 6.613333333333333,
+  "text": "Here is what had gone wrong, and it is worth sitting with because the failure mode is so plausible.",
+  "voice": "am_michael"
+ },
+ "s6-001-f8b3784ce2f21daa.wav": {
+  "duration": 2.986666666666667,
+  "text": "Our prefix length was always twenty four.",
+  "voice": "am_michael"
+ },
+ "s6-002-aaa10b3806d9ff06.wav": {
+  "duration": 10.965333333333334,
+  "text": "So \"attend to the slot twenty four back\" solves the task perfectly, and a learned positional embedding can express that rule in a single layer.",
+  "voice": "am_michael"
+ },
+ "s6-003-8e0b77af37da1b60.wav": {
+  "duration": 1.7493333333333334,
+  "text": "No content matching.",
+  "voice": "am_michael"
+ },
+ "s6-004-151fb4f766a518f2.wav": {
+  "duration": 1.8346666666666667,
+  "text": "No induction circuit.",
+  "voice": "am_michael"
+ },
+ "s6-005-5c2dedaa7aeca7b5.wav": {
+  "duration": 6.1226666666666665,
+  "text": "And a gorgeous attention heat map showing enormous weight in exactly the right place.",
+  "voice": "am_michael"
+ },
+ "s6-006-04ee8304e6208ad6.wav": {
+  "duration": 4.842666666666666,
+  "text": "We had measured a positional shortcut and called it an induction head.",
+  "voice": "am_michael"
+ },
+ "s6-007-faf33980402ea432.wav": {
+  "duration": 8.106666666666667,
+  "text": "The fix is one line: give every row in the batch its own random period, drawn between ten and fourteen.",
+  "voice": "am_michael"
+ },
+ "s6-008-05bb6b26388a5fe2.wav": {
+  "duration": 10.474666666666666,
+  "text": "Now the induction target moves from row to row, no fixed-offset rule works, and the task can only be solved by matching on content.",
+  "voice": "am_michael"
+ },
+ "s7-000-dda8eb89227a803e.wav": {
+  "duration": 7.445333333333333,
+  "text": "And here is the corrected experiment, which tells a much more interesting story than the wrong one did.",
+  "voice": "am_michael"
+ },
+ "s7-001-ccb4fb5987c5e13b.wav": {
+  "duration": 7.082666666666666,
+  "text": "The green line is behaviour: how often the two-layer model correctly predicts the repeated token.",
+  "voice": "am_michael"
+ },
+ "s7-002-dc0f0b4c79e786e4.wav": {
+  "duration": 5.354666666666667,
+  "text": "It climbs from one percent to ninety two percent over three thousand steps.",
+  "voice": "am_michael"
+ },
+ "s7-003-315de8b52490a4e9.wav": {
+  "duration": 7.552,
+  "text": "The orange line is the attention score of the best head \u2014 how much weight it places on the induction target.",
+  "voice": "am_michael"
+ },
+ "s7-004-05960a4b7d365b6f.wav": {
+  "duration": 1.5786666666666667,
+  "text": "Watch what it does.",
+  "voice": "am_michael"
+ },
+ "s7-005-c798d06ed592c39e.wav": {
+  "duration": 6.976,
+  "text": "It rises fast, and then by step seven hundred and fifty it is *flat*.",
+  "voice": "am_michael"
+ },
+ "s7-006-2fe266ad8f66dfb9.wav": {
+  "duration": 1.7706666666666666,
+  "text": "It never moves again.",
+  "voice": "am_michael"
+ },
+ "s7-007-7801465e290c44f8.wav": {
+  "duration": 5.9093333333333335,
+  "text": "And accuracy climbs for another two thousand two hundred and fifty steps after that.",
+  "voice": "am_michael"
+ },
+ "s7-008-9d1147339b9a16da.wav": {
+  "duration": 4.757333333333333,
+  "text": "The attention map stopped changing long before the model stopped learning.",
+  "voice": "am_michael"
+ },
+ "s8-000-7e0156ffad863997.wav": {
+  "duration": 4.842666666666666,
+  "text": "And now the control, which is the punchline of the whole episode.",
+  "voice": "am_michael"
+ },
+ "s8-001-c1b4dd35f00ff6b4.wav": {
+  "duration": 6.570666666666667,
+  "text": "Two layers: ninety four percent accuracy, attention score zero point three five.",
+  "voice": "am_michael"
+ },
+ "s8-002-ef4ee89d197df738.wav": {
+  "duration": 10.325333333333333,
+  "text": "One layer: sixty five percent accuracy \u2014 and an attention score of zero point four four, which is *higher*.",
+  "voice": "am_michael"
+ },
+ "s8-003-d349b03d38021042.wav": {
+  "duration": 5.610666666666667,
+  "text": "The one-layer model looks better on the attention map and performs far worse.",
+  "voice": "am_michael"
+ },
+ "s8-004-7f3bb8077f9035a1.wav": {
+  "duration": 17.152,
+  "text": "What it is doing is hedging: there are only five possible periods, so it spreads weight across the five candidate offsets, and enough of that lands on the right one to score well on the metric while never being able to commit to a prediction.",
+  "voice": "am_michael"
+ },
+ "s8-005-20bbad9b719aba80.wav": {
+  "duration": 14.592,
+  "text": "We verified that directly by planting a synthetic head that always looks exactly eleven positions back \u2014 a rule with no content matching in it at all \u2014 and it scores three and a half times chance.",
+  "voice": "am_michael"
+ },
+ "s8-006-53c35b06a0799af8.wav": {
+  "duration": 4.352,
+  "text": "An attention map that looks right is not a circuit that works.",
+  "voice": "am_michael"
+ },
+ "s9-000-52d92600deb2b765.wav": {
+  "duration": 6.570666666666667,
+  "text": "So the probe now has controls in both directions, and I would push this as a general rule.",
+  "voice": "am_michael"
+ },
+ "s9-001-3623b3e527886ca1.wav": {
+  "duration": 4.906666666666666,
+  "text": "Any interpretability metric you write needs two synthetic inputs.",
+  "voice": "am_michael"
+ },
+ "s9-002-200d8f200e4b93b7.wav": {
+  "duration": 10.325333333333333,
+  "text": "One that must score the maximum \u2014 here, a planted head that attends exactly at the target, which scores one point zero zero zero.",
+  "voice": "am_michael"
+ },
+ "s9-003-9dd0b6fb5c61eb9d.wav": {
+  "duration": 9.152,
+  "text": "And one plausible-but-wrong mechanism that must score low \u2014 here, a fixed-offset head, which scores zero point one three.",
+  "voice": "am_michael"
+ },
+ "s9-004-1cf9141ee434f192.wav": {
+  "duration": 4.309333333333333,
+  "text": "Without the first, you do not know what a good score looks like.",
+  "voice": "am_michael"
+ },
+ "s9-005-18674e8926d06fa4.wav": {
+  "duration": 4.458666666666667,
+  "text": "Without the second, you do not know what your metric will accept.",
+  "voice": "am_michael"
+ },
+ "s9-006-7ada510b46644264.wav": {
+  "duration": 9.152,
+  "text": "And the whole thing sits on top of a behavioural measure, because behaviour is the only thing that cannot be faked by a picture.",
+  "voice": "am_michael"
+ }
+}

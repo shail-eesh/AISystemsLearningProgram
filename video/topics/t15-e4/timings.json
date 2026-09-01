@@ -1,0 +1,616 @@
+{
+ "topic": "t15-e4",
+ "episode": 4,
+ "title": "Reading your first pretrain",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 545.4887,
+ "wordCount": 1161,
+ "wordsPerMinute": 127.7,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 29.17,
+ "generatedInSeconds": 214.8,
+ "segmentsSynthesised": 68,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Reading your first pretrain",
+    "subtitle": "Four ways to be wrong about a perplexity number, and what to do instead.",
+    "topicId": "T15",
+    "episode": "Episode 4"
+   },
+   "start": 0.0,
+   "duration": 29.1673,
+   "segments": [
+    {
+     "text": "Welcome back.",
+     "file": "t15-e4/audio/s1-000-e19396f98ddd78fa.wav",
+     "start": 0.0,
+     "duration": 1.3227
+    },
+    {
+     "text": "The last episode of topic fifteen.",
+     "file": "t15-e4/audio/s1-001-eba4e778ef15fbf8.wav",
+     "start": 1.7427,
+     "duration": 2.752
+    },
+    {
+     "text": "The models are trained.",
+     "file": "t15-e4/audio/s1-002-f85996ad4d16481a.wav",
+     "start": 4.9147,
+     "duration": 1.7707
+    },
+    {
+     "text": "Today: how to evaluate a language model without fooling yourself, which is four specific mistakes, each of which produces a number that looks fine.",
+     "file": "t15-e4/audio/s1-003-10ceef46fecb2b5f.wav",
+     "start": 7.1053,
+     "duration": 11.0293
+    },
+    {
+     "text": "And then the 4070 run \u2014 what to plan for, and what our own planning arithmetic says about whether it is even worth doing.",
+     "file": "t15-e4/audio/s1-004-7cc99f0022538cf1.wav",
+     "start": 18.5547,
+     "duration": 9.9627
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "mistake 1",
+    "title": "Reporting one number for a mixed corpus",
+    "body": "Perplexity on a mixed corpus is dominated by whatever register is most predictable. Our price tape is nearly deterministic; our filing prose is not. One number averages them and tells you about neither.",
+    "points": [
+     "Break it out: filing, commentary, announcement, order, tape.",
+     "Then decide which one your claim is actually about.",
+     "Ours is about filings, so the held-out split is filings only \u2014 chosen at packing time, not at reporting time.",
+     "A validation set diluted with tape would measure something easier and different."
+    ],
+    "aside": "The habit generalises: any aggregate over heterogeneous data is a weighted average whose weights you did not choose deliberately."
+   },
+   "start": 29.1673,
+   "duration": 60.2153,
+   "segments": [
+    {
+     "text": "Mistake one: reporting a single number for a mixed corpus.",
+     "file": "t15-e4/audio/s2-000-f7fa3cf72f85ca82.wav",
+     "start": 29.1673,
+     "duration": 4.352
+    },
+    {
+     "text": "Perplexity is an average over tokens, so it is dominated by whatever register is most predictable \u2014 and in our corpus that is the price tape, which is nearly deterministic.",
+     "file": "t15-e4/audio/s2-001-5b4c571a60ec7570.wav",
+     "start": 33.9393,
+     "duration": 13.44
+    },
+    {
+     "text": "Average the tape together with filing prose and you get a number that describes neither.",
+     "file": "t15-e4/audio/s2-002-e599d1a3be8fa343.wav",
+     "start": 47.7993,
+     "duration": 5.76
+    },
+    {
+     "text": "So we break perplexity out by register: filing, commentary, announcement, order, tape.",
+     "file": "t15-e4/audio/s2-003-0245551510ddcb96.wav",
+     "start": 53.9793,
+     "duration": 6.72
+    },
+    {
+     "text": "And then, crucially, we decided *at packing time* which register the claim is about.",
+     "file": "t15-e4/audio/s2-004-3c692a946dffb59f.wav",
+     "start": 61.1193,
+     "duration": 7.616
+    },
+    {
+     "text": "This topic's claim is about held-out filings, so the held-out split is filings only.",
+     "file": "t15-e4/audio/s2-005-f4f680d9634b8b60.wav",
+     "start": 69.1553,
+     "duration": 6.3787
+    },
+    {
+     "text": "That decision belongs in the data pipeline, not in the reporting code, because by the time you are writing the report the temptation to pick the flattering split is very strong.",
+     "file": "t15-e4/audio/s2-006-4f107daac25f3cce.wav",
+     "start": 75.954,
+     "duration": 12.7787
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "mistake 2",
+    "title": "Evaluating on overlapping random windows",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "random\ndraw 1",
+      "value": 1.0395
+     },
+     {
+      "label": "random\ndraw 2",
+      "value": 1.0724
+     },
+     {
+      "label": "random\ndraw 3",
+      "value": 0.9903
+     },
+     {
+      "label": "random\ndraw 4",
+      "value": 1.0658
+     },
+     {
+      "label": "sequential\nany run",
+      "value": 1.0649,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "held-out loss",
+    "caption": "Same model, same data. Random windows overlap and skip; sequential windows walk the split once, in order."
+   },
+   "start": 89.3827,
+   "duration": 74.6087,
+   "segments": [
+    {
+     "text": "Mistake two: evaluating on randomly sampled windows.",
+     "file": "t15-e4/audio/s3-000-3cac1c904c860031.wav",
+     "start": 89.3827,
+     "duration": 4.608
+    },
+    {
+     "text": "Random draws overlap, so some tokens get counted several times and others not at all, and the number wobbles between runs of the same model on the same data.",
+     "file": "t15-e4/audio/s3-001-86a09028e0621b91.wav",
+     "start": 94.4107,
+     "duration": 12.352
+    },
+    {
+     "text": "Here are four random draws from one model: one point zero four, one point zero seven, zero point nine nine, one point zero seven.",
+     "file": "t15-e4/audio/s3-002-7e706ffc6260ea9b.wav",
+     "start": 107.1827,
+     "duration": 11.648
+    },
+    {
+     "text": "A spread of eight hundredths of a nat, purely from which windows happened to come up \u2014 which is five times the entire margin between our smallest and largest model.",
+     "file": "t15-e4/audio/s3-003-01eb0fdd9769bb53.wav",
+     "start": 119.2507,
+     "duration": 12.032
+    },
+    {
+     "text": "Now the green bar: sequential evaluation, walking the split once in non-overlapping windows.",
+     "file": "t15-e4/audio/s3-004-42ef8446c8f299a6.wav",
+     "start": 131.7027,
+     "duration": 7.5307
+    },
+    {
+     "text": "It is deterministic \u2014 we ran it five times and got one point zero six four nine, five times, to every decimal place.",
+     "file": "t15-e4/audio/s3-005-3628a44a81aedca1.wav",
+     "start": 139.6533,
+     "duration": 10.24
+    },
+    {
+     "text": "Random windows are the right thing for *training*, where you want variety.",
+     "file": "t15-e4/audio/s3-006-60c66f5096f68c69.wav",
+     "start": 150.3133,
+     "duration": 6.208
+    },
+    {
+     "text": "They are the wrong thing for a number you are going to put in a table and compare against another number.",
+     "file": "t15-e4/audio/s3-007-ea7f1f674a85552f.wav",
+     "start": 156.9413,
+     "duration": 6.4
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "Mistake 3: comparing perplexities across tokenizers",
+    "body": "Perplexity is per token. A model with a 50,000-token vocabulary gets a better-looking number than one with a 3,500-token vocabulary on identical text, because each of its tokens carries more characters. Bits per character is the comparable unit, and it is one extra line to compute.",
+    "code": "loss              -> per token   (not comparable across tokenizers)\nbits_per_char     -> per character (comparable)\n# 4.82 characters per FinTok token on this corpus"
+   },
+   "start": 163.9913,
+   "duration": 59.7313,
+   "segments": [
+    {
+     "text": "Mistake three, and this one shows up in published comparisons.",
+     "file": "t15-e4/audio/s4-000-6c3607c5440b02dd.wav",
+     "start": 163.9913,
+     "duration": 4.5653
+    },
+    {
+     "text": "Perplexity is per *token*.",
+     "file": "t15-e4/audio/s4-001-9d39b89033e42509.wav",
+     "start": 168.9767,
+     "duration": 3.2853
+    },
+    {
+     "text": "A model with a fifty thousand token vocabulary needs fewer tokens to express the same text than one with a three and a half thousand token vocabulary, so it gets a better perplexity for free, on identical content, without being a better model.",
+     "file": "t15-e4/audio/s4-002-23e98eb553603e5c.wav",
+     "start": 172.682,
+     "duration": 19.2427
+    },
+    {
+     "text": "The comparable unit is bits per character, and it is one extra line to compute: total negative log likelihood, divided by log two, divided by the number of characters.",
+     "file": "t15-e4/audio/s4-003-98c5635c9073343c.wav",
+     "start": 192.3447,
+     "duration": 13.3547
+    },
+    {
+     "text": "Every one of our models shares FinTok so the two columns tell the same story here, but the habit is the point.",
+     "file": "t15-e4/audio/s4-004-e9d508ca2e71dbe6.wav",
+     "start": 206.1193,
+     "duration": 8.0213
+    },
+    {
+     "text": "If you ever compare your model to somebody else's, and the tokenizers differ, perplexity is not a comparison.",
+     "file": "t15-e4/audio/s4-005-09e228ee610577fd.wav",
+     "start": 214.5607,
+     "duration": 8.512
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the ladder, on held-out filings",
+    "title": "Document-by-document perplexity across the three rungs",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "0.6M",
+      "value": 2.2986
+     },
+     {
+      "label": "1.8M",
+      "value": 2.2862
+     },
+     {
+      "label": "5.9M",
+      "value": 2.2667,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "perplexity on held-out filings",
+    "caption": "Scored document by document, not on sampled windows. 1.014x from the smallest rung to the largest."
+   },
+   "start": 223.7227,
+   "duration": 57.2287,
+   "segments": [
+    {
+     "text": "With those three fixed, here is the actual comparison.",
+     "file": "t15-e4/audio/s5-000-021bfffb985464a3.wav",
+     "start": 223.7227,
+     "duration": 4.096
+    },
+    {
+     "text": "Scored document by document over held-out filings the models have never seen, sequentially, with a tokenizer they all share.",
+     "file": "t15-e4/audio/s5-001-a2990aa62eb854ed.wav",
+     "start": 228.2387,
+     "duration": 10.0267
+    },
+    {
+     "text": "Two point two nine nine, two point two eight six, two point two six seven.",
+     "file": "t15-e4/audio/s5-002-1d4c8af5b4146369.wav",
+     "start": 238.6853,
+     "duration": 5.9307
+    },
+    {
+     "text": "The largest rung is one point four percent better than the smallest \u2014 fourteen thousandths of a nat.",
+     "file": "t15-e4/audio/s5-003-abbbf81428bb5923.wav",
+     "start": 245.036,
+     "duration": 7.0187
+    },
+    {
+     "text": "And you already know from episode three why that margin is what it is: nineteen percent of the tokens are irreducible digits and the prose was solved by the smallest model.",
+     "file": "t15-e4/audio/s5-004-4975e500db164dc4.wav",
+     "start": 252.4747,
+     "duration": 13.2907
+    },
+    {
+     "text": "So the number is small, it is real, it is in the right direction, and we can say exactly why it is not bigger.",
+     "file": "t15-e4/audio/s5-005-941de2d7b24213ca.wav",
+     "start": 266.1853,
+     "duration": 8.2133
+    },
+    {
+     "text": "That last part is what separates an evaluation from a leaderboard entry.",
+     "file": "t15-e4/audio/s5-006-c5986999d3548b7f.wav",
+     "start": 274.8187,
+     "duration": 5.4827
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "mistake 4",
+    "title": "Stopping at the number",
+    "body": "Read what the model writes. Prompt it with each register token and look at the output \u2014 an aggregate cannot show you a model that is fluent and wrong.",
+    "points": [
+     "Is it the right register? Prompt with <|announcement|> and ours continues 'to consider unaudited financial results. Symbol: ALPHAINFRA. ISIN: INE001A01011...'",
+     "Are the fields in the right order and the format right?",
+     "Are the numbers plausible for that issuer, or does it quote a bank at a chemical company's price?",
+     "Does it contradict itself inside one sentence? Ours emits '2024-05-26.2 percent an average of Rs 611.2 crore' \u2014 fluent-looking and meaningless."
+    ],
+    "aside": "In T4 the model produced 100% grammatically perfect tape lines of which only 36% had a coherent high and low. No aggregate showed that."
+   },
+   "start": 280.9513,
+   "duration": 54.3927,
+   "segments": [
+    {
+     "text": "Mistake four, and it is the one nobody admits to: stopping at the number.",
+     "file": "t15-e4/audio/s6-000-ba5a19d11c613cbe.wav",
+     "start": 280.9513,
+     "duration": 5.5893
+    },
+    {
+     "text": "Read what the model writes.",
+     "file": "t15-e4/audio/s6-001-e4d5c297ce7c7eca.wav",
+     "start": 286.9607,
+     "duration": 2.0907
+    },
+    {
+     "text": "Prompt it with each register token and look at the output.",
+     "file": "t15-e4/audio/s6-002-aa7f413841886b69.wav",
+     "start": 289.4713,
+     "duration": 3.904
+    },
+    {
+     "text": "Is it the right register \u2014 does the filing token actually produce filing prose.",
+     "file": "t15-e4/audio/s6-003-a2eebf070d4e93f9.wav",
+     "start": 293.7953,
+     "duration": 5.888
+    },
+    {
+     "text": "Are the fields in the right order.",
+     "file": "t15-e4/audio/s6-004-9d3bbaa0b356f60e.wav",
+     "start": 300.1033,
+     "duration": 2.2187
+    },
+    {
+     "text": "Are the numbers plausible for that issuer, or is it quoting a bank at a chemical company's price.",
+     "file": "t15-e4/audio/s6-005-227a87ba938d475e.wav",
+     "start": 302.742,
+     "duration": 6.8053
+    },
+    {
+     "text": "Does it contradict itself inside a single sentence.",
+     "file": "t15-e4/audio/s6-006-70c0ca67a262e9af.wav",
+     "start": 309.9673,
+     "duration": 3.84
+    },
+    {
+     "text": "Remember what happened in topic four: the model produced perfectly-formed tape lines, one hundred percent of them matching the grammar exactly, of which thirty six percent had a coherent high and low.",
+     "file": "t15-e4/audio/s6-007-993b8f9b9e0a3f53.wav",
+     "start": 314.2273,
+     "duration": 15.104
+    },
+    {
+     "text": "No aggregate metric showed that.",
+     "file": "t15-e4/audio/s6-008-25ee7c2fa52bac5b.wav",
+     "start": 329.7513,
+     "duration": 2.5173
+    },
+    {
+     "text": "Ten seconds of reading did.",
+     "file": "t15-e4/audio/s6-009-af85c12667597958.wav",
+     "start": 332.6887,
+     "duration": 2.0053
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the 4070 lane",
+    "title": "Plan the overnight run before you start it",
+    "body": "The gpu-runner script prints its plan and refuses to start if it does not fit. Four copies of every parameter exist before a single activation does: the weight, its gradient, and Adam's two moments.",
+    "points": [
+     "40M parameters -> 633 MB of weights, gradients and optimiser state.",
+     "Activations at batch 24, context 512: 5.4 GB \u2014 dominated by the attention matrix, which is quadratic in context.",
+     "Estimated total with headroom: 7.9 GB. It fits in 12 GB.",
+     "And 491 million tokens against a 2.4 million token corpus is 207 epochs."
+    ],
+    "aside": "The script prints that epoch count with a warning, because it is the number that decides whether the run is worth the electricity."
+   },
+   "start": 335.344,
+   "duration": 77.4887,
+   "segments": [
+    {
+     "text": "And then the 4070 run, which is mostly planning.",
+     "file": "t15-e4/audio/s7-000-0bbc120e42dea828.wav",
+     "start": 335.344,
+     "duration": 4.5227
+    },
+    {
+     "text": "The runner prints its plan and refuses to start if the plan does not fit in the device.",
+     "file": "t15-e4/audio/s7-001-371be829de715fa6.wav",
+     "start": 340.2867,
+     "duration": 6.1867
+    },
+    {
+     "text": "Four copies of every parameter exist before a single activation does \u2014 the weight, its gradient, and Adam's two moment estimates \u2014 so forty million parameters is six hundred and thirty three megabytes before you have run anything.",
+     "file": "t15-e4/audio/s7-002-2a53c538f6580bb3.wav",
+     "start": 346.8933,
+     "duration": 17.4293
+    },
+    {
+     "text": "Activations at a batch of twenty four and a context of five hundred and twelve add five point four gigabytes, dominated by the attention matrix, which is quadratic in context and is exactly the term topic seven's Flash Attention exists to delete.",
+     "file": "t15-e4/audio/s7-003-acbf55ca1ed7add4.wav",
+     "start": 364.7427,
+     "duration": 19.8187
+    },
+    {
+     "text": "Total, with headroom, seven point nine gigabytes.",
+     "file": "t15-e4/audio/s7-004-dd2fd8bcbb9e9a7f.wav",
+     "start": 384.9813,
+     "duration": 3.52
+    },
+    {
+     "text": "It fits.",
+     "file": "t15-e4/audio/s7-005-fe2ccf0f470dbf4a.wav",
+     "start": 388.9213,
+     "duration": 1.088
+    },
+    {
+     "text": "And then the number that actually matters: four hundred and ninety one million training tokens against a two point four million token corpus is two hundred and seven passes over the same data.",
+     "file": "t15-e4/audio/s7-006-0600dbeec76a80a8.wav",
+     "start": 390.4293,
+     "duration": 13.696
+    },
+    {
+     "text": "The script prints that with a warning, because it is the number that decides whether the night is worth the electricity.",
+     "file": "t15-e4/audio/s7-007-666ddfc8423e07a5.wav",
+     "start": 404.5453,
+     "duration": 7.6373
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "Run it anyway \u2014 to watch the divergence",
+    "body": "Two hundred epochs on this corpus will memorise it. Training loss will keep falling and held-out perplexity will flatten and then rise. That divergence, seen once on your own model with your own eyes, is worth more than reading about overfitting ten times.",
+    "code": "python3 gpu-runner/t15_alphaslm_40m.py --dry-run\npython3 gpu-runner/t15_alphaslm_40m.py --rung alphaslm-40m --hours 8\npython3 gpu-runner/t15_alphaslm_40m.py --rung alphaslm-40m --resume"
+   },
+   "start": 412.8327,
+   "duration": 50.1447,
+   "segments": [
+    {
+     "text": "My recommendation is to run it anyway.",
+     "file": "t15-e4/audio/s8-000-f0a79ef74c4bf2e4.wav",
+     "start": 412.8327,
+     "duration": 3.1787
+    },
+    {
+     "text": "Two hundred epochs on this corpus will memorise it, and that is the point: training loss will keep falling while held-out perplexity flattens and then turns upward, and the eval curve in the results file will show you the exact step where it turned.",
+     "file": "t15-e4/audio/s8-001-fd9ce580a43788d1.wav",
+     "start": 416.4313,
+     "duration": 18.2827
+    },
+    {
+     "text": "Seeing that divergence once, on your own model, on data you generated, is worth more than reading about overfitting ten times.",
+     "file": "t15-e4/audio/s8-002-c5954031ffcf0918.wav",
+     "start": 435.134,
+     "duration": 9.984
+    },
+    {
+     "text": "And when it has happened, you will know precisely why topic twenty three, synthetic data, and topic thirty eight, curation, are the next interesting things to build \u2014 because your compute stopped being the constraint some hours ago.",
+     "file": "t15-e4/audio/s8-003-392857d8dbc3f487.wav",
+     "start": 445.538,
+     "duration": 16.7893
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "AlphaSLM, in four sentences",
+    "points": [
+     "Evaluate by register, sequentially, in bits per character \u2014 and then read the output anyway.",
+     "The largest CPU rung beats the smallest on held-out filings by 1.4%, and we can say exactly why it is not more.",
+     "A checkpoint that resumes invisibly is five things, and the test is that 60 + resume + 60 equals 120 exactly.",
+     "The 4070 run is planned before it is started, and its most important output is the epoch count in the plan."
+    ],
+    "ifSkipped": "AlphaSLM is the model every later topic modifies: LoRA in T17, DPO in T19, quantization in T8, served by tickerd in T3. This is where its weights come from.",
+    "next": "T43 \u2014 the embedding model, and what 'similar' means geometrically."
+   },
+   "start": 462.9773,
+   "duration": 82.5113,
+   "segments": [
+    {
+     "text": "Four things to close the topic.",
+     "file": "t15-e4/audio/s9-000-cf619f648f3a2abd.wav",
+     "start": 462.9773,
+     "duration": 2.4747
+    },
+    {
+     "text": "One.",
+     "file": "t15-e4/audio/s9-001-cadf3811dd6afddb.wav",
+     "start": 465.872,
+     "duration": 0.832
+    },
+    {
+     "text": "Evaluate by register, sequentially, in bits per character \u2014 and then read the output anyway, because the metric cannot see fluent-and-wrong.",
+     "file": "t15-e4/audio/s9-002-0d9ea0470d8810c0.wav",
+     "start": 467.124,
+     "duration": 10.7307
+    },
+    {
+     "text": "Two.",
+     "file": "t15-e4/audio/s9-003-8848b45411fcacef.wav",
+     "start": 478.2747,
+     "duration": 0.8107
+    },
+    {
+     "text": "The largest CPU rung beats the smallest on held-out filings by one point four percent, and the value of the study is that we can say exactly why it is not more.",
+     "file": "t15-e4/audio/s9-004-3d75a9cb2306e550.wav",
+     "start": 479.5053,
+     "duration": 13.4613
+    },
+    {
+     "text": "Three.",
+     "file": "t15-e4/audio/s9-005-301665492da4bf47.wav",
+     "start": 493.3867,
+     "duration": 0.896
+    },
+    {
+     "text": "A checkpoint that resumes invisibly is five things, and the test is that sixty plus a resume plus sixty equals one hundred and twenty, exactly.",
+     "file": "t15-e4/audio/s9-006-6f01403f3fe91a89.wav",
+     "start": 494.7027,
+     "duration": 11.7333
+    },
+    {
+     "text": "Four.",
+     "file": "t15-e4/audio/s9-007-b0bb5415ca56734f.wav",
+     "start": 506.856,
+     "duration": 0.9387
+    },
+    {
+     "text": "The overnight run gets planned before it gets started, and the most important line in that plan is the epoch count.",
+     "file": "t15-e4/audio/s9-008-3ef7d4611a7a5632.wav",
+     "start": 508.2147,
+     "duration": 8.2987
+    },
+    {
+     "text": "AlphaSLM is the model that every later topic in this course modifies rather than replaces \u2014 LoRA tunes it, DPO aligns it, quantization shrinks it, and a Rust server you will write serves it.",
+     "file": "t15-e4/audio/s9-009-1742f34eb9582dbd.wav",
+     "start": 516.9333,
+     "duration": 16.4693
+    },
+    {
+     "text": "This is where its weights come from.",
+     "file": "t15-e4/audio/s9-010-1d09360f6ed2b60a.wav",
+     "start": 533.8227,
+     "duration": 2.0907
+    },
+    {
+     "text": "Next topic, T43: embedding models, and what similarity means geometrically.",
+     "file": "t15-e4/audio/s9-011-462561dda672dec9.wav",
+     "start": 536.3333,
+     "duration": 6.8053
+    },
+    {
+     "text": "See you there.",
+     "file": "t15-e4/audio/s9-012-18440a5547d44661.wav",
+     "start": 543.5587,
+     "duration": 1.28
+    }
+   ]
+  }
+ ]
+}

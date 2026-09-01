@@ -1,0 +1,342 @@
+{
+ "s1-000-e19396f98ddd78fa.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Welcome back.",
+  "voice": "am_michael"
+ },
+ "s1-001-eba4e778ef15fbf8.wav": {
+  "duration": 2.752,
+  "text": "The last episode of topic fifteen.",
+  "voice": "am_michael"
+ },
+ "s1-002-f85996ad4d16481a.wav": {
+  "duration": 1.7706666666666666,
+  "text": "The models are trained.",
+  "voice": "am_michael"
+ },
+ "s1-003-10ceef46fecb2b5f.wav": {
+  "duration": 11.029333333333334,
+  "text": "Today: how to evaluate a language model without fooling yourself, which is four specific mistakes, each of which produces a number that looks fine.",
+  "voice": "am_michael"
+ },
+ "s1-004-7cc99f0022538cf1.wav": {
+  "duration": 9.962666666666667,
+  "text": "And then the 4070 run \u2014 what to plan for, and what our own planning arithmetic says about whether it is even worth doing.",
+  "voice": "am_michael"
+ },
+ "s2-000-f7fa3cf72f85ca82.wav": {
+  "duration": 4.352,
+  "text": "Mistake one: reporting a single number for a mixed corpus.",
+  "voice": "am_michael"
+ },
+ "s2-001-5b4c571a60ec7570.wav": {
+  "duration": 13.44,
+  "text": "Perplexity is an average over tokens, so it is dominated by whatever register is most predictable \u2014 and in our corpus that is the price tape, which is nearly deterministic.",
+  "voice": "am_michael"
+ },
+ "s2-002-e599d1a3be8fa343.wav": {
+  "duration": 5.76,
+  "text": "Average the tape together with filing prose and you get a number that describes neither.",
+  "voice": "am_michael"
+ },
+ "s2-003-0245551510ddcb96.wav": {
+  "duration": 6.72,
+  "text": "So we break perplexity out by register: filing, commentary, announcement, order, tape.",
+  "voice": "am_michael"
+ },
+ "s2-004-3c692a946dffb59f.wav": {
+  "duration": 7.616,
+  "text": "And then, crucially, we decided *at packing time* which register the claim is about.",
+  "voice": "am_michael"
+ },
+ "s2-005-f4f680d9634b8b60.wav": {
+  "duration": 6.378666666666667,
+  "text": "This topic's claim is about held-out filings, so the held-out split is filings only.",
+  "voice": "am_michael"
+ },
+ "s2-006-4f107daac25f3cce.wav": {
+  "duration": 12.778666666666666,
+  "text": "That decision belongs in the data pipeline, not in the reporting code, because by the time you are writing the report the temptation to pick the flattering split is very strong.",
+  "voice": "am_michael"
+ },
+ "s3-000-3cac1c904c860031.wav": {
+  "duration": 4.608,
+  "text": "Mistake two: evaluating on randomly sampled windows.",
+  "voice": "am_michael"
+ },
+ "s3-001-86a09028e0621b91.wav": {
+  "duration": 12.352,
+  "text": "Random draws overlap, so some tokens get counted several times and others not at all, and the number wobbles between runs of the same model on the same data.",
+  "voice": "am_michael"
+ },
+ "s3-002-7e706ffc6260ea9b.wav": {
+  "duration": 11.648,
+  "text": "Here are four random draws from one model: one point zero four, one point zero seven, zero point nine nine, one point zero seven.",
+  "voice": "am_michael"
+ },
+ "s3-003-01eb0fdd9769bb53.wav": {
+  "duration": 12.032,
+  "text": "A spread of eight hundredths of a nat, purely from which windows happened to come up \u2014 which is five times the entire margin between our smallest and largest model.",
+  "voice": "am_michael"
+ },
+ "s3-004-42ef8446c8f299a6.wav": {
+  "duration": 7.530666666666667,
+  "text": "Now the green bar: sequential evaluation, walking the split once in non-overlapping windows.",
+  "voice": "am_michael"
+ },
+ "s3-005-3628a44a81aedca1.wav": {
+  "duration": 10.24,
+  "text": "It is deterministic \u2014 we ran it five times and got one point zero six four nine, five times, to every decimal place.",
+  "voice": "am_michael"
+ },
+ "s3-006-60c66f5096f68c69.wav": {
+  "duration": 6.208,
+  "text": "Random windows are the right thing for *training*, where you want variety.",
+  "voice": "am_michael"
+ },
+ "s3-007-ea7f1f674a85552f.wav": {
+  "duration": 6.4,
+  "text": "They are the wrong thing for a number you are going to put in a table and compare against another number.",
+  "voice": "am_michael"
+ },
+ "s4-000-6c3607c5440b02dd.wav": {
+  "duration": 4.565333333333333,
+  "text": "Mistake three, and this one shows up in published comparisons.",
+  "voice": "am_michael"
+ },
+ "s4-001-9d39b89033e42509.wav": {
+  "duration": 3.2853333333333334,
+  "text": "Perplexity is per *token*.",
+  "voice": "am_michael"
+ },
+ "s4-002-23e98eb553603e5c.wav": {
+  "duration": 19.24266666666667,
+  "text": "A model with a fifty thousand token vocabulary needs fewer tokens to express the same text than one with a three and a half thousand token vocabulary, so it gets a better perplexity for free, on identical content, without being a better model.",
+  "voice": "am_michael"
+ },
+ "s4-003-98c5635c9073343c.wav": {
+  "duration": 13.354666666666667,
+  "text": "The comparable unit is bits per character, and it is one extra line to compute: total negative log likelihood, divided by log two, divided by the number of characters.",
+  "voice": "am_michael"
+ },
+ "s4-004-e9d508ca2e71dbe6.wav": {
+  "duration": 8.021333333333333,
+  "text": "Every one of our models shares FinTok so the two columns tell the same story here, but the habit is the point.",
+  "voice": "am_michael"
+ },
+ "s4-005-09e228ee610577fd.wav": {
+  "duration": 8.512,
+  "text": "If you ever compare your model to somebody else's, and the tokenizers differ, perplexity is not a comparison.",
+  "voice": "am_michael"
+ },
+ "s5-000-021bfffb985464a3.wav": {
+  "duration": 4.096,
+  "text": "With those three fixed, here is the actual comparison.",
+  "voice": "am_michael"
+ },
+ "s5-001-a2990aa62eb854ed.wav": {
+  "duration": 10.026666666666667,
+  "text": "Scored document by document over held-out filings the models have never seen, sequentially, with a tokenizer they all share.",
+  "voice": "am_michael"
+ },
+ "s5-002-1d4c8af5b4146369.wav": {
+  "duration": 5.930666666666666,
+  "text": "Two point two nine nine, two point two eight six, two point two six seven.",
+  "voice": "am_michael"
+ },
+ "s5-003-abbbf81428bb5923.wav": {
+  "duration": 7.018666666666666,
+  "text": "The largest rung is one point four percent better than the smallest \u2014 fourteen thousandths of a nat.",
+  "voice": "am_michael"
+ },
+ "s5-004-4975e500db164dc4.wav": {
+  "duration": 13.290666666666667,
+  "text": "And you already know from episode three why that margin is what it is: nineteen percent of the tokens are irreducible digits and the prose was solved by the smallest model.",
+  "voice": "am_michael"
+ },
+ "s5-005-941de2d7b24213ca.wav": {
+  "duration": 8.213333333333333,
+  "text": "So the number is small, it is real, it is in the right direction, and we can say exactly why it is not bigger.",
+  "voice": "am_michael"
+ },
+ "s5-006-c5986999d3548b7f.wav": {
+  "duration": 5.482666666666667,
+  "text": "That last part is what separates an evaluation from a leaderboard entry.",
+  "voice": "am_michael"
+ },
+ "s6-000-ba5a19d11c613cbe.wav": {
+  "duration": 5.589333333333333,
+  "text": "Mistake four, and it is the one nobody admits to: stopping at the number.",
+  "voice": "am_michael"
+ },
+ "s6-001-e4d5c297ce7c7eca.wav": {
+  "duration": 2.0906666666666665,
+  "text": "Read what the model writes.",
+  "voice": "am_michael"
+ },
+ "s6-002-aa7f413841886b69.wav": {
+  "duration": 3.904,
+  "text": "Prompt it with each register token and look at the output.",
+  "voice": "am_michael"
+ },
+ "s6-003-a2eebf070d4e93f9.wav": {
+  "duration": 5.888,
+  "text": "Is it the right register \u2014 does the filing token actually produce filing prose.",
+  "voice": "am_michael"
+ },
+ "s6-004-9d3bbaa0b356f60e.wav": {
+  "duration": 2.2186666666666666,
+  "text": "Are the fields in the right order.",
+  "voice": "am_michael"
+ },
+ "s6-005-227a87ba938d475e.wav": {
+  "duration": 6.8053333333333335,
+  "text": "Are the numbers plausible for that issuer, or is it quoting a bank at a chemical company's price.",
+  "voice": "am_michael"
+ },
+ "s6-006-70c0ca67a262e9af.wav": {
+  "duration": 3.84,
+  "text": "Does it contradict itself inside a single sentence.",
+  "voice": "am_michael"
+ },
+ "s6-007-993b8f9b9e0a3f53.wav": {
+  "duration": 15.104,
+  "text": "Remember what happened in topic four: the model produced perfectly-formed tape lines, one hundred percent of them matching the grammar exactly, of which thirty six percent had a coherent high and low.",
+  "voice": "am_michael"
+ },
+ "s6-008-25ee7c2fa52bac5b.wav": {
+  "duration": 2.517333333333333,
+  "text": "No aggregate metric showed that.",
+  "voice": "am_michael"
+ },
+ "s6-009-af85c12667597958.wav": {
+  "duration": 2.005333333333333,
+  "text": "Ten seconds of reading did.",
+  "voice": "am_michael"
+ },
+ "s7-000-0bbc120e42dea828.wav": {
+  "duration": 4.522666666666667,
+  "text": "And then the 4070 run, which is mostly planning.",
+  "voice": "am_michael"
+ },
+ "s7-001-371be829de715fa6.wav": {
+  "duration": 6.1866666666666665,
+  "text": "The runner prints its plan and refuses to start if the plan does not fit in the device.",
+  "voice": "am_michael"
+ },
+ "s7-002-2a53c538f6580bb3.wav": {
+  "duration": 17.429333333333332,
+  "text": "Four copies of every parameter exist before a single activation does \u2014 the weight, its gradient, and Adam's two moment estimates \u2014 so forty million parameters is six hundred and thirty three megabytes before you have run anything.",
+  "voice": "am_michael"
+ },
+ "s7-003-acbf55ca1ed7add4.wav": {
+  "duration": 19.818666666666665,
+  "text": "Activations at a batch of twenty four and a context of five hundred and twelve add five point four gigabytes, dominated by the attention matrix, which is quadratic in context and is exactly the term topic seven's Flash Attention exists to delete.",
+  "voice": "am_michael"
+ },
+ "s7-004-dd2fd8bcbb9e9a7f.wav": {
+  "duration": 3.52,
+  "text": "Total, with headroom, seven point nine gigabytes.",
+  "voice": "am_michael"
+ },
+ "s7-005-fe2ccf0f470dbf4a.wav": {
+  "duration": 1.088,
+  "text": "It fits.",
+  "voice": "am_michael"
+ },
+ "s7-006-0600dbeec76a80a8.wav": {
+  "duration": 13.696,
+  "text": "And then the number that actually matters: four hundred and ninety one million training tokens against a two point four million token corpus is two hundred and seven passes over the same data.",
+  "voice": "am_michael"
+ },
+ "s7-007-666ddfc8423e07a5.wav": {
+  "duration": 7.637333333333333,
+  "text": "The script prints that with a warning, because it is the number that decides whether the night is worth the electricity.",
+  "voice": "am_michael"
+ },
+ "s8-000-f0a79ef74c4bf2e4.wav": {
+  "duration": 3.1786666666666665,
+  "text": "My recommendation is to run it anyway.",
+  "voice": "am_michael"
+ },
+ "s8-001-fd9ce580a43788d1.wav": {
+  "duration": 18.282666666666668,
+  "text": "Two hundred epochs on this corpus will memorise it, and that is the point: training loss will keep falling while held-out perplexity flattens and then turns upward, and the eval curve in the results file will show you the exact step where it turned.",
+  "voice": "am_michael"
+ },
+ "s8-002-c5954031ffcf0918.wav": {
+  "duration": 9.984,
+  "text": "Seeing that divergence once, on your own model, on data you generated, is worth more than reading about overfitting ten times.",
+  "voice": "am_michael"
+ },
+ "s8-003-392857d8dbc3f487.wav": {
+  "duration": 16.78933333333333,
+  "text": "And when it has happened, you will know precisely why topic twenty three, synthetic data, and topic thirty eight, curation, are the next interesting things to build \u2014 because your compute stopped being the constraint some hours ago.",
+  "voice": "am_michael"
+ },
+ "s9-000-cf619f648f3a2abd.wav": {
+  "duration": 2.474666666666667,
+  "text": "Four things to close the topic.",
+  "voice": "am_michael"
+ },
+ "s9-001-cadf3811dd6afddb.wav": {
+  "duration": 0.832,
+  "text": "One.",
+  "voice": "am_michael"
+ },
+ "s9-002-0d9ea0470d8810c0.wav": {
+  "duration": 10.730666666666666,
+  "text": "Evaluate by register, sequentially, in bits per character \u2014 and then read the output anyway, because the metric cannot see fluent-and-wrong.",
+  "voice": "am_michael"
+ },
+ "s9-003-8848b45411fcacef.wav": {
+  "duration": 0.8106666666666666,
+  "text": "Two.",
+  "voice": "am_michael"
+ },
+ "s9-004-3d75a9cb2306e550.wav": {
+  "duration": 13.461333333333334,
+  "text": "The largest CPU rung beats the smallest on held-out filings by one point four percent, and the value of the study is that we can say exactly why it is not more.",
+  "voice": "am_michael"
+ },
+ "s9-005-301665492da4bf47.wav": {
+  "duration": 0.896,
+  "text": "Three.",
+  "voice": "am_michael"
+ },
+ "s9-006-6f01403f3fe91a89.wav": {
+  "duration": 11.733333333333333,
+  "text": "A checkpoint that resumes invisibly is five things, and the test is that sixty plus a resume plus sixty equals one hundred and twenty, exactly.",
+  "voice": "am_michael"
+ },
+ "s9-007-b0bb5415ca56734f.wav": {
+  "duration": 0.9386666666666666,
+  "text": "Four.",
+  "voice": "am_michael"
+ },
+ "s9-008-3ef7d4611a7a5632.wav": {
+  "duration": 8.298666666666668,
+  "text": "The overnight run gets planned before it gets started, and the most important line in that plan is the epoch count.",
+  "voice": "am_michael"
+ },
+ "s9-009-1742f34eb9582dbd.wav": {
+  "duration": 16.469333333333335,
+  "text": "AlphaSLM is the model that every later topic in this course modifies rather than replaces \u2014 LoRA tunes it, DPO aligns it, quantization shrinks it, and a Rust server you will write serves it.",
+  "voice": "am_michael"
+ },
+ "s9-010-1d09360f6ed2b60a.wav": {
+  "duration": 2.0906666666666665,
+  "text": "This is where its weights come from.",
+  "voice": "am_michael"
+ },
+ "s9-011-462561dda672dec9.wav": {
+  "duration": 6.8053333333333335,
+  "text": "Next topic, T43: embedding models, and what similarity means geometrically.",
+  "voice": "am_michael"
+ },
+ "s9-012-18440a5547d44661.wav": {
+  "duration": 1.28,
+  "text": "See you there.",
+  "voice": "am_michael"
+ }
+}

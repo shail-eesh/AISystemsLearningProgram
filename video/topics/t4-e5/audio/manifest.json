@@ -1,0 +1,397 @@
+{
+ "s1-000-e19396f98ddd78fa.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Welcome back.",
+  "voice": "am_michael"
+ },
+ "s1-001-50e535afcecd3c64.wav": {
+  "duration": 3.2,
+  "text": "The last episode of the transformer series.",
+  "voice": "am_michael"
+ },
+ "s1-002-3019f41fcfb2510b.wav": {
+  "duration": 5.0986666666666665,
+  "text": "Two topics that both look like implementation details and are not.",
+  "voice": "am_michael"
+ },
+ "s1-003-1b75cabba7e94807.wav": {
+  "duration": 7.018666666666666,
+  "text": "Sampling, which is where \"the model is bad\" usually turns out to mean \"the sampler is wrong\".",
+  "voice": "am_michael"
+ },
+ "s1-004-168464496fe65e9b.wav": {
+  "duration": 7.722666666666667,
+  "text": "And the key-value cache, which is not an optimisation so much as the removal of an obvious mistake.",
+  "voice": "am_michael"
+ },
+ "s10-000-e8f6b783e7471d78.wav": {
+  "duration": 1.4933333333333334,
+  "text": "That is the series.",
+  "voice": "am_michael"
+ },
+ "s10-001-d606dcc98d63b58d.wav": {
+  "duration": 2.0906666666666665,
+  "text": "Five things to carry forward.",
+  "voice": "am_michael"
+ },
+ "s10-002-3270024cb897ee86.wav": {
+  "duration": 6.293333333333333,
+  "text": "Attention is a differentiable dictionary lookup, and the square root is a variance fix.",
+  "voice": "am_michael"
+ },
+ "s10-003-9361d726336fdf39.wav": {
+  "duration": 7.104,
+  "text": "The block is two writes to a shared residual bus, and the MLP holds two thirds of the parameters.",
+  "voice": "am_michael"
+ },
+ "s10-004-479cd02e5f566a20.wav": {
+  "duration": 9.322666666666667,
+  "text": "RoPE falls out of one wish about relative position and is the only scheme that has an answer past the training length.",
+  "voice": "am_michael"
+ },
+ "s10-005-236577e27d1f9597.wav": {
+  "duration": 12.949333333333334,
+  "text": "The model learned the grammar of the tape completely and its meaning barely, and our first interpretability experiment measured a positional shortcut rather than the circuit we were looking for.",
+  "voice": "am_michael"
+ },
+ "s10-006-d7743f2f4f214229.wav": {
+  "duration": 8.874666666666666,
+  "text": "And the key-value cache removes quadratic waste, at a memory cost that is the whole reason paged caches exist.",
+  "voice": "am_michael"
+ },
+ "s10-007-6290a55282280eee.wav": {
+  "duration": 11.818666666666667,
+  "text": "What you have built is the architecture that AlphaSLM, the embedding model, the vision transformer and the speech model in this course are all instances of.",
+  "voice": "am_michael"
+ },
+ "s10-008-dfbef85939c1c2be.wav": {
+  "duration": 9.706666666666667,
+  "text": "Next topic, T15: this architecture, plus the tokenizer you built in phase one, plus a real pretraining pipeline.",
+  "voice": "am_michael"
+ },
+ "s10-009-18440a5547d44661.wav": {
+  "duration": 1.28,
+  "text": "See you there.",
+  "voice": "am_michael"
+ },
+ "s2-000-8930ca93e513c292.wav": {
+  "duration": 1.4933333333333334,
+  "text": "Here is the setup.",
+  "voice": "am_michael"
+ },
+ "s2-001-e7d6e283f4405498.wav": {
+  "duration": 5.952,
+  "text": "A trained model hands you a probability for every token in the vocabulary.",
+  "voice": "am_michael"
+ },
+ "s2-002-56c6ce8a3bca75d9.wav": {
+  "duration": 3.3066666666666666,
+  "text": "Choosing one of them is not part of the model.",
+  "voice": "am_michael"
+ },
+ "s2-003-03873ebd1b898967.wav": {
+  "duration": 7.808,
+  "text": "It is a separate design problem, and it affects perceived quality more than most architecture decisions do.",
+  "voice": "am_michael"
+ },
+ "s2-004-fa479568a58dda74.wav": {
+  "duration": 1.472,
+  "text": "Four options.",
+  "voice": "am_michael"
+ },
+ "s2-005-1e4bc45256bda4df.wav": {
+  "duration": 5.44,
+  "text": "Greedy, always take the most likely token: deterministic, and it loops.",
+  "voice": "am_michael"
+ },
+ "s2-006-b274144e0edefb95.wav": {
+  "duration": 10.901333333333334,
+  "text": "Temperature, divide the logits before the softmax: below one sharpens, above one flattens, and it never removes an option, only reweights.",
+  "voice": "am_michael"
+ },
+ "s2-007-20baeabf2a1c2312.wav": {
+  "duration": 7.274666666666667,
+  "text": "Top-k, keep the k most likely: a fixed budget regardless of how confident the model is.",
+  "voice": "am_michael"
+ },
+ "s2-008-b9030c5105ec752c.wav": {
+  "duration": 7.850666666666666,
+  "text": "And top-p, also called nucleus: keep the smallest set of tokens whose probability adds up to p.",
+  "voice": "am_michael"
+ },
+ "s2-009-d4cfc972ba05fffa.wav": {
+  "duration": 13.589333333333334,
+  "text": "All four are pure functions of a logit vector, which is worth noticing, because it means you can test them properly instead of squinting at generated text and forming an impression.",
+  "voice": "am_michael"
+ },
+ "s3-000-a248c2ce32eb0e26.wav": {
+  "duration": 5.9093333333333335,
+  "text": "Here is nucleus sampling in seven lines, with the mistake everyone makes marked.",
+  "voice": "am_michael"
+ },
+ "s3-001-e0ecefa59f5bdcd6.wav": {
+  "duration": 3.6906666666666665,
+  "text": "Sort descending, take the cumulative probability.",
+  "voice": "am_michael"
+ },
+ "s3-002-50f9a19d36462d94.wav": {
+  "duration": 1.5573333333333332,
+  "text": "Now line four.",
+  "voice": "am_michael"
+ },
+ "s3-003-4d6549974fa135ee.wav": {
+  "duration": 10.709333333333333,
+  "text": "We subtract this token's own probability from the cumulative sum, so what we compare against p is the mass *before* this token.",
+  "voice": "am_michael"
+ },
+ "s3-004-8766fb0f23c4e3f4.wav": {
+  "duration": 6.741333333333333,
+  "text": "That means the token which *crosses* the threshold is kept, not dropped.",
+  "voice": "am_michael"
+ },
+ "s3-005-09e509b85d76486a.wav": {
+  "duration": 13.781333333333333,
+  "text": "Get that wrong \u2014 compare the cumulative sum directly \u2014 and you systematically drop the token that was about to complete the nucleus, which quietly makes the model more conservative than you asked for.",
+  "voice": "am_michael"
+ },
+ "s3-006-ef451113ddc74126.wav": {
+  "duration": 12.181333333333333,
+  "text": "Line five keeps the argmax alive unconditionally, which is what makes top p of zero point zero one still leave exactly one token rather than none.",
+  "voice": "am_michael"
+ },
+ "s3-007-46152e11582cbce6.wav": {
+  "duration": 11.370666666666667,
+  "text": "And line six scatters the mask back into vocabulary order, because a filter that reorders your logits is a filter that samples the wrong token.",
+  "voice": "am_michael"
+ },
+ "s4-000-30be8dcc81b11240.wav": {
+  "duration": 6.506666666666667,
+  "text": "And this is the argument for nucleus sampling, on two real rows from one real model.",
+  "voice": "am_michael"
+ },
+ "s4-001-f82da8086da8935e.wav": {
+  "duration": 11.562666666666667,
+  "text": "On the left, a confident position: the model has just seen A-L-P-H-A-I-N-F and is ninety nine point eight percent sure the next character is R.",
+  "voice": "am_michael"
+ },
+ "s4-002-ec90397a67c5a434.wav": {
+  "duration": 11.413333333333334,
+  "text": "Top-k with k of twenty keeps twenty candidates \u2014 nineteen of which the model has already ruled out, every one of them a typo waiting to be drawn.",
+  "voice": "am_michael"
+ },
+ "s4-003-be718982c405cb20.wav": {
+  "duration": 3.4346666666666668,
+  "text": "Top-p with p of zero point nine keeps one.",
+  "voice": "am_michael"
+ },
+ "s4-004-7af51236a9045f54.wav": {
+  "duration": 20.416,
+  "text": "On the right, an genuinely uncertain position: the model has just emitted a date and is choosing between five ticker symbols, with probabilities zero point three one, zero point two one, zero point one nine, zero point one eight, zero point one.",
+  "voice": "am_michael"
+ },
+ "s4-005-c115adbad2a9c36b.wav": {
+  "duration": 2.0693333333333332,
+  "text": "Top-k still keeps twenty.",
+  "voice": "am_michael"
+ },
+ "s4-006-bd53e03cd08eae8f.wav": {
+  "duration": 2.4106666666666667,
+  "text": "Top-p opens up to five.",
+  "voice": "am_michael"
+ },
+ "s4-007-0c07a0b9c05b7004.wav": {
+  "duration": 12.992,
+  "text": "The budget follows the model's own confidence, which is a thing a constant k cannot do, and that is why nucleus sampling is the default in every serving stack you will meet.",
+  "voice": "am_michael"
+ },
+ "s5-000-7f28f8a62d05e06e.wav": {
+  "duration": 10.624,
+  "text": "We swept eleven settings and scored each on two things: how many generated lines match the tape grammar exactly, and how many are distinct.",
+  "voice": "am_michael"
+ },
+ "s5-001-6ec1f8d68bc911b7.wav": {
+  "duration": 2.517333333333333,
+  "text": "Greedy is the interesting one.",
+  "voice": "am_michael"
+ },
+ "s5-002-49dfb3c639593309.wav": {
+  "duration": 5.738666666666667,
+  "text": "It scores one hundred percent on grammar and twenty five percent on distinctness.",
+  "voice": "am_michael"
+ },
+ "s5-003-6eee49fb94dfa248.wav": {
+  "duration": 15.424,
+  "text": "It produces the same safe line over and over, because the argmax of a language model is not fluent text \u2014 it is the least risky token at every step, forever, and least-risky compounds into a loop.",
+  "voice": "am_michael"
+ },
+ "s5-004-63385064744de0cb.wav": {
+  "duration": 8.533333333333333,
+  "text": "At the other end, temperature one point five scores zero percent on grammar: variety bought by breaking the structure.",
+  "voice": "am_michael"
+ },
+ "s5-005-4736d62c3bbfe5a8.wav": {
+  "duration": 8.896,
+  "text": "The useful settings sit in the middle, and the two columns together catch both failure modes, which one column alone would not.",
+  "voice": "am_michael"
+ },
+ "s6-000-117a60296528b44a.wav": {
+  "duration": 1.344,
+  "text": "Now the cache.",
+  "voice": "am_michael"
+ },
+ "s6-001-e254c64609742ba5.wav": {
+  "duration": 4.096,
+  "text": "Think about what generating token t costs without one.",
+  "voice": "am_michael"
+ },
+ "s6-002-aafb791ff571069c.wav": {
+  "duration": 7.530666666666667,
+  "text": "You take the whole sequence so far, run it through every layer, and read the logits off the last position.",
+  "voice": "am_michael"
+ },
+ "s6-003-ffdcee5ac3d9c251.wav": {
+  "duration": 3.541333333333333,
+  "text": "Next step, you do it again with one more token.",
+  "voice": "am_michael"
+ },
+ "s6-004-8dfeece1a72f091c.wav": {
+  "duration": 13.162666666666667,
+  "text": "But the causal mask guarantees that nothing in the past depends on the future, so the keys and values for every position before the newest one are bit-for-bit what they were a moment ago.",
+  "voice": "am_michael"
+ },
+ "s6-005-b2707c2885b09c53.wav": {
+  "duration": 2.517333333333333,
+  "text": "You computed them again anyway.",
+  "voice": "am_michael"
+ },
+ "s6-006-2a4eff5468a165f0.wav": {
+  "duration": 15.893333333333333,
+  "text": "Counted for one hundred and twenty eight generated tokens from an eleven-token prompt: nine thousand five hundred and thirty six position-passes through every layer without a cache, one hundred and thirty nine with one.",
+  "voice": "am_michael"
+ },
+ "s6-007-81e033d74180068a.wav": {
+  "duration": 5.866666666666666,
+  "text": "Sixty eight times the work, every bit of it reproducing numbers you already had.",
+  "voice": "am_michael"
+ },
+ "s6-008-e586b701be05584f.wav": {
+  "duration": 2.6026666666666665,
+  "text": "That is not a missed optimisation.",
+  "voice": "am_michael"
+ },
+ "s6-009-a7f8c7f4ae9a8cf1.wav": {
+  "duration": 2.965333333333333,
+  "text": "That is a mistake, and it is quadratic.",
+  "voice": "am_michael"
+ },
+ "s7-000-767bdd02d272abab.wav": {
+  "duration": 4.373333333333333,
+  "text": "Measured on two CPU cores, and the shape is the point.",
+  "voice": "am_michael"
+ },
+ "s7-001-9ebd47e488af79c6.wav": {
+  "duration": 4.8213333333333335,
+  "text": "At thirty two tokens the cache is one point seven times faster.",
+  "voice": "am_michael"
+ },
+ "s7-002-9538036f9df725d3.wav": {
+  "duration": 2.6453333333333333,
+  "text": "At sixty four, one point nine.",
+  "voice": "am_michael"
+ },
+ "s7-003-2adff722ef13111d.wav": {
+  "duration": 3.264,
+  "text": "At one hundred and twenty eight, two point eight.",
+  "voice": "am_michael"
+ },
+ "s7-004-6a4e1e487e993230.wav": {
+  "duration": 2.2613333333333334,
+  "text": "At two hundred, four times.",
+  "voice": "am_michael"
+ },
+ "s7-005-b48812c700fc82c8.wav": {
+  "duration": 5.44,
+  "text": "The speedup grows with length because the thing being avoided grows with length.",
+  "voice": "am_michael"
+ },
+ "s7-006-668fd3cd8593ac06.wav": {
+  "duration": 9.877333333333333,
+  "text": "And at very short lengths a cache can actually lose, because it pays fixed per-step overhead to save arithmetic there is not much of yet.",
+  "voice": "am_michael"
+ },
+ "s7-007-12062d34180c4b2e.wav": {
+  "duration": 22.250666666666667,
+  "text": "The output is token-identical at every length under greedy decoding, and there is a test that asserts exactly that \u2014 plus a stronger one that compares the *logits*, not just their argmax, because a subtly wrong cache can survive greedy decoding for quite a while before it shows.",
+  "voice": "am_michael"
+ },
+ "s8-000-8b249ef347ec9853.wav": {
+  "duration": 5.653333333333333,
+  "text": "One gotcha, and it is specific to the combination of the last two episodes.",
+  "voice": "am_michael"
+ },
+ "s8-001-c5371b4f47d5979a.wav": {
+  "duration": 4.565333333333333,
+  "text": "With rotary embeddings, the key is rotated by its position.",
+  "voice": "am_michael"
+ },
+ "s8-002-0a7f567be74860ee.wav": {
+  "duration": 6.506666666666667,
+  "text": "A cached key was stored at some earlier position, and it has to carry that rotation with it.",
+  "voice": "am_michael"
+ },
+ "s8-003-d87d86e91ae23d46.wav": {
+  "duration": 5.376,
+  "text": "So you rotate before you write into the cache, never after you read out of it.",
+  "voice": "am_michael"
+ },
+ "s8-004-2abdb18199cfea70.wav": {
+  "duration": 18.794666666666668,
+  "text": "Get the order wrong and every cached key is rotated by the *current* position instead of its own, the relative-phase property silently stops holding, and the model is wrong in a way that produces no crash and no obvious garbage.",
+  "voice": "am_michael"
+ },
+ "s8-005-6f8bb459d9a53724.wav": {
+  "duration": 11.221333333333334,
+  "text": "Our test for this checks the offset path against a contiguous forward pass, and it is one of the few tests in the repository I would call load-bearing.",
+  "voice": "am_michael"
+ },
+ "s9-000-16eba10a5bccbb57.wav": {
+  "duration": 5.290666666666667,
+  "text": "And then the cache runs out, which is the last thing this topic has to teach.",
+  "voice": "am_michael"
+ },
+ "s9-001-0d8ce80341873b4d.wav": {
+  "duration": 9.045333333333334,
+  "text": "Ours is the naive version: one preallocated tensor per layer, filled left to right, and when it is full it is full.",
+  "voice": "am_michael"
+ },
+ "s9-002-12e70319593ff97f.wav": {
+  "duration": 11.306666666666667,
+  "text": "The size is linear in context times batch times layers times heads times head dimension, times two for keys and values, times four bytes.",
+  "voice": "am_michael"
+ },
+ "s9-003-a21d5ea6dd7de403.wav": {
+  "duration": 8.149333333333333,
+  "text": "Here that is one megabyte for a two hundred and fifty six token context on a four layer model, which is nothing.",
+  "voice": "am_michael"
+ },
+ "s9-004-cc4ac53fc4f1ac38.wav": {
+  "duration": 8.128,
+  "text": "For a seven billion parameter model at four thousand tokens of context it is gigabytes \u2014 per sequence.",
+  "voice": "am_michael"
+ },
+ "s9-005-6a50b05705d224c5.wav": {
+  "duration": 9.173333333333334,
+  "text": "Larger than the model's activations, and mostly empty most of the time, because most requests are shorter than the maximum.",
+  "voice": "am_michael"
+ },
+ "s9-006-20839e5b486e96b2.wav": {
+  "duration": 9.578666666666667,
+  "text": "Our generate function raises an error rather than quietly sliding the window, deliberately, so that you meet the wall yourself.",
+  "voice": "am_michael"
+ },
+ "s9-007-e8891eecd3872b7b.wav": {
+  "duration": 11.008,
+  "text": "That wall is the entire motivation for T12, the paged key-value cache, and the design will make a great deal more sense to you having hit it.",
+  "voice": "am_michael"
+ }
+}

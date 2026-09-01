@@ -1,0 +1,656 @@
+{
+ "topic": "t15-e3",
+ "episode": 3,
+ "title": "The scaling study, and the floor underneath it",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 523.2967,
+ "wordCount": 1127,
+ "wordsPerMinute": 129.2,
+ "sceneCount": 9,
+ "shortestSceneSeconds": 40.7,
+ "generatedInSeconds": 208.6,
+ "segmentsSynthesised": 72,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "The scaling study",
+    "subtitle": "Three sizes, one corpus, and a result that turned out to be about the data.",
+    "topicId": "T15",
+    "episode": "Episode 3",
+    "paper": "Hoffmann et al. 2022"
+   },
+   "start": 0.0,
+   "duration": 40.702,
+   "segments": [
+    {
+     "text": "Welcome back.",
+     "file": "t15-e3/audio/s1-000-e19396f98ddd78fa.wav",
+     "start": 0.0,
+     "duration": 1.3227
+    },
+    {
+     "text": "Episode three.",
+     "file": "t15-e3/audio/s1-001-10e0931710e7d3c9.wav",
+     "start": 1.7427,
+     "duration": 1.472
+    },
+    {
+     "text": "Three models, zero point six million, one point eight million and five point nine million parameters.",
+     "file": "t15-e3/audio/s1-002-c2fd551a866a341c.wav",
+     "start": 3.6347,
+     "duration": 8.0427
+    },
+    {
+     "text": "Identical corpus, identical schedule, identical seed.",
+     "file": "t15-e3/audio/s1-003-1650cb338dcbfcb6.wav",
+     "start": 12.0973,
+     "duration": 4.5013
+    },
+    {
+     "text": "Nothing varies but size.",
+     "file": "t15-e3/audio/s1-004-d068bfb5bbee745c.wav",
+     "start": 17.0187,
+     "duration": 1.9627
+    },
+    {
+     "text": "This is the least glamorous experiment in machine learning and the one that decides whether anyone spends a month of GPU time, so it is worth doing carefully \u2014 and ours produced a result I want to walk through honestly, because the honest version is more useful than the tidy one.",
+     "file": "t15-e3/audio/s1-005-ffebf20bd22afb8d.wav",
+     "start": 19.4013,
+     "duration": 20.6507
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the setup",
+    "title": "The only fair scaling study is a boring one",
+    "body": "Everything except parameter count is held fixed: same packed shards, same tokenizer, same context, same optimiser, same learning rate, same warmup, same number of steps, same seed.",
+    "points": [
+     "0.6M \u2014 2 layers, width 96",
+     "1.8M \u2014 4 layers, width 160",
+     "5.9M \u2014 6 layers, width 264",
+     "Width and depth grow together, roughly d ~ 64 sqrt(L), the way real model families grow."
+    ],
+    "aside": "Growing depth alone gives you a slow model. Growing width alone gives you a shallow one. Real ladders move both."
+   },
+   "start": 40.702,
+   "duration": 58.7367,
+   "segments": [
+    {
+     "text": "The setup first, because a scaling study that varies two things measures nothing.",
+     "file": "t15-e3/audio/s2-000-13bc9189e8d2db28.wav",
+     "start": 40.702,
+     "duration": 5.504
+    },
+    {
+     "text": "Three rungs.",
+     "file": "t15-e3/audio/s2-001-a429963233c76459.wav",
+     "start": 46.626,
+     "duration": 1.28
+    },
+    {
+     "text": "Zero point six million parameters: two layers, width ninety six.",
+     "file": "t15-e3/audio/s2-002-da62e0c750357bbb.wav",
+     "start": 48.326,
+     "duration": 5.2693
+    },
+    {
+     "text": "One point eight million: four layers, width one hundred and sixty.",
+     "file": "t15-e3/audio/s2-003-d55ec62deadbd640.wav",
+     "start": 54.0153,
+     "duration": 4.8853
+    },
+    {
+     "text": "Five point nine million: six layers, width two hundred and sixty four.",
+     "file": "t15-e3/audio/s2-004-e6ad62a70d99d08a.wav",
+     "start": 59.3207,
+     "duration": 5.2907
+    },
+    {
+     "text": "Width and depth grow together, roughly as width proportional to the square root of depth, which is how real model families are built \u2014 growing depth alone gives you a slow model, growing width alone gives you a shallow one.",
+     "file": "t15-e3/audio/s2-005-f9e161f32f1ab512.wav",
+     "start": 65.0313,
+     "duration": 16.3413
+    },
+    {
+     "text": "And everything else is nailed down: same shards, same tokenizer, same context, same optimiser, same learning rate, same warmup, same number of steps, same seed.",
+     "file": "t15-e3/audio/s2-006-6cfc9b42f33ccb32.wav",
+     "start": 81.7927,
+     "duration": 13.0773
+    },
+    {
+     "text": "The parameter count is the only thing that moves.",
+     "file": "t15-e3/audio/s2-007-d8112ad57ed36ca1.wav",
+     "start": 95.29,
+     "duration": 3.4987
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the result",
+    "title": "The ordering holds \u2014 and the margins are tiny",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "0.6M",
+      "value": 0.8129
+     },
+     {
+      "label": "1.8M",
+      "value": 0.8017
+     },
+     {
+      "label": "5.9M",
+      "value": 0.7955,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "held-out loss (nats per token)",
+    "caption": "Bigger is better at every rung. But the total improvement across a 10.7x parameter increase is 0.017 nats."
+   },
+   "start": 99.4387,
+   "duration": 50.0327,
+   "segments": [
+    {
+     "text": "Here is the result.",
+     "file": "t15-e3/audio/s3-000-ecfbfbe817913d4e.wav",
+     "start": 99.4387,
+     "duration": 1.472
+    },
+    {
+     "text": "Zero point eight one three, zero point eight zero two, zero point seven nine six.",
+     "file": "t15-e3/audio/s3-001-02e096a82df44d37.wav",
+     "start": 101.3307,
+     "duration": 7.0613
+    },
+    {
+     "text": "The ordering holds: every larger model reaches a lower held-out loss than the one below it, under a matched schedule, which is the claim the study exists to test.",
+     "file": "t15-e3/audio/s3-002-b230eca71051d26b.wav",
+     "start": 108.812,
+     "duration": 12.096
+    },
+    {
+     "text": "And the margins are tiny.",
+     "file": "t15-e3/audio/s3-003-b28207c2c76e5528.wav",
+     "start": 121.328,
+     "duration": 2.0693
+    },
+    {
+     "text": "Ten point seven times the parameters buys seventeen thousandths of a nat.",
+     "file": "t15-e3/audio/s3-004-c2936c99ddaf9de4.wav",
+     "start": 123.8173,
+     "duration": 5.4613
+    },
+    {
+     "text": "If you have seen scaling charts in papers, where a ten-fold increase moves the loss by a substantial fraction, this looks broken.",
+     "file": "t15-e3/audio/s3-005-edfd3787cb88024a.wav",
+     "start": 129.6987,
+     "duration": 9.728
+    },
+    {
+     "text": "It is not broken.",
+     "file": "t15-e3/audio/s3-006-32cdde1c77890796.wav",
+     "start": 139.8467,
+     "duration": 1.7707
+    },
+    {
+     "text": "It is telling us something specific about our corpus, and finding out what took one more measurement.",
+     "file": "t15-e3/audio/s3-007-10d56133b12e34d0.wav",
+     "start": 142.0373,
+     "duration": 6.784
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the diagnosis",
+    "title": "Split the loss by what kind of token it is",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "numeric tokens\n19% of corpus",
+      "value": 3.563,
+      "color": "#d98b4a"
+     },
+     {
+      "label": "prose tokens\n81% of corpus",
+      "value": 0.086,
+      "color": "#5ac48c"
+     }
+    ],
+    "yLabel": "loss (nats per token)",
+    "caption": "3.563 nats on digits is close to uniform over a large digit alphabet. 0.086 on prose is close to deterministic."
+   },
+   "start": 149.4713,
+   "duration": 57.926,
+   "segments": [
+    {
+     "text": "So we split the per-token loss into two classes: tokens containing digits, and everything else.",
+     "file": "t15-e3/audio/s4-000-ca7d576f192a5401.wav",
+     "start": 149.4713,
+     "duration": 7.0187
+    },
+    {
+     "text": "Look at the two numbers.",
+     "file": "t15-e3/audio/s4-001-d9c91733f518575a.wav",
+     "start": 156.91,
+     "duration": 1.6427
+    },
+    {
+     "text": "Numeric tokens are nineteen percent of the corpus and cost three point five six nats each \u2014 that is close to uniformly random over a large alphabet of digit pieces, which makes sense, because our corpus generator draws prices and volumes and percentages from continuous ranges.",
+     "file": "t15-e3/audio/s4-002-9ee80b035a5f4cd8.wav",
+     "start": 158.9727,
+     "duration": 22.336
+    },
+    {
+     "text": "Nobody can predict those.",
+     "file": "t15-e3/audio/s4-003-f53436904297f367.wav",
+     "start": 181.7287,
+     "duration": 2.1333
+    },
+    {
+     "text": "And prose tokens, eighty one percent of the corpus, cost zero point zero eight six nats.",
+     "file": "t15-e3/audio/s4-004-7f41040e82b7bc80.wav",
+     "start": 184.282,
+     "duration": 6.9547
+    },
+    {
+     "text": "Zero point zero eight six.",
+     "file": "t15-e3/audio/s4-005-33abcd8a0f889edd.wav",
+     "start": 191.6567,
+     "duration": 2.432
+    },
+    {
+     "text": "That is a perplexity of about one point zero nine.",
+     "file": "t15-e3/audio/s4-006-b656a6e412f73470.wav",
+     "start": 194.5087,
+     "duration": 3.6267
+    },
+    {
+     "text": "The prose is *nearly deterministic*, because it is generated from a fixed set of templates.",
+     "file": "t15-e3/audio/s4-007-3cfe1b940d64b009.wav",
+     "start": 198.5553,
+     "duration": 8.192
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the finding",
+    "title": "The corpus, not the model, is the binding constraint",
+    "body": "Put the two halves together and the whole shape of the scaling result falls out \u2014 and it is a statement about the data, not about transformers.",
+    "points": [
+     "Nineteen percent of the loss budget is dice rolls no model can reduce.",
+     "The remaining eighty one percent was already exhausted by the SMALLEST model.",
+     "So there is almost nothing left for extra parameters to win.",
+     "The measured 0.017-nat margin is not a weak result. It is close to all the headroom there was."
+    ],
+    "aside": "The fix is a harder corpus, not a bigger model \u2014 which is precisely what T23 (synthetic data) and T38 (curation) are for."
+   },
+   "start": 207.3973,
+   "duration": 64.7033,
+   "segments": [
+    {
+     "text": "And now the two halves go together and the whole shape of the result falls out.",
+     "file": "t15-e3/audio/s5-000-b9fb1c6873f4e4bf.wav",
+     "start": 207.3973,
+     "duration": 5.1413
+    },
+    {
+     "text": "Nineteen percent of our loss budget is dice rolls that no model of any size can reduce.",
+     "file": "t15-e3/audio/s5-001-b4e9af369a9fc5d0.wav",
+     "start": 212.9587,
+     "duration": 7.1893
+    },
+    {
+     "text": "The other eighty one percent was already exhausted by the *smallest* model.",
+     "file": "t15-e3/audio/s5-002-be681df7827e108f.wav",
+     "start": 220.568,
+     "duration": 6.72
+    },
+    {
+     "text": "So there is essentially nothing left for extra parameters to win, and the seventeen-thousandths-of-a-nat margin is not a weak result \u2014 it is close to all the headroom that existed.",
+     "file": "t15-e3/audio/s5-003-0a12895909d204dc.wav",
+     "start": 227.708,
+     "duration": 13.3547
+    },
+    {
+     "text": "This is a statement about our data, not about transformers.",
+     "file": "t15-e3/audio/s5-004-f2569cfe4d5b8938.wav",
+     "start": 241.4827,
+     "duration": 4.3093
+    },
+    {
+     "text": "And it is the most useful thing this study produced, because it says what to do next: the fix is a harder corpus, not a bigger model.",
+     "file": "t15-e3/audio/s5-005-43715e3d6889ae54.wav",
+     "start": 246.212,
+     "duration": 9.664
+    },
+    {
+     "text": "Which is exactly what topic twenty three, synthetic data, and topic thirty eight, curation, are for.",
+     "file": "t15-e3/audio/s5-006-9ae792572eff256b.wav",
+     "start": 256.296,
+     "duration": 7.5733
+    },
+    {
+     "text": "Those two topics usually read as chores.",
+     "file": "t15-e3/audio/s5-007-69394d0be84c9ad2.wav",
+     "start": 264.2893,
+     "duration": 3.008
+    },
+    {
+     "text": "After this measurement they read as the bottleneck.",
+     "file": "t15-e3/audio/s5-008-96732c3ad5bf74a8.wav",
+     "start": 267.7173,
+     "duration": 3.7333
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the other constraint",
+    "title": "How far under Chinchilla each rung is",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "0.6M",
+      "value": 22.1,
+      "note": "% of budget"
+     },
+     {
+      "label": "1.8M",
+      "value": 6.9
+     },
+     {
+      "label": "5.9M",
+      "value": 2.1,
+      "color": "#d98b4a"
+     }
+    ],
+    "yLabel": "percent of the compute-optimal token budget",
+    "caption": "Chinchilla's rule of thumb is ~20 tokens per parameter. The corpus has 2.4M tokens."
+   },
+   "start": 272.1007,
+   "duration": 55.3087,
+   "segments": [
+    {
+     "text": "There is a second constraint on top of the first, and it points the same way.",
+     "file": "t15-e3/audio/s6-000-41de9720d0658d72.wav",
+     "start": 272.1007,
+     "duration": 5.2053
+    },
+    {
+     "text": "Chinchilla's rule of thumb says a compute-optimal run trains on roughly twenty tokens per parameter.",
+     "file": "t15-e3/audio/s6-001-233ce07d3efc8474.wav",
+     "start": 277.726,
+     "duration": 7.6587
+    },
+    {
+     "text": "Our corpus has two point four million tokens.",
+     "file": "t15-e3/audio/s6-002-01946a615b912ca2.wav",
+     "start": 285.8047,
+     "duration": 3.3493
+    },
+    {
+     "text": "So the smallest rung sees about twenty two percent of its compute-optimal budget, the middle one about seven percent, and the largest one about two percent.",
+     "file": "t15-e3/audio/s6-003-eb3ec6ffa59ec0fd.wav",
+     "start": 289.574,
+     "duration": 11.5627
+    },
+    {
+     "text": "Every model in this study is deep in the data-limited regime, which is precisely the regime where extra parameters stop paying.",
+     "file": "t15-e3/audio/s6-004-5fdff5807b36a779.wav",
+     "start": 301.5567,
+     "duration": 9.7707
+    },
+    {
+     "text": "Almost no published scaling chart is drawn from here \u2014 and almost every hobby project lives here.",
+     "file": "t15-e3/audio/s6-005-8ac235b6f8c21b4e.wav",
+     "start": 311.7473,
+     "duration": 7.1893
+    },
+    {
+     "text": "That mismatch is worth carrying around: the charts you have seen were made in a place you are not standing.",
+     "file": "t15-e3/audio/s6-006-c6992b1546ab946c.wav",
+     "start": 319.3567,
+     "duration": 7.4027
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "Callout",
+   "props": {
+    "kind": "warning",
+    "heading": "The power-law fit is three points, two of which drew the line",
+    "body": "We fit L(N) = a N^-b on the smallest and largest rungs only, then *check* it on the middle one \u2014 because a fit through all three points hides its own error. And then we extrapolate it two orders of magnitude, which is exactly the number people commit a month of GPU time to.",
+    "code": "L(N) = 0.9168 * N^-0.00910   (anchored on 0.6M and 5.9M)\nmiddle rung, predicted 0.8043 vs actual 0.8017   -> +0.33% error\nextrapolated to 40M:  0.7819       <- a two-point fit, stretched 7x"
+   },
+   "start": 327.4093,
+   "duration": 79.5367,
+   "segments": [
+    {
+     "text": "One methodological note, because this is where scaling studies get oversold.",
+     "file": "t15-e3/audio/s7-000-32bd8b079b77334d.wav",
+     "start": 327.4093,
+     "duration": 6.016
+    },
+    {
+     "text": "We fit a power law, loss equals a times parameters to the minus b, using only the smallest and largest rungs \u2014 and then we check it against the middle rung, which was not used to fit it.",
+     "file": "t15-e3/audio/s7-001-4e4f48ffed6f3b2e.wav",
+     "start": 333.8453,
+     "duration": 14.4427
+    },
+    {
+     "text": "A curve fitted through all three points would pass through all three points and tell you nothing about whether the relationship is real.",
+     "file": "t15-e3/audio/s7-002-5bd61741e64221b5.wav",
+     "start": 348.708,
+     "duration": 9.0453
+    },
+    {
+     "text": "Ours predicts zero point eight zero four for the middle rung against an actual of zero point eight zero two, an error of a third of a percent \u2014 which is genuine evidence, because that point did not draw the line.",
+     "file": "t15-e3/audio/s7-003-0c08b29f463dc7c8.wav",
+     "start": 358.1733,
+     "duration": 16.704
+    },
+    {
+     "text": "And then we extrapolate out to the forty million parameter model, which gives zero point seven eight.",
+     "file": "t15-e3/audio/s7-004-07aa3b3e8f89d3cb.wav",
+     "start": 375.2973,
+     "duration": 7.2107
+    },
+    {
+     "text": "Look at what that number actually is: a two-point fit, stretched by nearly an order of magnitude, on a corpus none of those models could saturate.",
+     "file": "t15-e3/audio/s7-005-70cb5492c36cb549.wav",
+     "start": 382.928,
+     "duration": 11.3067
+    },
+    {
+     "text": "It is exactly the kind of number people commit a month of GPU time to.",
+     "file": "t15-e3/audio/s7-006-42af16fd08aab3b2.wav",
+     "start": 394.6547,
+     "duration": 5.76
+    },
+    {
+     "text": "Report it, extrapolate with it if you must, and never forget how it was made.",
+     "file": "t15-e3/audio/s7-007-ac18c1a3ac415eba.wav",
+     "start": 400.8347,
+     "duration": 5.4613
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "overfitting?",
+    "title": "The generalisation gap, which is the other thing to watch",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "0.6M",
+      "value": 0.004
+     },
+     {
+      "label": "1.8M",
+      "value": 0.0039
+     },
+     {
+      "label": "5.9M",
+      "value": 0.0068,
+      "color": "#d98b4a"
+     }
+    ],
+    "yLabel": "val loss minus train loss (nats)",
+    "caption": "Small, but growing faster at the top rung than the val loss is falling. That is the signal to add data, not parameters."
+   },
+   "start": 406.946,
+   "duration": 49.8767,
+   "segments": [
+    {
+     "text": "Last chart.",
+     "file": "t15-e3/audio/s8-000-b1626817647b3b89.wav",
+     "start": 406.946,
+     "duration": 1.344
+    },
+    {
+     "text": "The gap between training loss and held-out loss, per rung.",
+     "file": "t15-e3/audio/s8-001-fb7f498a1b455d35.wav",
+     "start": 408.71,
+     "duration": 3.968
+    },
+    {
+     "text": "Four thousandths, four thousandths, seven thousandths.",
+     "file": "t15-e3/audio/s8-002-e45c2df5a81958b1.wav",
+     "start": 413.098,
+     "duration": 3.776
+    },
+    {
+     "text": "All small \u2014 nobody here is badly overfitting after one pass over the corpus.",
+     "file": "t15-e3/audio/s8-003-535b3b3412702422.wav",
+     "start": 417.294,
+     "duration": 6.2293
+    },
+    {
+     "text": "But watch the direction.",
+     "file": "t15-e3/audio/s8-004-7578ce2f29353388.wav",
+     "start": 423.9433,
+     "duration": 1.7707
+    },
+    {
+     "text": "Between the middle and top rungs the gap grew by nearly three thousandths while the held-out loss fell by six.",
+     "file": "t15-e3/audio/s8-005-82d0150cce7f2e97.wav",
+     "start": 426.134,
+     "duration": 7.616
+    },
+    {
+     "text": "That ratio is the thing to watch.",
+     "file": "t15-e3/audio/s8-006-6f667fb53f5fbb5f.wav",
+     "start": 434.17,
+     "duration": 2.624
+    },
+    {
+     "text": "When the gap starts growing faster than the loss is falling, you have stopped buying generalisation and started buying memorisation, and the correct response is more data rather than fewer parameters.",
+     "file": "t15-e3/audio/s8-007-02ea6fd8f076445a.wav",
+     "start": 437.214,
+     "duration": 14.272
+    },
+    {
+     "text": "On this corpus, at these sizes, we are right at the turn.",
+     "file": "t15-e3/audio/s8-008-0915bc8de8f00aa2.wav",
+     "start": 451.906,
+     "duration": 4.2667
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "The study, in three sentences",
+    "points": [
+     "The ordering holds: every larger rung reaches a lower held-out loss under a matched schedule.",
+     "The margin is tiny because 19% of the corpus is irreducible digits and the remaining 81% was already solved by the smallest model.",
+     "Both constraints \u2014 the entropy floor and the Chinchilla budget \u2014 say the same thing: the data is the bottleneck, not the model."
+    ],
+    "ifSkipped": "Skip this and you would read the small margins as 'scaling does not work at small scale', which is the wrong lesson from the right numbers.",
+    "next": "Episode 4 \u2014 reading your first pretrain: four ways to be wrong about a perplexity number."
+   },
+   "start": 456.8227,
+   "duration": 66.474,
+   "segments": [
+    {
+     "text": "Three things.",
+     "file": "t15-e3/audio/s9-000-612ae6df2d818804.wav",
+     "start": 456.8227,
+     "duration": 1.28
+    },
+    {
+     "text": "One.",
+     "file": "t15-e3/audio/s9-001-cadf3811dd6afddb.wav",
+     "start": 458.5227,
+     "duration": 0.832
+    },
+    {
+     "text": "The ordering holds \u2014 every larger model reaches a lower held-out loss under a matched schedule, which is the claim the study was built to test.",
+     "file": "t15-e3/audio/s9-002-c6326ed46c16adb4.wav",
+     "start": 459.7747,
+     "duration": 10.6027
+    },
+    {
+     "text": "Two.",
+     "file": "t15-e3/audio/s9-003-8848b45411fcacef.wav",
+     "start": 470.7973,
+     "duration": 0.8107
+    },
+    {
+     "text": "The margin is small because nineteen percent of the corpus is irreducible digits and the other eighty one percent was already solved by the smallest model, so there was very little headroom to compete for.",
+     "file": "t15-e3/audio/s9-004-a52788ecdbdc71ae.wav",
+     "start": 472.028,
+     "duration": 15.0613
+    },
+    {
+     "text": "Three.",
+     "file": "t15-e3/audio/s9-005-301665492da4bf47.wav",
+     "start": 487.5093,
+     "duration": 0.896
+    },
+    {
+     "text": "Both constraints, the entropy floor and the Chinchilla token budget, point at the same conclusion: the data is the bottleneck here, not the model.",
+     "file": "t15-e3/audio/s9-006-9eb8c538d49da5f7.wav",
+     "start": 488.8253,
+     "duration": 10.9013
+    },
+    {
+     "text": "If you take away only one thing, take away that the interesting question was not \"did bigger win\" but \"why was the margin that size\", and that the second question is answerable with one extra measurement.",
+     "file": "t15-e3/audio/s9-007-963fd06351fee5be.wav",
+     "start": 500.1467,
+     "duration": 15.36
+    },
+    {
+     "text": "Next time: reading a pretrain, and four different ways to be wrong about a perplexity number.",
+     "file": "t15-e3/audio/s9-008-4918980f9a63395d.wav",
+     "start": 515.9267,
+     "duration": 6.72
+    }
+   ]
+  }
+ ]
+}
