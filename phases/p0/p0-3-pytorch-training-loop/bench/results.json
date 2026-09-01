@@ -1,8 +1,8 @@
 {
   "topic": "P0.3",
   "benchmark": "overfit-a-tiny-batch + honest chronological evaluation + leakage audit",
-  "generated_at": "2026-09-01T00:01:51+00:00",
-  "elapsed_seconds": 7.7,
+  "generated_at": "2026-09-01T01:03:36+00:00",
+  "elapsed_seconds": 39.9,
   "a_overfit_tiny_batch": {
     "rows": 64,
     "epochs": 400,

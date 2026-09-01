@@ -72,16 +72,24 @@ per-topic folder contract:
   `note`), then run `python3 scripts/gen_index.py` — it regenerates BOTH `index.html` and
   `EXECUTION/LEDGER.md` from that JSON. Write a full log to `EXECUTION/runs/<YYYY-MM-DD>.md`.
 - **Commit locally:** `git add -A && git commit -m "Day N: <summary>"`. (Commit per step as you go.)
-- **Bundle the branch for the human to push:**
+- **Bundle the new commits for the human to push:**
   ```bash
-  git bundle create /home/claude/forge-day-N.bundle main
+  git bundle create /home/claude/forge-day-N.bundle origin/main..main main
   ```
-  `SendUserFile` that bundle. Because you cloned the latest public state and built on top, the human
-  updates GitHub with one self-contained block (no pre-existing clone needed, fast-forward, nothing lost):
+  A **thin** bundle, not `--all`. From Day 3 the repository carries the rendered
+  mp4s (uploaded through GitHub's web UI), so a self-contained bundle is ~156 MB
+  while a thin one is ~300 KB. The thin bundle names `origin/main` as its
+  prerequisite, so it cannot be `git clone`d — it is *fetched into* a fresh
+  clone instead, which is still one line and still uses no tokens:
   ```bash
-  git clone forge-day-N.bundle _t && cd _t && \
-    git push https://github.com/shail-eesh/AISystemsLearningProgram.git main && cd .. && rm -rf _t
+  git clone https://github.com/shail-eesh/AISystemsLearningProgram.git _t && cd _t && \
+    git fetch ../forge-day-N.bundle main && git merge --ff-only FETCH_HEAD && \
+    git push origin main && cd .. && rm -rf _t
   ```
+  Verify it before delivering (`git bundle verify`, then actually run the block
+  above against a throwaway clone in /tmp).
+  `SendUserFile` that bundle. Because you cloned the latest public state and built on top, the merge is
+  a fast-forward and nothing is lost.
 - **Deliver videos:** `SendUserFile` each rendered `.mp4` with a one-line caption (topic + episode).
   The mp4s are gitignored — they reach the human only through this delivery.
 - Post a short summary: code-done / tests-passed / video shipped-vs-pending / GPU benches awaiting the
