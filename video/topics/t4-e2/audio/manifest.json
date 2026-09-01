@@ -1,0 +1,502 @@
+{
+ "s1-000-e19396f98ddd78fa.wav": {
+  "duration": 1.3226666666666667,
+  "text": "Welcome back.",
+  "voice": "am_michael"
+ },
+ "s1-001-68164605f0aa4d6b.wav": {
+  "duration": 3.0933333333333333,
+  "text": "Episode two of the transformer series.",
+  "voice": "am_michael"
+ },
+ "s1-002-6cf56c3990ab3399.wav": {
+  "duration": 3.6693333333333333,
+  "text": "Last time, one head of attention on one sequence.",
+  "voice": "am_michael"
+ },
+ "s1-003-0314e3653c748408.wav": {
+  "duration": 4.714666666666667,
+  "text": "Today we turn that into the unit a real model is a stack of.",
+  "voice": "am_michael"
+ },
+ "s1-004-6a5b55d5f69bd7d1.wav": {
+  "duration": 17.706666666666667,
+  "text": "Three things: why there are many heads and what they cost, what the multi-layer perceptron is actually for, and what the residual stream is \u2014 which is the idea that makes the whole stack trainable and which almost nobody explains.",
+  "voice": "am_michael"
+ },
+ "s10-000-612ae6df2d818804.wav": {
+  "duration": 1.28,
+  "text": "Three things.",
+  "voice": "am_michael"
+ },
+ "s10-001-cadf3811dd6afddb.wav": {
+  "duration": 0.832,
+  "text": "One.",
+  "voice": "am_michael"
+ },
+ "s10-002-f51b32ca5820555a.wav": {
+  "duration": 17.557333333333332,
+  "text": "Multi-head attention buys parallel relationships for free, and the reshape that implements it must be checked against an obviously-correct slow version, because getting it wrong produces a model that trains, just worse, forever.",
+  "voice": "am_michael"
+ },
+ "s10-003-8848b45411fcacef.wav": {
+  "duration": 0.8106666666666666,
+  "text": "Two.",
+  "voice": "am_michael"
+ },
+ "s10-004-aa4320e92eb1501e.wav": {
+  "duration": 9.216,
+  "text": "The MLP holds two thirds of the parameters and is where the thinking happens; attention only moves information around.",
+  "voice": "am_michael"
+ },
+ "s10-005-301665492da4bf47.wav": {
+  "duration": 0.896,
+  "text": "Three.",
+  "voice": "am_michael"
+ },
+ "s10-006-0c4f86fc1e8c7c80.wav": {
+  "duration": 10.261333333333333,
+  "text": "Pre-norm is not better quality, it is robustness \u2014 post-norm actually won at six layers, and stopped training entirely at twelve.",
+  "voice": "am_michael"
+ },
+ "s10-007-2ce98fed5a43f829.wav": {
+  "duration": 1.8773333333333333,
+  "text": "Next time, positions.",
+  "voice": "am_michael"
+ },
+ "s10-008-cd88ddbe2d058163.wav": {
+  "duration": 13.76,
+  "text": "Self-attention has no idea what order the tokens are in, which is a strange thing to discover about a language model, and rotary embeddings fix it with one very elegant idea.",
+  "voice": "am_michael"
+ },
+ "s2-000-03d31832286a832f.wav": {
+  "duration": 3.4133333333333336,
+  "text": "Here is the problem with what we built last time.",
+  "voice": "am_michael"
+ },
+ "s2-001-e4f577f3c90aac2f.wav": {
+  "duration": 2.304,
+  "text": "A softmax row sums to one.",
+  "voice": "am_michael"
+ },
+ "s2-002-3ea43a159896765f.wav": {
+  "duration": 3.3493333333333335,
+  "text": "That is not a nice property, it is a budget.",
+  "voice": "am_michael"
+ },
+ "s2-003-c1dc8884e6883623.wav": {
+  "duration": 10.816,
+  "text": "If a head spends sixty percent of its attention on the token immediately behind it, that is sixty percent it cannot spend on the subject of the sentence.",
+  "voice": "am_michael"
+ },
+ "s2-004-6fb51a4686012c79.wav": {
+  "duration": 6.058666666666666,
+  "text": "One head has to choose what kind of relationship it is in the business of noticing.",
+  "voice": "am_michael"
+ },
+ "s2-005-0ff3ab8aa310d48d.wav": {
+  "duration": 4.8213333333333335,
+  "text": "Multi-head attention buys parallel budgets by splitting the width.",
+  "voice": "am_michael"
+ },
+ "s2-006-2b0c92dca0f3e704.wav": {
+  "duration": 5.354666666666667,
+  "text": "Four heads of thirty two, instead of one head of one hundred and twenty eight.",
+  "voice": "am_michael"
+ },
+ "s2-007-d11a4f7c51b7319f.wav": {
+  "duration": 6.8693333333333335,
+  "text": "Same parameter count, same floating point operations, four independent softmax budgets.",
+  "voice": "am_michael"
+ },
+ "s2-008-8a7940173a6c4de4.wav": {
+  "duration": 3.3706666666666667,
+  "text": "And in a trained model they visibly specialise.",
+  "voice": "am_michael"
+ },
+ "s2-009-2973b1dd316f9433.wav": {
+  "duration": 1.8773333333333333,
+  "text": "One head tracks position.",
+  "voice": "am_michael"
+ },
+ "s2-010-c8d1754c5275d159.wav": {
+  "duration": 3.4346666666666668,
+  "text": "One tracks which ticker symbol is under discussion.",
+  "voice": "am_michael"
+ },
+ "s2-011-fefea6b13fe8c16e.wav": {
+  "duration": 2.624,
+  "text": "One tracks the last number that appeared.",
+  "voice": "am_michael"
+ },
+ "s2-012-327bb60f2e285cb2.wav": {
+  "duration": 8.106666666666667,
+  "text": "Nobody assigned those jobs; they fall out of training, and in episode four we are going to look at one of them.",
+  "voice": "am_michael"
+ },
+ "s3-000-6290094b835d5528.wav": {
+  "duration": 3.9466666666666668,
+  "text": "And here is the implementation, which is a reshape.",
+  "voice": "am_michael"
+ },
+ "s3-001-896c2525520a6aae.wav": {
+  "duration": 8.426666666666666,
+  "text": "First thing to notice: one Linear layer producing three times the width, not three Linear layers producing the width.",
+  "voice": "am_michael"
+ },
+ "s3-002-f2c544d5d14e3e0e.wav": {
+  "duration": 9.728,
+  "text": "Identical mathematics, one matrix multiply instead of three, and this is why every real implementation looks like this.",
+  "voice": "am_michael"
+ },
+ "s3-003-7797ca655fbe0c45.wav": {
+  "duration": 1.5786666666666667,
+  "text": "Then split heads.",
+  "voice": "am_michael"
+ },
+ "s3-004-e3a86ca023f7a07f.wav": {
+  "duration": 1.792,
+  "text": "View, then transpose.",
+  "voice": "am_michael"
+ },
+ "s3-005-2fd44988215a3a53.wav": {
+  "duration": 3.904,
+  "text": "The view chops the width into head count by head dimension.",
+  "voice": "am_michael"
+ },
+ "s3-006-a85acef8b241010a.wav": {
+  "duration": 17.386666666666667,
+  "text": "The transpose moves the head axis in front of the sequence axis, so that batch and head sit together at the front and the whole attention computation becomes one batched matrix multiply over batch times heads independent problems.",
+  "voice": "am_michael"
+ },
+ "s3-007-0459a338f9ceac93.wav": {
+  "duration": 10.944,
+  "text": "At the end, transpose back, flatten the heads into one vector, and pass it through one more projection which is what lets the heads' outputs mix with each other.",
+  "voice": "am_michael"
+ },
+ "s4-000-c70e578a2c481cb0.wav": {
+  "duration": 5.376,
+  "text": "Now a gotcha, and it is the most valuable habit in this whole episode.",
+  "voice": "am_michael"
+ },
+ "s4-001-8ed8ee570163d895.wav": {
+  "duration": 9.408,
+  "text": "That view and transpose are correct only if head h corresponds to a contiguous block of columns in the fused weight matrix.",
+  "voice": "am_michael"
+ },
+ "s4-002-8ed54d2f5fd308c3.wav": {
+  "duration": 2.496,
+  "text": "If it does not, nothing crashes.",
+  "voice": "am_michael"
+ },
+ "s4-003-e7fbac679b501459.wav": {
+  "duration": 2.0906666666666665,
+  "text": "There is no error message.",
+  "voice": "am_michael"
+ },
+ "s4-004-728878d43dcbe4ce.wav": {
+  "duration": 1.6,
+  "text": "The model trains.",
+  "voice": "am_michael"
+ },
+ "s4-005-ec33d8544bf1659f.wav": {
+  "duration": 2.965333333333333,
+  "text": "It is simply worse than it should be, forever.",
+  "voice": "am_michael"
+ },
+ "s4-006-edae8f9270af93cb.wav": {
+  "duration": 10.24,
+  "text": "So in the repository there is a second implementation, multi head attention looped, which does the heads as an explicit Python for loop.",
+  "voice": "am_michael"
+ },
+ "s4-007-71f3552ebc85fd83.wav": {
+  "duration": 5.866666666666666,
+  "text": "It is slow and it is obviously correct, and it exists purely as an oracle.",
+  "voice": "am_michael"
+ },
+ "s4-008-f5d4347b61ffbfcc.wav": {
+  "duration": 8.512,
+  "text": "The test asserts the two agree, and the number that comes back is exactly zero for one, two, four and eight heads.",
+  "voice": "am_michael"
+ },
+ "s4-009-1f929ceb0c9fa991.wav": {
+  "duration": 1.7493333333333334,
+  "text": "Not close to zero.",
+  "voice": "am_michael"
+ },
+ "s4-010-3386024f8b440165.wav": {
+  "duration": 5.184,
+  "text": "Zero, because it is the same arithmetic in a different memory layout.",
+  "voice": "am_michael"
+ },
+ "s4-011-27404511d0337afe.wav": {
+  "duration": 5.077333333333334,
+  "text": "When you write a fast path, write the slow path first and never delete it.",
+  "voice": "am_michael"
+ },
+ "s5-000-7ee86c027e9f78e5.wav": {
+  "duration": 4.096,
+  "text": "And this is what heads cost, measured rather than asserted.",
+  "voice": "am_michael"
+ },
+ "s5-001-4eecbe1f9d2f5a3a.wav": {
+  "duration": 7.957333333333334,
+  "text": "Five configurations, one head through sixteen heads, at a fixed model width of two hundred and fifty six.",
+  "voice": "am_michael"
+ },
+ "s5-002-af0062ebd0e8871c.wav": {
+  "duration": 5.461333333333333,
+  "text": "Two hundred and sixty three thousand, one hundred and sixty eight parameters.",
+  "voice": "am_michael"
+ },
+ "s5-003-792b4e1f30ea7a8d.wav": {
+  "duration": 1.5146666666666666,
+  "text": "Every single one.",
+  "voice": "am_michael"
+ },
+ "s5-004-93e71700fa067461.wav": {
+  "duration": 9.6,
+  "text": "The floating point operation count is identical as well, because splitting a width does not change how much arithmetic there is.",
+  "voice": "am_michael"
+ },
+ "s5-005-2453a4e31fb1aebc.wav": {
+  "duration": 10.752,
+  "text": "The wall clock differs a little \u2014 more heads means smaller, less cache-friendly matrices \u2014 but that is a memory effect, not an arithmetic one.",
+  "voice": "am_michael"
+ },
+ "s5-006-f49058ccc9f00413.wav": {
+  "duration": 10.474666666666666,
+  "text": "Heads are close to free, and you should think of head count as a knob about *expressiveness* with no price tag on the other side.",
+  "voice": "am_michael"
+ },
+ "s6-000-0c99f542cd2dc497.wav": {
+  "duration": 4.288,
+  "text": "Now the other half of the block, and the half people underrate.",
+  "voice": "am_michael"
+ },
+ "s6-001-2ce17d78f941e2ee.wav": {
+  "duration": 5.013333333333334,
+  "text": "Attention *moves* information between positions.",
+  "voice": "am_michael"
+ },
+ "s6-002-ed91b82b84c064a3.wav": {
+  "duration": 1.92,
+  "text": "It does not transform it.",
+  "voice": "am_michael"
+ },
+ "s6-003-7f159e97a745cbeb.wav": {
+  "duration": 5.226666666666667,
+  "text": "A stack of pure attention layers is a very expensive weighted average.",
+  "voice": "am_michael"
+ },
+ "s6-004-3edc78eadfc362ed.wav": {
+  "duration": 3.84,
+  "text": "The multi-layer perceptron is where the model thinks.",
+  "voice": "am_michael"
+ },
+ "s6-005-cfe9d5c3eb89aa74.wav": {
+  "duration": 5.76,
+  "text": "Widen by a factor of four, apply a non-linearity, project back down.",
+  "voice": "am_michael"
+ },
+ "s6-006-0307e9c495ea1313.wav": {
+  "duration": 10.026666666666667,
+  "text": "That is the whole layer, and it is applied to each position independently \u2014 there is no communication between tokens inside it at all.",
+  "voice": "am_michael"
+ },
+ "s6-007-8f5b9a0759c16d13.wav": {
+  "duration": 9.962666666666667,
+  "text": "And look at the parameter split we measured on a four-layer model: attention thirty three thousand, the MLP sixty six thousand.",
+  "voice": "am_michael"
+ },
+ "s6-008-5d83737d15a1a75e.wav": {
+  "duration": 1.2373333333333334,
+  "text": "One to two.",
+  "voice": "am_michael"
+ },
+ "s6-009-3adf1142020a6313.wav": {
+  "duration": 4.778666666666667,
+  "text": "Two thirds of the model is the part that has never heard of the sequence.",
+  "voice": "am_michael"
+ },
+ "s6-010-53800349f281b2de.wav": {
+  "duration": 16.810666666666666,
+  "text": "The four times widening is convention from the paper, not a derived optimum, and the non-linearity is GELU rather than ReLU because it is smooth, so its gradient does not fall off a cliff for slightly negative inputs.",
+  "voice": "am_michael"
+ },
+ "s7-000-f6adb0ab03338f50.wav": {
+  "duration": 2.3466666666666667,
+  "text": "And here is the block itself.",
+  "voice": "am_michael"
+ },
+ "s7-001-1754aabac120cc40.wav": {
+  "duration": 5.44,
+  "text": "In English: normalise, attend, add the result back onto what you had.",
+  "voice": "am_michael"
+ },
+ "s7-002-efdd7061935a2662.wav": {
+  "duration": 3.925333333333333,
+  "text": "Normalise again, run the MLP, add that back too.",
+  "voice": "am_michael"
+ },
+ "s7-003-07e9c35a98182775.wav": {
+  "duration": 5.290666666666667,
+  "text": "In symbols, two lines, both of the form x equals x plus something.",
+  "voice": "am_michael"
+ },
+ "s7-004-3c4b9f6b636dcc1a.wav": {
+  "duration": 2.112,
+  "text": "In code, the same two lines.",
+  "voice": "am_michael"
+ },
+ "s7-005-f9d139c22b191073.wav": {
+  "duration": 2.0693333333333332,
+  "text": "Now the thing worth sitting with.",
+  "voice": "am_michael"
+ },
+ "s7-006-e72e2bfce416f5bc.wav": {
+  "duration": 2.0693333333333332,
+  "text": "Nothing is ever overwritten.",
+  "voice": "am_michael"
+ },
+ "s7-007-1b67f5b6a946ac42.wav": {
+  "duration": 9.28,
+  "text": "Each sublayer *adds* to a stream that runs unbroken from the embeddings all the way to the final norm.",
+  "voice": "am_michael"
+ },
+ "s7-008-633e254a071b8c2b.wav": {
+  "duration": 8.981333333333334,
+  "text": "The right mental model is a shared bus: every layer reads the bus, computes a contribution, and writes it back on.",
+  "voice": "am_michael"
+ },
+ "s7-009-331f82bf0172831d.wav": {
+  "duration": 12.330666666666668,
+  "text": "That is why you can delete a middle layer from a trained transformer and still get grammatical text out \u2014 you have removed one contribution from a sum, not cut a wire.",
+  "voice": "am_michael"
+ },
+ "s7-010-c684725e99ad4f43.wav": {
+  "duration": 9.365333333333334,
+  "text": "And it is why gradients reach layer zero at all: there is a path from the loss to the embeddings that passes through nothing but additions.",
+  "voice": "am_michael"
+ },
+ "s8-000-3df025a3cd55b7c7.wav": {
+  "duration": 6.293333333333333,
+  "text": "Which brings us to where the normalisation goes, and to a result I did not expect.",
+  "voice": "am_michael"
+ },
+ "s8-001-1d99ffaa718519b3.wav": {
+  "duration": 7.68,
+  "text": "Everyone says pre-norm \u2014 normalise before the sublayer \u2014 is better than the original paper's post-norm.",
+  "voice": "am_michael"
+ },
+ "s8-002-b8d9da55e13d2dfa.wav": {
+  "duration": 1.4933333333333334,
+  "text": "So we measured it.",
+  "voice": "am_michael"
+ },
+ "s8-003-8cc1bcb360a3ab0a.wav": {
+  "duration": 7.744,
+  "text": "Four pairs: six layers and twelve layers, at two learning rates, same seed, same data, no warmup.",
+  "voice": "am_michael"
+ },
+ "s8-004-8bd3f72f13720d2e.wav": {
+  "duration": 1.6,
+  "text": "Look at the first pair.",
+  "voice": "am_michael"
+ },
+ "s8-005-33da6afb03b0b3c6.wav": {
+  "duration": 2.6453333333333333,
+  "text": "Six layers, mild learning rate.",
+  "voice": "am_michael"
+ },
+ "s8-006-e2120e48561c37f1.wav": {
+  "duration": 6.677333333333333,
+  "text": "Post-norm wins, and not narrowly: one point seven eight against two point seven nine.",
+  "voice": "am_michael"
+ },
+ "s8-007-26468966eb7e7847.wav": {
+  "duration": 2.2186666666666666,
+  "text": "The textbook answer is wrong here.",
+  "voice": "am_michael"
+ },
+ "s8-008-044aa7a1adb5d4a6.wav": {
+  "duration": 2.2613333333333334,
+  "text": "Now look at the other three pairs.",
+  "voice": "am_michael"
+ },
+ "s8-009-f6ab1e6d4e9a8ead.wav": {
+  "duration": 7.594666666666667,
+  "text": "Raise the learning rate, or go to twelve layers, and post-norm parks at three point three and stops.",
+  "voice": "am_michael"
+ },
+ "s8-010-0274672543d6cb40.wav": {
+  "duration": 3.456,
+  "text": "It has not slowed down, it has stopped training.",
+  "voice": "am_michael"
+ },
+ "s8-011-3f5f3d645a53bf83.wav": {
+  "duration": 2.6453333333333333,
+  "text": "Pre-norm carries on in all four.",
+  "voice": "am_michael"
+ },
+ "s8-012-8d84bce3bc1f1a2c.wav": {
+  "duration": 3.8186666666666667,
+  "text": "So the honest statement is not \"pre-norm is better\".",
+  "voice": "am_michael"
+ },
+ "s8-013-c5c4016dc0c4291a.wav": {
+  "duration": 3.8186666666666667,
+  "text": "It is that pre-norm is *robust*.",
+  "voice": "am_michael"
+ },
+ "s8-014-be5e9a001434d4f5.wav": {
+  "duration": 8.874666666666666,
+  "text": "It buys you the right to stack twelve, forty eight, ninety six layers and to turn the learning rate up, without a babysitter.",
+  "voice": "am_michael"
+ },
+ "s8-015-f511e5759a422936.wav": {
+  "duration": 10.090666666666667,
+  "text": "That is the trade every model after GPT-2 took, and saying \"pre-norm is better\" throws away the only part of it that matters.",
+  "voice": "am_michael"
+ },
+ "s9-000-7d077530b96ed168.wav": {
+  "duration": 2.7733333333333334,
+  "text": "One more component and then the recap.",
+  "voice": "am_michael"
+ },
+ "s9-001-fd3ae569be393a88.wav": {
+  "duration": 1.7066666666666668,
+  "text": "RMSNorm.",
+  "voice": "am_michael"
+ },
+ "s9-002-5d4df2e29d013c8d.wav": {
+  "duration": 5.290666666666667,
+  "text": "LayerNorm subtracts the mean and divides by the standard deviation.",
+  "voice": "am_michael"
+ },
+ "s9-003-90ab8cae829837b9.wav": {
+  "duration": 10.090666666666667,
+  "text": "Zhang and Sennrich noticed in twenty nineteen that the re-centering does approximately nothing and the re-scaling does approximately everything.",
+  "voice": "am_michael"
+ },
+ "s9-004-fdde3b901849a00e.wav": {
+  "duration": 6.8053333333333335,
+  "text": "So RMSNorm keeps the rescaling and drops the mean subtraction and the bias term.",
+  "voice": "am_michael"
+ },
+ "s9-005-c0d66b9121b604a3.wav": {
+  "duration": 5.056,
+  "text": "Divide by the root mean square, multiply by a learned gain, done.",
+  "voice": "am_michael"
+ },
+ "s9-006-b7f26faae01b2484.wav": {
+  "duration": 12.906666666666666,
+  "text": "About seven fewer operations per element, no measurable quality cost, which is why LLaMA used it and why everything downstream of LLaMA uses it.",
+  "voice": "am_michael"
+ },
+ "s9-007-7da65cb06c46630b.wav": {
+  "duration": 9.173333333333334,
+  "text": "Both are in the repository and the config picks between them, so you can measure the difference yourself instead of taking my word for it.",
+  "voice": "am_michael"
+ }
+}

@@ -1,0 +1,963 @@
+{
+ "topic": "t4-e3",
+ "episode": 3,
+ "title": "Positions, and the rotation that fixed them",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 724.2947,
+ "wordCount": 1540,
+ "wordsPerMinute": 127.6,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 27.78,
+ "generatedInSeconds": 284.0,
+ "segmentsSynthesised": 104,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "Positions",
+    "subtitle": "Self-attention cannot tell word order. Three fixes, and why the third one won.",
+    "topicId": "T4",
+    "episode": "Episode 3",
+    "paper": "Su et al. 2021, RoFormer"
+   },
+   "start": 0.0,
+   "duration": 27.7807,
+   "segments": [
+    {
+     "text": "Welcome back.",
+     "file": "t4-e3/audio/s1-000-e19396f98ddd78fa.wav",
+     "start": 0.0,
+     "duration": 1.3227
+    },
+    {
+     "text": "Episode three.",
+     "file": "t4-e3/audio/s1-001-10e0931710e7d3c9.wav",
+     "start": 1.7427,
+     "duration": 1.472
+    },
+    {
+     "text": "Today, a fact about attention that should bother you more than it usually does: self-attention has no idea what order the tokens are in.",
+     "file": "t4-e3/audio/s1-002-3e05eab713bc5695.wav",
+     "start": 3.6347,
+     "duration": 10.0053
+    },
+    {
+     "text": "None.",
+     "file": "t4-e3/audio/s1-003-10b31695a7c5c94a.wav",
+     "start": 14.06,
+     "duration": 0.8107
+    },
+    {
+     "text": "And then the three standard ways of telling it, and the one that won, derived from the property it was designed to have rather than presented as a formula to memorise.",
+     "file": "t4-e3/audio/s1-004-c78e8f012ca8c90a.wav",
+     "start": 15.2907,
+     "duration": 11.84
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the problem",
+    "title": "Shuffle the tokens and the outputs shuffle with them, unchanged",
+    "body": "Attention is permutation-equivariant. Every operation in it \u2014 the dot products, the softmax, the weighted sum \u2014 treats the sequence as a bag. Nothing inside the arithmetic knows that 'BUY 100 INFY' differs from '100 INFY BUY'.",
+    "points": [
+     "Position is bolted on. It is not emergent and it is not free.",
+     "Fix 1 \u2014 learned: a trained vector per absolute slot, added to the embedding. GPT-2 does this.",
+     "Fix 2 \u2014 sinusoidal: a fixed table of sines and cosines, also added. Vaswani 2017.",
+     "Fix 3 \u2014 RoPE: rotate the query and key vectors themselves, inside every attention layer."
+    ],
+    "aside": "The three differ in where they act. The first two edit the residual stream once. The third never touches it."
+   },
+   "start": 27.7807,
+   "duration": 79.838,
+   "segments": [
+    {
+     "text": "Start with the fact.",
+     "file": "t4-e3/audio/s2-000-0f3292d54d796b3b.wav",
+     "start": 27.7807,
+     "duration": 1.5573
+    },
+    {
+     "text": "Attention is permutation-equivariant.",
+     "file": "t4-e3/audio/s2-001-c2fc400776031dca.wav",
+     "start": 29.758,
+     "duration": 2.9653
+    },
+    {
+     "text": "Shuffle the input tokens and the outputs come out shuffled the same way, otherwise unchanged.",
+     "file": "t4-e3/audio/s2-002-33a7f32c0e88c15a.wav",
+     "start": 33.1433,
+     "duration": 6.6773
+    },
+    {
+     "text": "Every operation inside it \u2014 the dot products, the softmax, the weighted sum \u2014 treats the sequence as a bag of vectors.",
+     "file": "t4-e3/audio/s2-003-0fb5c9c6f1636b6d.wav",
+     "start": 40.2407,
+     "duration": 8.8533
+    },
+    {
+     "text": "Nothing in that arithmetic distinguishes buy one hundred INFY from one hundred INFY buy.",
+     "file": "t4-e3/audio/s2-004-59017d079e93f799.wav",
+     "start": 49.514,
+     "duration": 7.3813
+    },
+    {
+     "text": "So position has to be bolted on, and there are three standard bolts.",
+     "file": "t4-e3/audio/s2-005-239bc7eebffe1a42.wav",
+     "start": 57.3153,
+     "duration": 4.8427
+    },
+    {
+     "text": "One, learned: a trained vector for each absolute slot, added to the token embedding.",
+     "file": "t4-e3/audio/s2-006-3e9c899ebfd58a88.wav",
+     "start": 62.578,
+     "duration": 6.6347
+    },
+    {
+     "text": "That is GPT-2.",
+     "file": "t4-e3/audio/s2-007-0e1733d47a4dc3ff.wav",
+     "start": 69.6327,
+     "duration": 1.9413
+    },
+    {
+     "text": "Two, sinusoidal: a fixed table of sines and cosines at geometrically spaced frequencies, also added.",
+     "file": "t4-e3/audio/s2-008-739055dea2c89eb1.wav",
+     "start": 71.994,
+     "duration": 8.576
+    },
+    {
+     "text": "That is the original paper.",
+     "file": "t4-e3/audio/s2-009-f2a53c556e16a34d.wav",
+     "start": 80.99,
+     "duration": 2.0693
+    },
+    {
+     "text": "Three, rotary \u2014 RoPE \u2014 which rotates the query and key vectors themselves, inside every attention layer.",
+     "file": "t4-e3/audio/s2-010-31e668553f6f56bf.wav",
+     "start": 83.4793,
+     "duration": 8.4053
+    },
+    {
+     "text": "And the structural difference to hold on to is *where* they act.",
+     "file": "t4-e3/audio/s2-011-4f67c89251bfac54.wav",
+     "start": 92.3047,
+     "duration": 5.6107
+    },
+    {
+     "text": "The first two edit the residual stream once, at the bottom.",
+     "file": "t4-e3/audio/s2-012-df603a91886bae92.wav",
+     "start": 98.3353,
+     "duration": 4.416
+    },
+    {
+     "text": "The third never touches the residual stream at all.",
+     "file": "t4-e3/audio/s2-013-15bd76b7766e2b4e.wav",
+     "start": 103.1713,
+     "duration": 3.7973
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "deriving it",
+    "title": "Start from what the score actually wants",
+    "body": "A score should depend on the relationship between two positions, not on their absolute indices. 'The token three back' is a useful thing to encode. 'The token at index 1,047' is not.",
+    "points": [
+     "Write the wish as an equation: <f(q,m), f(k,n)> = g(q, k, m-n).",
+     "Ask what f can be. In two dimensions the answer is immediate: a rotation.",
+     "Rotations compose by adding angles, and the inner product is rotation-invariant.",
+     "So rotating q by m-theta and k by n-theta leaves a score that depends only on (m-n)-theta."
+    ],
+    "aside": "That is the entire derivation. RoPE is not a trick someone found; it is the unique simple answer to a question written down properly."
+   },
+   "start": 107.6187,
+   "duration": 90.0993,
+   "segments": [
+    {
+     "text": "Now instead of presenting RoPE, let us derive it, because it is one of those ideas that is obvious once the question is written down correctly.",
+     "file": "t4-e3/audio/s3-000-b4aebe6ff152c452.wav",
+     "start": 107.6187,
+     "duration": 11.1147
+    },
+    {
+     "text": "Start from what a score actually wants.",
+     "file": "t4-e3/audio/s3-001-b8233873218e173e.wav",
+     "start": 119.1533,
+     "duration": 2.5173
+    },
+    {
+     "text": "It should depend on the *relationship* between two positions, not their absolute indices.",
+     "file": "t4-e3/audio/s3-002-e8f6e95ba1c3f096.wav",
+     "start": 122.0907,
+     "duration": 7.9147
+    },
+    {
+     "text": "The token three back is a useful thing to encode.",
+     "file": "t4-e3/audio/s3-003-17ca0d069ad017ce.wav",
+     "start": 130.4253,
+     "duration": 3.712
+    },
+    {
+     "text": "The token at index one thousand and forty seven is not.",
+     "file": "t4-e3/audio/s3-004-ba325508a9af8f7f.wav",
+     "start": 134.5573,
+     "duration": 4.288
+    },
+    {
+     "text": "So write that wish as an equation: the inner product of f of q at position m with f of k at position n should equal some function g of q, k, and m minus n.",
+     "file": "t4-e3/audio/s3-005-acc5d2711bf8163a.wav",
+     "start": 139.2653,
+     "duration": 14.4
+    },
+    {
+     "text": "Only the gap.",
+     "file": "t4-e3/audio/s3-006-4279fb66a34e19ee.wav",
+     "start": 154.0853,
+     "duration": 1.3867
+    },
+    {
+     "text": "Now ask what f could possibly be.",
+     "file": "t4-e3/audio/s3-007-fd1d697b90b517a2.wav",
+     "start": 155.892,
+     "duration": 2.816
+    },
+    {
+     "text": "In two dimensions the answer arrives immediately: a rotation.",
+     "file": "t4-e3/audio/s3-008-d559587a6a85dd81.wav",
+     "start": 159.128,
+     "duration": 4.8213
+    },
+    {
+     "text": "Rotations compose by adding angles, and the inner product is invariant under rotating both vectors together.",
+     "file": "t4-e3/audio/s3-009-8d9b07f4efca91c8.wav",
+     "start": 164.3693,
+     "duration": 8.576
+    },
+    {
+     "text": "So rotate q by m theta and k by n theta, and their dot product depends only on m minus n times theta.",
+     "file": "t4-e3/audio/s3-010-ab6682aa0add0bcb.wav",
+     "start": 173.3653,
+     "duration": 10.1547
+    },
+    {
+     "text": "That is the whole derivation.",
+     "file": "t4-e3/audio/s3-011-c5e0896445db8c56.wav",
+     "start": 183.94,
+     "duration": 2.0267
+    },
+    {
+     "text": "RoPE is not a trick somebody found by trial and error.",
+     "file": "t4-e3/audio/s3-012-77fa1296462b1bc0.wav",
+     "start": 186.3867,
+     "duration": 4.5227
+    },
+    {
+     "text": "It is the unique simple answer to a question that was written down properly.",
+     "file": "t4-e3/audio/s3-013-e2fce5174a4ca4cb.wav",
+     "start": 191.3293,
+     "duration": 5.7387
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the identity",
+    "title": "The relative-phase property",
+    "english": "Rotate the query by its position and the key by its position, and the score you get depends only on the distance between them \u2014 not on where either one is.",
+    "equation": "<R_m q, R_n k>  =  <R_(m-n) q, R_0 k>",
+    "code": "lhs = (apply_rope(q, cos, sin, offset=m) * apply_rope(k, cos, sin, offset=n)).sum(-1)\nrhs = (apply_rope(q, cos, sin, offset=m - n) * k).sum(-1)\n# max |lhs - rhs| over head dims 2..64, both signs of the gap:  1.8e-15",
+    "note": "Float64 round-off. Not an approximation that holds well \u2014 an identity that holds exactly."
+   },
+   "start": 197.718,
+   "duration": 60.7353,
+   "segments": [
+    {
+     "text": "Here is that identity written three ways.",
+     "file": "t4-e3/audio/s4-000-8f6e07ffd6152f1f.wav",
+     "start": 197.718,
+     "duration": 2.816
+    },
+    {
+     "text": "In English: rotate the query by its position and the key by its position, and the score depends only on the distance between them, not on where either one sits.",
+     "file": "t4-e3/audio/s4-001-8030f32563bee8c9.wav",
+     "start": 200.954,
+     "duration": 12.2027
+    },
+    {
+     "text": "In symbols: the inner product of R m q with R n k equals the inner product of R m minus n q with R zero k.",
+     "file": "t4-e3/audio/s4-002-110c7906c7ed3630.wav",
+     "start": 213.5767,
+     "duration": 10.5387
+    },
+    {
+     "text": "And in code, which is how you check it rather than believe it.",
+     "file": "t4-e3/audio/s4-003-4402fb9675782a82.wav",
+     "start": 224.5353,
+     "duration": 4.0747
+    },
+    {
+     "text": "We evaluate both sides on random vectors in float sixty four, over head dimensions from two to sixty four, for positive and negative gaps.",
+     "file": "t4-e3/audio/s4-004-de3a0dcb9b644ba1.wav",
+     "start": 229.03,
+     "duration": 11.2427
+    },
+    {
+     "text": "The largest disagreement is one point eight times ten to the minus fifteen.",
+     "file": "t4-e3/audio/s4-005-5fb407a8eef79f92.wav",
+     "start": 240.6927,
+     "duration": 5.824
+    },
+    {
+     "text": "That is float sixty four round-off.",
+     "file": "t4-e3/audio/s4-006-6d246048cf642b38.wav",
+     "start": 246.9367,
+     "duration": 2.496
+    },
+    {
+     "text": "It is not an approximation that happens to hold well.",
+     "file": "t4-e3/audio/s4-007-d39e75873c163b00.wav",
+     "start": 249.8527,
+     "duration": 3.9893
+    },
+    {
+     "text": "It is an identity, and it holds exactly.",
+     "file": "t4-e3/audio/s4-008-9b0a990a0b2b72cf.wav",
+     "start": 254.262,
+     "duration": 3.5413
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "DiagramScene",
+   "props": {
+    "eyebrow": "the frequency ladder",
+    "title": "Each coordinate pair is a clock hand at its own rate",
+    "nodes": [
+     {
+      "id": "p0",
+      "label": "pair 0",
+      "sub": "wavelength 6.3",
+      "x": 0.14,
+      "y": 0.2,
+      "appearAt": 10,
+      "color": "#5ac48c"
+     },
+     {
+      "id": "p1",
+      "label": "pair 1",
+      "sub": "wavelength 19.9",
+      "x": 0.38,
+      "y": 0.2,
+      "appearAt": 22
+     },
+     {
+      "id": "p2",
+      "label": "pair 2",
+      "sub": "wavelength 62.8",
+      "x": 0.62,
+      "y": 0.2,
+      "appearAt": 34
+     },
+     {
+      "id": "p3",
+      "label": "pair 3",
+      "sub": "wavelength 199",
+      "x": 0.86,
+      "y": 0.2,
+      "appearAt": 46
+     },
+     {
+      "id": "fast",
+      "label": "fast hands",
+      "sub": "resolve neighbours",
+      "x": 0.26,
+      "y": 0.72,
+      "w": 0.3,
+      "appearAt": 60
+     },
+     {
+      "id": "slow",
+      "label": "slow hands",
+      "sub": "roughly where in the document",
+      "x": 0.74,
+      "y": 0.72,
+      "w": 0.36,
+      "appearAt": 76
+     }
+    ],
+    "edges": [
+     {
+      "from": "p0",
+      "to": "fast",
+      "appearAt": 66
+     },
+     {
+      "from": "p1",
+      "to": "fast",
+      "appearAt": 68
+     },
+     {
+      "from": "p2",
+      "to": "slow",
+      "appearAt": 80
+     },
+     {
+      "from": "p3",
+      "to": "slow",
+      "appearAt": 82
+     }
+    ],
+    "caption": "head_dim 16, base 10000: theta_i = 10000^(-2i/d). Same geometric ladder as the sinusoidal table."
+   },
+   "start": 258.4533,
+   "duration": 76.7433,
+   "segments": [
+    {
+     "text": "A d-dimensional head is d over two independent two-dimensional rotations, each at its own angular rate.",
+     "file": "t4-e3/audio/s5-000-aa547309da5072ec.wav",
+     "start": 258.4533,
+     "duration": 8.6613
+    },
+    {
+     "text": "Here is the ladder for a head of width sixteen.",
+     "file": "t4-e3/audio/s5-001-c481e997f3b704c7.wav",
+     "start": 267.5347,
+     "duration": 3.1573
+    },
+    {
+     "text": "Pair zero turns fastest: its wavelength is six point three positions, so it comes back round to where it started every six tokens.",
+     "file": "t4-e3/audio/s5-002-f41af683d0b8fd99.wav",
+     "start": 271.112,
+     "duration": 10.2613
+    },
+    {
+     "text": "Pair one, twenty positions.",
+     "file": "t4-e3/audio/s5-003-48e7ac8b19f5b9d7.wav",
+     "start": 281.7933,
+     "duration": 1.92
+    },
+    {
+     "text": "Pair two, sixty three.",
+     "file": "t4-e3/audio/s5-004-f37793bca2d6694a.wav",
+     "start": 284.1333,
+     "duration": 1.9413
+    },
+    {
+     "text": "Pair three, one hundred and ninety nine.",
+     "file": "t4-e3/audio/s5-005-3c31bd5df6ab94fc.wav",
+     "start": 286.4947,
+     "duration": 2.7733
+    },
+    {
+     "text": "Think of them as clock hands at different speeds, and a position as the full set of hand angles \u2014 which is a binary counter wearing continuous clothing.",
+     "file": "t4-e3/audio/s5-006-c5de358fe3c8471f.wav",
+     "start": 289.688,
+     "duration": 11.1573
+    },
+    {
+     "text": "The fast hands resolve neighbours: they tell one token from the next.",
+     "file": "t4-e3/audio/s5-007-aa513c28d219c40d.wav",
+     "start": 301.2653,
+     "duration": 4.8853
+    },
+    {
+     "text": "The slow hands have wavelengths far longer than the context, so within a document they behave as a coarse \"roughly where am I\" signal.",
+     "file": "t4-e3/audio/s5-008-5c256c5a1ec23f9c.wav",
+     "start": 306.5707,
+     "duration": 10.4747
+    },
+    {
+     "text": "And that ladder, ten thousand to the minus two i over d, is exactly the ladder in the original sinusoidal table.",
+     "file": "t4-e3/audio/s5-009-920650450c8bd514.wav",
+     "start": 317.4653,
+     "duration": 9.1093
+    },
+    {
+     "text": "RoPE is the same frequency scheme applied as a rotation instead of as an addition.",
+     "file": "t4-e3/audio/s5-010-7101c231597e4771.wav",
+     "start": 326.9947,
+     "duration": 7.552
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the decay, honestly",
+    "title": "Distance only weakens *matched* content",
+    "kind": "line",
+    "series": [
+     {
+      "label": "matched content <R_m q, R_0 q>",
+      "values": [
+       1.0,
+       0.966,
+       0.882,
+       0.745,
+       0.699,
+       0.603,
+       0.612,
+       0.433,
+       0.282
+      ],
+      "color": "#5ac48c"
+     },
+     {
+      "label": "independent q, k",
+      "values": [
+       1.0,
+       1.004,
+       0.999,
+       1.01,
+       1.009,
+       1.011,
+       1.008,
+       1.009,
+       1.011
+      ]
+     }
+    ],
+    "xLabel": "gap: 0, 1, 2, 4, 8, 16, 32, 64, 128",
+    "yLabel": "score as a fraction of gap 0",
+    "caption": "A rotation is an isometry, so for unrelated vectors it changes nothing. The decay is about content that matches."
+   },
+   "start": 335.1967,
+   "duration": 90.054,
+   "segments": [
+    {
+     "text": "You will read that RoPE has a long-term decay, that scores fall off with distance.",
+     "file": "t4-e3/audio/s6-000-75d04a037362eabe.wav",
+     "start": 335.1967,
+     "duration": 6.4853
+    },
+    {
+     "text": "That claim is true and it is usually stated wrongly, so here is the measurement.",
+     "file": "t4-e3/audio/s6-001-d182e2e7095a43c9.wav",
+     "start": 342.102,
+     "duration": 5.824
+    },
+    {
+     "text": "The flat line is two *independent* random vectors, and it is flat because it has to be: a rotation is an isometry, it preserves lengths and angles, so it cannot change the typical magnitude of a dot product between unrelated things.",
+     "file": "t4-e3/audio/s6-002-b1864ca4f17543cf.wav",
+     "start": 348.346,
+     "duration": 20.224
+    },
+    {
+     "text": "Out to a gap of one hundred and twenty eight it is within one percent of where it started.",
+     "file": "t4-e3/audio/s6-003-a5b94b498b389088.wav",
+     "start": 368.99,
+     "duration": 6.2293
+    },
+    {
+     "text": "The green line is *matched* content \u2014 the same vector used as query and key, which is what a perfect content match looks like.",
+     "file": "t4-e3/audio/s6-004-65bbf5885e2977d2.wav",
+     "start": 375.6393,
+     "duration": 11.0933
+    },
+    {
+     "text": "That one decays: one point zero at gap zero, zero point seven four at gap four, zero point four three at gap sixty four.",
+     "file": "t4-e3/audio/s6-005-05abb21014870708.wav",
+     "start": 387.1527,
+     "duration": 10.9653
+    },
+    {
+     "text": "And you can see exactly why from the formula: the score is a sum of cosines of m theta i, and as the gap grows those cosines drift out of phase with each other and stop reinforcing.",
+     "file": "t4-e3/audio/s6-006-775043cb90bef710.wav",
+     "start": 398.538,
+     "duration": 14.3147
+    },
+    {
+     "text": "So the decay is real, and it is a soft prior on the *matched* case \u2014 not a cutoff, and not a general shrinking of every score.",
+     "file": "t4-e3/audio/s6-007-f094c54406972298.wav",
+     "start": 413.2727,
+     "duration": 11.328
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "the bake-off",
+    "title": "Four position schemes, identical seed, data and schedule",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "RoPE",
+      "value": 1.0224,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "learned",
+      "value": 1.1065
+     },
+     {
+      "label": "none",
+      "value": 1.1156
+     },
+     {
+      "label": "sinusoidal",
+      "value": 1.1178
+     }
+    ],
+    "yLabel": "validation loss (lower is better)",
+    "caption": "500 steps on the market tape. RoPE wins on loss and costs zero parameters; the learned table costs 8,192."
+   },
+   "start": 425.2507,
+   "duration": 74.4753,
+   "segments": [
+    {
+     "text": "So we raced them.",
+     "file": "t4-e3/audio/s7-000-8a16b259cec6ee40.wav",
+     "start": 425.2507,
+     "duration": 1.4933
+    },
+    {
+     "text": "One model configuration, four position schemes, identical seed, identical data, identical schedule.",
+     "file": "t4-e3/audio/s7-001-9bb2c42ccdcc5ffb.wav",
+     "start": 427.164,
+     "duration": 8.3627
+    },
+    {
+     "text": "RoPE wins at one point zero two, and it costs zero parameters.",
+     "file": "t4-e3/audio/s7-002-0e5493157859bc2b.wav",
+     "start": 435.9467,
+     "duration": 5.4827
+    },
+    {
+     "text": "Learned positions, one point one one, and eight thousand parameters.",
+     "file": "t4-e3/audio/s7-003-7eec19b4d5648afc.wav",
+     "start": 441.8493,
+     "duration": 4.9707
+    },
+    {
+     "text": "No positions at all, one point one two.",
+     "file": "t4-e3/audio/s7-004-bc7a83e4ea8866fe.wav",
+     "start": 447.24,
+     "duration": 3.2853
+    },
+    {
+     "text": "And the sinusoidal table, one point one two \u2014 behind doing nothing.",
+     "file": "t4-e3/audio/s7-005-7f3515716564d2e7.wav",
+     "start": 450.9453,
+     "duration": 4.992
+    },
+    {
+     "text": "Two things in that chart deserve saying out loud.",
+     "file": "t4-e3/audio/s7-006-aca4de56de786af6.wav",
+     "start": 456.3573,
+     "duration": 3.3493
+    },
+    {
+     "text": "First: no positions at all is not catastrophic, and it should not be, because a *causal* decoder leaks position for free.",
+     "file": "t4-e3/audio/s7-007-cb6ef4053af54349.wav",
+     "start": 460.1267,
+     "duration": 10.9867
+    },
+    {
+     "text": "The token at index i can see exactly i plus one things, and the model can count them.",
+     "file": "t4-e3/audio/s7-008-65333f14f3741051.wav",
+     "start": 471.5333,
+     "duration": 6.7413
+    },
+    {
+     "text": "Positional encoding sharpens a signal that already exists.",
+     "file": "t4-e3/audio/s7-009-ef15e824f89bbd1e.wav",
+     "start": 478.6947,
+     "duration": 4.2453
+    },
+    {
+     "text": "In a bidirectional encoder its absence really is fatal.",
+     "file": "t4-e3/audio/s7-010-86b14dd5296cd2d5.wav",
+     "start": 483.36,
+     "duration": 3.968
+    },
+    {
+     "text": "Second: the sinusoidal table landing behind nothing is not a bug, it is a warning about adding things to the residual stream, and that is the next scene.",
+     "file": "t4-e3/audio/s7-011-3590c991fc483919.wav",
+     "start": 487.748,
+     "duration": 11.328
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "The sinusoidal table drowns your token embeddings",
+    "body": "The raw table has entries in [-1, 1]. A GPT-2-style embedding is initialised at standard deviation 0.02. Add them together and the positions are fifty times louder than the tokens \u2014 our initial loss came out ABOVE ln(V) because the logits were nearly pure position. The paper hides this by multiplying the embeddings by sqrt(d_model) instead. Same ratio, opposite direction.",
+    "code": "self.register_buffer('table', scale * sinusoidal_table(block, d))  # scale = 0.02"
+   },
+   "start": 499.726,
+   "duration": 83.918,
+   "segments": [
+    {
+     "text": "Here is a bug we hit while building this, and I think it explains why the sinusoidal table has a worse reputation than the idea deserves.",
+     "file": "t4-e3/audio/s8-000-6634c0dc0d44eeeb.wav",
+     "start": 499.726,
+     "duration": 10.2187
+    },
+    {
+     "text": "The raw table has entries between minus one and one.",
+     "file": "t4-e3/audio/s8-001-370d86e90e3d7a5d.wav",
+     "start": 510.3647,
+     "duration": 4.0747
+    },
+    {
+     "text": "A GPT-2 style token embedding is initialised at a standard deviation of zero point zero two.",
+     "file": "t4-e3/audio/s8-002-1f7f718bd5d114c4.wav",
+     "start": 514.8593,
+     "duration": 8.832
+    },
+    {
+     "text": "Add them straight together and the position signal is roughly fifty times louder than the token signal.",
+     "file": "t4-e3/audio/s8-003-4f273f63d9810969.wav",
+     "start": 524.1113,
+     "duration": 6.8693
+    },
+    {
+     "text": "Our very first measurement showed an initial loss *above* log of the vocabulary size, which is worse than guessing uniformly \u2014 because the logits were almost pure position with a whisper of token underneath.",
+     "file": "t4-e3/audio/s8-004-65add80a432ae553.wav",
+     "start": 531.4007,
+     "duration": 17.2587
+    },
+    {
+     "text": "The original paper hides this by multiplying the embeddings by root d model instead of scaling the table down.",
+     "file": "t4-e3/audio/s8-005-b5ee8ffc28c37915.wav",
+     "start": 549.0793,
+     "duration": 8.896
+    },
+    {
+     "text": "Same ratio, opposite direction.",
+     "file": "t4-e3/audio/s8-006-1d84480403dfa1ae.wav",
+     "start": 558.3953,
+     "duration": 2.752
+    },
+    {
+     "text": "We scale the table to match the embedding initialisation and we say so in the code.",
+     "file": "t4-e3/audio/s8-007-5e084930f202966c.wav",
+     "start": 561.5673,
+     "duration": 6.1013
+    },
+    {
+     "text": "And notice what RoPE avoids by construction: it never touches the residual stream, so it can never compete with the token embeddings for the same coordinates.",
+     "file": "t4-e3/audio/s8-008-09ffd205d234e05d.wav",
+     "start": 568.0887,
+     "duration": 12.416
+    },
+    {
+     "text": "That is half of why it wins.",
+     "file": "t4-e3/audio/s8-009-525974b2055cf6bb.wav",
+     "start": 580.9247,
+     "duration": 2.0693
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "past the training length",
+    "title": "The test a loss table cannot show",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "RoPE\n64",
+      "value": 0.8783,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "RoPE\n96",
+      "value": 0.812,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "RoPE\n128",
+      "value": 0.9042,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "sinus\n64",
+      "value": 0.9901
+     },
+     {
+      "label": "sinus\n96",
+      "value": 1.2514
+     },
+     {
+      "label": "sinus\n128",
+      "value": 1.7236
+     },
+     {
+      "label": "learned\n96+",
+      "value": 0
+     }
+    ],
+    "yLabel": "loss on a window of that length",
+    "caption": "Trained at 64 tokens. The learned table has a bar of zero because the question cannot be asked at all."
+   },
+   "start": 583.644,
+   "duration": 82.0487,
+   "segments": [
+    {
+     "text": "And here is the test a loss table cannot show you.",
+     "file": "t4-e3/audio/s9-000-dde92fad4b1c5a8e.wav",
+     "start": 583.644,
+     "duration": 3.6053
+    },
+    {
+     "text": "All three models were trained at a context of sixty four tokens.",
+     "file": "t4-e3/audio/s9-001-41dc2b569ad411d0.wav",
+     "start": 587.6693,
+     "duration": 4.9493
+    },
+    {
+     "text": "Now feed them longer windows.",
+     "file": "t4-e3/audio/s9-002-0cbf6d6e4906eaa9.wav",
+     "start": 593.0387,
+     "duration": 2.176
+    },
+    {
+     "text": "RoPE at sixty four, ninety six and one hundred and twenty eight: zero point eight eight, zero point eight one, zero point nine.",
+     "file": "t4-e3/audio/s9-003-7da80445ba49be2b.wav",
+     "start": 595.6347,
+     "duration": 10.944
+    },
+    {
+     "text": "It holds.",
+     "file": "t4-e3/audio/s9-004-64fd21a02a244b40.wav",
+     "start": 606.9987,
+     "duration": 1.1733
+    },
+    {
+     "text": "The sinusoidal model: zero point nine nine, then one point two five, then one point seven two.",
+     "file": "t4-e3/audio/s9-005-95cbc1fee4c3c6cc.wav",
+     "start": 608.592,
+     "duration": 7.8507
+    },
+    {
+     "text": "It degrades badly, but it *answers* \u2014 the table is defined for any position, so there is a number.",
+     "file": "t4-e3/audio/s9-006-a187df5888b2a088.wav",
+     "start": 616.8627,
+     "duration": 8.8107
+    },
+    {
+     "text": "And the learned model has a bar of zero because the question cannot be asked.",
+     "file": "t4-e3/audio/s9-007-a6ccddbd5553d909.wav",
+     "start": 626.0933,
+     "duration": 5.8027
+    },
+    {
+     "text": "There is no row sixty five in its table.",
+     "file": "t4-e3/audio/s9-008-83b5c3ef6fe3ac99.wav",
+     "start": 632.316,
+     "duration": 3.0933
+    },
+    {
+     "text": "It is not that it does badly past its training length; it has no representation for a position it never saw.",
+     "file": "t4-e3/audio/s9-009-652d638d050789dd.wav",
+     "start": 635.8293,
+     "duration": 8.2347
+    },
+    {
+     "text": "That is the practical difference, and it is why every long-context technique you will meet \u2014 position interpolation, NTK scaling, YaRN \u2014 is built on top of RoPE.",
+     "file": "t4-e3/audio/s9-010-ea802c6f4632319e.wav",
+     "start": 644.484,
+     "duration": 14.1867
+    },
+    {
+     "text": "They are all ways of stretching a rotation, and you cannot stretch a lookup table.",
+     "file": "t4-e3/audio/s9-011-59ed03545bbd5286.wav",
+     "start": 659.0907,
+     "duration": 5.952
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "Positions, in three sentences",
+    "points": [
+     "Self-attention is permutation-equivariant: without help it cannot tell 'BUY 100 INFY' from '100 INFY BUY'.",
+     "RoPE falls out of one wish \u2014 that the score depend only on the gap \u2014 and the identity holds to 1.8e-15, exactly, not approximately.",
+     "It wins on loss, costs zero parameters, and is the only scheme that still has an answer past the training length."
+    ],
+    "ifSkipped": "Skip this and every long-context paper you read afterwards \u2014 interpolation, NTK scaling, YaRN \u2014 is a stack of adjustments to a mechanism you never saw derived.",
+    "next": "Episode 4 \u2014 training the thing, and finding out what it learned. Including an experiment that lied to us."
+   },
+   "start": 665.6927,
+   "duration": 58.602,
+   "segments": [
+    {
+     "text": "Three things.",
+     "file": "t4-e3/audio/s10-000-612ae6df2d818804.wav",
+     "start": 665.6927,
+     "duration": 1.28
+    },
+    {
+     "text": "One.",
+     "file": "t4-e3/audio/s10-001-cadf3811dd6afddb.wav",
+     "start": 667.3927,
+     "duration": 0.832
+    },
+    {
+     "text": "Self-attention is permutation-equivariant, so word order has to be supplied from outside, and a causal decoder gets a weak version of it for free by counting.",
+     "file": "t4-e3/audio/s10-002-0553f58b2d4178f8.wav",
+     "start": 668.6447,
+     "duration": 12.5227
+    },
+    {
+     "text": "Two.",
+     "file": "t4-e3/audio/s10-003-8848b45411fcacef.wav",
+     "start": 681.5873,
+     "duration": 0.8107
+    },
+    {
+     "text": "RoPE falls out of a single wish \u2014 that the score should depend only on the gap \u2014 and the resulting identity holds to one point eight times ten to the minus fifteen, which is exactly, not approximately.",
+     "file": "t4-e3/audio/s10-004-c5aa5be8eec8b3a6.wav",
+     "start": 682.818,
+     "duration": 16.6827
+    },
+    {
+     "text": "Three.",
+     "file": "t4-e3/audio/s10-005-301665492da4bf47.wav",
+     "start": 699.9207,
+     "duration": 0.896
+    },
+    {
+     "text": "It wins on loss, costs nothing in parameters, and is the only one of the three that still has an answer past the training length.",
+     "file": "t4-e3/audio/s10-006-df8847b7058a811a.wav",
+     "start": 701.2367,
+     "duration": 9.472
+    },
+    {
+     "text": "Next time, we train the whole model and then go looking for what it learned.",
+     "file": "t4-e3/audio/s10-007-db7c8e338ed817a4.wav",
+     "start": 711.1287,
+     "duration": 5.2907
+    },
+    {
+     "text": "Including an experiment that gave us a beautiful result which turned out to be completely wrong.",
+     "file": "t4-e3/audio/s10-008-e2802b71f7e18418.wav",
+     "start": 716.8393,
+     "duration": 6.8053
+    }
+   ]
+  }
+ ]
+}

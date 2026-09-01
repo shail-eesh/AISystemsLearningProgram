@@ -1,0 +1,617 @@
+{
+ "s1-000-11515aeabd0fd8e4.wav": {
+  "duration": 2.9226666666666667,
+  "text": "Welcome back to the AI Systems Forge.",
+  "voice": "am_michael"
+ },
+ "s1-001-578f93cc32760d9c.wav": {
+  "duration": 2.432,
+  "text": "This is phase two, topic four.",
+  "voice": "am_michael"
+ },
+ "s1-002-ea957515d3d9cfb8.wav": {
+  "duration": 3.264,
+  "text": "The transformer, written from an empty file.",
+  "voice": "am_michael"
+ },
+ "s1-003-84ed6984356e67fe.wav": {
+  "duration": 9.685333333333332,
+  "text": "This is the flagship series of the course, five episodes, and we are going to go slowly, because everything after this depends on it.",
+  "voice": "am_michael"
+ },
+ "s1-004-9565f530196eaf4a.wav": {
+  "duration": 2.0906666666666665,
+  "text": "Today, one head of attention.",
+  "voice": "am_michael"
+ },
+ "s1-005-a4b25390a5f13fea.wav": {
+  "duration": 3.6053333333333333,
+  "text": "Not multi-head, not the block, not the model.",
+  "voice": "am_michael"
+ },
+ "s1-006-ef3a9d133edaf1b0.wav": {
+  "duration": 4.544,
+  "text": "One head, on one sequence, with real numbers you can point at.",
+  "voice": "am_michael"
+ },
+ "s10-000-20ae3ae7c2022bdd.wav": {
+  "duration": 2.0906666666666665,
+  "text": "Three things to take away.",
+  "voice": "am_michael"
+ },
+ "s10-001-cadf3811dd6afddb.wav": {
+  "duration": 0.832,
+  "text": "One.",
+  "voice": "am_michael"
+ },
+ "s10-002-5413126d36ef85d2.wav": {
+  "duration": 3.584,
+  "text": "Attention is a differentiable dictionary lookup.",
+  "voice": "am_michael"
+ },
+ "s10-003-cad48c33a352aa66.wav": {
+  "duration": 8.917333333333334,
+  "text": "Dot products become scores, softmax turns scores into weights, and the output is a weighted average of the values.",
+  "voice": "am_michael"
+ },
+ "s10-004-8848b45411fcacef.wav": {
+  "duration": 0.8106666666666666,
+  "text": "Two.",
+  "voice": "am_michael"
+ },
+ "s10-005-d0e52a0ba9897c16.wav": {
+  "duration": 11.797333333333333,
+  "text": "The division by root d k is a variance fix, and without it the softmax saturates and the layer stops learning precisely as you make the model bigger.",
+  "voice": "am_michael"
+ },
+ "s10-006-301665492da4bf47.wav": {
+  "duration": 0.896,
+  "text": "Three.",
+  "voice": "am_michael"
+ },
+ "s10-007-071000d9d5db85ef.wav": {
+  "duration": 8.682666666666666,
+  "text": "The causal mask is what lets the model generate at all, and taking it out will improve your loss while destroying your model.",
+  "voice": "am_michael"
+ },
+ "s10-008-a9f0926dde812ceb.wav": {
+  "duration": 12.672,
+  "text": "If you skip this episode, episode two is just an unexplained reshape, because multi-head attention is nothing but what you have just seen, four times in parallel.",
+  "voice": "am_michael"
+ },
+ "s10-009-73497cb75287cac1.wav": {
+  "duration": 1.8346666666666667,
+  "text": "Next time, the block.",
+  "voice": "am_michael"
+ },
+ "s10-010-5bc8dfebcabe9dfd.wav": {
+  "duration": 9.194666666666667,
+  "text": "Many heads, the multi-layer perceptron that holds two thirds of the parameters, and what the residual stream is actually for.",
+  "voice": "am_michael"
+ },
+ "s2-000-764be60a57f232b9.wav": {
+  "duration": 1.792,
+  "text": "Here is where we are.",
+  "voice": "am_michael"
+ },
+ "s2-001-7efacf74e9faac76.wav": {
+  "duration": 6.1866666666666665,
+  "text": "AlphaDesk is the fictional trading desk this course builds one topic at a time.",
+  "voice": "am_michael"
+ },
+ "s2-002-fbf52ba9464fe8a3.wav": {
+  "duration": 1.9626666666666666,
+  "text": "The lit block is models.",
+  "voice": "am_michael"
+ },
+ "s2-003-155dc45f630b4f7f.wav": {
+  "duration": 12.16,
+  "text": "In phase one you built the autograd engine underneath it, the matmul kernel it runs on, the softmax it normalises with, and the tokenizer that feeds it.",
+  "voice": "am_michael"
+ },
+ "s2-004-396c4b8f74889be5.wav": {
+  "duration": 2.7733333333333334,
+  "text": "Every one of those was groundwork for this.",
+  "voice": "am_michael"
+ },
+ "s2-005-639b6f5eb6e63c36.wav": {
+  "duration": 12.842666666666666,
+  "text": "Today the pieces come together into the architecture that the desk's own language model, its embedding model, its vision encoder and its speech model are all variations of.",
+  "voice": "am_michael"
+ },
+ "s3-000-93f81e6f2680b9ba.wav": {
+  "duration": 3.989333333333333,
+  "text": "Before any code, here is the idea in one sentence.",
+  "voice": "am_michael"
+ },
+ "s3-001-4f4b942505020a7e.wav": {
+  "duration": 4.8,
+  "text": "Attention is a dictionary lookup that has been made differentiable.",
+  "voice": "am_michael"
+ },
+ "s3-002-530a702864860a47.wav": {
+  "duration": 2.965333333333333,
+  "text": "Think about what an ordinary lookup does.",
+  "voice": "am_michael"
+ },
+ "s3-003-bb1b386994785c09.wav": {
+  "duration": 1.3653333333333333,
+  "text": "You hold a key.",
+  "voice": "am_michael"
+ },
+ "s3-004-615cb31280237ec2.wav": {
+  "duration": 3.2,
+  "text": "It gets compared against every key in the table.",
+  "voice": "am_michael"
+ },
+ "s3-005-adc4432f5c2d7908.wav": {
+  "duration": 3.8613333333333335,
+  "text": "The one that matches wins, and you get back its value.",
+  "voice": "am_michael"
+ },
+ "s3-006-03e540eb358aa73b.wav": {
+  "duration": 3.3706666666666667,
+  "text": "Attention does exactly that with two changes.",
+  "voice": "am_michael"
+ },
+ "s3-007-958e8b8b54db3882.wav": {
+  "duration": 13.269333333333334,
+  "text": "First, the comparison is a dot product rather than an equality test, so instead of matching or not matching you get a score, a number saying how well those two things line up.",
+  "voice": "am_michael"
+ },
+ "s3-008-eebb37e2295c4f06.wav": {
+  "duration": 9.642666666666667,
+  "text": "Second, instead of taking the winner you take a weighted average of every single value, with the weights coming from a softmax over the scores.",
+  "voice": "am_michael"
+ },
+ "s3-009-7bc2ea686b0e6102.wav": {
+  "duration": 2.176,
+  "text": "And now think about why.",
+  "voice": "am_michael"
+ },
+ "s3-010-6e99fa78f9a13efa.wav": {
+  "duration": 4.437333333333333,
+  "text": "A hard lookup, an argmax, has no useful derivative.",
+  "voice": "am_michael"
+ },
+ "s3-011-19cbcea87a023738.wav": {
+  "duration": 8.277333333333333,
+  "text": "Nudge the query slightly and either nothing changes at all, or the answer jumps to a completely different entry.",
+  "voice": "am_michael"
+ },
+ "s3-012-67797ca377d8dabb.wav": {
+  "duration": 3.6906666666666665,
+  "text": "There is nothing for gradient descent to hold on to.",
+  "voice": "am_michael"
+ },
+ "s3-013-115977c08074db7c.wav": {
+  "duration": 6.634666666666667,
+  "text": "Soften it into a weighted average and suddenly every weight moves smoothly with every input.",
+  "voice": "am_michael"
+ },
+ "s3-014-1d5260b3666edb7e.wav": {
+  "duration": 1.8133333333333332,
+  "text": "That is not a detail.",
+  "voice": "am_michael"
+ },
+ "s3-015-4750641614a6cd41.wav": {
+  "duration": 3.0933333333333333,
+  "text": "That is the reason this architecture exists.",
+  "voice": "am_michael"
+ },
+ "s4-000-d724ff1c8e82c0f9.wav": {
+  "duration": 3.6053333333333333,
+  "text": "So where do the queries and keys and values come from.",
+  "voice": "am_michael"
+ },
+ "s4-001-00f6220ed09df2af.wav": {
+  "duration": 5.696,
+  "text": "Every token emits three vectors, and each has a job you can say in English.",
+  "voice": "am_michael"
+ },
+ "s4-002-85120ccce2ee8ac0.wav": {
+  "duration": 3.2213333333333334,
+  "text": "The query is what this token is looking for.",
+  "voice": "am_michael"
+ },
+ "s4-003-e2b75706ec98b123.wav": {
+  "duration": 4.586666666666667,
+  "text": "The key is what this token is, considered as a lookup target.",
+  "voice": "am_michael"
+ },
+ "s4-004-19c7e7caba66453a.wav": {
+  "duration": 4.224,
+  "text": "The value is what this token contributes if it gets chosen.",
+  "voice": "am_michael"
+ },
+ "s4-005-a6a7855db277887b.wav": {
+  "duration": 1.5146666666666666,
+  "text": "Now the symbols.",
+  "voice": "am_michael"
+ },
+ "s4-006-b0270a752960add0.wav": {
+  "duration": 8.384,
+  "text": "Q equals X times W q, K equals X times W k, V equals X times W v.",
+  "voice": "am_michael"
+ },
+ "s4-007-db5e45042d5cb944.wav": {
+  "duration": 1.9626666666666666,
+  "text": "Three learned matrices.",
+  "voice": "am_michael"
+ },
+ "s4-008-11676ebe77fd3abb.wav": {
+  "duration": 2.5813333333333333,
+  "text": "And now the code, which is one line.",
+  "voice": "am_michael"
+ },
+ "s4-009-da2e379de90ea3a2.wav": {
+  "duration": 2.1973333333333334,
+  "text": "Three matrix multiplies.",
+  "voice": "am_michael"
+ },
+ "s4-010-66af51f6771731b5.wav": {
+  "duration": 1.1733333333333333,
+  "text": "That is it.",
+  "voice": "am_michael"
+ },
+ "s4-011-3375962f42440216.wav": {
+  "duration": 6.336,
+  "text": "Those three matrices are the only parameters in the entire attention mechanism.",
+  "voice": "am_michael"
+ },
+ "s4-012-962faf874cdd7d87.wav": {
+  "duration": 5.802666666666667,
+  "text": "Everything else you are about to see is arithmetic with no weights in it at all.",
+  "voice": "am_michael"
+ },
+ "s5-000-22f1dbf31ab736ca.wav": {
+  "duration": 2.88,
+  "text": "Now watch one query do its job.",
+  "voice": "am_michael"
+ },
+ "s5-001-337e2a255f12cd72.wav": {
+  "duration": 2.496,
+  "text": "Token five is asking a question.",
+  "voice": "am_michael"
+ },
+ "s5-002-2d62383fef4b8e5c.wav": {
+  "duration": 8.917333333333334,
+  "text": "Its query vector gets compared against the key of every token it is allowed to see, which is tokens zero through five.",
+  "voice": "am_michael"
+ },
+ "s5-003-19de544876170c2c.wav": {
+  "duration": 6.506666666666667,
+  "text": "Five dot products, five scores, and then a softmax turns those scores into weights.",
+  "voice": "am_michael"
+ },
+ "s5-004-0a21b351168b44db.wav": {
+  "duration": 2.112,
+  "text": "Look at the numbers on the keys.",
+  "voice": "am_michael"
+ },
+ "s5-005-bf55f801530d4e57.wav": {
+  "duration": 1.984,
+  "text": "Zero point zero two.",
+  "voice": "am_michael"
+ },
+ "s5-006-07bfe482a8628a67.wav": {
+  "duration": 1.984,
+  "text": "Zero point six one.",
+  "voice": "am_michael"
+ },
+ "s5-007-96b10c92c6cdfcc5.wav": {
+  "duration": 2.1546666666666665,
+  "text": "Zero point zero five.",
+  "voice": "am_michael"
+ },
+ "s5-008-4e035fb9662a3226.wav": {
+  "duration": 2.048,
+  "text": "Zero point zero nine.",
+  "voice": "am_michael"
+ },
+ "s5-009-9cd6edd16eab2d78.wav": {
+  "duration": 1.856,
+  "text": "Zero point two three.",
+  "voice": "am_michael"
+ },
+ "s5-010-b8ffafc8d0478e69.wav": {
+  "duration": 5.738666666666667,
+  "text": "Add those up and you get one, exactly, because that is what a softmax is for.",
+  "voice": "am_michael"
+ },
+ "s5-011-771e357a5990d876.wav": {
+  "duration": 10.666666666666666,
+  "text": "So this query has decided that token one is what it was looking for, with a bit of interest in token four, and essentially no interest in the rest.",
+  "voice": "am_michael"
+ },
+ "s5-012-0d576fb0a131f47e.wav": {
+  "duration": 5.994666666666666,
+  "text": "The output is the values of those five tokens, averaged with those five weights.",
+  "voice": "am_michael"
+ },
+ "s5-013-f27d9bffab4c85a3.wav": {
+  "duration": 10.88,
+  "text": "Sixty one percent of token one's value, twenty three percent of token four's, and the remainder split between three tokens it has mostly ignored.",
+  "voice": "am_michael"
+ },
+ "s5-014-8eeaafbc1c24f1bc.wav": {
+  "duration": 4.373333333333333,
+  "text": "That is one head of attention producing one output vector.",
+  "voice": "am_michael"
+ },
+ "s5-015-5f92986d80f3cb00.wav": {
+  "duration": 1.6213333333333333,
+  "text": "Nothing else happened.",
+  "voice": "am_michael"
+ },
+ "s6-000-cd22cbd903b979c7.wav": {
+  "duration": 2.496,
+  "text": "Here is the whole thing written down.",
+  "voice": "am_michael"
+ },
+ "s6-001-5b5d6c2e8ef80bd4.wav": {
+  "duration": 1.6426666666666667,
+  "text": "In English first.",
+  "voice": "am_michael"
+ },
+ "s6-002-05528b4dae7e0692.wav": {
+  "duration": 2.688,
+  "text": "Score every query against every key.",
+  "voice": "am_michael"
+ },
+ "s6-003-4efed01498001adc.wav": {
+  "duration": 2.9226666666666667,
+  "text": "Divide by the square root of the head width.",
+  "voice": "am_michael"
+ },
+ "s6-004-002d989edd9b896b.wav": {
+  "duration": 1.8346666666666667,
+  "text": "Mask out the future.",
+  "voice": "am_michael"
+ },
+ "s6-005-717fbaa54ba4098b.wav": {
+  "duration": 1.1946666666666668,
+  "text": "Softmax.",
+  "voice": "am_michael"
+ },
+ "s6-006-656354ab0b45603e.wav": {
+  "duration": 2.6453333333333333,
+  "text": "Use the result to average the values.",
+  "voice": "am_michael"
+ },
+ "s6-007-940afd4d8352002e.wav": {
+  "duration": 5.248,
+  "text": "Now the equation, and this is the one line people put on slides.",
+  "voice": "am_michael"
+ },
+ "s6-008-ceaa3fc99def9a90.wav": {
+  "duration": 7.914666666666666,
+  "text": "Attention of Q, K and V equals softmax of Q K transpose over root d k, times V.",
+  "voice": "am_michael"
+ },
+ "s6-009-0c0657384af4424f.wav": {
+  "duration": 9.642666666666667,
+  "text": "And now the code, which is four lines, and which you should read as the definition rather than as an implementation of the equation.",
+  "voice": "am_michael"
+ },
+ "s6-010-f421f41516356593.wav": {
+  "duration": 1.856,
+  "text": "Line one, the scores.",
+  "voice": "am_michael"
+ },
+ "s6-011-6b87da02432470be.wav": {
+  "duration": 1.6,
+  "text": "Line two, the mask.",
+  "voice": "am_michael"
+ },
+ "s6-012-be55c7028c02adec.wav": {
+  "duration": 2.005333333333333,
+  "text": "Line three, the softmax.",
+  "voice": "am_michael"
+ },
+ "s6-013-aa99646fea115b52.wav": {
+  "duration": 2.368,
+  "text": "Line four, the weighted average.",
+  "voice": "am_michael"
+ },
+ "s6-014-e1098a485f9cb414.wav": {
+  "duration": 2.3253333333333335,
+  "text": "The paper is fifteen pages.",
+  "voice": "am_michael"
+ },
+ "s6-015-00d9e1ea49e3aa49.wav": {
+  "duration": 4.672,
+  "text": "This is the load-bearing part of it, and it fits on a business card.",
+  "voice": "am_michael"
+ },
+ "s7-000-bd85a1ea09b70c26.wav": {
+  "duration": 7.914666666666666,
+  "text": "Now the divide by root d k, because it is the one part of that formula that looks arbitrary and is not.",
+  "voice": "am_michael"
+ },
+ "s7-001-c2fa4d9fb2d62a16.wav": {
+  "duration": 5.034666666666666,
+  "text": "Queries and keys have roughly unit variance in each coordinate.",
+  "voice": "am_michael"
+ },
+ "s7-002-4c3c513c84296bd2.wav": {
+  "duration": 6.293333333333333,
+  "text": "Their dot product sums over d k coordinates, so its variance grows with d k.",
+  "voice": "am_michael"
+ },
+ "s7-003-91e70f262ad44024.wav": {
+  "duration": 2.2186666666666666,
+  "text": "Wider model, bigger scores.",
+  "voice": "am_michael"
+ },
+ "s7-004-f4db04bb81880e6d.wav": {
+  "duration": 3.3706666666666667,
+  "text": "And here is what bigger scores do to a softmax.",
+  "voice": "am_michael"
+ },
+ "s7-005-4b70383aa9679791.wav": {
+  "duration": 11.136,
+  "text": "This chart is a real measurement: two hundred random rows of sixty four keys each, and the bar height is the largest weight the softmax produced.",
+  "voice": "am_michael"
+ },
+ "s7-006-6f805b36a24f3815.wav": {
+  "duration": 3.1573333333333333,
+  "text": "At width four it is zero point two seven.",
+  "voice": "am_michael"
+ },
+ "s7-007-d6f8d0b43edd26fe.wav": {
+  "duration": 3.1786666666666665,
+  "text": "At sixty four, zero point eight one.",
+  "voice": "am_michael"
+ },
+ "s7-008-c06ee0289c952a59.wav": {
+  "duration": 4.245333333333333,
+  "text": "At one thousand and twenty four, zero point nine six.",
+  "voice": "am_michael"
+ },
+ "s7-009-9ab85122a6bc4888.wav": {
+  "duration": 3.050666666666667,
+  "text": "The softmax has collapsed onto a single key.",
+  "voice": "am_michael"
+ },
+ "s7-010-4ac99e96d35417ff.wav": {
+  "duration": 14.741333333333333,
+  "text": "And a saturated softmax has almost no gradient, so that layer has stopped learning, and it stops learning more the wider you build it, which is the exact opposite of what you want from a scaling knob.",
+  "voice": "am_michael"
+ },
+ "s7-011-3004c46ac932850f.wav": {
+  "duration": 1.6426666666666667,
+  "text": "Look at the green bar.",
+  "voice": "am_michael"
+ },
+ "s7-012-4d53931ef1a3b2ce.wav": {
+  "duration": 5.674666666666667,
+  "text": "Same width, one thousand and twenty four, with the division by root d k.",
+  "voice": "am_michael"
+ },
+ "s7-013-e52e2156e2bf578f.wav": {
+  "duration": 1.5786666666666667,
+  "text": "Zero point one.",
+  "voice": "am_michael"
+ },
+ "s7-014-1f1a2f994683b76f.wav": {
+  "duration": 1.664,
+  "text": "Back where it started.",
+  "voice": "am_michael"
+ },
+ "s7-015-92e8ebb90476df01.wav": {
+  "duration": 2.8373333333333335,
+  "text": "The scaling is a variance correction.",
+  "voice": "am_michael"
+ },
+ "s7-016-ac4451fb8c39f8e8.wav": {
+  "duration": 6.1226666666666665,
+  "text": "It is not a normalisation ritual and it is not there for numerical stability.",
+  "voice": "am_michael"
+ },
+ "s8-000-59419121443d4b28.wav": {
+  "duration": 2.9013333333333335,
+  "text": "And here is that written as code you can run.",
+  "voice": "am_michael"
+ },
+ "s8-001-0a55d4351a19336f.wav": {
+  "duration": 7.488,
+  "text": "The top function takes one sequence, x, of shape T by d model, and three weight matrices.",
+  "voice": "am_michael"
+ },
+ "s8-002-730720889a0d829e.wav": {
+  "duration": 2.1333333333333333,
+  "text": "Three matmuls, and hand off.",
+  "voice": "am_michael"
+ },
+ "s8-003-de894a5ce9b41646.wav": {
+  "duration": 2.7733333333333334,
+  "text": "The second function is the four lines.",
+  "voice": "am_michael"
+ },
+ "s8-004-0c0e1e05447e04d1.wav": {
+  "duration": 8.256,
+  "text": "Notice the mask fill uses negative infinity rather than a large negative number like minus one e nine.",
+  "voice": "am_michael"
+ },
+ "s8-005-37b59a21c9401748.wav": {
+  "duration": 2.048,
+  "text": "That matters more than it looks.",
+  "voice": "am_michael"
+ },
+ "s8-006-48db73bb443c29b1.wav": {
+  "duration": 11.605333333333334,
+  "text": "In float sixteen, minus one e nine is not far enough from zero, and a small but non-zero weight leaks through the softmax onto a future token.",
+  "voice": "am_michael"
+ },
+ "s8-007-b15cb81f1de06aae.wav": {
+  "duration": 12.266666666666667,
+  "text": "Your model then trains slightly on information it will not have at generation time, and the failure looks like a model that validates beautifully and generates nonsense.",
+  "voice": "am_michael"
+ },
+ "s8-008-c94c836154b1bf03.wav": {
+  "duration": 2.005333333333333,
+  "text": "Use negative infinity.",
+  "voice": "am_michael"
+ },
+ "s8-009-1f2aeca9dc3f5357.wav": {
+  "duration": 7.488,
+  "text": "After the softmax every masked entry is exactly zero and every row still sums to one.",
+  "voice": "am_michael"
+ },
+ "s8-010-dadef63d132a4bee.wav": {
+  "duration": 4.928,
+  "text": "And notice the last line returns the weights as well as the output.",
+  "voice": "am_michael"
+ },
+ "s8-011-079154d7d18e001b.wav": {
+  "duration": 1.4933333333333334,
+  "text": "That is deliberate.",
+  "voice": "am_michael"
+ },
+ "s8-012-d7f4c506a8b6526e.wav": {
+  "duration": 8.64,
+  "text": "Half of interpretability is being able to look at the attention matrix, and episode four is going to do exactly that.",
+  "voice": "am_michael"
+ },
+ "s9-000-3795eff940f02317.wav": {
+  "duration": 5.226666666666667,
+  "text": "One gotcha before we stop, and it is the one that costs people days.",
+  "voice": "am_michael"
+ },
+ "s9-001-3df81bff90aa4799.wav": {
+  "duration": 3.3493333333333335,
+  "text": "The causal mask is not a performance detail.",
+  "voice": "am_michael"
+ },
+ "s9-002-10155f2282da8edf.wav": {
+  "duration": 3.8826666666666667,
+  "text": "It is the entire reason a decoder can generate.",
+  "voice": "am_michael"
+ },
+ "s9-003-d10a426f19387fcd.wav": {
+  "duration": 7.8933333333333335,
+  "text": "Take it away and every token can see the tokens after it, which includes the one it is being asked to predict.",
+  "voice": "am_michael"
+ },
+ "s9-004-4dd30e6cd5f7c547.wav": {
+  "duration": 4.672,
+  "text": "Loss falls off a cliff, and it looks like you have done something right.",
+  "voice": "am_michael"
+ },
+ "s9-005-6e8597cebaa066aa.wav": {
+  "duration": 8.618666666666666,
+  "text": "Then you sample from the model and it produces nothing coherent, because at generation time there is no future to look at.",
+  "voice": "am_michael"
+ },
+ "s9-006-b25c5bcb7a977952.wav": {
+  "duration": 11.2,
+  "text": "In our own run, without the mask, token zero placed six percent of its attention on token three, a token that will not exist for another three steps.",
+  "voice": "am_michael"
+ },
+ "s9-007-62d375531f62b251.wav": {
+  "duration": 3.2213333333333334,
+  "text": "With the mask, that weight is exactly zero.",
+  "voice": "am_michael"
+ }
+}

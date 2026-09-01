@@ -56,18 +56,20 @@
   "note": "Byte-level BPE + FinTok-3.5k \u00b7 54 tests \u00b7 100k-string round-trip fuzz clean \u00b7 2.73x over a matched general vocab \u00b7 E1 8m28s \u00b7 E2 6m52s \u00b7 E3 10m39s"
  },
  "T4": {
-  "code": "scheduled",
-  "tests": "scheduled",
-  "bench": "scheduled",
-  "video": "scheduled",
-  "wired": "scheduled"
+  "code": "done",
+  "tests": "pass",
+  "bench": "done",
+  "video": "pending",
+  "wired": "done",
+  "note": "Decoder-only GPT (RoPE/learned/sinusoidal positions, RMS/LayerNorm, tied head, KV cache) \u00b7 121 tests \u00b7 logit parity 3.8e-07 vs an independent reference \u00b7 loss curve 0.17x the seed-noise band \u00b7 100% well-formed generation \u00b7 induction heads 9.1x chance with a depth control (94% vs 65%) \u00b7 cache 3.19x and token-identical"
  },
  "T15": {
-  "code": "scheduled",
-  "tests": "scheduled",
-  "bench": "scheduled",
-  "video": "scheduled",
-  "wired": "scheduled"
+  "code": "done",
+  "tests": "pass",
+  "bench": "awaiting-4070",
+  "video": "pending",
+  "wired": "done",
+  "note": "AlphaSLM: tagged 12MB corpus, FinTok-packed uint16 shards, restartable harness \u00b7 68 tests \u00b7 CPU bench 6/6 (resume bit-exact 0.0; 3-rung scaling ordering holds, power law checked on a held-out rung at +0.33%; 1.014x held-out filing perplexity, explained by a 19.5%/3.56-nat digit floor) \u00b7 the 15M and 40M rungs need the 4070: gpu-runner/t15_alphaslm_40m.py"
  },
  "T43": {
   "code": "scheduled",

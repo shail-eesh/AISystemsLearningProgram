@@ -1,0 +1,871 @@
+{
+ "topic": "t4-e2",
+ "episode": 2,
+ "title": "The block \u2014 many heads, one bus",
+ "voice": "am_michael",
+ "speed": 0.85,
+ "sampleRate": 24000,
+ "totalSeconds": 626.6147,
+ "wordCount": 1336,
+ "wordsPerMinute": 127.9,
+ "sceneCount": 10,
+ "shortestSceneSeconds": 32.84,
+ "generatedInSeconds": 261.8,
+ "segmentsSynthesised": 100,
+ "segmentsReused": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "component": "TitleCard",
+   "props": {
+    "title": "The block",
+    "subtitle": "Many heads, the MLP that holds the parameters, and the bus everything writes to.",
+    "topicId": "T4",
+    "episode": "Episode 2"
+   },
+   "start": 0.0,
+   "duration": 32.8367,
+   "segments": [
+    {
+     "text": "Welcome back.",
+     "file": "t4-e2/audio/s1-000-e19396f98ddd78fa.wav",
+     "start": 0.0,
+     "duration": 1.3227
+    },
+    {
+     "text": "Episode two of the transformer series.",
+     "file": "t4-e2/audio/s1-001-68164605f0aa4d6b.wav",
+     "start": 1.7427,
+     "duration": 3.0933
+    },
+    {
+     "text": "Last time, one head of attention on one sequence.",
+     "file": "t4-e2/audio/s1-002-6cf56c3990ab3399.wav",
+     "start": 5.256,
+     "duration": 3.6693
+    },
+    {
+     "text": "Today we turn that into the unit a real model is a stack of.",
+     "file": "t4-e2/audio/s1-003-0314e3653c748408.wav",
+     "start": 9.3453,
+     "duration": 4.7147
+    },
+    {
+     "text": "Three things: why there are many heads and what they cost, what the multi-layer perceptron is actually for, and what the residual stream is \u2014 which is the idea that makes the whole stack trainable and which almost nobody explains.",
+     "file": "t4-e2/audio/s1-004-6a5b55d5f69bd7d1.wav",
+     "start": 14.48,
+     "duration": 17.7067
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the problem",
+    "title": "One head can express one relationship at a time",
+    "body": "A softmax row sums to one. That is a budget. Attention spent on the previous token is attention not spent on the subject of the sentence, and a single head has to choose.",
+    "points": [
+     "Four heads of width 32 instead of one head of width 128.",
+     "Same parameters. Same FLOPs. Four independent softmax budgets.",
+     "Each head can specialise: one tracks position, one tracks the ticker symbol, one tracks the last number seen.",
+     "Nobody assigns those jobs. They fall out of training."
+    ],
+    "aside": "This is why you widen by adding heads rather than by making one head bigger \u2014 a wider head does not get a second opinion, it gets a longer vector."
+   },
+   "start": 32.8367,
+   "duration": 68.09,
+   "segments": [
+    {
+     "text": "Here is the problem with what we built last time.",
+     "file": "t4-e2/audio/s2-000-03d31832286a832f.wav",
+     "start": 32.8367,
+     "duration": 3.4133
+    },
+    {
+     "text": "A softmax row sums to one.",
+     "file": "t4-e2/audio/s2-001-e4f577f3c90aac2f.wav",
+     "start": 36.67,
+     "duration": 2.304
+    },
+    {
+     "text": "That is not a nice property, it is a budget.",
+     "file": "t4-e2/audio/s2-002-3ea43a159896765f.wav",
+     "start": 39.394,
+     "duration": 3.3493
+    },
+    {
+     "text": "If a head spends sixty percent of its attention on the token immediately behind it, that is sixty percent it cannot spend on the subject of the sentence.",
+     "file": "t4-e2/audio/s2-003-c1dc8884e6883623.wav",
+     "start": 43.1633,
+     "duration": 10.816
+    },
+    {
+     "text": "One head has to choose what kind of relationship it is in the business of noticing.",
+     "file": "t4-e2/audio/s2-004-6fb51a4686012c79.wav",
+     "start": 54.3993,
+     "duration": 6.0587
+    },
+    {
+     "text": "Multi-head attention buys parallel budgets by splitting the width.",
+     "file": "t4-e2/audio/s2-005-0ff3ab8aa310d48d.wav",
+     "start": 60.878,
+     "duration": 4.8213
+    },
+    {
+     "text": "Four heads of thirty two, instead of one head of one hundred and twenty eight.",
+     "file": "t4-e2/audio/s2-006-2b0c92dca0f3e704.wav",
+     "start": 66.1193,
+     "duration": 5.3547
+    },
+    {
+     "text": "Same parameter count, same floating point operations, four independent softmax budgets.",
+     "file": "t4-e2/audio/s2-007-d11a4f7c51b7319f.wav",
+     "start": 71.894,
+     "duration": 6.8693
+    },
+    {
+     "text": "And in a trained model they visibly specialise.",
+     "file": "t4-e2/audio/s2-008-8a7940173a6c4de4.wav",
+     "start": 79.1833,
+     "duration": 3.3707
+    },
+    {
+     "text": "One head tracks position.",
+     "file": "t4-e2/audio/s2-009-2973b1dd316f9433.wav",
+     "start": 82.974,
+     "duration": 1.8773
+    },
+    {
+     "text": "One tracks which ticker symbol is under discussion.",
+     "file": "t4-e2/audio/s2-010-c8d1754c5275d159.wav",
+     "start": 85.2713,
+     "duration": 3.4347
+    },
+    {
+     "text": "One tracks the last number that appeared.",
+     "file": "t4-e2/audio/s2-011-fefea6b13fe8c16e.wav",
+     "start": 89.126,
+     "duration": 2.624
+    },
+    {
+     "text": "Nobody assigned those jobs; they fall out of training, and in episode four we are going to look at one of them.",
+     "file": "t4-e2/audio/s2-012-327bb60f2e285cb2.wav",
+     "start": 92.17,
+     "duration": 8.1067
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "component": "CodeWalkthrough",
+   "props": {
+    "eyebrow": "the implementation",
+    "title": "Heads are a reshape, and the reshape is where the bugs are",
+    "filename": "phases/p2/t4-transformer/src/t4_transformer/attention.py",
+    "code": "self.qkv = nn.Linear(n_embd, 3 * n_embd, bias=bias)\n\ndef _split_heads(self, x):\n    b, t, _ = x.shape\n    return x.view(b, t, self.n_head, self.head_dim).transpose(1, 2)\n\ndef forward(self, x, *, cache=None, need_weights=False):\n    b, t, c = x.shape\n    q, k, v = self.qkv(x).split(self.n_embd, dim=2)\n    q, k, v = self._split_heads(q), self._split_heads(k), self._split_heads(v)\n    out, attn = scaled_dot_product(q, k, v, mask=mask)\n    out = out.transpose(1, 2).contiguous().view(b, t, c)\n    return self.resid_dropout(self.proj(out))",
+    "highlights": [
+     {
+      "at": 20,
+      "lines": [
+       1
+      ],
+      "caption": "One Linear producing 3d, not three Linears producing d. Same maths, one GEMM instead of three."
+     },
+     {
+      "at": 120,
+      "lines": [
+       5
+      ],
+      "caption": "view then transpose: heads become a batch dimension, so B*H attention problems run as one batched matmul."
+     },
+     {
+      "at": 240,
+      "lines": [
+       9,
+       10
+      ],
+      "caption": "Split the fused projection back into q, k, v \u2014 then slice each into heads."
+     },
+     {
+      "at": 340,
+      "lines": [
+       12
+      ],
+      "caption": "Transpose back and flatten: the heads' outputs are concatenated, then mixed by one more projection."
+     }
+    ]
+   },
+   "start": 100.9267,
+   "duration": 61.2967,
+   "segments": [
+    {
+     "text": "And here is the implementation, which is a reshape.",
+     "file": "t4-e2/audio/s3-000-6290094b835d5528.wav",
+     "start": 100.9267,
+     "duration": 3.9467
+    },
+    {
+     "text": "First thing to notice: one Linear layer producing three times the width, not three Linear layers producing the width.",
+     "file": "t4-e2/audio/s3-001-896c2525520a6aae.wav",
+     "start": 105.2933,
+     "duration": 8.4267
+    },
+    {
+     "text": "Identical mathematics, one matrix multiply instead of three, and this is why every real implementation looks like this.",
+     "file": "t4-e2/audio/s3-002-f2c544d5d14e3e0e.wav",
+     "start": 114.14,
+     "duration": 9.728
+    },
+    {
+     "text": "Then split heads.",
+     "file": "t4-e2/audio/s3-003-7797ca655fbe0c45.wav",
+     "start": 124.288,
+     "duration": 1.5787
+    },
+    {
+     "text": "View, then transpose.",
+     "file": "t4-e2/audio/s3-004-e3a86ca023f7a07f.wav",
+     "start": 126.2867,
+     "duration": 1.792
+    },
+    {
+     "text": "The view chops the width into head count by head dimension.",
+     "file": "t4-e2/audio/s3-005-2fd44988215a3a53.wav",
+     "start": 128.4987,
+     "duration": 3.904
+    },
+    {
+     "text": "The transpose moves the head axis in front of the sequence axis, so that batch and head sit together at the front and the whole attention computation becomes one batched matrix multiply over batch times heads independent problems.",
+     "file": "t4-e2/audio/s3-006-a85acef8b241010a.wav",
+     "start": 132.8227,
+     "duration": 17.3867
+    },
+    {
+     "text": "At the end, transpose back, flatten the heads into one vector, and pass it through one more projection which is what lets the heads' outputs mix with each other.",
+     "file": "t4-e2/audio/s3-007-0459a338f9ceac93.wav",
+     "start": 150.6293,
+     "duration": 10.944
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "component": "Callout",
+   "props": {
+    "kind": "gotcha",
+    "heading": "Check the reshape against a loop, or it will be wrong forever",
+    "body": "The view is correct only if head h corresponds to a contiguous block of columns in the fused qkv weight. Get it wrong and the model still trains \u2014 just worse, permanently, with no error message. So the fast path is tested against an explicit per-head Python loop that is obviously correct and obviously slow.",
+    "code": "for 1, 2, 4, 8 heads:\n    max abs difference between batched and looped:  0.0"
+   },
+   "start": 162.2233,
+   "duration": 65.8353,
+   "segments": [
+    {
+     "text": "Now a gotcha, and it is the most valuable habit in this whole episode.",
+     "file": "t4-e2/audio/s4-000-c70e578a2c481cb0.wav",
+     "start": 162.2233,
+     "duration": 5.376
+    },
+    {
+     "text": "That view and transpose are correct only if head h corresponds to a contiguous block of columns in the fused weight matrix.",
+     "file": "t4-e2/audio/s4-001-8ed8ee570163d895.wav",
+     "start": 168.0193,
+     "duration": 9.408
+    },
+    {
+     "text": "If it does not, nothing crashes.",
+     "file": "t4-e2/audio/s4-002-8ed54d2f5fd308c3.wav",
+     "start": 177.8473,
+     "duration": 2.496
+    },
+    {
+     "text": "There is no error message.",
+     "file": "t4-e2/audio/s4-003-e7fbac679b501459.wav",
+     "start": 180.7633,
+     "duration": 2.0907
+    },
+    {
+     "text": "The model trains.",
+     "file": "t4-e2/audio/s4-004-728878d43dcbe4ce.wav",
+     "start": 183.274,
+     "duration": 1.6
+    },
+    {
+     "text": "It is simply worse than it should be, forever.",
+     "file": "t4-e2/audio/s4-005-ec33d8544bf1659f.wav",
+     "start": 185.294,
+     "duration": 2.9653
+    },
+    {
+     "text": "So in the repository there is a second implementation, multi head attention looped, which does the heads as an explicit Python for loop.",
+     "file": "t4-e2/audio/s4-006-edae8f9270af93cb.wav",
+     "start": 188.6793,
+     "duration": 10.24
+    },
+    {
+     "text": "It is slow and it is obviously correct, and it exists purely as an oracle.",
+     "file": "t4-e2/audio/s4-007-71f3552ebc85fd83.wav",
+     "start": 199.3393,
+     "duration": 5.8667
+    },
+    {
+     "text": "The test asserts the two agree, and the number that comes back is exactly zero for one, two, four and eight heads.",
+     "file": "t4-e2/audio/s4-008-f5d4347b61ffbfcc.wav",
+     "start": 205.626,
+     "duration": 8.512
+    },
+    {
+     "text": "Not close to zero.",
+     "file": "t4-e2/audio/s4-009-1f929ceb0c9fa991.wav",
+     "start": 214.558,
+     "duration": 1.7493
+    },
+    {
+     "text": "Zero, because it is the same arithmetic in a different memory layout.",
+     "file": "t4-e2/audio/s4-010-3386024f8b440165.wav",
+     "start": 216.7273,
+     "duration": 5.184
+    },
+    {
+     "text": "When you write a fast path, write the slow path first and never delete it.",
+     "file": "t4-e2/audio/s4-011-27404511d0337afe.wav",
+     "start": 222.3313,
+     "duration": 5.0773
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "what heads cost",
+    "title": "Splitting the width is free",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "1 head",
+      "value": 263168,
+      "note": "d=256"
+     },
+     {
+      "label": "2 heads",
+      "value": 263168
+     },
+     {
+      "label": "4 heads",
+      "value": 263168
+     },
+     {
+      "label": "8 heads",
+      "value": 263168
+     },
+     {
+      "label": "16 heads",
+      "value": 263168
+     }
+    ],
+    "yLabel": "parameters",
+    "caption": "Measured, not asserted: identical parameter counts at every head count. The FLOP count is identical too."
+   },
+   "start": 228.0587,
+   "duration": 53.026,
+   "segments": [
+    {
+     "text": "And this is what heads cost, measured rather than asserted.",
+     "file": "t4-e2/audio/s5-000-7ee86c027e9f78e5.wav",
+     "start": 228.0587,
+     "duration": 4.096
+    },
+    {
+     "text": "Five configurations, one head through sixteen heads, at a fixed model width of two hundred and fifty six.",
+     "file": "t4-e2/audio/s5-001-4eecbe1f9d2f5a3a.wav",
+     "start": 232.5747,
+     "duration": 7.9573
+    },
+    {
+     "text": "Two hundred and sixty three thousand, one hundred and sixty eight parameters.",
+     "file": "t4-e2/audio/s5-002-af0062ebd0e8871c.wav",
+     "start": 240.952,
+     "duration": 5.4613
+    },
+    {
+     "text": "Every single one.",
+     "file": "t4-e2/audio/s5-003-792b4e1f30ea7a8d.wav",
+     "start": 246.8333,
+     "duration": 1.5147
+    },
+    {
+     "text": "The floating point operation count is identical as well, because splitting a width does not change how much arithmetic there is.",
+     "file": "t4-e2/audio/s5-004-93e71700fa067461.wav",
+     "start": 248.768,
+     "duration": 9.6
+    },
+    {
+     "text": "The wall clock differs a little \u2014 more heads means smaller, less cache-friendly matrices \u2014 but that is a memory effect, not an arithmetic one.",
+     "file": "t4-e2/audio/s5-005-2453a4e31fb1aebc.wav",
+     "start": 258.788,
+     "duration": 10.752
+    },
+    {
+     "text": "Heads are close to free, and you should think of head count as a knob about *expressiveness* with no price tag on the other side.",
+     "file": "t4-e2/audio/s5-006-f49058ccc9f00413.wav",
+     "start": 269.96,
+     "duration": 10.4747
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "component": "ConceptScene",
+   "props": {
+    "eyebrow": "the other half",
+    "title": "Attention moves information; the MLP decides what it means",
+    "body": "A transformer that only attends is a very expensive weighted average. The multi-layer perceptron is where the model does its thinking \u2014 and where roughly two thirds of the parameters live.",
+    "points": [
+     "Widen by four, apply GELU, project back. That is the whole layer.",
+     "It is applied to every position independently \u2014 no mixing between tokens.",
+     "Measured on a 4-layer model: attention 33k parameters, MLP 66k. A 1 to 2 ratio.",
+     "The 4x is convention from the paper, not a derived optimum."
+    ],
+    "aside": "GELU rather than ReLU: smooth, so its gradient does not vanish abruptly for slightly-negative inputs. GPT-2 used it and everyone copied."
+   },
+   "start": 281.0847,
+   "duration": 73.714,
+   "segments": [
+    {
+     "text": "Now the other half of the block, and the half people underrate.",
+     "file": "t4-e2/audio/s6-000-0c99f542cd2dc497.wav",
+     "start": 281.0847,
+     "duration": 4.288
+    },
+    {
+     "text": "Attention *moves* information between positions.",
+     "file": "t4-e2/audio/s6-001-2ce17d78f941e2ee.wav",
+     "start": 285.7927,
+     "duration": 5.0133
+    },
+    {
+     "text": "It does not transform it.",
+     "file": "t4-e2/audio/s6-002-ed91b82b84c064a3.wav",
+     "start": 291.226,
+     "duration": 1.92
+    },
+    {
+     "text": "A stack of pure attention layers is a very expensive weighted average.",
+     "file": "t4-e2/audio/s6-003-7f159e97a745cbeb.wav",
+     "start": 293.566,
+     "duration": 5.2267
+    },
+    {
+     "text": "The multi-layer perceptron is where the model thinks.",
+     "file": "t4-e2/audio/s6-004-3edc78eadfc362ed.wav",
+     "start": 299.2127,
+     "duration": 3.84
+    },
+    {
+     "text": "Widen by a factor of four, apply a non-linearity, project back down.",
+     "file": "t4-e2/audio/s6-005-cfe9d5c3eb89aa74.wav",
+     "start": 303.4727,
+     "duration": 5.76
+    },
+    {
+     "text": "That is the whole layer, and it is applied to each position independently \u2014 there is no communication between tokens inside it at all.",
+     "file": "t4-e2/audio/s6-006-0307e9c495ea1313.wav",
+     "start": 309.6527,
+     "duration": 10.0267
+    },
+    {
+     "text": "And look at the parameter split we measured on a four-layer model: attention thirty three thousand, the MLP sixty six thousand.",
+     "file": "t4-e2/audio/s6-007-8f5b9a0759c16d13.wav",
+     "start": 320.0993,
+     "duration": 9.9627
+    },
+    {
+     "text": "One to two.",
+     "file": "t4-e2/audio/s6-008-5d83737d15a1a75e.wav",
+     "start": 330.482,
+     "duration": 1.2373
+    },
+    {
+     "text": "Two thirds of the model is the part that has never heard of the sequence.",
+     "file": "t4-e2/audio/s6-009-3adf1142020a6313.wav",
+     "start": 332.1393,
+     "duration": 4.7787
+    },
+    {
+     "text": "The four times widening is convention from the paper, not a derived optimum, and the non-linearity is GELU rather than ReLU because it is smooth, so its gradient does not fall off a cliff for slightly negative inputs.",
+     "file": "t4-e2/audio/s6-010-53800349f281b2de.wav",
+     "start": 337.338,
+     "duration": 16.8107
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "component": "MathReveal",
+   "props": {
+    "eyebrow": "the block",
+    "title": "Two writes to a shared bus",
+    "english": "Normalise, attend, add the result back. Normalise again, run the MLP, add that back too. Nothing is ever overwritten.",
+    "equation": "x = x + Attn(Norm(x))\nx = x + MLP(Norm(x))",
+    "code": "x = x + self.attn(self.ln1(x))\nreturn x + self.mlp(self.ln2(x))",
+    "note": "Read the residual stream as a bus every layer reads from and adds to \u2014 which is why you can delete a middle layer of a trained transformer and still get grammatical text."
+   },
+   "start": 354.7987,
+   "duration": 68.0607,
+   "segments": [
+    {
+     "text": "And here is the block itself.",
+     "file": "t4-e2/audio/s7-000-f6adb0ab03338f50.wav",
+     "start": 354.7987,
+     "duration": 2.3467
+    },
+    {
+     "text": "In English: normalise, attend, add the result back onto what you had.",
+     "file": "t4-e2/audio/s7-001-1754aabac120cc40.wav",
+     "start": 357.5653,
+     "duration": 5.44
+    },
+    {
+     "text": "Normalise again, run the MLP, add that back too.",
+     "file": "t4-e2/audio/s7-002-efdd7061935a2662.wav",
+     "start": 363.4253,
+     "duration": 3.9253
+    },
+    {
+     "text": "In symbols, two lines, both of the form x equals x plus something.",
+     "file": "t4-e2/audio/s7-003-07e9c35a98182775.wav",
+     "start": 367.7707,
+     "duration": 5.2907
+    },
+    {
+     "text": "In code, the same two lines.",
+     "file": "t4-e2/audio/s7-004-3c4b9f6b636dcc1a.wav",
+     "start": 373.4813,
+     "duration": 2.112
+    },
+    {
+     "text": "Now the thing worth sitting with.",
+     "file": "t4-e2/audio/s7-005-f9d139c22b191073.wav",
+     "start": 376.0133,
+     "duration": 2.0693
+    },
+    {
+     "text": "Nothing is ever overwritten.",
+     "file": "t4-e2/audio/s7-006-e72e2bfce416f5bc.wav",
+     "start": 378.5027,
+     "duration": 2.0693
+    },
+    {
+     "text": "Each sublayer *adds* to a stream that runs unbroken from the embeddings all the way to the final norm.",
+     "file": "t4-e2/audio/s7-007-1b67f5b6a946ac42.wav",
+     "start": 380.992,
+     "duration": 9.28
+    },
+    {
+     "text": "The right mental model is a shared bus: every layer reads the bus, computes a contribution, and writes it back on.",
+     "file": "t4-e2/audio/s7-008-633e254a071b8c2b.wav",
+     "start": 390.692,
+     "duration": 8.9813
+    },
+    {
+     "text": "That is why you can delete a middle layer from a trained transformer and still get grammatical text out \u2014 you have removed one contribution from a sum, not cut a wire.",
+     "file": "t4-e2/audio/s7-009-331f82bf0172831d.wav",
+     "start": 400.0933,
+     "duration": 12.3307
+    },
+    {
+     "text": "And it is why gradients reach layer zero at all: there is a path from the loss to the embeddings that passes through nothing but additions.",
+     "file": "t4-e2/audio/s7-010-c684725e99ad4f43.wav",
+     "start": 412.844,
+     "duration": 9.3653
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "component": "ChartScene",
+   "props": {
+    "eyebrow": "pre-norm or post-norm",
+    "title": "The textbook answer is wrong at small scale",
+    "kind": "bar",
+    "bars": [
+     {
+      "label": "6L, lr 3e-3\npre",
+      "value": 2.7891
+     },
+     {
+      "label": "6L, lr 3e-3\npost",
+      "value": 1.78,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "6L, lr 1e-2\npre",
+      "value": 2.4244,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "6L, lr 1e-2\npost",
+      "value": 3.3014
+     },
+     {
+      "label": "12L, lr 3e-3\npre",
+      "value": 2.6616,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "12L, lr 3e-3\npost",
+      "value": 3.2993
+     },
+     {
+      "label": "12L, lr 1e-2\npre",
+      "value": 2.599,
+      "color": "#5ac48c"
+     },
+     {
+      "label": "12L, lr 1e-2\npost",
+      "value": 3.3013
+     }
+    ],
+    "yLabel": "validation loss (lower is better)",
+    "caption": "Green is the winner in each pair. Same seed, same data, 150 steps, no warmup."
+   },
+   "start": 422.8593,
+   "duration": 85.862,
+   "segments": [
+    {
+     "text": "Which brings us to where the normalisation goes, and to a result I did not expect.",
+     "file": "t4-e2/audio/s8-000-3df025a3cd55b7c7.wav",
+     "start": 422.8593,
+     "duration": 6.2933
+    },
+    {
+     "text": "Everyone says pre-norm \u2014 normalise before the sublayer \u2014 is better than the original paper's post-norm.",
+     "file": "t4-e2/audio/s8-001-1d99ffaa718519b3.wav",
+     "start": 429.5727,
+     "duration": 7.68
+    },
+    {
+     "text": "So we measured it.",
+     "file": "t4-e2/audio/s8-002-b8d9da55e13d2dfa.wav",
+     "start": 437.6727,
+     "duration": 1.4933
+    },
+    {
+     "text": "Four pairs: six layers and twelve layers, at two learning rates, same seed, same data, no warmup.",
+     "file": "t4-e2/audio/s8-003-8cc1bcb360a3ab0a.wav",
+     "start": 439.586,
+     "duration": 7.744
+    },
+    {
+     "text": "Look at the first pair.",
+     "file": "t4-e2/audio/s8-004-8bd3f72f13720d2e.wav",
+     "start": 447.75,
+     "duration": 1.6
+    },
+    {
+     "text": "Six layers, mild learning rate.",
+     "file": "t4-e2/audio/s8-005-33da6afb03b0b3c6.wav",
+     "start": 449.77,
+     "duration": 2.6453
+    },
+    {
+     "text": "Post-norm wins, and not narrowly: one point seven eight against two point seven nine.",
+     "file": "t4-e2/audio/s8-006-e2120e48561c37f1.wav",
+     "start": 452.8353,
+     "duration": 6.6773
+    },
+    {
+     "text": "The textbook answer is wrong here.",
+     "file": "t4-e2/audio/s8-007-26468966eb7e7847.wav",
+     "start": 459.9327,
+     "duration": 2.2187
+    },
+    {
+     "text": "Now look at the other three pairs.",
+     "file": "t4-e2/audio/s8-008-044aa7a1adb5d4a6.wav",
+     "start": 462.5713,
+     "duration": 2.2613
+    },
+    {
+     "text": "Raise the learning rate, or go to twelve layers, and post-norm parks at three point three and stops.",
+     "file": "t4-e2/audio/s8-009-f6ab1e6d4e9a8ead.wav",
+     "start": 465.2527,
+     "duration": 7.5947
+    },
+    {
+     "text": "It has not slowed down, it has stopped training.",
+     "file": "t4-e2/audio/s8-010-0274672543d6cb40.wav",
+     "start": 473.2673,
+     "duration": 3.456
+    },
+    {
+     "text": "Pre-norm carries on in all four.",
+     "file": "t4-e2/audio/s8-011-3f5f3d645a53bf83.wav",
+     "start": 477.1433,
+     "duration": 2.6453
+    },
+    {
+     "text": "So the honest statement is not \"pre-norm is better\".",
+     "file": "t4-e2/audio/s8-012-8d84bce3bc1f1a2c.wav",
+     "start": 480.2087,
+     "duration": 3.8187
+    },
+    {
+     "text": "It is that pre-norm is *robust*.",
+     "file": "t4-e2/audio/s8-013-c5c4016dc0c4291a.wav",
+     "start": 484.4473,
+     "duration": 3.8187
+    },
+    {
+     "text": "It buys you the right to stack twelve, forty eight, ninety six layers and to turn the learning rate up, without a babysitter.",
+     "file": "t4-e2/audio/s8-014-be5e9a001434d4f5.wav",
+     "start": 488.686,
+     "duration": 8.8747
+    },
+    {
+     "text": "That is the trade every model after GPT-2 took, and saying \"pre-norm is better\" throws away the only part of it that matters.",
+     "file": "t4-e2/audio/s8-015-f511e5759a422936.wav",
+     "start": 497.9807,
+     "duration": 10.0907
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "component": "Callout",
+   "props": {
+    "kind": "insight",
+    "heading": "RMSNorm is LayerNorm with the useless half removed",
+    "body": "LayerNorm subtracts the mean and divides by the standard deviation. RMSNorm skips the mean subtraction and divides by the root-mean-square. Same job, about seven fewer operations per element, no measurable quality cost \u2014 which is why LLaMA and everything downstream uses it.",
+    "code": "x / sqrt(mean(x^2) + eps) * gain      # no mean, no bias"
+   },
+   "start": 508.7213,
+   "duration": 57.3927,
+   "segments": [
+    {
+     "text": "One more component and then the recap.",
+     "file": "t4-e2/audio/s9-000-7d077530b96ed168.wav",
+     "start": 508.7213,
+     "duration": 2.7733
+    },
+    {
+     "text": "RMSNorm.",
+     "file": "t4-e2/audio/s9-001-fd3ae569be393a88.wav",
+     "start": 511.9147,
+     "duration": 1.7067
+    },
+    {
+     "text": "LayerNorm subtracts the mean and divides by the standard deviation.",
+     "file": "t4-e2/audio/s9-002-5d4df2e29d013c8d.wav",
+     "start": 514.0413,
+     "duration": 5.2907
+    },
+    {
+     "text": "Zhang and Sennrich noticed in twenty nineteen that the re-centering does approximately nothing and the re-scaling does approximately everything.",
+     "file": "t4-e2/audio/s9-003-90ab8cae829837b9.wav",
+     "start": 519.752,
+     "duration": 10.0907
+    },
+    {
+     "text": "So RMSNorm keeps the rescaling and drops the mean subtraction and the bias term.",
+     "file": "t4-e2/audio/s9-004-fdde3b901849a00e.wav",
+     "start": 530.2627,
+     "duration": 6.8053
+    },
+    {
+     "text": "Divide by the root mean square, multiply by a learned gain, done.",
+     "file": "t4-e2/audio/s9-005-c0d66b9121b604a3.wav",
+     "start": 537.488,
+     "duration": 5.056
+    },
+    {
+     "text": "About seven fewer operations per element, no measurable quality cost, which is why LLaMA used it and why everything downstream of LLaMA uses it.",
+     "file": "t4-e2/audio/s9-006-b7f26faae01b2484.wav",
+     "start": 542.964,
+     "duration": 12.9067
+    },
+    {
+     "text": "Both are in the repository and the config picks between them, so you can measure the difference yourself instead of taking my word for it.",
+     "file": "t4-e2/audio/s9-007-7da65cb06c46630b.wav",
+     "start": 556.2907,
+     "duration": 9.1733
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "component": "RecapScene",
+   "props": {
+    "eyebrow": "recap",
+    "title": "The block, in three sentences",
+    "points": [
+     "Multi-head attention buys parallel softmax budgets for free \u2014 same parameters, same FLOPs \u2014 and the reshape that implements it must be checked against a slow loop.",
+     "The MLP holds two thirds of the parameters and is where the model thinks; attention only moves information between positions.",
+     "Pre-norm is not better quality, it is robustness: post-norm wins at 6 layers and stops training at 12."
+    ],
+    "ifSkipped": "Skip this and the model in episode four is a black box you are watching train, rather than a stack of contributions you can reason about one at a time.",
+    "next": "Episode 3 \u2014 positions: why attention cannot tell word order, and how RoPE fixes it with a rotation."
+   },
+   "start": 566.114,
+   "duration": 60.5007,
+   "segments": [
+    {
+     "text": "Three things.",
+     "file": "t4-e2/audio/s10-000-612ae6df2d818804.wav",
+     "start": 566.114,
+     "duration": 1.28
+    },
+    {
+     "text": "One.",
+     "file": "t4-e2/audio/s10-001-cadf3811dd6afddb.wav",
+     "start": 567.814,
+     "duration": 0.832
+    },
+    {
+     "text": "Multi-head attention buys parallel relationships for free, and the reshape that implements it must be checked against an obviously-correct slow version, because getting it wrong produces a model that trains, just worse, forever.",
+     "file": "t4-e2/audio/s10-002-f51b32ca5820555a.wav",
+     "start": 569.066,
+     "duration": 17.5573
+    },
+    {
+     "text": "Two.",
+     "file": "t4-e2/audio/s10-003-8848b45411fcacef.wav",
+     "start": 587.0433,
+     "duration": 0.8107
+    },
+    {
+     "text": "The MLP holds two thirds of the parameters and is where the thinking happens; attention only moves information around.",
+     "file": "t4-e2/audio/s10-004-aa4320e92eb1501e.wav",
+     "start": 588.274,
+     "duration": 9.216
+    },
+    {
+     "text": "Three.",
+     "file": "t4-e2/audio/s10-005-301665492da4bf47.wav",
+     "start": 597.91,
+     "duration": 0.896
+    },
+    {
+     "text": "Pre-norm is not better quality, it is robustness \u2014 post-norm actually won at six layers, and stopped training entirely at twelve.",
+     "file": "t4-e2/audio/s10-006-0c4f86fc1e8c7c80.wav",
+     "start": 599.226,
+     "duration": 10.2613
+    },
+    {
+     "text": "Next time, positions.",
+     "file": "t4-e2/audio/s10-007-2ce98fed5a43f829.wav",
+     "start": 609.9073,
+     "duration": 1.8773
+    },
+    {
+     "text": "Self-attention has no idea what order the tokens are in, which is a strange thing to discover about a language model, and rotary embeddings fix it with one very elegant idea.",
+     "file": "t4-e2/audio/s10-008-cd88ddbe2d058163.wav",
+     "start": 612.2047,
+     "duration": 13.76
+    }
+   ]
+  }
+ ]
+}
