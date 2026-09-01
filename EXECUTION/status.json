@@ -59,17 +59,17 @@
   "code": "done",
   "tests": "pass",
   "bench": "done",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "Decoder-only GPT (RoPE/learned/sinusoidal positions, RMS/LayerNorm, tied head, KV cache) \u00b7 121 tests \u00b7 logit parity 3.8e-07 vs an independent reference \u00b7 loss curve 0.17x the seed-noise band \u00b7 100% well-formed generation \u00b7 induction heads 9.1x chance with a depth control (94% vs 65%) \u00b7 cache 3.19x and token-identical"
+  "note": "Decoder-only GPT (RoPE/learned/sinusoidal positions, RMS/LayerNorm, tied head, KV cache) \u00b7 121 tests \u00b7 logit parity 3.8e-07 vs an independent reference \u00b7 loss curve 0.17x the seed-noise band \u00b7 100% well-formed generation \u00b7 induction heads 9.1x chance with a depth control (94% vs 65%) \u00b7 cache 3.19x and token-identical \u00b7 E1 10m41s \u00b7 E2 10m27s \u00b7 E3 12m04s \u00b7 E4 9m26s \u00b7 E5 10m23s"
  },
  "T15": {
   "code": "done",
   "tests": "pass",
   "bench": "awaiting-4070",
-  "video": "pending",
+  "video": "done",
   "wired": "done",
-  "note": "AlphaSLM: tagged 12MB corpus, FinTok-packed uint16 shards, restartable harness \u00b7 68 tests \u00b7 CPU bench 6/6 (resume bit-exact 0.0; 3-rung scaling ordering holds, power law checked on a held-out rung at +0.33%; 1.014x held-out filing perplexity, explained by a 19.5%/3.56-nat digit floor) \u00b7 the 15M and 40M rungs need the 4070: gpu-runner/t15_alphaslm_40m.py"
+  "note": "AlphaSLM: tagged 12MB corpus, FinTok-packed uint16 shards, restartable harness \u00b7 68 tests \u00b7 CPU bench 6/6 (resume bit-exact 0.0; 3-rung scaling ordering holds, power law checked on a held-out rung at +0.33%; 1.014x held-out filing perplexity, explained by a 19.5%/3.56-nat digit floor) \u00b7 the 15M and 40M rungs need the 4070: gpu-runner/t15_alphaslm_40m.py \u00b7 E1 8m25s \u00b7 E2 8m00s \u00b7 E3 8m43s \u00b7 E4 9m06s"
  },
  "T43": {
   "code": "scheduled",
