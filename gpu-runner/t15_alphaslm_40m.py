@@ -30,13 +30,12 @@ for src in sorted((ROOT / "phases").glob("*/*/src")):
 sys.path.insert(0, str(ROOT))
 
 import torch  # noqa: E402
-
-from t15_alphaslm import LADDER, TrainSpec, Trainer, ensure_shards  # noqa: E402
+from t4_transformer import GPT  # noqa: E402
+from t15_alphaslm import LADDER, Trainer, TrainSpec, ensure_shards  # noqa: E402
 from t15_alphaslm.evaluate import (  # noqa: E402
     perplexity_by_tag,
     sample_commentary,
 )
-from t4_transformer import GPT  # noqa: E402
 
 BYTES_PER_PARAM_TRAINING = 16   # fp32 weight + grad + two Adam moments
 

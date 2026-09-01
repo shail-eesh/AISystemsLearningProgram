@@ -13,7 +13,7 @@ if importlib.util.find_spec("torch") is None:  # pragma: no cover - environment 
     collect_ignore_glob = ["*.py"]
 else:
     import torch
-
+    from t4_transformer import GPT
     from t15_alphaslm import (
         LADDER,
         build_corpus,
@@ -22,7 +22,6 @@ else:
         pack_documents,
         split_documents,
     )
-    from t4_transformer import GPT
 
     @pytest.fixture(scope="session")
     def tokenizer():

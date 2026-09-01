@@ -27,7 +27,7 @@ import math
 import time
 
 from .config import CPU_RUNGS, Rung
-from .harness import TrainSpec, Trainer, train_rung
+from .harness import Trainer, TrainSpec, train_rung
 
 
 def run_study(shards, *, rungs: list[Rung] | None = None, steps: int = 1200,

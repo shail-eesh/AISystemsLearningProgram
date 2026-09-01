@@ -27,8 +27,8 @@ import numpy as np
 import torch
 from t15_alphaslm import (
     CPU_RUNGS,
-    TrainSpec,
     Trainer,
+    TrainSpec,
     build_corpus,
     compare_models,
     ensure_shards,
@@ -80,8 +80,8 @@ def random_windows_wobble(shards):
     print("    Random windows overlap, so some tokens are counted several times and")
     print("    some not at all. Same model, same data, five different draws:\n")
     torch.manual_seed(15)
-    from t15_alphaslm.config import LADDER
     from t4_transformer import GPT
+    from t15_alphaslm.config import LADDER
 
     model = GPT(LADDER["alphaslm-0.6m"].gpt_config(3495))
     trainer = Trainer(model, train_shard, val_shard,
@@ -99,9 +99,9 @@ def random_windows_wobble(shards):
                 total += float(model(x, y)[1])
             randoms.append(total / 12)
     seq = [trainer.evaluate(batches=12)["loss"] for _ in range(5)]
-    print(f"    random windows:     {['%.4f' % v for v in randoms]}")
+    print(f"    random windows:     {[f'{v:.4f}' for v in randoms]}")
     print(f"      spread {max(randoms) - min(randoms):.4f}")
-    print(f"    sequential windows: {['%.4f' % v for v in seq]}")
+    print(f"    sequential windows: {[f'{v:.4f}' for v in seq]}")
     print(f"      spread {max(seq) - min(seq):.4f}")
     print("\n    The second is deterministic because it walks the split once, in order,")
     print("    with no overlap. Random draws are right for *training* and wrong for a")

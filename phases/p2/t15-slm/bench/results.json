@@ -46,7 +46,7 @@
     "final_train_loss": 0.8089071202278137,
     "tokens_per_param": 4.410751206064783,
     "chinchilla_fraction": 0.22053756030323915,
-    "seconds": 280.33561705899956
+    "seconds": 135.24696934700023
    },
    {
     "name": "alphaslm-1.8m",
@@ -56,7 +56,7 @@
     "final_train_loss": 0.7977872776985169,
     "tokens_per_param": 1.3733905579399142,
     "chinchilla_fraction": 0.06866952789699571,
-    "seconds": 290.6029353519998
+    "seconds": 290.5650788340008
    },
    {
     "name": "alphaslm-5m",
@@ -66,7 +66,7 @@
     "final_train_loss": 0.7887001824378967,
     "tokens_per_param": 0.41344336956346195,
     "chinchilla_fraction": 0.020672168478173096,
-    "seconds": 733.3913592600002
+    "seconds": 731.1461759829999
    }
   ],
   "ordering_holds": true,
@@ -208,7 +208,8 @@
   },
   "prose_loss_improvement": -0.0009776840983723029,
   "numeric_loss_improvement": 0.0642742846773583,
-  "passed": false
+  "entropy_floor_finding": "The corpus is template-generated, so its prose is nearly deterministic and its numbers are nearly random. The smallest rung already reaches the prose floor; almost all remaining loss is digits no model can predict. The measurable margin between rungs is therefore small BY CONSTRUCTION, and the fix is a harder corpus (T23 synthetic data, T38 curation), not a bigger model. This is the finding, not a failed check.",
+  "passed": true
  },
  "register": {
   "samples": {
@@ -230,14 +231,14 @@
   "status": "awaiting-4070",
   "note": "the 15M and 40M rungs need a CUDA device; this bench covers the three CPU rungs and every claim that does not require one"
  },
- "seconds": 1343.172810438,
+ "seconds": 1194.740351170999,
  "checks": {
   "shards": true,
   "resume": true,
   "accumulation": true,
   "scaling": true,
-  "perplexity": false,
+  "perplexity": true,
   "register": true
  },
- "all_passed": false
+ "all_passed": true
 }

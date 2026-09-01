@@ -19,8 +19,8 @@ import tempfile
 
 import _bootstrap  # noqa: F401
 import torch
-from t15_alphaslm import LADDER, Trainer, TrainSpec, ensure_shards, lr_at
 from t4_transformer import GPT
+from t15_alphaslm import LADDER, Trainer, TrainSpec, ensure_shards, lr_at
 
 RUNG = LADDER["alphaslm-0.6m"]
 

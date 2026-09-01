@@ -5,7 +5,7 @@ import math
 
 import pytest
 import torch
-
+from t4_transformer import GPT
 from t15_alphaslm import (
     CPU_RUNGS,
     GPU_RUNGS,
@@ -15,7 +15,6 @@ from t15_alphaslm import (
     describe_ladder,
     lr_at,
 )
-from t4_transformer import GPT
 
 VOCAB = 3495
 

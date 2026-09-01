@@ -59,7 +59,8 @@ def build_alphaslm(rung: str = "alphaslm-1.8m", *, checkpoint: str | None = None
     path = pathlib.Path(checkpoint) if checkpoint else CHECKPOINTS / f"{rung}.pt"
     if path.exists():
         state = torch.load(path, map_location="cpu", weights_only=False)
-        model.load_state_dict(state["model"] if "model" in state else state)
+        # a Trainer checkpoint nests the weights; a bare state_dict does not
+        model.load_state_dict(state.get("model", state))
     return model
 
 

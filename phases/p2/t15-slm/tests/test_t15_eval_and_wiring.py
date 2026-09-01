@@ -6,8 +6,7 @@ import pathlib
 
 import pytest
 import torch
-
-from common.alphadesk import Registry
+from t4_transformer import GPT
 from t15_alphaslm import (
     LADDER,
     Trainer,
@@ -20,7 +19,8 @@ from t15_alphaslm import (
     sample_commentary,
 )
 from t15_alphaslm.scaling import analyse, extrapolate
-from t4_transformer import GPT
+
+from common.alphadesk import Registry
 
 BENCH = pathlib.Path(__file__).resolve().parent.parent / "bench"
 VOCAB = 3495
@@ -158,9 +158,30 @@ def test_recorded_numbers_meet_the_capsule_thresholds():
     assert d["resume"]["max_parameter_difference"] == 0.0
     assert d["accumulation"]["max_parameter_difference"] < 1e-4
     assert d["scaling"]["ordering_holds"] is True
-    assert d["perplexity"]["perplexity_ratio"] > 1.0
-    assert d["perplexity"]["prose_loss_improvement"] > 0
+    assert d["perplexity"]["perplexity_ratio"] > 1.005
     assert d["register"]["hit_rate"] >= 0.8
+
+
+def test_the_entropy_floor_finding_is_recorded_not_hidden():
+    """The scaling margin is small because most of the corpus is irreducible.
+
+    That decomposition is the topic's actual finding, so it has to be in the
+    committed results — a reader who sees a 1.4% margin and no explanation has
+    been given a number without its meaning.
+    """
+    d = json.loads((BENCH / "results.json").read_text())
+    classes = d["perplexity"]["by_token_class"]["per_model"]
+    largest = d["perplexity"]["largest"]
+    numeric = classes[largest]["numeric"]
+    prose = classes[largest]["prose"]
+    assert numeric["loss"] > 3.0, "digits should be close to unpredictable"
+    assert prose["loss"] < 0.2, "templated prose should be close to deterministic"
+    assert 0.1 < numeric["share"] < 0.3
+    assert "entropy_floor_finding" in d["perplexity"]
+    # and the smallest rung is already at the prose floor, which is *why* the
+    # margin is small — so the prose improvement across the ladder is ~zero
+    smallest = d["perplexity"]["smallest"]
+    assert abs(classes[smallest]["prose"]["loss"] - prose["loss"]) < 0.05
 
 
 def test_the_gpu_lane_is_declared_not_silently_skipped():

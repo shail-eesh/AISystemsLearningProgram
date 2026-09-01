@@ -42,13 +42,14 @@ for src in sorted((ROOT / "phases").glob("*/*/src")):
     sys.path.insert(0, str(src))
 sys.path.insert(0, str(ROOT))
 
+from t4_transformer import GPT  # noqa: E402
 from t15_alphaslm import (  # noqa: E402
     CPU_RUNGS,
-    compare_by_token_class,
     LADDER,
-    TrainSpec,
     Trainer,
+    TrainSpec,
     build_corpus,
+    compare_by_token_class,
     compare_models,
     ensure_shards,
     load_tokenizer,
@@ -59,7 +60,6 @@ from t15_alphaslm import (  # noqa: E402
     split_documents,
 )
 from t15_alphaslm.shards import DEFAULT_DIR  # noqa: E402
-from t4_transformer import GPT  # noqa: E402
 
 ISSUERS = ("ALPHAINFRA", "BHARATCHEM", "COASTBANK", "DECCANMOT", "EASTPOWER")
 MONEY = re.compile(r"Rs \d")

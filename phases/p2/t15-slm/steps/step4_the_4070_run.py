@@ -23,8 +23,8 @@ import sys
 
 import _bootstrap  # noqa: F401
 import torch
-from t15_alphaslm import CPU_RUNGS, LADDER, TrainSpec, Trainer, ensure_shards
 from t4_transformer import GPT
+from t15_alphaslm import CPU_RUNGS, LADDER, Trainer, TrainSpec, ensure_shards
 
 GPU_RUNNER = "gpu-runner/t15_alphaslm_40m.py"
 # A 4070 is roughly 30 TFLOP/s fp32 with tensor cores idle; these two cores do

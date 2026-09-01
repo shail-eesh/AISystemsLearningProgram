@@ -73,7 +73,6 @@ def the_split_goes_between_documents(docs):
 
 def what_packing_does(train_docs, val_docs):
     print("\n  tokenizing with FinTok (T30) and packing:\n")
-    tok = load_tokenizer()
     meta = pack_documents(train_docs, val_docs)
     print(f"    tokenizer {meta['tokenizer']}, vocab {meta['vocab_size']}, "
           f"dtype {meta['dtype']}, separator {meta['separator']} "
